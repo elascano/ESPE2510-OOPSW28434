@@ -1,6 +1,6 @@
 # ESPE2510-OOPSW28434
 ## Repository for HW, WS and EX for ESPE OOP SW 28434
-## Instructor: Edison Lascano
+## Student : Mateo Cevallos
 ## course name : Object Oriented Programming
 ### NRC: 28434
 
