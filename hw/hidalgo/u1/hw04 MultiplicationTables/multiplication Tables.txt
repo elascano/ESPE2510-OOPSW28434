@@ -1,0 +1,63 @@
+ Multiplication Tables 
+
+Java 
+
+ import java.util.Scanner;
+
+public class TablasMultiplicar {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int numero;
+
+        while (true) {
+            System.out.print("Ingresa un número del 1 al 12 (o 0 para salir): ");
+            numero = scanner.nextInt();
+
+            if (numero == 0) {
+                System.out.println("Programa terminado.");
+                break;
+            }
+
+            if (numero >= 1 && numero <= 12) {
+                System.out.println("Tabla de multiplicar del " + numero + ":");
+                for (int i = 1; i <= 12; i++) {
+                    System.out.println(numero + " x " + i + " = " + (numero * i));
+                }
+                System.out.println(); 
+            } else {
+                System.out.println("Número fuera de rango. Intenta otra vez.");
+            }
+        }
+
+        scanner.close();
+    }
+}
+
+
+
+
+
+Python
+
+def main():
+    while True:
+        try:
+            entrada = input("Ingresa un número del 1 al 12 (o 0 para salir): ")
+            numero = int(entrada)
+        except ValueError:
+            print("Entrada inválida. Escribe un número entero.")
+            continue
+
+        if numero == 0:
+            print("Programa terminado.")
+            break
+        if 1 <= numero <= 12:
+            print(f"Tabla de multiplicar del {numero}:")
+            for i in range(1, 13):
+                print(f"{numero} x {i} = {numero * i}")
+            print()
+        else:
+            print("Número fuera de rango. Intenta otra vez.")
+
+if __name__ == '__main__':
+    main()
