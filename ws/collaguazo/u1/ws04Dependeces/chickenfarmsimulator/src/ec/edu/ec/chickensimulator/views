@@ -1,0 +1,34 @@
+
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package chickenfarmsimulator;
+/**
+ *
+ * @author Pablo Collaguazo
+ */
+public class Chickenfarmsimulator {
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int numberOfWheels;
+        float cost;
+        String owner;
+        System.out.println("Hello world of OOP Programmers");
+        System.out.println("From Pablo Collaguazo");
+        //Todo the user must enter values
+        numberOfWheels = 5;
+        cost = 100.25F;
+        owner = "Pablo Collaguazo";
+        
+        System.out.println("The number of wheels of a car is ---> " + numberOfWheels + " and their cost is --> " + cost + "and they belog to "+ owner);
+        if(numberOfWheels <= 5 && numberOfWheels >=4){
+            System.out.println("This is a vehicule");
+        }else {
+            System.out.println("It is a motorcycle");
+        }
+    }
+    
+}
