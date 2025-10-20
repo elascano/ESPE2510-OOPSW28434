@@ -23,9 +23,20 @@
 hs_err_pid*
 replay_pid*
 <<<<<<< HEAD
+<<<<<<< HEAD
 /ws/quina/u1/ws04/ChickenFarmSimulator/nbproject/private/
 /ws/quina/u1/ws04/ChickenFarmSimulator/build/
 =======
 /ws/medina/u1/04Dependences/ChickenFarmSimulator/nbproject/private/
 /ws/medina/u1/04Dependences/ChickenFarmSimulator/build/
 >>>>>>> a9a246f3b99d8de84c1c767d5fdd999418a31b05
+=======
+/ws/calle/u1/ws04Dependencies/ChickenFarmSimulator/nbproject/private/
+/ws/calle/u1/ws04Dependencies/ChickenFarmSimulator/build/
+/ws/calle/u1/ws04Dependencies/JavaApplication3/nbproject/private/
+/ws/calle/u1/ws04Dependencies/ChickenFarmSimulator/dist/
+=======
+/ws/medina/u1/04Dependences/ChickenFarmSimulator/nbproject/private/
+/ws/medina/u1/04Dependences/ChickenFarmSimulator/build/
+>>>>>>> a3f03e285a51f30325e320054de74ab8f474e117
+>>>>>>> 369515e9c0e77539e4476dc0d4406470f87506fe
