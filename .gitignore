@@ -23,9 +23,17 @@
 hs_err_pid*
 replay_pid*
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /ws/otavalo/u1/ws04Dependences/ChickenFarmSimulator/nbproject/private/
 /ws/otavalo/u1/ws04Dependences/ChickenFarmSimulator/build/
+=======
+/ws/pastor/u1/ws04Dependencies/ChinkenFarmSimulator/nbproject/private/
+/ws/pastor/u1/ws04Dependencies/ChinkenFarmSimulator/build/
+/ws/pastor/u1/ws04Dependencies/ChinkenFarmSimulator/dist/
+/ws/medina/u1/04Dependences/ChickenFarmSimulator/nbproject/private/
+/ws/medina/u1/04Dependences/ChickenFarmSimulator/build/
+>>>>>>> e99e042ec8ae552fc6575b010605c9ce69d6568d
 
 =======
 <<<<<<< HEAD
