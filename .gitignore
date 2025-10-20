@@ -22,7 +22,12 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+<<<<<<< HEAD
 /ws/calle/u1/ws04Dependencies/ChickenFarmSimulator/nbproject/private/
 /ws/calle/u1/ws04Dependencies/ChickenFarmSimulator/build/
 /ws/calle/u1/ws04Dependencies/JavaApplication3/nbproject/private/
 /ws/calle/u1/ws04Dependencies/ChickenFarmSimulator/dist/
+=======
+/ws/medina/u1/04Dependences/ChickenFarmSimulator/nbproject/private/
+/ws/medina/u1/04Dependences/ChickenFarmSimulator/build/
+>>>>>>> a3f03e285a51f30325e320054de74ab8f474e117
