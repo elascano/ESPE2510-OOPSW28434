@@ -24,5 +24,9 @@ hs_err_pid*
 replay_pid*
 /ws/gudino/u1/ws04Dependences/ChickenFarmSymulator/nbproject/private/
 /ws/gudino/u1/ws04Dependences/ChikenFarmSimulator/dist/
+<<<<<<< HEAD
 /ws/medina/u1/04Dependences/ChickenFarmSimulator/nbproject/private/
 /ws/medina/u1/04Dependences/ChickenFarmSimulator/build/
+=======
+/ws/pastor/u1/ws04Dependencies/ChinkenFarmSimulator/nbproject/private/
+>>>>>>> 93ed7e021c2a901dfacd743f3af45ad670eeac76
