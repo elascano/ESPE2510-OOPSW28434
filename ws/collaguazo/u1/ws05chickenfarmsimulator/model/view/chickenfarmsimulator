@@ -1,0 +1,42 @@
+package ec.edu.ec.chickenfarmsimulator.view;
+
+import ec.edu.ec.chickenfarmsimulator.model.Chicken;
+
+/**
+ * Programa principal del simulador de granja de gallinas.
+ * Crea y gestiona objetos Chicken para demostrar su comportamiento.
+ * 
+ * @author Pablo Collaguazo
+ * @version 1.0
+ */
+public class ChickenFarmApp {
+
+    public static void main(String[] args) {
+        
+        System.out.println(" Welcome to the Chicken Farm Application ");
+        
+        // Creación de la primera gallina directamente
+        Chicken firstChicken = new Chicken(0, "Maruja", "White", 0, true);
+        
+        // Declaración de variables para otra gallina
+        String farmOwner = "Pablo Collaguazo";
+        int chickenId = 1;
+        String chickenName = "Lucy";
+        String featherColor = "Brown and White";
+        int chickenAge = 2;
+        boolean moltingStatus = false;
+
+        // Instanciación del objeto Chicken
+        Chicken secondChicken = new Chicken(chickenId, chickenName, featherColor, chickenAge, moltingStatus);
+
+        // Mostrar información general
+        System.out.println("\nFarm owner: " + farmOwner);
+        System.out.println("Chicken information: " + secondChicken);
+
+        // Uso de métodos de la clase Chicken
+        System.out.println("\n--- Chicken Activities ---");
+        secondChicken.performActivities();
+        firstChicken.performActivities();
+    }
+}
+chickenfarmsimulator
