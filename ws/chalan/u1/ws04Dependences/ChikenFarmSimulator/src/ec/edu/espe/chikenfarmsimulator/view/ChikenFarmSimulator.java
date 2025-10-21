@@ -5,7 +5,7 @@ import ec.edu.espe.chikenfarmsimulator.model.Chiken;
 
 /**
  *
- * @author Kevin Chalan, Object Masters, @ESPE
+ * @author ADRIAN TOAPANTA, Object Masters, @ESPE
  */
 public class ChikenFarmSimulator {
 

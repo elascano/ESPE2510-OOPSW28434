@@ -2,7 +2,7 @@ package ec.edu.espe.chikenfarmsimulator.model;
 
 /**
  *
- * @author Kevin Chalan
+ * @author ADRIAN TOAPANTA
  * @version 0.1
  */ 
 public class Chiken {
