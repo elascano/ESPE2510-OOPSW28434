@@ -10,12 +10,12 @@ public class ChickenFarmSimulator {
     
     System.out.println("This is my Chicken Farm Simulator");
     
-    Chicken chicken2 = new Chicken(0, "Maruja", "white", 1, true);
+    Chicken chicken2 = new Chicken(0, " Maruja ", " white ", 1, true);
     
     String owner;
     int id = 1;
-    String name = "Lucy";
-    String color = "White and Brown";
+    String name = " Lucy ";
+    String color = " White and Brown ";
     int age = 2;
     boolean isMolting = false;
     
@@ -28,8 +28,11 @@ public class ChickenFarmSimulator {
     
     System.out.println("the chicken is ---> " + chicken);
     
-    System.out.println("chicken id --> " + chicken.getId());
-    chicken.getId();
+    System.out.println("chicken id --> " + chicken.getId() + chicken.getName());
+        chicken.getId();
+        
+        chicken.doStuff();
+        chicken2.doStuff();
     
     
     }
