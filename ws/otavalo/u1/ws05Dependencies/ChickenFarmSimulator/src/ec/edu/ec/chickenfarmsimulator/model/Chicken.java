@@ -1,35 +1,36 @@
-package ec.edu.espe.chikenfarmsimulator.model;
+package ec.edu.ec.chickenfarmsimulator.model;
 
 /**
  *
- * @author ADRIAN TOAPANTA
- * @version 0.1
- */ 
-public class Chiken {
+ * @author Arelys Otavalo
+ * @version 0.1 
+ */
+public class Chicken {
     private int id;
-    private String name; 
+    private String name;
     private String color;
     private int age;
     private boolean isMolting;
-
-    @Override
-    public String toString() {
-        return "\nChiken{" + "\nid---->\t\t" + id + ", \nname---->\t\t" + name + ", \ncolor-->\t" + color + ", \nage---->\t" + age + ", \nisMolting--->" + isMolting + '}';
-    }
-  
-    public Chiken(int id, String name, String color, int age, boolean isMolting) {
-        this.id = id;
-        this.name = name;
-        this.color = color;
-        this.age = age;
-        this.isMolting = isMolting;
-    }
- private void cluck(){
+    
+    private void cluck(){
         System.out.println(" chicken " + name + " is clucking cluck cluck cluck");
     }
 
     private void eat(){
         System.out.println( " chicken " + name + " is eating, grains ");
+    }
+    
+    public void doStuff(){
+        cluck();
+        eat();
+        cluck();
+        poop(2);
+        poop(3);
+        eat ();
+        wander();
+        drink();
+        layAnEgg('M');
+        layAnEgg('L');
     }
     
     public Poop poop(int amount){
@@ -59,20 +60,19 @@ public class Chiken {
         System.out.println(" chicken " + name + " is wandering ");
         
     }
-    
-        public void doStuff(){
-        cluck();
-        eat();
-        cluck();
-        poop(2);
-        poop(3);
-        eat ();
-        wander();
-        drink();
-        layAnEgg('M');
-        layAnEgg('L');
+    @Override
+    public String toString() {  //ese to string es el q hace q el main se imprima
+        return "\nChicken{" + "\nid-->\t\t" + id + ", \nname--> \t" + name + ", \ncolor--> \t" + color + ", \nage-->\t\t" + age + ", \nisMolting -->" + isMolting + '}';
     }
     
+    public Chicken(int id, String name, String color, int age, boolean isMolting) {
+        this.id = id;
+        this.name = name;
+        this.color = color;
+        this.age = age;
+        this.isMolting = isMolting;
+    }
+
     /**
      * @return the id
      */
@@ -142,5 +142,6 @@ public class Chiken {
     public void setIsMolting(boolean isMolting) {
         this.isMolting = isMolting;
     }
-      
+    
+    
 }
