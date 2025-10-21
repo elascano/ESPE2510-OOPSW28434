@@ -16,8 +16,6 @@ public class Chicken {
     public String toString() {
         return "\nChicken{" + "\nid -> \t\t" + id + ", \nname -> \t" + name + ", \ncolor -> \t" + color + ", \nage -> \t\t" + age + ", \nisMolting -> \t" + isMolting + "\n}";
     }
-
-    
     
     public Chicken(int id, String name, String color, int age, boolean isMolting) {
         this.id = id;
@@ -96,6 +94,8 @@ public class Chicken {
     public void setIsMolting(boolean isMolting) {
         this.isMolting = isMolting;
     }
+    
+    
 
 
     
