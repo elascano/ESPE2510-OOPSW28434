@@ -1,6 +1,6 @@
 """
 Chicken Model
-@author Paulo Ramos
+@author Josue Rojas
 """
 class Chicken:
     def __init__(self):
