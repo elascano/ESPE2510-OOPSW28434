@@ -1,0 +1,49 @@
+class Chicken:
+    def __init__(self, chicken_id, name, color, age, molting):
+        self._id = chicken_id
+        self._name = name
+        self._color = color
+        self._age = age
+        self._molting = molting
+
+    def __str__(self):
+        return (
+            f"🐔 Chicken Info:\n"
+            f"  ID: {self._id}\n"
+            f"  Name: {self._name}\n"
+            f"  Color: {self._color}\n"
+            f"  Age: {self._age}\n"
+            f"  Molting: {'Yes' if self._molting else 'No'}"
+        )
+
+    # Getters
+    def get_id(self):
+        return self._id
+
+    def get_name(self):
+        return self._name
+
+    def get_color(self):
+        return self._color
+
+    def get_age(self):
+        return self._age
+
+    def is_molting(self):
+        return self._molting
+
+    # Setters
+    def set_id(self, new_id):
+        self._id = new_id
+
+    def set_name(self, new_name):
+        self._name = new_name
+
+    def set_color(self, new_color):
+        self._color = new_color
+
+    def set_age(self, new_age):
+        self._age = new_age
+
+    def set_molting(self, molting_status):
+        self._molting = molting_status
