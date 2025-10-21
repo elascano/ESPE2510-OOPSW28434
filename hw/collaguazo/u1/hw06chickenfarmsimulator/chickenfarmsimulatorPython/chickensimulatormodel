@@ -1,0 +1,23 @@
+from Chicken_model import Chicken
+
+def run_farm():
+    print("🐣 Welcome to the Chicken Farm 🏡\n")
+    # Crear una gallina 
+    sample_chicken = Chicken(0, "Maruja", "White", 1, True)
+    # Datos de otra gallina
+    chicken_id = 1
+    farmer_name = "Pablo Collaguazo"
+    chicken_name = "Lucy"
+    chicken_color = "Brown & White"
+    chicken_age = 2
+    molting_status = False
+
+    # Crear objeto gallina
+    lucy = Chicken(chicken_id, chicken_name, chicken_color, chicken_age, molting_status)
+
+    print(f"The owner of the chicken is: {farmer_name}\n")
+    print("Here are the chicken details:")
+    print(lucy)
+
+if __name__ == "__main__":
+    run_farm()
