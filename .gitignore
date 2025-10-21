@@ -22,5 +22,3 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
-/ws/lascano/u1/ws04Dependencies/ChickenFarmSimulator/nbproject/private/
-/ws/lascano/u1/ws04Dependencies/ChickenFarmSimulator/build/
