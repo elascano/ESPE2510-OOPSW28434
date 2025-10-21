@@ -1,21 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package ec.edu.espe.chikenfarmsimulator.model;
+
+package ec_edu_espe_chickenfarmsimulator_model;
 
 /**
  *
- * @author ADRIAN TOAPANTA, Object Masters, @ESPE
+ * @author César Vargas, Paradigm,@ESPE
  */
 public class Egg {
     private char size;
 
     @Override
     public String toString() {
-        return "Egg{" + "size=" + getSize() + '}';
+        return "Egg{" + "size=" + size + '}';
     }
-
+    
     public Egg(char size) {
         this.size = size;
     }
@@ -33,8 +30,5 @@ public class Egg {
     public void setSize(char size) {
         this.size = size;
     }
-    
-    
-    
     
 }
