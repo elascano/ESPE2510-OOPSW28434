@@ -13,11 +13,60 @@ public class Chicken {
     private int age;
     private boolean isMolting;
 
+    private void clock() {
+        System.out.println("chicken " + name + " is clocking, cluck cluck cluck");
+    }
+
+    private void eat() {
+        System.out.println("chicken " + name + " is eating, grands");
+    }
+
+    public void doStuff() {
+        clock();
+        eat();
+        poop(2);
+        eat();
+        wonder();
+        drink();
+        layAnEgg('M');
+    }
+
+    public Poop poop(int amount) {
+        Poop poop;
+        poop = new Poop(amount);
+        System.out.println("chicken " + name + " is pooping a " + poop);
+        return poop;
+    }
+
+    /**
+     * It creates an egg of size size and returns to he calling function
+     *
+     * @param size Size of the eggs with possible values S, M, L
+     * @return and Egg of size size.
+     */
+    public Egg layAnEgg(char size) {
+        Egg egg = new Egg(size);
+        System.out.println("chicken" + name + " is laying a " + egg.getSize() + " size egg");
+        return egg;
+    }
+
+    public String toStrin() {
+        return "\nChicken{" + "nid- > \t\t" + id + ", \nmane -> \t" + name + ", \ncolor -> \t" + color + ", \nage -> \t\t" + age;
+    }
+
+    public void wonder() {
+        System.out.println("chicen " + name + " is wandering");
+    }
+
+    public void drink() {
+        System.out.println("chicen " + name + " is drink");
+    }
+
     @Override
     public String toString() {
         return "Chicken\n{" + "\nid \t\t->\t\t" + id + " \nname \t\t-> \t\t" + name + " \ncolor \t\t-> \t\t" + color + " \nage \t\t-> \t\t" + age + " \nisMolting \t-> \t\t" + isMolting + "\n}";
     }
-    
+
     public Chicken(int id, String name, String color, int age, boolean isMolting) {
         this.id = id;
         this.name = name;
