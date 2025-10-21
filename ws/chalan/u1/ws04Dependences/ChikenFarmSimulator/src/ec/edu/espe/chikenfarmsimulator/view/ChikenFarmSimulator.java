@@ -11,7 +11,7 @@ public class ChikenFarmSimulator {
 
     public static void main(String args[]) {
 
-        System.out.println("This is my Chiken Farm Simulator");
+        System.out.println("This is my Chiken Farm Simulator from Kevin Chalan");
 
         Chiken chiken2 = new Chiken(0, "Maruja", "white", 1, true);
 
@@ -27,10 +27,12 @@ public class ChikenFarmSimulator {
         //Class  object
         Chiken chiken;
         chiken = new Chiken(id, name, color, age, isMolting);
-        System.out.println("The chiken is ---->" + chiken);
+        System.out.println("The chiken is ------>" + chiken);
 
-        System.out.println("chiken id --->" + chiken.getId() + chiken.getName());
+        System.out.println("chiken id ----->" + chiken.getId() + chiken.getName());
         chiken.getId();
-
+        chiken.doStuff();
+        chiken2.getId();
+        chiken2.doStuff();
     }
 }
