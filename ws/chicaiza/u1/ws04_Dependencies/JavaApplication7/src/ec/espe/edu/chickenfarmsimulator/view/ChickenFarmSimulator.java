@@ -9,19 +9,20 @@ public class ChickenFarmSimulator {
     public static void main(String[] args) {
         System.out.println("This is my Chicken Farm Simulator");
 
-        String owner;
+        String owner = "Daniel Chicaiza";
         String name = "Lucy";
         int id = 1;
         String color = "White and Brown";
         int age = 2;
         boolean isMolting = false;
 
-        owner = "Daniel Chicaiza";
-
         // Crear objeto Chicken
         Chicken chicken = new Chicken(id, name, color, age, isMolting);
 
         // Mostrar datos del objeto usando toString()
+        System.out.println("Owner: " + owner);
         System.out.println(chicken);
+        
+        chicken.doStuff();
     }
 }
