@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.chickenfarmsimulator.model;
 
 /**
  *
- * @author Josue Rojas
- * @version 0.1 
+ * @author Emily Calle
  */
 public class Chicken {
 
@@ -18,11 +13,11 @@ public class Chicken {
     private boolean isMolting;
 
     private void cluck() {
-        System.out.println(" chicken " + name + " is clucking, cluck cluck cluck");
+        System.out.println("chicken" + name + "is clucking, cluck, cluck , cluck");
     }
 
     private void eat() {
-        System.out.println(" chicken " + name + " is eating, grains");
+        System.out.println("chicken" + name + "is eating, grains");
     }
 
     public void doStuff() {
@@ -36,38 +31,38 @@ public class Chicken {
         drink();
         layAnEgg('M');
         layAnEgg('L');
-        
     }
 
     public Poop poop(int amount) {
         Poop poop;
         poop = new Poop(amount);
-        System.out.println("chicken " + name + " is pooping a " + poop);
+        System.out.println("chicken" + name + "is pooping a" + poop);
         return poop;
     }
-    
+
     /**
-     * Creates an egg of size size and returns to the calling function
-     * @param size Size of the eggs with possible values S, M, L
-     * @return and Egg of size size.
+     * It creates an egg of size and returns to the calling function
+     *
+     * @param size Size of the eggs with possible values S , M , L
+     * @return and Egg if size size
      */
-    public Egg layAnEgg(char size){
+    public Egg layAnEgg(char size) {
         Egg egg = new Egg(size);
-        System.out.println("chicken " + name + " is laying a " + egg.getSize() + " size egg");
+        System.out.println("chicken" + name + "is laying a " + egg.getSize() + " size egg");
         return egg;
     }
 
     @Override
     public String toString() {
-        return "\nChicken{" + "\nid -> \t\t" + id + ", \nname -> \t" + name + ", \ncolor -> \t" + color + ", \nage -> \t\t" + age + ", \nisMolting -> \t" + isMolting + "\n}";
-    }
-
-    public void wander() {
-        System.out.println("chicken " + name + " is wandering");
+        return "Chicken{" + "id -> \t\t" + id + ",\nname -> \t\t" + name + ",\ncolor -> \t\t" + color + ",\nage-> \t\t" + age + ",\nisMolting -> \t\t" + isMolting + '}';
     }
 
     public void drink() {
-        System.out.println("chicken " + name + " is drinking");
+        System.out.println("chicken" + name + "is drinking");
+    }
+
+    private void wander() {
+        System.out.println("chicken" + name + "is wandering");
     }
 
     public Chicken(int id, String name, String color, int age, boolean isMolting) {
