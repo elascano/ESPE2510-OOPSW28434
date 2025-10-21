@@ -28,6 +28,8 @@ public class ChickenFarmSimulator {
         
         System.out.println("chicken id -->" + chicken.getId());
         
+        chicken.doStuff();
+        
     }
     
 }
