@@ -5,13 +5,13 @@ class ChickenFarmSimulator:
     def main():
         print("This is my chicken Farm Simulator")
         
-        owner = None
+        owner = "Josue Rojas"
         id = 1
-        name = "lucy"
+        name = "Lucy"
         age = 2
         is_molting = False
         
-        owner = "Paulo Ramos"
+        owner = "Josue Rojas"
         
         # class object
         chicken = Chicken()
