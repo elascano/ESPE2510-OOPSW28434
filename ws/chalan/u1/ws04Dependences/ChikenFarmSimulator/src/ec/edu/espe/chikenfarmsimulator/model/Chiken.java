@@ -2,7 +2,7 @@ package ec.edu.espe.chikenfarmsimulator.model;
 
 /**
  *
- * @author Kevin Chalan
+ * @author ADRIAN TOAPANTA
  * @version 0.1
  */ 
 public class Chiken {
@@ -14,7 +14,7 @@ public class Chiken {
 
     @Override
     public String toString() {
-        return "\nChiken{" + "\nid-->\t\t" + id + ", \nname-->\t\t" + name + ", \ncolor-->\t" + color + ", \nage-->\t" + age + ", \nisMolting-->" + isMolting + '}';
+        return "\nChiken{" + "\nid---->\t\t" + id + ", \nname---->\t\t" + name + ", \ncolor-->\t" + color + ", \nage---->\t" + age + ", \nisMolting--->" + isMolting + '}';
     }
   
     public Chiken(int id, String name, String color, int age, boolean isMolting) {
@@ -24,8 +24,54 @@ public class Chiken {
         this.age = age;
         this.isMolting = isMolting;
     }
+ private void cluck(){
+        System.out.println(" chicken " + name + " is clucking cluck cluck cluck");
+    }
 
+    private void eat(){
+        System.out.println( " chicken " + name + " is eating, grains ");
+    }
     
+    public Poop poop(int amount){
+        Poop poop;
+        poop = new Poop(amount);
+        System.out.println(" chicken " + name + " is pooping " + poop);
+        return poop;
+    }
+    
+    /**
+     * Creates an egg of size size and returns to the calling function
+     * @param size Size of the eggs with possible values S, M, L
+     * @return and Egg of size size.
+     */
+    public Egg layAnEgg(char size){
+        Egg egg = new Egg(size);
+        System.out.println(" chicken " + name + " is laying " + egg.getSize() + " size egg");
+        return egg;
+    }
+    
+   public void drink(){
+       System.out.println(" chicken " + name + " is laying ");
+       
+   }
+   
+    public void wander(){
+        System.out.println(" chicken " + name + " is wandering ");
+        
+    }
+    
+        public void doStuff(){
+        cluck();
+        eat();
+        cluck();
+        poop(2);
+        poop(3);
+        eat ();
+        wander();
+        drink();
+        layAnEgg('M');
+        layAnEgg('L');
+    }
     
     /**
      * @return the id

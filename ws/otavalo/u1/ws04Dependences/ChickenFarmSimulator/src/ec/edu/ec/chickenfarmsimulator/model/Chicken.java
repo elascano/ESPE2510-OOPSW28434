@@ -11,10 +11,58 @@ public class Chicken {
     private String color;
     private int age;
     private boolean isMolting;
+    
+    private void cluck(){
+        System.out.println(" chicken " + name + " is clucking cluck cluck cluck");
+    }
 
+    private void eat(){
+        System.out.println( " chicken " + name + " is eating, grains ");
+    }
+    
+    public void doStuff(){
+        cluck();
+        eat();
+        cluck();
+        poop(2);
+        poop(3);
+        eat ();
+        wander();
+        drink();
+        layAnEgg('M');
+        layAnEgg('L');
+    }
+    
+    public Poop poop(int amount){
+        Poop poop;
+        poop = new Poop(amount);
+        System.out.println(" chicken " + name + " is pooping " + poop);
+        return poop;
+    }
+    
+    /**
+     * Creates an egg of size size and returns to the calling function
+     * @param size Size of the eggs with possible values S, M, L
+     * @return and Egg of size size.
+     */
+    public Egg layAnEgg(char size){
+        Egg egg = new Egg(size);
+        System.out.println(" chicken " + name + " is laying " + egg.getSize() + " size egg");
+        return egg;
+    }
+    
+   public void drink(){
+       System.out.println(" chicken " + name + " is laying ");
+       
+   }
+   
+    public void wander(){
+        System.out.println(" chicken " + name + " is wandering ");
+        
+    }
     @Override
     public String toString() {  //ese to string es el q hace q el main se imprima
-        return "\nChicken{" + "\nid -->\t\t" + id + ", \nname--> \t" + name + ", \ncolor--> \t" + color + ", \nage-->\t\t" + age + ", \nisMolting-->" + isMolting + '}';
+        return "\nChicken{" + "\nid-->\t\t" + id + ", \nname--> \t" + name + ", \ncolor--> \t" + color + ", \nage-->\t\t" + age + ", \nisMolting -->" + isMolting + '}';
     }
     
     public Chicken(int id, String name, String color, int age, boolean isMolting) {
@@ -25,7 +73,6 @@ public class Chicken {
         this.isMolting = isMolting;
     }
 
- 
     /**
      * @return the id
      */
@@ -95,6 +142,6 @@ public class Chicken {
     public void setIsMolting(boolean isMolting) {
         this.isMolting = isMolting;
     }
-               
+    
     
 }
