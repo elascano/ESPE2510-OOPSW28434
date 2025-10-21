@@ -12,6 +12,9 @@ public class Chicken {
     private String color;
     private int age;
     private boolean isMolting;
+    
+    
+    
 
     @Override
     public String toString() {
