@@ -8,6 +8,7 @@ import ec.edu.espe.chickenfarmsimulator.model.Chicken;
  * @author Edison Lascano, Object Masters, @ESPE
  */
 public class ChickenFarmSimulator {
+    
     public static void main(String args[]){
 
         System.out.println("This is my Chicken Farm Simulator");
@@ -32,5 +33,8 @@ public class ChickenFarmSimulator {
         
         System.out.println("chicken id --> " + chicken.getId() + chicken.getName());
         chicken.getId();
+        
+        chicken.doStuff();
+        chicken2.doStuff();
     }
 }
