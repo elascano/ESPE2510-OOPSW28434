@@ -14,7 +14,7 @@ public class Chiken {
 
     @Override
     public String toString() {
-        return "\nChiken{" + "\nid-->\t\t" + id + ", \nname-->\t\t" + name + ", \ncolor-->\t" + color + ", \nage-->\t" + age + ", \nisMolting-->" + isMolting + '}';
+        return "\nChiken{" + "\nid---->\t\t" + id + ", \nname---->\t\t" + name + ", \ncolor-->\t" + color + ", \nage---->\t" + age + ", \nisMolting--->" + isMolting + '}';
     }
   
     public Chiken(int id, String name, String color, int age, boolean isMolting) {
@@ -30,19 +30,6 @@ public class Chiken {
 
     private void eat(){
         System.out.println( " chicken " + name + " is eating, grains ");
-    }
-    
-    public void doStuff(){
-        cluck();
-        eat();
-        cluck();
-        poop(2);
-        poop(3);
-        eat ();
-        wander();
-        drink();
-        layAnEgg('M');
-        layAnEgg('L');
     }
     
     public Poop poop(int amount){
@@ -73,6 +60,18 @@ public class Chiken {
         
     }
     
+        public void doStuff(){
+        cluck();
+        eat();
+        cluck();
+        poop(2);
+        poop(3);
+        eat ();
+        wander();
+        drink();
+        layAnEgg('M');
+        layAnEgg('L');
+    }
     
     /**
      * @return the id
