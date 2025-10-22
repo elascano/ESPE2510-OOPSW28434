@@ -12,6 +12,8 @@ public class ChickenFarmSimulator {
         
         System.out.println("This is my Chicken Farm Simulator");
         
+        Chicken chicken2  = new Chicken(0, "Maruja", "white", 1, true);
+        
         String owner;
         int id =1;
         String name = "Lucy";
@@ -28,5 +30,9 @@ public class ChickenFarmSimulator {
         
         System.out.println("chicken id-->\t" + chicken.getId() +"  " +chicken.getName());
         chicken.getId();
+        
+        chicken.doStuff();
+        chicken2.doStuff();
+        System.out.println("Hello");
     }
 }
