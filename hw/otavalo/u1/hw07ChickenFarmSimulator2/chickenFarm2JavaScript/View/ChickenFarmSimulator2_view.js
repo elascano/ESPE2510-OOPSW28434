@@ -53,5 +53,11 @@ function createChicken(id) {
   console.log('---------------------------');
 }
 
-createChicken(1);
-createChicken(2);
+do {
+  createChicken(1);
+  createChicken(2);
+
+  var repeat = prompt("Do you want to enter 2 more chickens? (yes/no): ").toLowerCase().trim();
+} while (repeat === "yes");
+
+console.log("Exiting the Chicken Farm Simulator. Goodbye!");

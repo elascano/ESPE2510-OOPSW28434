@@ -100,8 +100,15 @@ def create_chicken():
 
 def main():
     print("Welcome to my Chicken Farm Simulator")
-    create_chicken()
-    create_chicken()
+    
+    while True: 
+        create_chicken()
+        create_chicken()
+        
+        repeat = input("\nDo you want to enter 2 more chickens? (yes/no): ").lower().strip()
+        if repeat != "yes":
+            print("Exiting the Chicken Farm Simulator. Goodbye!")
+            break
 
 if __name__ == "__main__":
     main()
