@@ -6,7 +6,7 @@ package ec.edu.espe.chikenfarmsimulator.model;
 
 /**
  *
- * @author ADRIAN TOAPANTA, Object Masters, @ESPE
+ * @author KEVIN CHALAN, Object Masters, @ESPE
  */
 public class Egg {
     private char size;
