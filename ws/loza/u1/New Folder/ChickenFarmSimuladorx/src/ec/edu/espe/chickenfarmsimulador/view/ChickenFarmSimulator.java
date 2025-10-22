@@ -1,39 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.chickenfarmsimulador.view;
 
-import ec.edu.espe.chickenfarmsimulador.model.Chicken;
 
 /**
  *
- * @author Steven Loza
+ * @author Joseph Medina
  */
 public class ChickenFarmSimulator {
-    public static void main (String args[]){
-        System.out.println("This is my chicken Farm Simulator");
-        
-        Chicken chicken2 = new Chicken(0,"maruja","white",1,true);
+    public static void main(String arg[]){
+       
+        System.out.println("This is my Chicen Farm Simulator");
+       
+        Chicken chicken2 = new Chicken(0, "Maruja", "white", 1, true);
+       
         String owner;
         int id = 1;
-        String name ="Lucy";
-        String color = "white and brown";
+        String name = "Lucy";
+        String color = "White and Brown";
         int age = 2;
         boolean isMolting = false;
-        
-        owner = "Steven Loza";
-        
+       
+        owner = "Joseph Medina";
+       
         //Class object
-       Chicken chicken;
+        Chicken chiken;
        
-       chicken = new Chicken(id, name, color, age, isMolting);
+        chiken = new Chicken(id,name,color, age, isMolting);
        
-        System.out.println("the chicken is ---> "+ chicken);
-        
-        System.out.println("chicken Id--> " + chicken.getId() + chicken.getName());
-        chicken.getId();
-        
+        System.out.println("The chiken is --> " + chiken);
+       
+        System.out.println("chicken id --> \t" + chiken.getId() + "-" + chiken.getName());
+        chiken.getId();
+        chiken.doStuff();
     }
-    
 }
