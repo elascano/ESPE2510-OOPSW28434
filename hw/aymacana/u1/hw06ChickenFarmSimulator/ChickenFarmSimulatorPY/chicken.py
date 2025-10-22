@@ -1,3 +1,6 @@
+from egg import Egg
+
+
 class Chicken:
     def __init__(self, id: int, name: str, color: str, age: int, is_molting: bool):
         self._id = id
