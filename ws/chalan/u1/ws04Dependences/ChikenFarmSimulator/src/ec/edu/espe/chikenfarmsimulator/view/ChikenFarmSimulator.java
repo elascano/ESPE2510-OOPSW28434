@@ -32,7 +32,7 @@ public class ChikenFarmSimulator {
         System.out.println("chiken id ----->" + chiken.getId() + chiken.getName());
         chiken.getId();
         chiken.doStuff();
-        chiken2.getId();
-        chiken2.doStuff();
+//        chiken2.getId();
+//        chiken2.doStuff();
     }
 }

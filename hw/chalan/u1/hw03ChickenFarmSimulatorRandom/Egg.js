@@ -1,4 +1,5 @@
-class Egg {
+
+export class Egg {
     constructor(size) {
         this.size = size;
     }
@@ -7,5 +8,3 @@ class Egg {
         return `Egg{size=${this.size}}`;
     }
 }
-
-module.exports = Egg;
