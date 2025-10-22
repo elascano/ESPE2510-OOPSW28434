@@ -1,4 +1,5 @@
-class Poop {
+
+export class Poop {
     constructor(amount) {
         this.amount = amount;
     }
@@ -7,5 +8,3 @@ class Poop {
         return `Poop{amount=${this.amount}}`;
     }
 }
-
-module.exports = Poop;
