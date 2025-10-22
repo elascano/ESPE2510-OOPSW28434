@@ -17,7 +17,7 @@ public class ChickenFarmSimulator {
         
         String owner;
         owner = "Joseph ;)";
-        int id = 17;
+        int id = 1;
         String name = "Lucy";
         String color = "White and Brown";
         int age = 2;
