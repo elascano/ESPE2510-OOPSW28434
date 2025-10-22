@@ -1,26 +1,61 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author LABS-ESPE
- */
+
+
  
 package ec.espe.edu.chickenfarmsimulator.model;
 
-/**
- *
- * @author LABS-ESPE
- */
+
 public class Chicken {
     private int id;
     private String name;
     private String  color;
     private int age;
     private boolean isMolting;
-
+    
+    private void cluck(){
+        System.out.println("The chicken" + name + "is cloacking Cluck Cluck Cluck");
+    }
+    
+    private void eat(){
+        System.out.println("The chicken "+ name + " is eating ");
+    }
+    
+   
+    
+    public Poop poop (int amount){
+        Poop poop;
+        poop = new Poop (amount);
+        System.out.println("Chicken " + name + "is pooping a " + poop );
+        return poop;
+    }
+    
+    public Egg layAnEgg (char size){
+        Egg egg;
+        egg = new Egg (size);
+        System.out.println("Chicken " + name + "is laying a " + egg.getSize() + "size egg");
+        return egg;
+            
+    }
+    
+    private void drink (){
+        System.out.println("Chickn "+name+ "is drinking");
+        
+    }
+    
+    private void wander (){
+        System.out.println("Chickn "+name+ "is wandering");
+        
+    }
+    
+    
+     public void doStuff(){
+        cluck ();
+        eat ();
+        poop (3);
+        layAnEgg('L');
+    }
+    
+    
     public Chicken(int id, String name, String color, int age, boolean isMolting) {
         this.id = id;
         this.name = name;
