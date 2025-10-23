@@ -1,9 +1,8 @@
 class Food:
     def __init__(self, amount):
-        self.amount = amount  # mg
+        self.amount = amount 
 
     def take_food(self, mg):
-        """Retira cierta cantidad del montón."""
         if self.amount >= mg:
             self.amount -= mg
             return Food(mg)
