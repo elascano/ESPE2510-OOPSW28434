@@ -3,6 +3,9 @@ from chicken import Chicken
 def main():
 
     print("This is my Chicken Farm Simulator\n")
+
+    chicken2 = Chicken(0, "Maruja", "white", 1, True)
+
     owner = "Mateo Aymacaña"
 
     id = 1
@@ -15,6 +18,8 @@ def main():
 
     print("The chicken is", chicken)
     print(f"chicken id --> {chicken.id}, name --> {chicken.name}")
+
+    
 
 if __name__ == "__main__":
     main()
