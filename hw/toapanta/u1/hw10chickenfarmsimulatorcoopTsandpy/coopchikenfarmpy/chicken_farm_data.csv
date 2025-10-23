@@ -1,0 +1,11 @@
+ID,Name,Color,Age,IsMolting,CoopID
+1,Henrietta,Brown,2,False,1
+2,Cluck Norris,Black,3,True,1
+3,Eggatha,White,1,False,1
+4,Feathers,Red,2,False,1
+5,Bok Choy,Yellow,1,True,1
+6,Nugget,Brown,4,False,1
+7,Drumstick,Black,2,False,2
+8,Sunny,Yellow,1,False,2
+9,Penny,Red,3,True,2
+10,Ginger,Brown,2,False,2
