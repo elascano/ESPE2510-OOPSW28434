@@ -1,0 +1,11 @@
+Coop ID,Chicken ID,Name,Color,Age,Is Molting
+101,1,katya,black,2,false
+101,2,Mari,white,1,true
+101,3,Carolina,brown,3,false
+101,4,Pin,red,2,false
+101,5,Narcisa,yellow,1,true
+102,6,Tita,gray,4,false
+102,7,Rosita,white,2,false
+102,8,Lolita,black,1,false
+102,9,wasp,orange,3,true
+102,10,Cherita,brown,2,false
