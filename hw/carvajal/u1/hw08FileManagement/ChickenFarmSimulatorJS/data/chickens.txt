@@ -1,0 +1,14 @@
+
+Chicken Coop 1 has 5 chickens:
+ - Lucy (White, 2 years old)
+ - Maruja (Brown, 1 years old)
+ - Rosita (Black, 3 years old)
+ - Lola (White and Brown, 2 years old)
+ - Clara (Yellow, 1 years old)
+
+Chicken Coop 2 has 5 chickens:
+ - Rita (Red, 2 years old)
+ - Sofi (Black, 3 years old)
+ - Pepa (White, 2 years old)
+ - Nina (Gray, 1 years old)
+ - Luna (Golden, 4 years old)
