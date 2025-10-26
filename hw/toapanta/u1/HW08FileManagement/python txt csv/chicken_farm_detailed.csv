@@ -1,0 +1,15 @@
+Type,ID,Name,Details1,Details2,Details3,Details4
+Coop,1,Main Coop,Capacity: 6,Chickens: 6,,
+Coop,2,Secondary Coop,Capacity: 4,Chickens: 4,,
+Chicken,1,Henrietta,Color: Brown,Age: 2,Molting: False,Coop: Main Coop
+Chicken,2,Cluck Norris,Color: Black,Age: 3,Molting: True,Coop: Main Coop
+Chicken,3,Eggatha,Color: White,Age: 1,Molting: False,Coop: Main Coop
+Chicken,4,Feathers,Color: Red,Age: 2,Molting: False,Coop: Main Coop
+Chicken,5,Bok Choy,Color: Yellow,Age: 1,Molting: True,Coop: Main Coop
+Chicken,6,Nugget,Color: Brown,Age: 4,Molting: False,Coop: Main Coop
+Chicken,7,Drumstick,Color: Black,Age: 2,Molting: False,Coop: Secondary Coop
+Chicken,8,Sunny,Color: Yellow,Age: 1,Molting: False,Coop: Secondary Coop
+Chicken,9,Penny,Color: Red,Age: 3,Molting: True,Coop: Secondary Coop
+Chicken,10,Ginger,Color: Brown,Age: 2,Molting: False,Coop: Secondary Coop
+Product,1,Egg,Size: M,,,
+Product,2,Poop,Amount: 5,,,

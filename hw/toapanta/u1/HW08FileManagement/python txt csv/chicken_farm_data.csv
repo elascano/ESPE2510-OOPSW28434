@@ -1,0 +1,11 @@
+CoopID,CoopName,ChickenID,ChickenName,Color,Age,IsMolting
+1,Main Coop,1,Henrietta,Brown,2,False
+1,Main Coop,2,Cluck Norris,Black,3,True
+1,Main Coop,3,Eggatha,White,1,False
+1,Main Coop,4,Feathers,Red,2,False
+1,Main Coop,5,Bok Choy,Yellow,1,True
+1,Main Coop,6,Nugget,Brown,4,False
+2,Secondary Coop,7,Drumstick,Black,2,False
+2,Secondary Coop,8,Sunny,Yellow,1,False
+2,Secondary Coop,9,Penny,Red,3,True
+2,Secondary Coop,10,Ginger,Brown,2,False

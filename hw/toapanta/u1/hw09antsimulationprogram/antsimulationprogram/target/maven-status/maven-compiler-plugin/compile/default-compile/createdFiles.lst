@@ -1,0 +1,15 @@
+entities\Ant$1.class
+simulation\Area.class
+entities\Pheromone.class
+simulation\Simulation$1.class
+Main.class
+simulation\Cell.class
+entities\Colony.class
+simulation\Time.class
+entities\Ant.class
+enums\Direction.class
+entities\Nest.class
+entities\AntEater.class
+entities\Food.class
+entities\AntEater$1.class
+simulation\Simulation.class
