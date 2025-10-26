@@ -1,0 +1,11 @@
+coopId,coopName,chickenId,name,color,age,isMolting
+1,North Coop,1,Lucy,White,2,False
+1,North Coop,2,Maruja,Brown,1,True
+1,North Coop,3,Coco,Black,3,False
+1,North Coop,4,Bella,Yellow,1,False
+1,North Coop,5,Lola,Gray,2,True
+1,North Coop,6,Nina,White,4,False
+2,South Coop,7,Kira,Brown,2,False
+2,South Coop,8,Daisy,White,1,False
+2,South Coop,9,Molly,Black,3,True
+2,South Coop,10,Gigi,White,2,False
