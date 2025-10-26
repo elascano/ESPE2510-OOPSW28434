@@ -1,0 +1,70 @@
+=== Chicken Farm Report ===
+
+Report generated on: 26/10/2025 2:13:40 p. m.
+
+=== Coop Coop A (ID: 1) ===
+Chickens:
+  - ID: 1
+    Name: Lucy
+    Color: White and Brown
+    Age: 2
+    Molting: No
+
+  - ID: 2
+    Name: Maruja
+    Color: White
+    Age: 1
+    Molting: Yes
+
+  - ID: 3
+    Name: Rosie
+    Color: Black
+    Age: 3
+    Molting: No
+
+  - ID: 4
+    Name: Lola
+    Color: Golden
+    Age: 4
+    Molting: No
+
+  - ID: 5
+    Name: Nina
+    Color: Gray
+    Age: 2
+    Molting: Yes
+
+
+=== Coop Coop B (ID: 2) ===
+Chickens:
+  - ID: 6
+    Name: Sofi
+    Color: Red
+    Age: 1
+    Molting: No
+
+  - ID: 7
+    Name: Mona
+    Color: Brown
+    Age: 3
+    Molting: No
+
+  - ID: 8
+    Name: Clara
+    Color: White
+    Age: 5
+    Molting: No
+
+  - ID: 9
+    Name: Tina
+    Color: Yellow
+    Age: 2
+    Molting: Yes
+
+  - ID: 10
+    Name: Lili
+    Color: Black and White
+    Age: 1
+    Molting: No
+
+
