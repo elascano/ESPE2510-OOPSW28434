@@ -1,0 +1,29 @@
+=== CHICKEN FARM REPORT ===
+Generated on: 2025-10-26 12:37:23
+
+COOP: Main Coop (ID: 1)
+Capacity: 6 | Current: 6
+Chickens:
+  - ID: 1 | Name: Henrietta | Color: Brown | Age: 2 | Molting: False
+  - ID: 2 | Name: Cluck Norris | Color: Black | Age: 3 | Molting: True
+  - ID: 3 | Name: Eggatha | Color: White | Age: 1 | Molting: False
+  - ID: 4 | Name: Feathers | Color: Red | Age: 2 | Molting: False
+  - ID: 5 | Name: Bok Choy | Color: Yellow | Age: 1 | Molting: True
+  - ID: 6 | Name: Nugget | Color: Brown | Age: 4 | Molting: False
+==================================================
+COOP: Secondary Coop (ID: 2)
+Capacity: 4 | Current: 4
+Chickens:
+  - ID: 7 | Name: Drumstick | Color: Black | Age: 2 | Molting: False
+  - ID: 8 | Name: Sunny | Color: Yellow | Age: 1 | Molting: False
+  - ID: 9 | Name: Penny | Color: Red | Age: 3 | Molting: True
+  - ID: 10 | Name: Ginger | Color: Brown | Age: 2 | Molting: False
+==================================================
+
+FARM SUMMARY:
+Total Coops: 2
+Total Chickens: 10
+
+FARM PRODUCTS:
+Egg: size=M
+Poop: amount=5
