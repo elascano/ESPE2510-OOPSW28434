@@ -1,0 +1,13 @@
+{
+    "name": "chicken-farm-simulator",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "Chicken Farm Simulator with CSV export/import",
+    "main": "chickenFarm.js",
+    "scripts": {
+        "start": "node chickenFarm.js"
+    },
+    "keywords": ["chicken", "farm", "simulator", "csv"],
+    "author": "Your Name",
+    "license": "MIT"
+}

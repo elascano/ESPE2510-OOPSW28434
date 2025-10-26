@@ -1,0 +1,11 @@
+id,name,color,age,is_molting,coop_name
+1,Rosita,3,False,Main Coop
+2,Rosita,1,False,Main Coop
+3,Maruja,5,True,Main Coop
+4,Negra,3,False,Main Coop
+5,Lola,3,False,Main Coop
+6,Lucy,2,True,Main Coop
+7,Pepe,1,True,Secondary Coop
+8,Rosita,3,False,Secondary Coop
+9,Clara,3,True,Secondary Coop
+10,Lola,2,False,Secondary Coop
