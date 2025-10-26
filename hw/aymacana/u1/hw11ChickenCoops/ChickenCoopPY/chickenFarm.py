@@ -66,10 +66,9 @@ def main():
             break
             
         else:
-            print("Please choose a valid option (1-7).")
+            print("Please choose a valid option (1-7)")
 
 def create_multiple_chickens(amount):
-    """Crea múltiples gallinas automáticamente"""
     chickens = []
     names = ["Lucy", "Maruja", "Rosita", "Clara", "Pepe", "Lola", "Pepa", "Blanca", "Negra", "Amarilla"]
     colors = ["White", "Brown", "Black", "Yellow", "Gray", "Red", "Orange"]
@@ -87,7 +86,6 @@ def create_multiple_chickens(amount):
     return chickens
 
 def assign_chickens_to_coops(chickens, coops):
-    """Asigna gallinas automáticamente a los gallineros"""
     print("\n=== Assigning Chickens to Coops ===")
     for i, chicken in enumerate(chickens):
         if i < 6:
@@ -96,13 +94,11 @@ def assign_chickens_to_coops(chickens, coops):
             coops[1].add_chicken(chicken)
 
 def display_all_coops(coops):
-    """Muestra todos los gallineros"""
     print("\n--- All Chicken Coops ---")
     for i, coop in enumerate(coops, 1):
         print(f"{i}. {coop}")
 
 def display_all_chickens(coops):
-    """Muestra todas las gallinas de todos los gallineros"""
     print("\n--- All Chickens in Farm ---")
     all_chickens = []
     for coop in coops:
@@ -115,7 +111,6 @@ def display_all_chickens(coops):
             print(f"ID: {chicken.id}, Name: {chicken.name}, Color: {chicken.color}")
 
 def find_chicken_by_id(chicken_id, coops):
-    """Busca una gallina por ID en todos los gallineros"""
     for coop in coops:
         chicken = coop.get_chicken(chicken_id)
         if chicken:
@@ -123,7 +118,6 @@ def find_chicken_by_id(chicken_id, coops):
     return None
 
 def move_chicken_between_coops(coops):
-    """Mueve una gallina de un gallinero a otro"""
     display_all_coops(coops)
     
     try:
@@ -159,7 +153,6 @@ def move_chicken_between_coops(coops):
         print("Please enter valid numbers.")
 
 def add_new_chicken(coops):
-    """Agrega una nueva gallina a un gallinero"""
     display_all_coops(coops)
     
     try:
@@ -180,7 +173,6 @@ def add_new_chicken(coops):
         print("Please enter a valid number.")
 
 def remove_chicken_from_coop(coops):
-    """Elimina una gallina de un gallinero"""
     display_all_coops(coops)
     
     try:
@@ -202,7 +194,6 @@ def remove_chicken_from_coop(coops):
         print("Please enter valid numbers.")
 
 def create_chicken_from_input(chicken_id):
-    """Crea una gallina con datos ingresados por el usuario"""
     print(f"\n--- Creating Chicken {chicken_id} ---")
     
     while True:
