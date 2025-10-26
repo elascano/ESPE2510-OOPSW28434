@@ -1,0 +1,31 @@
+=== REPORTE DE LA GRANJA DE GALLINAS ===
+
+Propietaria: Emily Calle
+Fecha: 26 de octubre de 2025
+
+
+Main Coop (ID: 1)
+Total de gallinas: 5
+------------------------------------------------------------
+ID  Nombre       Color        Edad Mudando
+------------------------------------------------------------
+1   Lucy         White        2    Sí
+2   Maruja       Brown        1    No
+3   Cluckencia   Speckled     4    Sí
+4   Piolina      Black        2    No
+5   Plumifera    Gray         3    Sí
+
+============================================================
+
+Secondary Coop (ID: 2)
+Total de gallinas: 5
+------------------------------------------------------------
+ID  Nombre       Color        Edad Mudando
+------------------------------------------------------------
+6   Cascaronia   Brown        1    No
+7   Ponederas    White        2    Sí
+8   Picotera     Golden       4    No
+9   Alitona      Red          1    Sí
+10  Copetona     Spotted      3    No
+
+============================================================
