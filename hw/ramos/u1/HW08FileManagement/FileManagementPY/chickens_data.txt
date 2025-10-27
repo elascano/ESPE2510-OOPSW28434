@@ -1,0 +1,53 @@
+CHICKEN INFORMATION
+===================
+
+ID: 1
+NAME: Lucy
+COLOR: White
+AGE: 2
+IS MOLTING: False
+ID: 2
+NAME: Nita
+COLOR: Gray
+AGE: 1
+IS MOLTING: True
+ID: 3
+NAME: Lola
+COLOR: Black
+AGE: 3
+IS MOLTING: False
+ID: 4
+NAME: Pepa
+COLOR: White
+AGE: 2
+IS MOLTING: True
+ID: 5
+NAME: Clara
+COLOR: Gray
+AGE: 1
+IS MOLTING: False
+ID: 6
+NAME: Rita
+COLOR: Brown
+AGE: 4
+IS MOLTING: True
+ID: 7
+NAME: Tina
+COLOR: Gray
+AGE: 2
+IS MOLTING: False
+ID: 8
+NAME: Sofi
+COLOR: Red
+AGE: 3
+IS MOLTING: True
+ID: 9
+NAME: Lili
+COLOR: White
+AGE: 2
+IS MOLTING: False
+ID: 10
+NAME: Dani
+COLOR: White
+AGE: 1
+IS MOLTING: True

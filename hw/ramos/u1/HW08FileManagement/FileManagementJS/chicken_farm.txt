@@ -1,0 +1,13 @@
+ChickenCoop(id=1)
+  Chicken{id: 1	 name: Lucy	 color: White	 age: 2	 isMolting: false}
+  Chicken{id: 2	 name: Nita	 color: Gray	 age: 1	 isMolting: true}
+  Chicken{id: 3	 name: Lola	 color: Black	 age: 3	 isMolting: false}
+  Chicken{id: 4	 name: Pepa	 color: White	 age: 2	 isMolting: true}
+  Chicken{id: 5	 name: Clara	 color: Gray	 age: 1	 isMolting: false}
+
+ChickenCoop(id=2)
+  Chicken{id: 6	 name: Rita	 color: Brown	 age: 4	 isMolting: true}
+  Chicken{id: 7	 name: Tina	 color: Gray	 age: 2	 isMolting: false}
+  Chicken{id: 8	 name: Sofi	 color: Red	 age: 3	 isMolting: true}
+  Chicken{id: 9	 name: Lili	 color: White	 age: 2	 isMolting: false}
+  Chicken{id: 10	 name: Dani	 color: White	 age: 1	 isMolting: true}
