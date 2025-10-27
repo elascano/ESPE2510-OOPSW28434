@@ -1,0 +1,11 @@
+coopId,chickenId,name,color,age,isMolting
+1,1,lucy,white,2,false
+1,2,molly,brown,3,true
+1,3,daisy,black,1,false
+1,4,rose,yellow,4,true
+1,5,martha,red,2,false
+2,6,luna,white,1,false
+2,7,nora,gray,2,true
+2,8,ava,black,3,false
+2,9,olive,golden,4,true
+2,10,ruby,brown,2,false
