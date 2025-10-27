@@ -1,0 +1,11 @@
+CoopId,ChickenId,Name,Color,Age,IsMolting
+1,1,Lucy,White,2,False
+1,2,Molly,Brown,3,True
+1,3,Daisy,Black,1,False
+1,4,Rose,Yellow,4,True
+1,5,Martha,Red,2,False
+2,6,Luna,White,1,False
+2,7,Nora,Gray,2,True
+2,8,Ava,Black,3,False
+2,9,Olive,Golden,4,True
+2,10,Ruby,Brown,2,False

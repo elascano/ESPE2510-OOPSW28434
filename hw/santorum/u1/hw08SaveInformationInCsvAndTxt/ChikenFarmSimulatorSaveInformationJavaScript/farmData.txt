@@ -1,0 +1,14 @@
+coop 1:
+  chicken(1, lucy, white, 2, Molting=false)
+  chicken(2, molly, brown, 3, Molting=true)
+  chicken(3, daisy, black, 1, Molting=false)
+  chicken(4, rose, yellow, 4, Molting=true)
+  chicken(5, martha, red, 2, Molting=false)
+
+coop 2:
+  chicken(6, luna, white, 1, Molting=false)
+  chicken(7, nora, gray, 2, Molting=true)
+  chicken(8, ava, black, 3, Molting=false)
+  chicken(9, olive, golden, 4, Molting=true)
+  chicken(10, ruby, brown, 2, Molting=false)
+
