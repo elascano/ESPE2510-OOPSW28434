@@ -37,7 +37,9 @@ function exportToTXT(chickenCoops, filename = "farm_report.txt") {
         content += "-".repeat(60) + "\n";
 
         coop.getChickens().forEach(chicken => {
-            content += `${chicken.id.toString().padEnd(3)} ${chicken.name.padEnd(12)} ${chicken.color.padEnd(12)} ${chicken.age.toString().padEnd(4)} ${chicken.isMolting ? 'Sí' : 'No'}\n`;
+            content += `${chicken.id.toString().padEnd(3)} ${chicken.name.padEnd(12)} 
+            ${chicken.color.padEnd(12)} ${chicken.age.toString().padEnd(4)} ${chicken.isMolting ? 
+                'Sí' : 'No'}\n`;
         });
 
         content += "\n" + "=".repeat(60) + "\n";
@@ -54,7 +56,8 @@ function printCoopInfo(coop) {
     console.log("-".repeat(60));
     for (const chicken of coop.getChickens()) {
         console.log(
-            `${chicken.id.toString().padEnd(3)} ${chicken.name.padEnd(12)} ${chicken.color.padEnd(12)} ${chicken.age.toString().padEnd(4)} ${chicken.isMolting ? "Yes" : "No"}`
+            `${chicken.id.toString().padEnd(3)} ${chicken.name.padEnd(12)} ${chicken.color.padEnd(12)}
+             ${chicken.age.toString().padEnd(4)} ${chicken.isMolting ? "Yes" : "No"}`
         );
     }
     console.log("\n" + "=".repeat(60));
