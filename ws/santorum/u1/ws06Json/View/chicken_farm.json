@@ -23,6 +23,13 @@
           "color": "white",
           "age": 1,
           "molting": true
+        },
+        {
+          "id": 1,
+          "name": "LULU",
+          "color": "ORANGE",
+          "age": 12,
+          "molting": false
         }
       ]
     }
