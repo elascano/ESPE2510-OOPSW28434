@@ -1,0 +1,98 @@
+[
+  {
+    "ID": 1,
+    "Name": "Lucy",
+    "Color": "White and Brown",
+    "Age": 2,
+    "Molting": false,
+    "CoopName": "Happy Hens Coop"
+  },
+  {
+    "ID": 2,
+    "Name": "Maruja",
+    "Color": "White",
+    "Age": 1,
+    "Molting": true,
+    "CoopName": "Happy Hens Coop"
+  },
+  {
+    "ID": 4,
+    "Name": "Pepa",
+    "Color": "Black",
+    "Age": 3,
+    "Molting": false,
+    "CoopName": "Happy Hens Coop"
+  },
+  {
+    "ID": 6,
+    "Name": "Josefa",
+    "Color": "Golden",
+    "Age": 3,
+    "Molting": false,
+    "CoopName": "Happy Hens Coop"
+  },
+  {
+    "ID": 9,
+    "Name": "Blanca",
+    "Color": "White",
+    "Age": 3,
+    "Molting": true,
+    "CoopName": "Happy Hens Coop"
+  },
+  {
+    "ID": 10,
+    "Name": "Tina",
+    "Color": "Golden",
+    "Age": 1,
+    "Molting": false,
+    "CoopName": "Happy Hens Coop"
+  },
+  {
+    "ID": 3,
+    "Name": "Carmela",
+    "Color": "Brown",
+    "Age": 2,
+    "Molting": false,
+    "CoopName": "Sunrise Nest"
+  },
+  {
+    "ID": 5,
+    "Name": "Mary",
+    "Color": "Brown",
+    "Age": 4,
+    "Molting": true,
+    "CoopName": "Sunrise Nest"
+  },
+  {
+    "ID": 7,
+    "Name": "Betty",
+    "Color": "Black",
+    "Age": 1,
+    "Molting": false,
+    "CoopName": "Sunrise Nest"
+  },
+  {
+    "ID": 8,
+    "Name": "Rita",
+    "Color": "White and Brown",
+    "Age": 2,
+    "Molting": true,
+    "CoopName": "Sunrise Nest"
+  },
+  {
+    "ID": 11,
+    "Name": "Sandra",
+    "Color": "Golden",
+    "Age": 2,
+    "Molting": false,
+    "CoopName": "Sunrise Nest"
+  },
+  {
+    "ID": 12,
+    "Name": "Yusepa",
+    "Color": "Golden",
+    "Age": 5,
+    "Molting": true,
+    "CoopName": "Sunrise Nest"
+  }
+]
