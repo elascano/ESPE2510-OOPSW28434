@@ -1,0 +1,16 @@
+[
+    {
+        "id": "1",
+        "name": "pepa",
+        "color": "black",
+        "age": 2,
+        "is_molting": false
+    },
+    {
+        "id": "3",
+        "name": "pepita",
+        "color": "brown",
+        "age": 2,
+        "is_molting": true
+    }
+]
