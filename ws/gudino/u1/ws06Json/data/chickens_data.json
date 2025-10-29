@@ -1,0 +1,50 @@
+{
+    "farmer": "bryan",
+    "coops": [
+        {
+            "coop_id": 1,
+            "chickens": [
+                {
+                    "id": 1,
+                    "name": "Culeca",
+                    "color": "white",
+                    "age": 2,
+                    "is_molting": true
+                },
+                {
+                    "id": 2,
+                    "name": "Chui",
+                    "color": "brown",
+                    "age": 1,
+                    "is_molting": false
+                },
+                {
+                    "id": 3,
+                    "name": "Chull",
+                    "color": "black",
+                    "age": 1,
+                    "is_molting": true
+                }
+            ]
+        },
+        {
+            "coop_id": 2,
+            "chickens": [
+                {
+                    "id": 1,
+                    "name": "Serafina",
+                    "color": "black",
+                    "age": 1,
+                    "is_molting": true
+                },
+                {
+                    "id": 2,
+                    "name": "Martha",
+                    "color": "gray",
+                    "age": 2,
+                    "is_molting": true
+                }
+            ]
+        }
+    ]
+}
