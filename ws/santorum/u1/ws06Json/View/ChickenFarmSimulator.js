@@ -9,9 +9,9 @@ const DATA_FILE = "chicken_farm.json";
 let coops = [];
 
 function main() {
-  console.log("--- Chicken Farm Simulator --- \n");
+  console.log("- - -Chicken Farm Simulator- - -  \n");
 
-  // Cargar datos desde JSON si existe
+
   if (fs.existsSync(DATA_FILE)) {
     const rawData = fs.readFileSync(DATA_FILE);
     const jsonData = JSON.parse(rawData);
@@ -32,10 +32,10 @@ function main() {
 
   let option = 0;
   do {
-    console.log("\n===== MENU =====");
-    console.log("1. Add a chicken ");
-    console.log("2. View coops ");
-    console.log("3. Make a chicken do actions ");
+    console.log("\n. . . MENU . . . ");
+    console.log("1. Add a chicken.");
+    console.log("2. View chicken coops.");
+    console.log("3. Make a chicken do something. ");
     console.log("4. Exit ");
 
     option = readlineSync.questionInt("Choose an option: ");
@@ -51,7 +51,7 @@ function main() {
         makeChickenDoStuff();
         break;
       case 4:
-        console.log("Exiting simulator...");
+        console.log("Bye Bye.");
         break;
       default:
         console.log("Invalid option.");
@@ -59,17 +59,17 @@ function main() {
   } while (option !== 4);
 }
 
-// Selección del gallinero antes de agregar
+
 function addChickenToCoop() {
   let coop;
   if (coops.length === 0) {
-    const coopId = readlineSync.questionInt("No coops exist. Enter new coop ID to create: ");
+    const coopId = readlineSync.questionInt("No coops exist. Enter new ID: ");
     coop = new ChickenCoop(coopId);
     coops.push(coop);
   } else {
     console.log("Available coops:");
     coops.forEach(c => console.log(`- Coop ID: ${c.id} (${c.chickens.length} chickens)`));
-    const coopId = readlineSync.questionInt("Enter the ID of the coop to add the chicken (or 0 to create a new one): ");
+    const coopId = readlineSync.questionInt("Enter the ID of the coop to add the chicken: / Write 0 if you want to create a new one. ");
 
     if (coopId === 0) {
       const newId = readlineSync.questionInt("Enter new coop ID: ");
@@ -78,31 +78,30 @@ function addChickenToCoop() {
     } else {
       coop = coops.find(c => c.id === coopId);
       if (!coop) {
-        console.log("Coop not found, creating a new one with that ID.");
+        console.log("Coop not found, creating a new one.");
         coop = new ChickenCoop(coopId);
         coops.push(coop);
       }
     }
   }
 
-  // Agregar gallina al coop seleccionado
-  console.log("\n--- Add a new chicken ---");
+
+  console.log("\n. . . Add a new chicken . . . ");
   const id = readlineSync.questionInt("ID: ");
   const name = readlineSync.question("Name: ");
   const color = readlineSync.question("Color: ");
   const age = readlineSync.questionInt("Age: ");
-  const molting = readlineSync.keyInYN("Is the chicken molting? (y/n): ");
+  const molting = readlineSync.keyInYN("Is the chicken molting? (y / n): ");
 
   const chicken = new Chicken(id, name, color, age, molting);
   coop.addChicken(chicken);
 
   console.log(`Chicken '${name}' added to coop ${coop.id}!`);
 
-  // Guardar automáticamente
+
   saveDataJSON();
 }
 
-// Ver todos los gallineros
 function viewCoops() {
   if (coops.length === 0) {
     console.log("No coops available.");
@@ -116,7 +115,7 @@ function viewCoops() {
   });
 }
 
-// Seleccionar gallina para hacer acciones
+
 function makeChickenDoStuff() {
   if (coops.length === 0) {
     console.log("No coops available.");
@@ -142,7 +141,7 @@ function makeChickenDoStuff() {
   }
 }
 
-// Guardar todos los coops y gallinas en JSON
+
 function saveDataJSON() {
   const data = {
     coops: coops.map(coop => ({
