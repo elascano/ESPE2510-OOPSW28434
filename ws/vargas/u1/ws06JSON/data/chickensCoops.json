@@ -1,0 +1,91 @@
+[
+  {
+    "id": 1,
+    "name": "Chicken Coop A",
+    "chickens": [
+      {
+        "id": 1,
+        "name": "Lucy",
+        "color": "White and Brown",
+        "age": 2,
+        "isMolting": false
+      },
+      {
+        "id": 0,
+        "name": "Maruja",
+        "color": "White",
+        "age": 1,
+        "isMolting": true
+      },
+      {
+        "id": 3,
+        "name": "Lola",
+        "color": "White",
+        "age": 2,
+        "isMolting": true
+      },
+      {
+        "id": 4,
+        "name": "Pepa",
+        "color": "Black",
+        "age": 1,
+        "isMolting": false
+      },
+      {
+        "id": 5,
+        "name": "Gusepa",
+        "color": "Brown and white",
+        "age": 4,
+        "isMolting": false
+      },
+      {
+        "id": 6,
+        "name": "Pancracia",
+        "color": "Gray",
+        "age": 2,
+        "isMolting": true
+      },
+      {
+        "id": 7,
+        "name": "Federica",
+        "color": "Brown",
+        "age": 1,
+        "isMolting": false
+      },
+      {
+        "id": "89",
+        "name": "Yussepa",
+        "color": "Black",
+        "age": 6,
+        "isMolting": false
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Chicken Coop B",
+    "chickens": [
+      {
+        "id": 8,
+        "name": "Pancha",
+        "color": "White",
+        "age": 3,
+        "isMolting": false
+      },
+      {
+        "id": 9,
+        "name": "Zoe",
+        "color": "Black",
+        "age": 2,
+        "isMolting": false
+      },
+      {
+        "id": 10,
+        "name": "Lina",
+        "color": "Brown and white",
+        "age": 1,
+        "isMolting": true
+      }
+    ]
+  }
+]
