@@ -1,0 +1,32 @@
+{
+  "name": "chicken-farm-simulator",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Simulador de granja de gallinas por Kevin Chalan",
+  "scripts": {
+    "start": "node view/ChickenFarmSimulator.js"
+  },
+  "chickenFarmData": {
+    "chickens": [
+      {
+        "name": "carla",
+        "id": 12,
+        "age": 2,
+        "coopId": 122
+      },
+      {
+        "name": "kaka",
+        "id": 55,
+        "age": 10,
+        "coopId": 122
+      }
+    ],
+    "coops": [
+      {
+        "id": 122,
+        "chickenCount": 2
+      }
+    ],
+    "lastUpdate": "29/10/2025, 6:35:01 p. m."
+  }
+}
