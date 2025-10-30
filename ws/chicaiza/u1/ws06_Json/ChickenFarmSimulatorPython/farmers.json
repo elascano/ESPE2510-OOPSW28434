@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Daniel ",
+        "coops": [
+            {
+                "id": 1,
+                "chickens": [
+                    {
+                        "id": 2547,
+                        "name": "Lola",
+                        "color": "brown ",
+                        "age": 1,
+                        "is_molting": false
+                    },
+                    {
+                        "id": 9986,
+                        "name": "Copito",
+                        "color": "white ",
+                        "age": 1,
+                        "is_molting": false
+                    }
+                ]
+            }
+        ]
+    }
+]
