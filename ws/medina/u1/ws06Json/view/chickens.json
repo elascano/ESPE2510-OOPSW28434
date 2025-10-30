@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "name": "Lucy",
+    "color": "White",
+    "age": 2,
+    "isMolting": false,
+    "actions": []
+  },
+  {
+    "id": 2,
+    "name": "Maruja",
+    "color": "Brown",
+    "age": 1,
+    "isMolting": true,
+    "actions": []
+  },
+  {
+    "id": 3,
+    "name": "Clara",
+    "color": "Golden",
+    "age": 3,
+    "isMolting": false,
+    "actions": []
+  },
+  {
+    "id": 4,
+    "name": "Tina",
+    "color": "Black",
+    "age": 1,
+    "isMolting": false,
+    "actions": []
+  },
+  {
+    "id": 5,
+    "name": "Nina",
+    "color": "Gray",
+    "age": 2,
+    "isMolting": true,
+    "actions": []
+  },
+  {
+    "id": 6,
+    "name": "Sofi",
+    "color": "White",
+    "age": 4,
+    "isMolting": false,
+    "actions": []
+  },
+  {
+    "id": 7,
+    "name": "Luna",
+    "color": "Golden",
+    "age": 3,
+    "isMolting": true,
+    "actions": []
+  },
+  {
+    "id": 8,
+    "name": "Mimi",
+    "color": "Black",
+    "age": 1,
+    "isMolting": false,
+    "actions": []
+  },
+  {
+    "id": 9,
+    "name": "Rita",
+    "color": "Brown",
+    "age": 2,
+    "isMolting": false,
+    "actions": []
+  },
+  {
+    "id": 10,
+    "name": "Coco",
+    "color": "White",
+    "age": 1,
+    "isMolting": true,
+    "actions": []
+  },
+  {
+    "id": 43,
+    "name": "Yussepe",
+    "color": "black",
+    "age": 3,
+    "isMolting": true,
+    "actions": []
+  }
+]
