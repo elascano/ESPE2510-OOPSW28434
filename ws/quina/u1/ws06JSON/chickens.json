@@ -1,0 +1,13 @@
+{
+    "id": 1,
+    "name": "Coop A",
+    "chickens": [
+        {
+            "id": 1,
+            "name": "Yussepa",
+            "color": "red",
+            "is_molting": true,
+            "age": 23
+        }
+    ]
+}
