@@ -1,0 +1,12 @@
+{
+  "name": "chicken-farm-simulator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "view/ChickenFarmSimulator.js",
+  "type": "module",
+  "scripts": {
+    "start": "node view/ChickenFarmSimulator.js"
+  },
+  "author": "Josue Carvajal",
+  "license": "ISC"
+}
