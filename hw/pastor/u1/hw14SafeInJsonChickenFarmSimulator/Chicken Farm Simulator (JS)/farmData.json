@@ -1,0 +1,41 @@
+{
+  "farmer": {
+    "id": 1,
+    "name": "Mathews"
+  },
+  "coops": [
+    {
+      "coopId": 1,
+      "capacity": 3,
+      "totalEggs": 4,
+      "chickens": [
+        {
+          "id": 1,
+          "name": "Josefa",
+          "color": "Black",
+          "age": 1,
+          "isMolting": false,
+          "eggsProduced": 1
+        },
+        {
+          "id": 2,
+          "name": "Pera",
+          "color": "Red",
+          "age": 2,
+          "isMolting": false,
+          "eggsProduced": 1
+        },
+        {
+          "id": 3,
+          "name": "Luca",
+          "color": "Black",
+          "age": 1,
+          "isMolting": false,
+          "eggsProduced": 2
+        }
+      ]
+    }
+  ],
+  "nextChickenId": 4,
+  "nextCoopId": 2
+}

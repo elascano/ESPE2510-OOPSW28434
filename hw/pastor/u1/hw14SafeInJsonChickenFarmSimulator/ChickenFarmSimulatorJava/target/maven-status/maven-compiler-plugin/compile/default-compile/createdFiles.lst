@@ -1,0 +1,8 @@
+ec\espe\edu\chickenFarmSimulator\model\ChickenCoop.class
+ec\espe\edu\chickenFarmSimulator\model\ChickenFarmer.class
+ec\espe\edu\chickenFarmSimulator\model\Poop.class
+ec\espe\edu\chickenFarmSimulator\main\ChickenFarmSimulator.class
+ec\espe\edu\chickenFarmSimulator\view\ChickenFarmView.class
+ec\espe\edu\chickenFarmSimulator\model\Egg.class
+ec\espe\edu\chickenFarmSimulator\model\Chicken.class
+ec\espe\edu\chickenFarmSimulator\controller\ChickenFarmController.class
