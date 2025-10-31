@@ -1,0 +1,6 @@
+com\mycompany\chickenfarmsimulator\view\ChickenFarmSimulator.class
+com\mycompany\chickenfarmsimulator\model\Chicken.class
+com\mycompany\chickenfarmsimulator\model\Egg.class
+com\mycompany\chickenfarmsimulator\model\Poop.class
+com\mycompany\chickenfarmsimulator\model\ChickenCoop.class
+com\mycompany\chickenfarmsimulator\view\ChickenFarmSimulator$FindResult.class
