@@ -1,0 +1,1 @@
+chickenfarmsimulator.model.ChickenCoop
