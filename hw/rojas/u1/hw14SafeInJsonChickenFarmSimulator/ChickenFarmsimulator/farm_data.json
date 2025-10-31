@@ -1,0 +1,1 @@
+[{"id":1,"chickens":[{"id":1,"name":"Lucy","color":"White","age":2,"is_molting":false},{"id":2,"name":"Maruja","color":"Brown","age":1,"is_molting":true}]},{"id":2,"chickens":[{"id":3,"name":"Pio","color":"Black","age":3,"is_molting":false}]}]
