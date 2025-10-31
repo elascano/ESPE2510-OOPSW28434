@@ -1,0 +1,14 @@
+[
+  {"id":"1",
+    "name":"Juana",
+    "color":"Brown",
+    "age":3,
+    "isMolting":false
+  },
+  {"id":"2",
+    "name":"Puca",
+    "color":"Black",
+    "age":1,
+    "isMolting":true
+  }
+]
