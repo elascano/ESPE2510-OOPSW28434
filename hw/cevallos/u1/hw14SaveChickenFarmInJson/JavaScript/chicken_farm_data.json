@@ -1,0 +1,23 @@
+{
+  "coops": [
+    {
+      "id": null,
+      "description": "1",
+      "chickens": []
+    },
+    {
+      "id": 1,
+      "description": "1",
+      "chickens": [
+        {
+          "id": 1,
+          "name": "ola",
+          "color": "red",
+          "age": 2,
+          "isMolting": false,
+          "coopId": 1
+        }
+      ]
+    }
+  ]
+}

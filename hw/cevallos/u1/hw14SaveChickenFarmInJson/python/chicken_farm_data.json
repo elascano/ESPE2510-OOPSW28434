@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2025-10-30T23:59:57.266270",
+    "totalCoops": 1,
+    "totalChickens": 1
+  },
+  "coops": [
+    {
+      "id": 1,
+      "description": "1",
+      "chickens": [
+        {
+          "id": 1,
+          "name": "rojo",
+          "color": "blue",
+          "age": 2,
+          "isMolting": true,
+          "coopId": 1
+        }
+      ]
+    }
+  ]
+}
