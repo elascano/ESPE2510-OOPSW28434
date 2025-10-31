@@ -86,7 +86,7 @@ class FarmController:
         exit_app = False
         while not exit_app:
             print("\n---------------------------------------")
-            print("  CHICKEN FARM MANAGEMENT MENU ")
+            print("  CHICKEN FARM MANAGEMENT MENU ")
             print("---------------------------------------")
             print("1. Add New Chicken")
             print("2. Display All Chickens")
@@ -111,7 +111,7 @@ class FarmController:
                 else:
                     print("Invalid option, please try again.")
             except Exception as e:
-                print(f"An unexpected error occurred: {e}")
+                print(f"An unexpected error occurred: {repr(e)}")
 
         print("Simulator closed")
 
@@ -162,7 +162,7 @@ class FarmController:
         
         await self.__storage.save(self.__farmCoops)
 
-        print(f"\nChicken \"{name}\" (ID: {new_chicken._id}) added and saved successfully to {selected_coop.getName()}!")
+        print(f"\nChicken \"{name}\" (ID: {new_chicken.id}) added and saved successfully to {selected_coop.getName()}!")
 
     async def __list_chickens_from_json(self):
         print("\n--- STORED CHICKENS AND COOPS ---")
@@ -249,12 +249,12 @@ class FarmController:
             
             coop_instance = next((c for c in self.__farmCoops if c.getId() == found_data['coop']['id']), None)
             if coop_instance:
-                chicken_instance = next((c for c in coop_instance.getChickens() if c._id == chicken_id), None)
+                chicken_instance = next((c for c in coop_instance.getChickens() if c.id == chicken_id), None)
                 if chicken_instance:
-                    if 'name' in update_data: chicken_instance._name = update_data['name']
-                    if 'color' in update_data: chicken_instance._color = update_data['color']
-                    if 'age' in update_data: chicken_instance._age = update_data['age']
-                    if 'isMolting' in update_data: chicken_instance._isMolting = update_data['isMolting']
+                    if 'name' in update_data: chicken_instance.name = update_data['name']
+                    if 'color' in update_data: chicken_instance.color = update_data['color']
+                    if 'age' in update_data: chicken_instance.age = update_data['age']
+                    if 'isMolting' in update_data: chicken_instance.isMolting = update_data['isMolting']
                     print('Internal instance updated.')
 
         except Exception as e:
@@ -366,6 +366,7 @@ async def main():
     except Exception as e:
         print("\n--- ERROR FATAL EN LA APLICACIÓN ---", file=sys.stderr)
         print(e, file=sys.stderr)
+
 
 if __name__ == "__main__":
     asyncio.run(main())
