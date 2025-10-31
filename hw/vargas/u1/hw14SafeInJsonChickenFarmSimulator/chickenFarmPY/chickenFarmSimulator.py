@@ -4,7 +4,7 @@ from chickenFarmController import FarmController
 
 async def main():
     print("=======================================")
-    print(" INICIANDO SIMULADOR DE GRANJA ")
+    print(" STARTING FARM SIMULATOR ")
     print("=======================================")
     
     try:
