@@ -1,0 +1,44 @@
+[
+    {
+        "id": "1",
+        "name": "Lucy",
+        "color": "White",
+        "age": 3,
+        "isMolting": false
+    },
+    {
+        "id": "2",
+        "name": "Lola",
+        "color": "Brown",
+        "age": 2,
+        "isMolting": false
+    },
+    {
+        "id": "3",
+        "name": "Maggie",
+        "color": "Black",
+        "age": 4,
+        "isMolting": true
+    },
+    {
+        "id": "4",
+        "name": "Pepita",
+        "color": "Brown",
+        "age": 1,
+        "isMolting": false
+    },
+    {
+        "id": "5",
+        "name": "Coco",
+        "color": "Golden",
+        "age": 2,
+        "isMolting": true
+    },
+    {
+        "id": "6",
+        "name": "Nugget",
+        "color": "White",
+        "age": 3,
+        "isMolting": false
+    }
+]

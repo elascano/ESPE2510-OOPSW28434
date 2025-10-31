@@ -1,0 +1,22 @@
+{
+  "id": 1,
+  "name": "Mathews",
+  "coops": [
+    {
+      "chickenCoopNumber": 1,
+      "chickens": [
+        {
+          "id": 1,
+          "name": "Pepa",
+          "color": "Yellow",
+          "age": 1,
+          "isMolting": true,
+          "eggProduced": 0
+        }
+      ],
+      "chickenCapacity": 1,
+      "totalEggs": 0
+    }
+  ],
+  "nextCoopId": 2
+}
