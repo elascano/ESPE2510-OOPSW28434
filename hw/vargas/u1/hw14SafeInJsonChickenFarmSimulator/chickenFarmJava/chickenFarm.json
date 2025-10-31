@@ -1,0 +1,18 @@
+{
+  "coops": [
+    {
+      "id": 1,
+      "description": "Machupichu",
+      "chickens": [
+        {
+          "id": 8,
+          "name": "Yussepe",
+          "color": "black",
+          "age": 3,
+  "isMolting": false,
+          "coopId": 1
+        }
+      ]
+    }
+  ]
+}
