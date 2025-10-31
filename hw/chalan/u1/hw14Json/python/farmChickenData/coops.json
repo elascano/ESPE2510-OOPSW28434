@@ -1,0 +1,35 @@
+[
+  {
+    "coop_id": 1,
+    "farmer_id": 1,
+    "chickens": [
+      {
+        "chicken_id": 1,
+        "name": "luisa",
+        "color": "black",
+        "age": 2,
+        "is_molting": true
+      },
+      {
+        "chicken_id": 2,
+        "name": "carla",
+        "color": "black",
+        "age": 3,
+        "is_molting": true
+      }
+    ]
+  },
+  {
+    "coop_id": 22,
+    "farmer_id": 2,
+    "chickens": [
+      {
+        "chicken_id": 32,
+        "name": "lala",
+        "color": "negro",
+        "age": 2,
+        "is_molting": true
+      }
+    ]
+  }
+]
