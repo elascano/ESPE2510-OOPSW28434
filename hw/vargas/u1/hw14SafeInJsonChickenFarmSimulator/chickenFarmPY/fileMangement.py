@@ -44,11 +44,11 @@ class ChickenSave:
                 chickens_data = []
                 for chicken in coop.getChickens():
                     chickens_data.append({
-                        "id": getattr(chicken, 'id', None),
-                        "name": getattr(chicken, 'name', None),
-                        "color": getattr(chicken, 'color', None),
-                        "age": getattr(chicken, 'age', None),
-                        "isMolting": getattr(chicken, 'isMolting', None)
+                        "id": chicken.id,  
+                        "name": chicken.name,
+                        "color": chicken.color,
+                        "age": chicken.age,
+                        "isMolting": chicken.isMolting
                     })
                 
                 serializable_data.append({
