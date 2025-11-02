@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "chickens": [
+      {
+        "id": 1,
+        "name": "Lucy",
+        "age": 1,
+        "molting": true
+      },
+      {
+        "id": 2,
+        "name": "Mary",
+        "age": 2,
+        "molting": false
+      }
+    ]
+  }
+]

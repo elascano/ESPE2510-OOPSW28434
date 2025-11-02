@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "farmerId": 1,
+    "chickens": [
+      {
+        "id": 10,
+        "name": "lucas",
+        "color": "white",
+        "age": 2,
+        "isMolting": false
+      }
+    ]
+  }
+]

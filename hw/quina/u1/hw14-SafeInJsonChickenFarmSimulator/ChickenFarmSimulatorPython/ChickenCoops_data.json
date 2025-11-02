@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "name": "Coop A",
+        "chickens": [
+            {
+                "id": 1,
+                "name": "Lucy",
+                "color": "Brown",
+                "is_molting": false,
+                "age": 1
+            },
+            {
+                "id": 2,
+                "name": "Clara",
+                "color": "Black",
+                "is_molting": true,
+                "age": 3
+            },
+            {
+                "id": 3,
+                "name": "Coco",
+                "color": "White",
+                "is_molting": false,
+                "age": 2
+            },
+            {
+                "id": 4,
+                "name": "Lili",
+                "color": "Black",
+                "is_molting": false,
+                "age": 1
+            },
+            {
+                "id": 5,
+                "name": "Juana",
+                "color": "White",
+                "is_molting": true,
+                "age": 4
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Coop B",
+        "chickens": [
+            {
+                "id": 6,
+                "name": "Julia",
+                "color": "White",
+                "is_molting": false,
+                "age": 1
+            }
+        ]
+    }
+]

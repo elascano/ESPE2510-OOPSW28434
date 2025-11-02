@@ -1,0 +1,25 @@
+{
+  "coops": [
+    {
+      "id": 1,
+      "chickens": [
+        {
+          "id": 1,
+          "name": "Lucy",
+          "age": 2,
+          "molting": true,
+          "coop_id": 1
+        },
+        {
+          "id": 2,
+          "name": "Lola",
+          "age": 2,
+          "molting": false,
+          "coop_id": 1
+        }
+      ]
+    }
+  ],
+  "next_chicken_id": 3,
+  "next_coop_id": 2
+}

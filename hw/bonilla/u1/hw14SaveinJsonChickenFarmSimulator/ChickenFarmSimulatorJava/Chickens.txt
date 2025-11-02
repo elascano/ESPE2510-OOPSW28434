@@ -1,0 +1,10 @@
+1,Carmela,Brown,2,false,Sunrise Nest
+2,Mary,Brown,4,true,Sunrise Nest
+3,Rita,White and Brown,2,true,Sunrise Nest
+4,Sandra,Golden,2,false,Sunrise Nest
+5,Yusepa,Golden,5,true,Sunrise Nest
+1,Lucy,White and Brown,2,false,Happy Hens Coop
+2,Pepa,Black,3,false,Happy Hens Coop
+3,Josefina,White and Brown,2,false,Happy Hens Coop
+4,Clucky,Brown,1,false,Happy Hens Coop
+5,Tina,Golden,1,false,Happy Hens Coop
