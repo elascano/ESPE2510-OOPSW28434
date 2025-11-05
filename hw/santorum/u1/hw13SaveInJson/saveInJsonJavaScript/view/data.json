@@ -1,0 +1,40 @@
+[
+  {
+    "id": "1",
+    "chickens": [
+      {
+        "id": "1",
+        "name": "Lana",
+        "color": "White",
+        "age": 1,
+        "molting": true
+      },
+      {
+        "id": "2",
+        "name": "Banana",
+        "color": "Black",
+        "age": 3,
+        "molting": true
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "chickens": [
+      {
+        "id": "1",
+        "name": "Nunu",
+        "color": "Orange",
+        "age": 4,
+        "molting": false
+      },
+      {
+        "id": "2",
+        "name": "Nana",
+        "color": "Brown",
+        "age": 5,
+        "molting": false
+      }
+    ]
+  }
+]
