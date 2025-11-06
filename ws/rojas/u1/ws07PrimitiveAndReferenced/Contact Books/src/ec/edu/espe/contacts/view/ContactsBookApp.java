@@ -33,13 +33,13 @@ public class ContactsBookApp {
         System.out.println(contact);
         
         
-        //System.out.println("id before calling the method changeId()  --->" + id);
+        System.out.println("id before calling the method changeId()  --->" + id);
         changeId(id);
-        //System.out.println("id before calling the method changeId()  --->" + id);
+        System.out.println("id before calling the method changeId()  --->" + id);
         
-        //System.out.println("id before calling the method changeIContact()  --->" + contact);
+        System.out.println("id before calling the method changeIContact()  --->" + contact);
           changeContact(contact);
-        //System.out.println("id after calling the method changeContact()  --->" + contact);
+        System.out.println("id after calling the method changeContact()  --->" + contact);
         
     }
     
