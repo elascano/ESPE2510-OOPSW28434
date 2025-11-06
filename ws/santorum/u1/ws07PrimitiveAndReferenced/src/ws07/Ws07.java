@@ -6,7 +6,7 @@ package ws07;
 
 /**
  *
- * @author Josue Rojas, @ESPE
+ * @author Thais Santórum Team 6 - Paradigm, @ESPE
  */
 public class Ws07 {
 
