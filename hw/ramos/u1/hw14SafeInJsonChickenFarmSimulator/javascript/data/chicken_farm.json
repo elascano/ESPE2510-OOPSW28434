@@ -1,0 +1,35 @@
+{
+  "coops": [
+    {
+      "id": 1,
+      "chickens": [
+        {
+          "id": 1,
+          "name": "Dani",
+          "color": "White",
+          "age": 1,
+          "molting": ""
+        },
+        {
+          "id": 2,
+          "name": "Kiki",
+          "color": "Orange",
+          "age": 1,
+          "molting": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "chickens": [
+        {
+          "id": 1,
+          "name": "Lucy",
+          "color": "Black",
+          "age": 2,
+          "molting": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Default Farmer",
+  "coops": [
+    {
+      "id": 1,
+      "chickens": [
+        {
+          "id": 1,
+          "name": "pepe",
+          "color": "blanco",
+          "age": 2,
+          "is_molting": true
+        },
+        {
+          "id": 2,
+          "name": "kiko",
+          "color": "white",
+          "age": 4,
+          "is_molting": true
+        }
+      ]
+    }
+  ]
+}
