@@ -1,0 +1,175 @@
+class IncomeTax:
+    
+    @staticmethod
+    def contribution_iess(monthly_salary, institutional_sector):
+        IncomeTax._validate_salary(monthly_salary)
+        IncomeTax._validate_sector(institutional_sector)
+        
+        if institutional_sector == 2 and monthly_salary > 2300:
+            base_calculo = 2300
+        else:
+            base_calculo = monthly_salary
+
+        general_insurance = base_calculo * 0.0945
+        unemployment_insurance = base_calculo * 0.02
+        total_contribution_iess = general_insurance + unemployment_insurance
+
+        return total_contribution_iess
+
+    @staticmethod
+    def calculate_tax_without_deductions(annual_net_salary_before_tax):
+        IncomeTax._validate_positive_number(annual_net_salary_before_tax, "Annual net salary")
+        
+        tax = 0
+
+        if annual_net_salary_before_tax <= 11902:
+            tax = 0
+        elif annual_net_salary_before_tax <= 15159:
+            tax = (annual_net_salary_before_tax - 11902) * 0.05
+        elif annual_net_salary_before_tax <= 19682:
+            tax = 163 + (annual_net_salary_before_tax - 15159) * 0.10
+        elif annual_net_salary_before_tax <= 26031:
+            tax = 615 + (annual_net_salary_before_tax - 19682) * 0.12
+        elif annual_net_salary_before_tax <= 34255:
+            tax = 1377 + (annual_net_salary_before_tax - 26031) * 0.15
+        elif annual_net_salary_before_tax <= 45407:
+            tax = 2611 + (annual_net_salary_before_tax - 34255) * 0.20
+        elif annual_net_salary_before_tax <= 60450:
+            tax = 4841 + (annual_net_salary_before_tax - 45407) * 0.25
+        elif annual_net_salary_before_tax <= 80605:
+            tax = 8602 + (annual_net_salary_before_tax - 60450) * 0.30
+        elif annual_net_salary_before_tax <= 107199:
+            tax = 14648 + (annual_net_salary_before_tax - 80605) * 0.35
+        else:
+            tax = 23956 + (annual_net_salary_before_tax - 107199) * 0.37
+
+        return tax
+    
+    @staticmethod
+    def get_marginal_tax_rate(income):
+        IncomeTax._validate_positive_number(income, "Income")
+        
+        if income <= 11902:
+            return 0.00
+        elif income <= 15159:
+            return 0.05
+        elif income <= 19682:
+            return 0.10
+        elif income <= 26031:
+            return 0.12
+        elif income <= 34255:
+            return 0.15
+        elif income <= 45407:
+            return 0.20
+        elif income <= 60450:
+            return 0.25
+        elif income <= 80605:
+            return 0.30
+        elif income <= 107199:
+            return 0.35
+        else:
+            return 0.37
+
+    @staticmethod
+    def calculate_rebaja(annual_net_salary_before_tax, monthly_expenses):
+        IncomeTax._validate_positive_number(annual_net_salary_before_tax, "Annual net salary")
+        IncomeTax._validate_non_negative_number(monthly_expenses, "Monthly expenses")
+        
+        annual_expenses = monthly_expenses * 12
+        deductible_expenses = min(annual_expenses, 5344)
+        marginal_rate = IncomeTax.get_marginal_tax_rate(annual_net_salary_before_tax)
+
+        if annual_net_salary_before_tax > 26031 and annual_net_salary_before_tax <= 34255:
+            base_for_rebaja = 6423.53
+        else:
+            base_for_rebaja = deductible_expenses
+
+        rebate = base_for_rebaja * marginal_rate
+        return rebate
+
+    @staticmethod
+    def calculate_income_tax(annual_net_salary_before_tax, monthly_expenses):
+        IncomeTax._validate_positive_number(annual_net_salary_before_tax, "Annual net salary")
+        IncomeTax._validate_non_negative_number(monthly_expenses, "Monthly expenses")
+        
+        tax_without_deductions = IncomeTax.calculate_tax_without_deductions(annual_net_salary_before_tax)
+        rebate = IncomeTax.calculate_rebaja(annual_net_salary_before_tax, monthly_expenses)
+        final_tax = tax_without_deductions - rebate
+        
+        return max(final_tax, 0)
+
+    @staticmethod
+    def show_tax_results(monthly_salary, institutional_sector, monthly_expenses):
+        IncomeTax._validate_salary(monthly_salary)
+        IncomeTax._validate_sector(institutional_sector)
+        IncomeTax._validate_non_negative_number(monthly_expenses, "Monthly expenses")
+        
+        annual_gross_salary = monthly_salary * 12
+        monthly_iess = IncomeTax.contribution_iess(monthly_salary, institutional_sector)
+        annual_iess = monthly_iess * 12
+        annual_net_before_tax = annual_gross_salary - annual_iess
+
+        income_tax = IncomeTax.calculate_income_tax(annual_net_before_tax, monthly_expenses)
+        final_net_salary = annual_net_before_tax - income_tax
+
+        print("\n" + "=" * 50)
+        print("         INCOME TAX RESULTS")
+        print("=" * 50)
+
+        print(f"YOUR ANNUAL INCOME TAX IS: ${income_tax:.2f}")
+        print(f"Your annual net salary is: ${final_net_salary:.2f}")
+        print("=" * 50)
+
+    @staticmethod
+    def _validate_salary(salary):
+        if not isinstance(salary, (int, float)):
+            raise ValueError("Salary must be a valid number.")
+        if salary <= 0:
+            raise ValueError("Salary must be greater than 0.")
+        if salary > 20000:
+            raise ValueError("Salary cannot exceed $20,000.")
+
+    @staticmethod
+    def _validate_sector(sector):
+        if not isinstance(sector, int):
+            raise ValueError("Sector must be a valid integer.")
+        if sector not in [1, 2]:
+            raise ValueError("Sector must be 1 (Public) or 2 (Private).")
+
+    @staticmethod
+    def _validate_positive_number(value, field_name):
+        if not isinstance(value, (int, float)):
+            raise ValueError(f"{field_name} must be a valid number.")
+        if value < 0:
+            raise ValueError(f"{field_name} cannot be negative.")
+
+    @staticmethod
+    def _validate_non_negative_number(value, field_name):
+        if not isinstance(value, (int, float)):
+            raise ValueError(f"{field_name} must be a valid number.")
+        if value < 0:
+            raise ValueError(f"{field_name} cannot be negative.")
+    
+    @staticmethod
+    def validate_inputs(monthly_salary, monthly_expenses, institutional_sector):
+        errors = []
+        
+        try:
+            IncomeTax._validate_salary(monthly_salary)
+        except ValueError as error:
+            errors.append(str(error))
+        
+        try:
+            IncomeTax._validate_non_negative_number(monthly_expenses, "Monthly expenses")
+        except ValueError as error:
+            errors.append(str(error))
+        
+        try:
+            IncomeTax._validate_sector(institutional_sector)
+        except ValueError as error:
+            errors.append(str(error))
+        
+        return {
+            'is_valid': len(errors) == 0,
+            'errors': errors
+        }
