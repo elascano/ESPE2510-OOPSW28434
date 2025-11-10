@@ -1,0 +1,9 @@
+{
+  "name": "taxcalculatorapp",
+  "version": "1.0.0",
+  "description": "App that uses taxoperations library",
+  "main": "app.js",
+  "type": "module",
+  "author": "Daniel",
+  "license": "MIT"
+}

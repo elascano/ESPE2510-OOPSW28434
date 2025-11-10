@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "taxoperations"
+version = "0.1.0"
+description = "Libreria para calcular impuesto a la renta"
+authors = [{name = "Daniel"}]
+requires-python = ">=3.8"

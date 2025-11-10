@@ -1,0 +1,9 @@
+{
+  "name": "taxoperations",
+  "version": "0.2.0",
+  "description": "Library to calculate income tax",
+  "main": "index.js",
+  "type": "module",
+  "author": "Daniel",
+  "license": "MIT"
+}
