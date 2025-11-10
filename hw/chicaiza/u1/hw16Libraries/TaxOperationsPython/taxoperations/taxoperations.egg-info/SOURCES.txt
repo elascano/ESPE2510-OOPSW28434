@@ -1,0 +1,6 @@
+calculator.py
+pyproject.toml
+taxoperations.egg-info/PKG-INFO
+taxoperations.egg-info/SOURCES.txt
+taxoperations.egg-info/dependency_links.txt
+taxoperations.egg-info/top_level.txt

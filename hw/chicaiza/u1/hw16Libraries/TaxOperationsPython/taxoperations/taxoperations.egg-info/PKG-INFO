@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: taxoperations
+Version: 0.1.0
+Summary: Libreria para calcular impuesto a la renta
+Author: Daniel
+Requires-Python: >=3.8
