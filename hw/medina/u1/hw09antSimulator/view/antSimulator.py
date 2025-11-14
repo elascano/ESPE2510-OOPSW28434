@@ -3,7 +3,6 @@ import time
 import sys
 import os
 
-# Add model directory to path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from model.area import Area
