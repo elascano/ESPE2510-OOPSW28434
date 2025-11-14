@@ -1,2 +1,0 @@
-Versión del manifiesto: 1.0
-COMENTARIO X: La clase principal se agregará automáticamente por compilación
