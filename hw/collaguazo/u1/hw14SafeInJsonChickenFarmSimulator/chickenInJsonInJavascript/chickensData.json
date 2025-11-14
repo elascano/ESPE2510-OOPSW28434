@@ -1,0 +1,9 @@
+[
+    {
+        "id": "1",
+        "name": "Pepe",
+        "color": "brown",
+        "age": 3,
+        "isMolting": false
+    }
+]
