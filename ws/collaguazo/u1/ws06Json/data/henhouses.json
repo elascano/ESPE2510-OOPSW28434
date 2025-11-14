@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "hola",
+    "chickens": [
+      {
+        "id": 1,
+        "name": "Laura",
+        "featherColor": "brown",
+        "age": 5,
+        "molting": false
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Chicken",
+    "chickens": []
+  }
+]
