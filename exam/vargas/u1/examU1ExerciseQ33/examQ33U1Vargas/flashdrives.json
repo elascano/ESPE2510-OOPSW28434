@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "brand": "Kingston",
+    "capacity": "89GB",
+    "color": "Black"
+  },
+  {
+    "id": 2,
+    "brand": "Samsung",
+    "capacity": "64gb",
+    "color": "blue"
+  },
+  {
+    "id": 3,
+    "brand": "Kingston",
+    "capacity": "64GB",
+    "color": "Gray"
+  },
+  {
+    "id": 4,
+    "brand": "Samsung",
+    "capacity": "64gb",
+    "color": "Black"
+  },
+  {
+    "id": 1,
+    "brand": "hello",
+    "capacity": "12",
+    "color": "black"
+  }
+]
