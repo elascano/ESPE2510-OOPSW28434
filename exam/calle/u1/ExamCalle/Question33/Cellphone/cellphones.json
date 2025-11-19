@@ -1,0 +1,22 @@
+[
+  {
+    "name": 12345,
+    "brand": "Samsung 24",
+    "price": 600.0
+  },
+  {
+    "name": 12345,
+    "brand": "Sonic",
+    "price": 654.0
+  },
+  {
+    "name": 1,
+    "brand": "Motorola",
+    "price": 205.0
+  },
+  {
+    "name": 2,
+    "brand": "Samsung",
+    "price": 601.0
+  }
+]
