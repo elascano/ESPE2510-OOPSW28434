@@ -1,0 +1,43 @@
+[
+  {
+    "type": "Chicken",
+    "id": 1,
+    "breed": "Leghorn",
+    "bornOn": "2023-01-01",
+    "gender": "Hembra",
+    "isAbleToReproduce": true,
+    "weight": 2.5,
+    "isMolting": false,
+    "layedEggs": 0
+  },
+  {
+    "type": "Cow",
+    "id": 2,
+    "breed": "Holstein",
+    "bornOn": "2022-05-15",
+    "gender": "Hembra",
+    "isAbleToReproduce": true,
+    "weight": 500.0,
+    "isProducingMilk": true,
+    "littersADay": 20.5
+  },
+  {
+    "type": "Pig",
+    "id": 3,
+    "breed": "Duroc",
+    "bornOn": "2024-02-01",
+    "gender": "Macho",
+    "isAbleToReproduce": false,
+    "weight": 120.0
+  },
+  {
+    "type": "Sheep",
+    "id": 4,
+    "breed": "Merino",
+    "bornOn": "2023-08-10",
+    "gender": "Hembra",
+    "isAbleToReproduce": true,
+    "weight": 70.0,
+    "lastShearing": "2024-01-01"
+  }
+]
