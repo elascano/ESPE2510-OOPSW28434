@@ -1,0 +1,58 @@
+package ec.edu.espe.farmsystem.model;
+
+import java.util.Date;
+
+/**
+ *
+ * @author Mateo Aymacaña, T.A.P. (The Art of Programming), @ESPE
+ */
+public class Cow extends FarmAnimal {
+
+    private boolean isProducingMilk;
+    private float litersADay;
+
+    @Override
+    public String toString() {
+        return "Cow{" + "isProducingMilk=" + isProducingMilk + ", litersADay=" + litersADay + ", " + super.toString() + '}';
+    }
+
+    public Cow(boolean isProducingMilk, float litersADay, int id, String breet, Date bornOn, String gender, boolean isAbleToReproduce, float weight, Cage cage) {
+        super(id, breet, bornOn, gender, isAbleToReproduce, weight, cage);
+        this.isProducingMilk = isProducingMilk;
+        this.litersADay = litersADay;
+    }
+
+    public float milk(float milkProduced) {
+        litersADay += milkProduced;
+        return litersADay;
+    }
+
+    /**
+     * @return the isProducingMilk
+     */
+    public boolean isIsProducingMilk() {
+        return isProducingMilk;
+    }
+
+    /**
+     * @param isProducingMilk the isProducingMilk to set
+     */
+    public void setIsProducingMilk(boolean isProducingMilk) {
+        this.isProducingMilk = isProducingMilk;
+    }
+
+    /**
+     * @return the litersADay
+     */
+    public float getLitersADay() {
+        return litersADay;
+    }
+
+    /**
+     * @param litersADay the litersADay to set
+     */
+    public void setLitersADay(float litersADay) {
+        this.litersADay = litersADay;
+    }
+
+}
