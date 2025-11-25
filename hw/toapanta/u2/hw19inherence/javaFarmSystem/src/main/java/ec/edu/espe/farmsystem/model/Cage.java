@@ -2,7 +2,7 @@ package ec.edu.espe.farmsystem.model;
 
 /**
  *
- *@author Adrian Toapanta, Object Masters, @ESPE
+ * @author Adrian Toapanta, Object Masters, @ESPE
  */
 public class Cage {
     private int id;
