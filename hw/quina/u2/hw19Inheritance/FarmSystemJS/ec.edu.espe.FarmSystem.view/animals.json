@@ -1,0 +1,74 @@
+[
+  {
+    "type": "Chicken",
+    "id": 1,
+    "breed": "Holstein",
+    "gender": "male",
+    "bornOn": "2025-02-01T05:00:00.000Z",
+    "weight": 10.4,
+    "isAbleToReproduce": false,
+    "cage": {
+      "id": 1,
+      "type": 2,
+      "description": "Corral for cows",
+      "location": {
+        "xCoordinate": 10,
+        "yCoordinate": 20
+      }
+    }
+  },
+  {
+    "type": "Cow",
+    "id": 2,
+    "breed": "Holstein",
+    "gender": "male",
+    "bornOn": "2025-02-01T05:00:00.000Z",
+    "weight": 10.4,
+    "isAbleToReproduce": false,
+    "cage": {
+      "id": 1,
+      "type": 2,
+      "description": "Corral for cows",
+      "location": {
+        "xCoordinate": 10,
+        "yCoordinate": 20
+      }
+    }
+  },
+  {
+    "type": "Pig",
+    "id": 3,
+    "breed": "Holstein",
+    "gender": "male",
+    "bornOn": "2025-02-01T05:00:00.000Z",
+    "weight": 10.4,
+    "isAbleToReproduce": false,
+    "cage": {
+      "id": 1,
+      "type": 2,
+      "description": "Corral for cows",
+      "location": {
+        "xCoordinate": 10,
+        "yCoordinate": 20
+      }
+    }
+  },
+  {
+    "type": "Sheep",
+    "id": 4,
+    "breed": "Holstein",
+    "gender": "male",
+    "bornOn": "2025-02-01T05:00:00.000Z",
+    "weight": 10.4,
+    "isAbleToReproduce": false,
+    "cage": {
+      "id": 1,
+      "type": 2,
+      "description": "Corral for cows",
+      "location": {
+        "xCoordinate": 10,
+        "yCoordinate": 20
+      }
+    }
+  }
+]
