@@ -21,8 +21,17 @@ public abstract class FarmAnimal {
 
     @Override
     public String toString() {
-        return "FarmAnimal{" + " id = " + getId() + ", breed = " + getBreed() + ", bornOn = " + getBornOn() + ", gender = " + getGender() + ", isAbleToReproduce = " + isIsAbleToReproduce() + ", weight = " + getWeight() + ", cage = " + getCage() + '}';
+        return "{\n" +
+            "  \"id\": " + id + ",\n" +
+            "  \"breed\": \"" + breed + "\",\n" +
+            "  \"bornOn\": \"" + bornOn + "\",\n" +
+            "  \"gender\": \"" + gender + "\",\n" +
+            "  \"isAbleToReproduce\": " + isAbleToReproduce + ",\n" +
+            "  \"weight\": " + weight + ",\n" +
+            "  \"cage\": " + cage + "\n" +
+            "}";
     }
+
     
     public void assignCage(Cage cage){
         this.setCage(cage);
@@ -135,6 +144,5 @@ public abstract class FarmAnimal {
     public void setCage(Cage cage) {
         this.cage = cage;
     }
-    
     
 }

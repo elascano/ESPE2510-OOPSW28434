@@ -10,8 +10,12 @@ public abstract class Location {
 
     @Override
     public String toString() {
-        return "Location{" + " xCoordinate = " + xCoordinate + ", yCoordinate = " + yCoordinate + '}';
+        return "{\n" +
+            "        \"xCoordinate\": " + xCoordinate + ",\n" +
+            "        \"yCoordinate\": " + yCoordinate + "\n" +
+            "}";
     }
+
     
     public Location(int xCoordinate, int yCoordinate) {
         this.xCoordinate = xCoordinate;
@@ -33,6 +37,5 @@ public abstract class Location {
     public void setyCoordinate(int yCoordinate) {
         this.yCoordinate = yCoordinate;
     }
-    
     
 }
