@@ -12,8 +12,14 @@ public class Cage {
 
     @Override
     public String toString() {
-        return "Cage{" + " id = " + id + ", description = " + description + ", type = " + type + ", location = " + location + '}';
+        return "{\n" +
+            "    \"id\": " + id + ",\n" +
+            "    \"description\": \"" + description + "\",\n" +
+            "    \"type\": " + type + ",\n" +
+            "    \"location\": " + location + "\n" +
+            "}";
     }
+
 
     public Cage(int id, String description, int type, Location location) {
         this.id = id;
@@ -53,6 +59,5 @@ public class Cage {
     public void setLocation(Location location) {
         this.location = location;
     }
-    
-    
+     
 }

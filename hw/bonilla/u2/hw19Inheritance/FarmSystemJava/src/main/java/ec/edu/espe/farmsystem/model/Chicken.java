@@ -12,10 +12,13 @@ public class Chicken extends FarmAnimal{
 
     @Override
     public String toString() {
-        return "Chicken{" + " isMolting = " + isMolting + ", laidEgg = " + laidEgg + ", " + super.toString() + '}';
+        return "{\n" +
+            "  \"isMolting\": " + isMolting + ",\n" +
+            "  \"laidEgg\": " + laidEgg + ",\n" +
+            "  \"farmAnimal\": " + super.toString() + "\n" +
+            "}";
     }
-    
-    
+
     
     public Chicken(boolean isMolting, int laidEgg, int id, String breed, Date bornOn, String gender, boolean isAbleToReproduce, float weight, Cage cage) {
         super(id, breed, bornOn, gender, isAbleToReproduce, weight, cage);
