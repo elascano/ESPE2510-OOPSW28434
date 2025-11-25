@@ -1,0 +1,17 @@
+import { FarmAnimal } from "./FarmAnimal.js";
+
+export class Chicken extends FarmAnimal {
+    constructor(isMolting, laidEggs, id, breed, bornOn, gender, isAbleToReproduce, weight, cage) {
+        super(id, breed, bornOn, gender, isAbleToReproduce, weight, cage);
+        this.isMolting = isMolting;
+        this.laidEggs = laidEggs;
+    }
+
+    layAnEgg() {
+        this.laidEggs++;
+    }
+
+    toString() {
+        return `Chicken{isMolting=${this.isMolting}, laidEggs=${this.laidEggs}, ${super.toString()}}`;
+    }
+}
