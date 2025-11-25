@@ -2,8 +2,11 @@ package ec.edu.espe.farmsymulator.view;
 
 import ec.edu.espe.farmsymulator.model.Cage;
 import ec.edu.espe.farmsymulator.model.Chicken;
+import ec.edu.espe.farmsymulator.model.Cow;
 import ec.edu.espe.farmsymulator.model.Location;
 import ec.edu.espe.farmsymulator.model.FarmAnimal;
+import ec.edu.espe.farmsymulator.model.Pig;
+import ec.edu.espe.farmsymulator.model.Sheep;
 import java.util.Date;
 
 /**
@@ -38,8 +41,17 @@ public class FarmSystem {
     
     
         FarmAnimal farmAnimal;
-        farmAnimal = new Chicken(true, 0, 1, breed, date, gender, isAbleToReproduce, weight, cage);
         
+        farmAnimal = new Chicken(true, 0, 1, breed, date, gender, isAbleToReproduce, weight, cage);
+        System.out.println("farmAnimal--->" + farmAnimal);
+        
+        farmAnimal = new Pig (2, breed, date, gender, isAbleToReproduce, weight, cage);
+        System.out.println("farmAnimal--->" + farmAnimal);
+        
+        farmAnimal = new Cow(true, 5, 3, breed, date, gender, isAbleToReproduce, weight, cage);
+        System.out.println("farmAnimal--->" + farmAnimal);
+        
+        farmAnimal = new Sheep(date, 5, breed, date, gender, isAbleToReproduce, weight, cage);
         System.out.println("farmAnimal--->" + farmAnimal);
     }
     
