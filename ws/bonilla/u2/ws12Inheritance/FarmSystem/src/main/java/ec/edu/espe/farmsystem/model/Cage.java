@@ -12,7 +12,7 @@ public class Cage {
 
     @Override
     public String toString() {
-        return "Cage{" + "id=" + id + ", description=" + description + ", type=" + type + ", location=" + location + '}';
+        return "Cage{" + " id = " + id + ", description = " + description + ", type = " + type + ", location = " + location + '}';
     }
 
     public Cage(int id, String description, int type, Location location) {

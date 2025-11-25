@@ -21,7 +21,7 @@ public abstract class FarmAnimal {
 
     @Override
     public String toString() {
-        return "FarmAnimal{" + "id = " + getId() + ", breed = " + getBreed() + ", bornOn = " + getBornOn() + ", gender = " + getGender() + ", isAbleToReproduce = " + isIsAbleToReproduce() + ", weight = " + getWeight() + ", cage = " + getCage() + '}';
+        return "FarmAnimal{" + " id = " + getId() + ", breed = " + getBreed() + ", bornOn = " + getBornOn() + ", gender = " + getGender() + ", isAbleToReproduce = " + isIsAbleToReproduce() + ", weight = " + getWeight() + ", cage = " + getCage() + '}';
     }
     
     public void assignCage(Cage cage){

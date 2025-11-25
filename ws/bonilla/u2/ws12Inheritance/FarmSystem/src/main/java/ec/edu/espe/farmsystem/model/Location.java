@@ -10,7 +10,7 @@ public abstract class Location {
 
     @Override
     public String toString() {
-        return "Location{" + "xCoordinate=" + xCoordinate + ", yCoordinate=" + yCoordinate + '}';
+        return "Location{" + " xCoordinate = " + xCoordinate + ", yCoordinate = " + yCoordinate + '}';
     }
     
     public Location(int xCoordinate, int yCoordinate) {
