@@ -1,0 +1,9 @@
+class Cage:
+    def __init__(self, id, description, type_cage, location):
+        self.id = id
+        self.description = description
+        self.type_cage = type_cage 
+        self.location = location
+
+    def __str__(self):
+        return f"Cage{{id={self.id}, description={self.description}, location={self.location}}}"
