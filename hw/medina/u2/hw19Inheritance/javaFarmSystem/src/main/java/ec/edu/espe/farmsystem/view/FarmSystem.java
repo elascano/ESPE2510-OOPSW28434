@@ -10,7 +10,7 @@ import ec.edu.espe.farmsystem.model.Sheep;
 import java.util.Date;
 /**
  *
- * @author Joseph Medina Espe
+ * @author Adrian Toapanta, Object Masters, @ESPE
  */
 public class FarmSystem {
     public static void main(String[] args) {

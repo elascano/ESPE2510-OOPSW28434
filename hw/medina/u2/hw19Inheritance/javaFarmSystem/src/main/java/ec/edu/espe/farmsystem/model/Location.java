@@ -2,7 +2,7 @@ package ec.edu.espe.farmsystem.model;
 
 /**
  *
- * @author Joseph Medina Espe
+ * @author Adrian Toapanta, Object Masters, @ESPE
  */
 public class Location {
     int xCoordinate;

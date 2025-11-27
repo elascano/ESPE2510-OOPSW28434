@@ -1,0 +1,41 @@
+package ec.edu.espe.farmsystem.model;
+
+/**
+ *
+ * @author Arelis Samantha Bonilla Cruz, @ESPE
+ */
+public abstract class Location {
+    int xCoordinate;
+    int yCoordinate;
+
+    @Override
+    public String toString() {
+        return "{\n" +
+            "        \"xCoordinate\": " + xCoordinate + ",\n" +
+            "        \"yCoordinate\": " + yCoordinate + "\n" +
+            "}";
+    }
+
+    
+    public Location(int xCoordinate, int yCoordinate) {
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
+    }
+
+    public int getxCoordinate() {
+        return xCoordinate;
+    }
+
+    public void setxCoordinate(int xCoordinate) {
+        this.xCoordinate = xCoordinate;
+    }
+
+    public int getyCoordinate() {
+        return yCoordinate;
+    }
+
+    public void setyCoordinate(int yCoordinate) {
+        this.yCoordinate = yCoordinate;
+    }
+    
+}
