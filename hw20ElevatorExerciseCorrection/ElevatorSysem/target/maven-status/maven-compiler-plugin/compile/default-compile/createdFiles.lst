@@ -1,9 +1,0 @@
-ec\edu\espe\elevatorsystem\model\ControlSystem.class
-ec\edu\espe\elevatorsystem\model\Motor.class
-ec\edu\espe\elevatorsystem\model\Cabin.class
-ec\edu\espe\elevatorsystem\model\ControlPanel.class
-ec\edu\espe\elevatorsystem\model\Direction.class
-ec\edu\espe\elevatorsystem\model\Elevator.class
-ec\edu\espe\elevatorsystem\model\StatisticRecord.class
-ec\edu\espe\elevatorsystem\view\ElevatorView.class
-ec\edu\espe\elevatorsystem\view\Main.class
