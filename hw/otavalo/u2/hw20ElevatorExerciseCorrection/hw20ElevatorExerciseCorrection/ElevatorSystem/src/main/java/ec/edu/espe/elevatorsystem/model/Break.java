@@ -1,0 +1,11 @@
+package ec.edu.espe.elevatorsystem.model;
+
+/**
+ *
+ * @author Mathews Pastor, The POOwer Rangers Of Programming
+ */
+public class Break {
+    public void stopElevator() {
+        System.out.println("Brake engaged. Elevator holding position.");
+    }
+}

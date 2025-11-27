@@ -3,7 +3,7 @@ import java.util.Date;
 
 /**
  *
- * @author Joseph B. Medina
+ * @author Adrian Toapanta, Object Masters, @ESPE
  */
 public class Cow extends FarmAnimal{
     

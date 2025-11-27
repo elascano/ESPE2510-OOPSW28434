@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  *
- * @author Joseph Medina Espe
+ * @author Adrian Toapanta, Object Masters, @ESPE
  */
 public class Chicken extends FarmAnimal {
     private boolean isMolting;
