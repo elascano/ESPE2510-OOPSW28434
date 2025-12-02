@@ -126,6 +126,12 @@ replay_pid*
 =======
 /hw/toapanta/u2/hw20ElevatorExamplecode/ElevatorExample/target/
 >>>>>>> 3f3abe7cede367088eccf4613868810eab48f166
+<<<<<<< HEAD
 /ws/chicaiza/u2/ws15UnitTest/Calculator/nbproject/
 /ws/chicaiza/u2/ws15UnitTest/Calculator/target/
 /ws/chicaiza/u2/ws16GUI/ContactsBook/target/
+=======
+/ws/santorum/u2/ws15Calculator/Calculator/nbproject/
+/ws/santorum/u2/ws15Calculator/Calculator/target/
+/ws/carvajal/u2/ws17ContactsBock/ContactsBoock/target/
+>>>>>>> 7d3ffae16728c7b74a66315b104300b67351888e
