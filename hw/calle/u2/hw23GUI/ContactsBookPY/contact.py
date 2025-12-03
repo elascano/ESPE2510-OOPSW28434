@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkcalendar import DateEntry 
 import re
 
 FONT_GEORGIA_TITLE = ("Georgia", 18, "bold")
@@ -7,7 +8,7 @@ FONT_GEORGIA_TEXT = ("Georgia", 11)
 COLOR_PRINCIPAL_TEXT = "#4A235A" 
 
 COLOR_HEADER_FOOTER = "#FDBE8B" 
-COLOR_BODY = "#FFFFCC"         
+COLOR_BODY = "#FFFFCC" 
 COLOR_SAVE_BUTTON = "#7CBA00"
 
 def save_contact():
@@ -23,7 +24,8 @@ def save_contact():
             
         first_name = entry_first_name.get()
         last_name = entry_last_name.get()
-        birth_date = entry_birth_date.get()
+        # Obtener la fecha del DateEntry
+        birth_date = cal_birth_date.get() 
         
         try:
             age_str = entry_age.get().strip()
@@ -44,15 +46,15 @@ def save_contact():
 
         print("\n==================================")
         print("CONTACTS:")
-        print(f"  ID: {contact_id}")
-        print(f"  First Name: {first_name}")
-        print(f"  Last Name: {last_name}")
-        print(f"  Birth Date: {birth_date}")
-        print(f"  Age: {age}")
-        print(f"  Type: {type_of_contact}")
-        print(f"  Sex: {sex}")
-        print(f"  Hobbies: {hobbies_selected}")
-        print(f"  Comments: {comments}")
+        print(f"  ID: {contact_id}")
+        print(f"  First Name: {first_name}")
+        print(f"  Last Name: {last_name}")
+        print(f"  Birth Date: {birth_date}")
+        print(f"  Age: {age}")
+        print(f"  Type: {type_of_contact}")
+        print(f"  Sex: {sex}")
+        print(f"  Hobbies: {hobbies_selected}")
+        print(f"  Comments: {comments}")
         print("==================================")
         
     except Exception as e:
@@ -85,13 +87,12 @@ save_frame.pack(fill='x', padx=5, pady=(0, 5))
 
 entry_first_name = None
 entry_last_name = None
-entry_birth_date = None
 entry_age = None
+cal_birth_date = None
 
 fields_left = [
     ("First Name:", 0),
     ("Last Name:", 1),
-    ("Birth Date:", 2),
 ]
 
 for i, (text, row) in enumerate(fields_left):
@@ -103,7 +104,17 @@ for i, (text, row) in enumerate(fields_left):
 
     if text == "First Name:": entry_first_name = entry
     elif text == "Last Name:": entry_last_name = entry
-    elif text == "Birth Date:": entry_birth_date = entry
+
+row_birth_date = 2 
+
+label_birth_date = tk.Label(left_frame, text="Birth Date:", bg=COLOR_BODY, font=FONT_GEORGIA_TEXT, fg=COLOR_PRINCIPAL_TEXT)
+label_birth_date.grid(row=row_birth_date, column=0, sticky="w", pady=5, padx=5)
+
+cal_birth_date = DateEntry(left_frame, width=18, background=COLOR_PRINCIPAL_TEXT,
+                             foreground='white', borderwidth=2, font=FONT_GEORGIA_TEXT,
+                             date_pattern='dd/mm/yyyy', locale='es_ES')
+cal_birth_date.grid(row=row_birth_date, column=1, sticky="w", pady=5, padx=5)
+
 
 label_age = tk.Label(left_frame, text="Age:", bg=COLOR_BODY, font=FONT_GEORGIA_TEXT, fg=COLOR_PRINCIPAL_TEXT)
 label_age.grid(row=3, column=0, sticky="w", pady=5, padx=5)
@@ -147,8 +158,8 @@ text_comments = tk.Text(right_frame, width=25, height=5, wrap="word", font=FONT_
 text_comments.grid(row=2, column=0, sticky="w", pady=5, padx=5, columnspan=2)
 
 button_save = tk.Button(save_frame, text="SAVE", command=save_contact,
-                        bg=COLOR_SAVE_BUTTON, fg="black", font=("Georgia", 12, "bold"),
-                        width=10, relief="raised", bd=3)
+                         bg=COLOR_SAVE_BUTTON, fg="black", font=("Georgia", 12, "bold"),
+                         width=10, relief="raised", bd=3)
 button_save.pack(pady=10)
 
 root.mainloop()
