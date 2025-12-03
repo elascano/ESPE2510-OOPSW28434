@@ -1,11 +1,15 @@
 package ec.edu.espe.contactsbook.view;
 
+import ec.edu.espe.contactsbook.model.Contact;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Maryuri Quina, @ESPE
+ * @author Emily Calle, @ESPE
  */
 public class FrmContacts extends javax.swing.JFrame {
-
+    Contact contact = new Contact();
     /**
      * Creates new form FrmContacts
      */
@@ -44,8 +48,7 @@ public class FrmContacts extends javax.swing.JFrame {
         RadSexFemale = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstHobbies = new javax.swing.JList<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txaComments = new javax.swing.JTextArea();
+        txaComments = new java.awt.TextArea();
         jPanel3 = new javax.swing.JPanel();
         btmSave = new javax.swing.JButton();
 
@@ -89,7 +92,12 @@ public class FrmContacts extends javax.swing.JFrame {
 
         jLabel10.setText("Comments");
 
+        txtLastName.setToolTipText("only accept last name");
+
+        txtFirstName.setToolTipText("only accept only name");
+
         ftdBirthDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        ftdBirthDate.setToolTipText("format for the dates in ddmm/yyyy");
         ftdBirthDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ftdBirthDateActionPerformed(evt);
@@ -108,10 +116,6 @@ public class FrmContacts extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(lstHobbies);
-
-        txaComments.setColumns(20);
-        txaComments.setRows(5);
-        jScrollPane2.setViewportView(txaComments);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -138,11 +142,11 @@ public class FrmContacts extends javax.swing.JFrame {
                     .addComponent(RadSexMale)
                     .addComponent(RadSexFemale)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addGap(151, 151, 151)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                    .addComponent(txaComments, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,11 +156,11 @@ public class FrmContacts extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -170,19 +174,21 @@ public class FrmContacts extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(RadSexMale))
+                            .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(RadSexMale)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(txaComments, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RadSexFemale)
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         btmSave.setText("Save");
@@ -241,7 +247,55 @@ public class FrmContacts extends javax.swing.JFrame {
     }//GEN-LAST:event_ftdBirthDateActionPerformed
 
     private void btmSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmSaveActionPerformed
-      
+    
+        
+        int option;
+        readValues();
+        
+       // JOptionPane.showMessageDialog(rootPane,+"my contact is ->"+ btmSave);
+        option = JOptionPane.showConfirmDialog(rootPane,"saving contacts-->"+contact,"save contacts",JOptionPane.YES_NO_CANCEL_OPTION);
+        if(option == JOptionPane.YES_OPTION){
+             JOptionPane.showMessageDialog(rootPane, "your contact is saved -->"+contact);
+             emptyFields();
+        }else if(option == JOptionPane.NO_OPTION){
+             JOptionPane.showMessageDialog(rootPane, "your data will be lost","",JOptionPane.WARNING_MESSAGE);
+             emptyFields();
+        }else{
+             txtFirstName.requestFocus();
+        }
+    }
+    private void emptyFields(){
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        ftdBirthDate.setText("");
+        cmbType.setSelectedIndex(0);
+        RadSexFemale.setSelected(true);
+        lstHobbies.clearSelection();
+        txaComments.setText("");
+    }
+    private void readValues(){
+        
+        int id = 1;
+        String firstName;
+        String lastName;
+        int age;
+        String typeOfContact;//Family, Friend Job, Unknown
+        String sex; //male, female
+        ArrayList <String> hobbies = new ArrayList<>();
+        String comments;
+        
+        firstName = txtFirstName.getText();
+        lastName = txtLastName.getText();
+        //TODO compute age based on the BirthDay
+        age = 54;
+        typeOfContact = cmbType.getSelectedItem().toString();
+        //TODO code the use of the radio buttons to initialize the sex
+        sex = " Male";
+        hobbies.add(lstHobbies.getSelectedValue());
+        comments = txaComments.getText();
+        
+        contact = new Contact(id, firstName, lastName, age, typeOfContact, sex, hobbies, comments);
+                
     }//GEN-LAST:event_btmSaveActionPerformed
 
     /**
@@ -301,9 +355,8 @@ public class FrmContacts extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> lstHobbies;
-    private javax.swing.JTextArea txaComments;
+    private java.awt.TextArea txaComments;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
     // End of variables declaration//GEN-END:variables

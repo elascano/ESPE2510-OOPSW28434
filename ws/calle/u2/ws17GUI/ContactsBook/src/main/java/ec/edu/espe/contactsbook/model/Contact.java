@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Maryuri Quina, @ESPE
+ * @author Emily Calle, @ESPE
  */
 public class Contact {
     private int id;
@@ -15,7 +15,16 @@ public class Contact {
     private String sex; //male, female
     private ArrayList <String> hobbies;
     private String comments;
+    
+    public Contact(){
+        
+    }
 
+    @Override
+    public String toString() {
+        return "Contact{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", typeOfContact=" + typeOfContact + ", sex=" + sex + ", hobbies=" + hobbies + ", comments=" + comments + '}';
+    }
+    
     public Contact(int id, String firstName, String lastName, int age, String typeOfContact, String sex, ArrayList<String> hobbies, String comments) {
         this.id = id;
         this.firstName = firstName;
