@@ -121,6 +121,7 @@ public class FrmContacts extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        lstHobbies.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(lstHobbies);
 
         txtAComments.setColumns(20);
