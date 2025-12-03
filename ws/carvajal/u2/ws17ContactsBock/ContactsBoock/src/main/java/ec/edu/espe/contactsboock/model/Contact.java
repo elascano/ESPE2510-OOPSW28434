@@ -16,6 +16,16 @@ public class Contact {
     private ArrayList<String> hobbies;
     private String comments;
 
+       public Contact(){
+           
+       }
+
+    @Override
+    public String toString() {
+        return "Contact{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", typeOfContacts=" + typeOfContacts + ", sex=" + sex + ", hobbies=" + hobbies + ", comments=" + comments + '}';
+    }
+       
+       
     public Contact(int id, String firstName, String lastName, int age, String typeOfContacts, String sex, ArrayList<String> hobbies, String comments) {
         this.id = id;
         this.firstName = firstName;
