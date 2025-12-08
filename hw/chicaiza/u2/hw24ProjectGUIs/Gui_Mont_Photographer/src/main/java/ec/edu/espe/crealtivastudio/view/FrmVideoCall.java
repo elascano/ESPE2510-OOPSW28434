@@ -1,8 +1,10 @@
 package ec.edu.espe.crealtivastudio.view;
 
 import ec.edu.espe.crealtivastudio.model.VideoCall;
+import ec.edu.espe.crealtivastudio.model.VideoCallDAO;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import utils.MongoDBConnection;
 
 /**
  *
@@ -234,6 +236,7 @@ public class FrmVideoCall extends javax.swing.JFrame {
         }
 
         // LEER LOS DATOS AQUÍ:
+        
         String name = txtCustomerName.getText();
         String hour = ffVideoCallHour.getText();
         Date date = ffVideoCallDate.getDate();
@@ -242,19 +245,21 @@ public class FrmVideoCall extends javax.swing.JFrame {
 
         // CREAR EL OBJETO AQUÍ:
         VideoCall call = new VideoCall();
-        call.setCostumerName(name);
+        call.setCustomerName(name);
         call.setVideoCallHour(hour);
         call.setVideoCallDate(formatDate(date));
         call.setMedium(medium);
         call.setNote(note);
-
+        
+        VideoCallDAO.saveVideoCall(videoCall);
+        
         JOptionPane.showMessageDialog(
             this,
             "Video call guardada con éxito\n" + call.toString()
         );
         
     }//GEN-LAST:event_btnSaveActionPerformed
-    private boolean validateForm() {
+         private boolean validateForm() {
         String name = txtCustomerName.getText();
         String hour = ffVideoCallHour.getText();
         Date date = ffVideoCallDate.getDate();
@@ -337,7 +342,9 @@ public class FrmVideoCall extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        MongoDBConnection.connect();
+        
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
