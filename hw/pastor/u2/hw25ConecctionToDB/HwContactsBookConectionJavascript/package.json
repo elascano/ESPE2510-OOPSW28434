@@ -1,0 +1,12 @@
+{
+"name": "contacts-book-desktop", 
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "qode index.js"
+  },
+  "dependencies": {
+    "@nodegui/nodegui": "^0.58.0",
+    "mongodb": "^6.3.0"
+  } 
+}
