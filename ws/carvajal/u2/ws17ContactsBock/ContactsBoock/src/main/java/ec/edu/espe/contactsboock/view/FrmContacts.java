@@ -1,15 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ec.edu.espe.contactsboock.view;
+
+import ec.edu.espe.contactsboock.model.Contact;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Josue Carvajal,The Art of Programming, @ESPE
  */
 public class FrmContacts extends javax.swing.JFrame {
-    
+    Contact contact = new Contact();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmContacts.class.getName());
 
     /**
@@ -94,6 +94,7 @@ public class FrmContacts extends javax.swing.JFrame {
 
         jLabel10.setText("Comments:");
 
+        txtLastName.setToolTipText("only accept Last name");
         txtLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLastNameActionPerformed(evt);
@@ -101,12 +102,14 @@ public class FrmContacts extends javax.swing.JFrame {
         });
 
         ftdBirthDay.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        ftdBirthDay.setToolTipText("Format for the date is dd/mm/yy");
         ftdBirthDay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ftdBirthDayActionPerformed(evt);
             }
         });
 
+        txtFistName.setToolTipText("Only the first name is accepted");
         txtFistName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFistNameActionPerformed(evt);
@@ -279,9 +282,58 @@ public class FrmContacts extends javax.swing.JFrame {
     }//GEN-LAST:event_radSexMaleActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    
+        int option;
+        readValues();
 
+        option = JOptionPane.showConfirmDialog(rootPane, "saving contacts", "CONTACTS", JOptionPane.YES_NO_OPTION);
+
+        if (option == JOptionPane.YES_NO_OPTION){
+            JOptionPane.showMessageDialog(rootPane, "your contact is save -->" +contact);
+        }else if(option == JOptionPane.NO_OPTION){
+           JOptionPane.showMessageDialog(rootPane, "Your data will be lost", "", JOptionPane.WARNING_MESSAGE);
+           emptyFields();
+        }else{
+            txtFistName.requestFocus();
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    private void emptyFields(){
+        txtFistName.setText("");
+        txtLastName.setText("");
+        ftdBirthDay.setText("");
+        cmbType.setSelectedIndex(0);
+        radSexMale.setSelected(true);
+        lstHobbies.clearSelection();
+        txaComments.setText("");
+    }
+    
+    private void readValues(){
+        int id = 1;
+        String firstName;
+        String lastName;
+        int age;
+        String typeOfContacts;//Family,Friend,Job,Unknow
+        String sex;//male, female
+        ArrayList<String> hobbies = new ArrayList<>();
+        String comments;
+
+        firstName = txtFistName.getText();
+        lastName = txtLastName.getText();
+
+
+        age = 54;
+        typeOfContacts = cmbType.getSelectedItem().toString();
+
+        sex = "Male";
+
+        hobbies.add(lstHobbies.getSelectedValue());
+        comments = txaComments.getText();
+
+        contact = new Contact(id, firstName, lastName, age, typeOfContacts, sex, hobbies, comments);
+        
+       }
     /**
      * @param args the command line arguments
      */
