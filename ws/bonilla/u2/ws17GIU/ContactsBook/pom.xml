@@ -11,4 +11,5 @@
         <maven.compiler.target>18</maven.compiler.target>
         <exec.mainClass>ec.edu.espe.contactsbook.view.FrmContacts</exec.mainClass>
     </properties>
+   
 </project>
