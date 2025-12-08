@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Contacts Book</title>
+<style>
+body { font-family: Segoe UI; background:#f5f5f5; }
+.container { width: 680px; margin:20px auto; background:white; padding:20px;
+             border-radius:8px; box-shadow:0 0 10px #aaa; }
+label { display:block; margin-top:10px; }
+input, select, textarea { width:100%; padding:5px; }
+.row { display:flex; justify-content:space-between; }
+.col { width:48%; }
+.btn { background:#0078d7; color:white; padding:10px; margin-top:20px; border:none; cursor:pointer; }
+</style>
+</head>
+
+<body>
+<div class="container">
+    <h1>CONTACTS</h1>
+
+    <label>ID:</label>
+    <span id="idField"></span>
+
+    <label>First Name:</label>
+    <input id="firstName">
+
+    <label>Last Name:</label>
+    <input id="lastName">
+
+    <label>Birth Date:</label>
+    <input type="date" id="birthDate">
+
+    <label>Age:</label>
+    <input id="age" readonly>
+
+    <label>Type:</label>
+    <select id="type">
+        <option>Family</option>
+        <option>Friend</option>
+        <option>Job</option>
+        <option>Unknown</option>
+    </select>
+
+    <label>Sex:</label>
+    <label><input type="radio" name="sex" value="M" checked> Male</label>
+    <label><input type="radio" name="sex" value="F"> Female</label>
+
+    <label>Hobbies:</label>
+    <select id="hobbies" multiple size="5">
+        <option>Play Soccer</option>
+        <option>Djing</option>
+        <option>Read</option>
+        <option>Cook</option>
+        <option>Swim</option>
+        <option>Sing</option>
+        <option>Play an Instrument</option>
+    </select>
+
+    <label>Comments:</label>
+    <textarea id="comments" rows="5"></textarea>
+
+    <button class="btn" onclick="save()">Save</button>
+</div>
+
+<script>
+// === Calcular edad ===
+document.getElementById("birthDate").addEventListener("change",()=>{
+    let b = new Date(birthDate.value);
+    let t = new Date();
+    let age = t.getFullYear() - b.getFullYear();
+    let m = t.getMonth() - b.getMonth();
+    if (m < 0 || (m === 0 && t.getDate() < b.getDate())) age--;
+    document.getElementById("age").value = age;
+});
+
+// === Guardar en Mongo ===
+async function save() {
+    let data = {
+        first_name: firstName.value,
+        last_name: lastName.value,
+        birth_date: birthDate.value,
+        age: parseInt(age.value),
+        type: type.value,
+        sex: document.querySelector("input[name='sex']:checked").value,
+        hobbies: Array.from(hobbies.selectedOptions).map(o => o.value),
+        comments: comments.value
+    };
+
+    let id = await window.api.saveContact(data);
+    document.getElementById("idField").textContent = id;
+    alert("Contacto guardado con ID: " + id);
+}
+</script>
+
+</body>
+</html>
