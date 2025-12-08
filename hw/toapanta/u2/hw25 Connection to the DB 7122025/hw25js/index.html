@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Pacientes (Web GUI)</title>
+    <style>
+        /* Estilos CSS básicos (puedes personalizarlos) */
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .container { background-color: white; padding: 20px; max-width: 500px; margin: auto; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        h2 { text-align: center; color: #333; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        /* Usamos flexbox para alinear la entrada y el campo de texto */
+        .input-group { display: flex; align-items: center; margin-bottom: 10px; }
+        .input-group label { flex: 1; margin-top: 0; }
+        .input-group input[type="text"], 
+        .input-group input[type="email"], 
+        .input-group input[type="number"], 
+        .input-group input[type="date"] {
+            flex: 3; padding: 8px; border: 1px solid #ccc; border-radius: 4px;
+        }
+        .gender-group { margin-top: 10px; display: flex; justify-content: space-around; }
+        button { background-color: #5cb85c; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px; width: 100%; }
+        button:hover { background-color: #4cae4c; }
+        .message { margin-top: 15px; text-align: center; padding: 10px; border-radius: 4px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background-color: #cce5ff; color: #004085; border: 1px solid #b8daff; }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registro de Pacientes</h2>
+        <form id="patientForm">
+
+            <div class="input-group">
+                <label for="patient_id">ID:</label>
+                <input type="number" id="patient_id" name="patient_id" required>
+            </div>
+
+            <div class="input-group">
+                <label for="fullName">Nombre Completo:</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+
+            <label style="margin-top: 5px;">Género:</label>
+            <div class="gender-group">
+                <div>
+                    <input type="radio" id="male" name="gender" value="Masculino" required>
+                    <label for="male" style="display: inline; font-weight: normal;">Masculino</label>
+                </div>
+                <div>
+                    <input type="radio" id="female" name="gender" value="Femenino">
+                    <label for="female" style="display: inline; font-weight: normal;">Femenino</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Teléfono:</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+
+            <div class="input-group">
+                <label for="birthDate">Fecha Nacimiento:</label>
+                <input type="date" id="birthDate" name="birthDate" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="age">Edad:</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+
+            <div class="input-group">
+                <label for="address">Dirección:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <button type="submit">Guardar Paciente</button>
+        </form>
+        <div id="message" class="message" style="display: none;"></div>
+    </div>
+
+    <script>
+        const SERVER_URL = "http://localhost:3000/api/patients";
+        const form = document.getElementById('patientForm');
+        const messageDiv = document.getElementById('message');
+
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = 'message ' + type;
+            messageDiv.style.display = 'block';
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); 
+            showMessage('Enviando datos...', 'info');
+
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            
+            // Conversión de tipos para asegurar que se envían como números al backend
+            data.patient_id = parseInt(data.patient_id);
+            data.age = parseInt(data.age);
+
+            try {
+                const response = await fetch(SERVER_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) { 
+                    showMessage(`Éxito: Paciente guardado con ID ${result.documentId}`, 'success');
+                    form.reset(); 
+                } else {
+                    // Manejo de errores específicos del backend (4xx, 5xx)
+                    const errorMessage = result.error || 'Error desconocido del servidor.';
+                    showMessage(`Error (${response.status}): ${errorMessage}`, 'error');
+                }
+
+            } catch (error) {
+                // Manejo de errores de conexión (ej. servidor Node.js no está corriendo)
+                showMessage(`Error de conexión: Asegúrate de que el servidor Node.js esté corriendo en ${SERVER_URL}.`, 'error');
+                console.error('Error de red:', error);
+            }
+        });
+    </script>
+</body>
+</html>
