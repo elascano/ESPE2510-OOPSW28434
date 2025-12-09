@@ -26,6 +26,14 @@ public class Contact {
         this.hobbies = hobbies;
         this.comments = comments;
     }
+
+    @Override
+    public String toString() {
+        return "Contact:" + "\nId: " + id + "\nFirtName: " + firtName + "\nLastName: " + lastName 
+                + "\nAge: " + age + "\nTypeOfContact: " + typeOfContact + "\nSex: " + sex + "\nHobbies:" + hobbies + "\nComments=" + comments + '}';
+    }
+    
+    
     
     /**
      * @return the id
