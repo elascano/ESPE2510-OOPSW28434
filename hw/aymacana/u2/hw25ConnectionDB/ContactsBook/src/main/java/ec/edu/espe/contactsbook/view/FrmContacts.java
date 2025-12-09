@@ -8,6 +8,7 @@ import ec.edu.espe.contactsbook.controller.ContacsBookController;
 import ec.edu.espe.contactsbook.model.Contact;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -20,6 +21,7 @@ public class FrmContacts extends javax.swing.JFrame {
      */
     public FrmContacts() {
         initComponents();
+        initDateChooser();
     }
 
     /**
@@ -61,7 +63,7 @@ public class FrmContacts extends javax.swing.JFrame {
         cbxPlayInstrument = new javax.swing.JCheckBox();
         cbxOther = new javax.swing.JCheckBox();
         txtOtherHobbies = new javax.swing.JTextField();
-        txtAge = new javax.swing.JTextField();
+        lblCalculateAge = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
 
@@ -107,8 +109,10 @@ public class FrmContacts extends javax.swing.JFrame {
 
         cmbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Family", "Friend", "Job", "Unknown" }));
 
+        buttonGroupSex.add(radSexMale);
         radSexMale.setText("Male");
 
+        buttonGroupSex.add(radSexFemale);
         radSexFemale.setText("Female");
 
         txeComments.setColumns(20);
@@ -161,22 +165,23 @@ public class FrmContacts extends javax.swing.JFrame {
                             .addComponent(cbxSing))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(radSexMale, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbType, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(radSexFemale, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtLastName, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFirstName, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxPlaySoccer, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxDj, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxRead, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxCook, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(cbxOther)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtOtherHobbies, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtAge))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(radSexMale, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbType, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(radSexFemale, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtLastName, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtFirstName, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cbxPlaySoccer, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cbxDj, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cbxRead, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cbxCook, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(cbxOther)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtOtherHobbies, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblCalculateAge))
                         .addGap(111, 111, 111)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,10 +210,10 @@ public class FrmContacts extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblCalculateAge))
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -293,7 +298,122 @@ public class FrmContacts extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void initDateChooser() {
+        Date currentDate = new Date();
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(currentDate);
+        cal.add(Calendar.YEAR, -150);
+        Date minDate = cal.getTime();
+
+        jDateChooser1.setMaxSelectableDate(currentDate);
+        jDateChooser1.setMinSelectableDate(minDate);
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+
+        cal.setTime(currentDate);
+        cal.add(Calendar.YEAR, -25);
+        Date defaultDate = cal.getTime();
+        jDateChooser1.setDate(defaultDate);
+
+        jDateChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            @Override
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                if ("date".equals(evt.getPropertyName())) {
+                    validateDateInRealTime();
+                }
+            }
+        });
+    }
+
+    private void validateDateInRealTime() {
+        Date selectedDate = jDateChooser1.getDate();
+        if (selectedDate != null) {
+            Date currentDate = new Date();
+
+            if (selectedDate.after(currentDate)) {
+                JOptionPane.showMessageDialog(this,
+                        "Date cannot be in the future. Setting to current date.",
+                        "Date Correction",
+                        JOptionPane.INFORMATION_MESSAGE);
+                jDateChooser1.setDate(currentDate);
+            }
+        }
+    }
+
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        String firstName = txtFirstName.getText().trim();
+        if (firstName.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Please enter First Name",
+                    "Required Field",
+                    JOptionPane.WARNING_MESSAGE);
+            txtFirstName.requestFocus();
+            return;
+        }
+
+        if (containsNumbers(firstName) || containsInternalSpaces(firstName)) {
+            JOptionPane.showMessageDialog(this,
+                    "First Name cannot contain numbers or spaces",
+                    "Invalid First Name",
+                    JOptionPane.WARNING_MESSAGE);
+            txtFirstName.requestFocus();
+            txtFirstName.selectAll();
+            return;
+        }
+
+        if (jDateChooser1.getDate() == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Please select a birth date",
+                    "Required Field",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Date birthDate = jDateChooser1.getDate();
+        Date currentDate = new Date();
+
+        if (birthDate.after(currentDate)) {
+            JOptionPane.showMessageDialog(this,
+                    "Birth date cannot be in the future. Please select a valid date.",
+                    "Invalid Date",
+                    JOptionPane.WARNING_MESSAGE);
+            jDateChooser1.requestFocus();
+            return;
+        }
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(currentDate);
+        cal.add(Calendar.YEAR, -150);
+        Date minDate = cal.getTime();
+
+        if (birthDate.before(minDate)) {
+            JOptionPane.showMessageDialog(this,
+                    "Please select a more recent birth date (within the last 150 years)",
+                    "Invalid Date",
+                    JOptionPane.WARNING_MESSAGE);
+            jDateChooser1.requestFocus();
+            return;
+        }
+
+        String lastName = txtLastName.getText().trim();
+        if (lastName.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Please enter Last Name",
+                    "Required Field",
+                    JOptionPane.WARNING_MESSAGE);
+            txtLastName.requestFocus();
+            return;
+        }
+
+        if (containsNumbers(lastName) || containsInternalSpaces(lastName)) {
+            JOptionPane.showMessageDialog(this,
+                    "Last Name cannot contain numbers or spaces",
+                    "Invalid Last Name",
+                    JOptionPane.WARNING_MESSAGE);
+            txtLastName.requestFocus();
+            txtLastName.selectAll();
+            return;
+        }
         if (txtFirstName.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "Please enter First Name",
@@ -312,30 +432,6 @@ public class FrmContacts extends javax.swing.JFrame {
             return;
         }
 
-        int age = 0;
-        String ageText = txtAge.getText().trim();
-        if (!ageText.isEmpty()) {
-            try {
-                age = Integer.parseInt(ageText);
-                if (age < 0 || age > 150) {
-                    JOptionPane.showMessageDialog(this,
-                            "Age must be between 0 and 150",
-                            "Invalid Age",
-                            JOptionPane.WARNING_MESSAGE);
-                    txtAge.requestFocus();
-                    return;
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this,
-                        "Age must be a valid number",
-                        "Invalid Age",
-                        JOptionPane.WARNING_MESSAGE);
-                txtAge.requestFocus();
-                return;
-            }
-        }
-
-        Date birthDate = null;
         if (jDateChooser1.getDate() == null) {
             JOptionPane.showMessageDialog(this,
                     "Please select a birth date",
@@ -414,18 +510,56 @@ public class FrmContacts extends javax.swing.JFrame {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String birthDateStr = sdf.format(birthDate);
 
-            Contact contact = new Contact(
-                    0,
+            ContacsBookController controller = new ContacsBookController();
+            int calculatedAge = controller.calculateAge(birthDateStr);
+            
+            int nextId = controller.getNextContactId();
+
+            lblCalculateAge.setText(calculatedAge + " years old");
+
+            Contact tempContact = new Contact(
+                    nextId, 
                     txtFirstName.getText().trim(),
                     txtLastName.getText().trim(),
-                    age,
+                    calculatedAge, 
                     typeOfContact,
                     sex,
                     hobbies,
                     comments
             );
 
-            ContacsBookController controller = new ContacsBookController();
+            String confirmationMessage = "Please confirm the contact information:\n\n"
+                    + tempContact.toString()
+                    + "\n\nID to be assigned: " + nextId
+                    + "\n\nAre you sure you want to save this contact?";
+
+            int choice = JOptionPane.showConfirmDialog(
+                    this,
+                    confirmationMessage,
+                    "Confirm Contact Details",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+            );
+
+            if (choice != JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(this,
+                        "Save operation cancelled",
+                        "Cancelled",
+                        JOptionPane.INFORMATION_MESSAGE);
+                return; 
+            }
+
+            Contact contact = new Contact(
+                    0,
+                    txtFirstName.getText().trim(),
+                    txtLastName.getText().trim(),
+                    0, 
+                    typeOfContact,
+                    sex,
+                    hobbies,
+                    comments
+            );
+
             boolean saved = controller.saveContact(contact, birthDateStr);
 
             if (saved) {
@@ -446,10 +580,17 @@ public class FrmContacts extends javax.swing.JFrame {
         }
     }
 
+    private boolean containsNumbers(String text) {
+        return text.matches(".*\\d.*");
+    }
+
+    private boolean containsInternalSpaces(String text) {
+        return text.contains(" ");
+    }
+
     private void clearFormFields() {
         txtFirstName.setText("");
         txtLastName.setText("");
-        txtAge.setText("");
         txtOtherHobbies.setText("");
         txeComments.setText("");
 
@@ -457,7 +598,13 @@ public class FrmContacts extends javax.swing.JFrame {
 
         buttonGroupSex.clearSelection();
         radSexMale.setSelected(true);
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -25);
+        jDateChooser1.setDate(cal.getTime());
 
+        if (lblCalculateAge != null) {
+            lblCalculateAge.setText("Age: ");
+        }
         jDateChooser1.setDate(new Date());
 
         cbxPlaySoccer.setSelected(false);
@@ -528,10 +675,10 @@ public class FrmContacts extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblCalculateAge;
     private javax.swing.JRadioButton radSexFemale;
     private javax.swing.JRadioButton radSexMale;
     private javax.swing.JTextArea txeComments;
-    private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtOtherHobbies;
