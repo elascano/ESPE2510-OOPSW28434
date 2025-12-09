@@ -9,7 +9,7 @@ const {
 
 const Contact = require('../contactsBookModel/Contact.js');
 const ContactManager = require('../contactsBookController/ContactManager.js');
-
+const JavaScriptValidator = require('../contactsBookUtils/GUIValidation.js'); 
 const win = new QMainWindow();
 win.setWindowTitle("Contacts Book");
 win.resize(800, 600);
@@ -19,6 +19,9 @@ win.setCentralWidget(centralWidget);
 
 const rootLayout = new QGridLayout();
 centralWidget.setLayout(rootLayout);
+
+const STYLE_ERROR = "border: 2px solid red;";
+const STYLE_NORMAL = "border: 1px solid gray;"; 
 
 const lblTitle = new QLabel();
 lblTitle.setText("CONTACTS");
@@ -100,19 +103,61 @@ const btnSave = new QPushButton();
 btnSave.setText("Save");
 rootLayout.addWidget(btnSave, 9, 0, 1, 4);
 
+function showError(message, field) {
+    const errBox = new QMessageBox();
+    errBox.setWindowTitle("Validation Error");
+    errBox.setText(message);
+    errBox.exec();
+
+    if (field) {
+        field.setInlineStyle(STYLE_ERROR);
+        field.setFocus(true);
+    }
+}
+
 btnSave.addEventListener("clicked", async () => {
-    
-    const id = crypto.randomUUID();
+
     const firstName = txtFirst.text();
     const lastName = txtLast.text();
-    const age = 19;
+    
+    const birthdayQDate = txtDate.date();
+    const birthdayString = `${birthdayQDate.year()}-${birthdayQDate.month()}-${birthdayQDate.day()}`;
+
+    txtFirst.setInlineStyle(STYLE_NORMAL);
+    txtLast.setInlineStyle(STYLE_NORMAL);
+    txtDate.setInlineStyle(STYLE_NORMAL);
+    
+    if (!JavaScriptValidator.isNotEmpty(firstName)) {
+        showError("First Name cannot be empty.", txtFirst);
+        return;
+    }
+    if (!JavaScriptValidator.isValidName(firstName)) {
+        showError("First Name contains invalid characters (only letters, spaces, dots, and hyphens).", txtFirst);
+        return;
+    }
+
+    if (!JavaScriptValidator.isNotEmpty(lastName)) {
+        showError("Last Name cannot be empty.", txtLast);
+        return;
+    }
+    if (!JavaScriptValidator.isValidName(lastName)) {
+        showError("Last Name contains invalid characters (only letters, spaces, dots, and hyphens).", txtLast);
+        return;
+    }
+
+    if (!JavaScriptValidator.isDateNotFuture(birthdayString)) {
+        showError("Birthday cannot be a future date.", txtDate);
+        return;
+    }
+    
+    const id = crypto.randomUUID();
+    const age = 19; 
     const typeOfContact = cmbType.currentText();
     let sex = radFemale.isChecked() ? "Female" : "Male";
-    const birthday = txtDate.text(); 
-    
     const selectedItems = lstHobbies.selectedItems();
     const hobbies = selectedItems.map(item => item.text());
     const comments = txtComments.toPlainText();
+    const birthday = txtDate.text(); 
     
     const newContact = new Contact(id, firstName, lastName, age, typeOfContact, sex, hobbies, comments);
     
@@ -142,7 +187,7 @@ btnSave.addEventListener("clicked", async () => {
                 btnOk.setText("OK");
                 infoBox.addButton(btnOk, 0);
                 infoBox.exec();
-
+                
                 txtFirst.setText("");
                 txtLast.setText("");
                 txtComments.setPlainText("");
@@ -150,7 +195,6 @@ btnSave.addEventListener("clicked", async () => {
                 radMale.setChecked(true); 
                 lstHobbies.clearSelection(); 
                 txtDate.setDate(qNow);
-
             } else {
                 const errBox = new QMessageBox();
                 errBox.setWindowTitle("ERROR");
