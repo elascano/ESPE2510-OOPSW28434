@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Book</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="form-container">
+        <h2>Contact Book</h2>
+
+        <label>Nombres:</label>
+        <input id="nombre" type="text">
+
+        <label>Apellidos:</label>
+        <input id="apellido" type="text">
+
+        <label>Cédula:</label>
+        <input id="cedula" type="text">
+
+        <label>Teléfono:</label>
+        <input id="telefono" type="text">
+
+        <label>Email:</label>
+        <input id="email" type="text">
+
+        <div class="buttons">
+            <button onclick="guardar()">Guardar</button>
+            <button onclick="buscar()">Buscar</button>
+            <button onclick="actualizar()">Actualizar</button>
+            <button onclick="eliminar()">Eliminar</button>
+        </div>
+    </div>
+
+    <div class="list-container">
+        <h3>Contactos</h3>
+        <table id="tabla">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cédula</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

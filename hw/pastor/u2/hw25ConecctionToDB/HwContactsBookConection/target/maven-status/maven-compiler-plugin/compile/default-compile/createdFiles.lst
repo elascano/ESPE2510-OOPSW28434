@@ -1,9 +1,22 @@
 ec\edu\espe\contactsbook\model\Contact.class
+<<<<<<< HEAD
 ec\espe\edu\contactsbook\view\FrmContacts$1.class
 ec\espe\edu\contactsbook\view\FrmContacts$4.class
+=======
+ec\espe\edu\contactsbook\view\FrmContacts$4.class
+ec\espe\edu\contactsbook\view\FrmContacts$5.class
+ec\espe\edu\contactsbook\view\FrmContacts$9.class
+ec\espe\edu\contactsbook\view\FrmContacts$1.class
+ec\espe\edu\contactsbook\view\FrmContacts$8.class
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 ec\espe\edu\contactsbook\model\MongoConection.class
 ec\espe\edu\contactsbook\view\FrmContacts$6.class
 ec\espe\edu\contactsbook\view\FrmContacts$3.class
 ec\espe\edu\contactsbook\view\FrmContacts$2.class
+<<<<<<< HEAD
 ec\espe\edu\contactsbook\view\FrmContacts$5.class
+=======
+ec\espe\edu\contactsbook\view\FrmContacts$10.class
+ec\espe\edu\contactsbook\view\FrmContacts$7.class
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 ec\espe\edu\contactsbook\view\FrmContacts.class

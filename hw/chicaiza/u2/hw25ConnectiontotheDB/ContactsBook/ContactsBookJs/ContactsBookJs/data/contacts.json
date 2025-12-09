@@ -1,0 +1,30 @@
+[
+  {
+    "firstName": "Carmen",
+    "lastName": "Ruiz",
+    "birthDate": "2004-09-01",
+    "typeOfContact": "Friend",
+    "sex": "Female",
+    "hobbies": [
+      "Music"
+    ],
+    "comments": "No comments",
+    "age": 21,
+    "createdAt": "2025-12-09T04:41:55.186Z",
+    "_id": "6937a893f8372d733a75ecbf"
+  },
+  {
+    "firstName": "Carmen",
+    "lastName": "Ruiz",
+    "birthDate": "2004-09-01",
+    "typeOfContact": "Friend",
+    "sex": "Female",
+    "hobbies": [
+      "Music"
+    ],
+    "comments": "No comments",
+    "age": 21,
+    "createdAt": "2025-12-09T04:41:55.186Z",
+    "_id": "6937a893f8372d733a75ecbf"
+  }
+]
