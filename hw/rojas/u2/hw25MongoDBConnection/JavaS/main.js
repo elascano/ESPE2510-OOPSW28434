@@ -2,28 +2,28 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
 function createWindow() {
+
     const win = new BrowserWindow({
-        width: 900, height: 700,
+        width: 800, 
+        height: 700,
+        autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
         }
     });
 
-    win.loadURL('data:text/html;charset=utf-8,<html><body style="font-family:sans-serif;"><h2>Cargando interfaz...</h2></body></html>');
+    win.loadURL('data:text/html;charset=utf-8,<html><body style="margin:0; background:#ece9d8;"><h2>Cargando...</h2></body></html>');
 
-    win.webContents.openDevTools();
+    const appPath = path.join(__dirname, 'App.js').replace(/\\/g, '/');
 
     win.webContents.on('did-finish-load', () => {
-        const appPath = path.join(__dirname, 'App.js').replace(/\\/g, '/');
-
         win.webContents.executeJavaScript(`
             try {
                 require('${appPath}');
-            } catch (e) {
-                document.body.innerHTML = '<h2 style="color:red">OCURRIÓ UN ERROR:</h2><h3 style="color:red">' + e.message + '</h3><pre>' + e.stack + '</pre>';
+            } catch(e) {
+                alert("Error cargando App.js: " + e.message);
                 console.error(e);
-                alert("Error: " + e.message);
             }
         `);
     });

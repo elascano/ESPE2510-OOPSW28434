@@ -1,134 +1,166 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from tkcalendar import Calendar
-from datetime import datetime, date
 from pymongo import MongoClient
+import certifi
+from datetime import datetime
+from tkcalendar import DateEntry
 
-ATLAS_URI = "mongodb+srv://Josue:Josue2006@cluster0.da07rsq.mongodb.net/?appName=Cluster0"
-client = MongoClient(ATLAS_URI)
-db = client["ConectionMongoDB"]
-contacts_collection = db["PyContactsBook"]
+try:
+    URI = "mongodb+srv://Josue:Josue2006@cluster0.da07rsq.mongodb.net/?retryWrites=true&w=majority"
+    client = MongoClient(URI, tlsCAFile=certifi.where())
+    db = client['ConectionMongoDB']
+    collection = db['PyContactsBook']
+    print("CONNECTED")
+except Exception as e:
+    messagebox.showerror("Connection Error", f"{e}")
 
+def calculateAge(event=None):
+    try:
+        birthDate = dtpBirthDate.get_date()
+        today = datetime.now().date()
+        age = today.year - birthDate.year - ((today.month, today.day) < (birthDate.month, birthDate.day))
+        lblAgeVal.config(text=str(age))
+    except:
+        lblAgeVal.config(text="0")
 
-class ContactsForm(tk.Tk):
-    def __init__(self):
-        super().__init__()
-        self.title("CONTACTS")
-        self.configure(bg="#d9dde3")
+def clearFields():
+    txtFirstName.delete(0, tk.END)
+    txtLastName.delete(0, tk.END)
+    dtpBirthDate.set_date(datetime.now())
+    lblAgeVal.config(text="0")
+    cmbType.current(0)
+    radSex.set("Female")
+    txaComments.delete("1.0", tk.END)
+    for var in chkHobbiesVars.values():
+        var.set(False)
+    txtFirstName.focus()
 
-        title = tk.Label(self, text="CONTACTS", font=("Segoe UI", 22, "bold"), bg="#d9dde3")
-        title.grid(row=0, column=0, columnspan=4, pady=(15, 25))
+def cancelAction():
+    if messagebox.askyesno("Cancel", "Are you sure you want to clear the form?"):
+        clearFields()
 
-        tk.Label(self, text="id:", bg="#d9dde3").grid(row=1, column=0, sticky="e", padx=(30, 5))
+def saveAction():
+    firstName = txtFirstName.get().strip()
+    lastName = txtLastName.get().strip()
+    birthDate = dtpBirthDate.get() 
+    
+    if not firstName:
+        messagebox.showwarning("Validation Error", "First Name is required")
+        txtFirstName.focus()
+        return
 
-        tk.Label(self, text="First Name:", bg="#d9dde3").grid(row=2, column=0, sticky="e", padx=(30, 5), pady=2)
-        self.first_name_var = tk.StringVar()
-        tk.Entry(self, textvariable=self.first_name_var, width=25).grid(row=2, column=1, sticky="w", pady=2)
+    if any(char.isdigit() for char in firstName):
+        messagebox.showwarning("Validation Error", "First Name cannot contain numbers")
+        txtFirstName.focus()
+        return
+    
+    if not lastName:
+        messagebox.showwarning("Validation Error", "Last Name is required")
+        txtLastName.focus()
+        return
 
-        tk.Label(self, text="Last Name:", bg="#d9dde3").grid(row=3, column=0, sticky="e", padx=(30, 5), pady=2)
-        self.last_name_var = tk.StringVar()
-        tk.Entry(self, textvariable=self.last_name_var, width=25).grid(row=3, column=1, sticky="w", pady=2)
+    if any(char.isdigit() for char in lastName):
+        messagebox.showwarning("Validation Error", "Last Name cannot contain numbers")
+        txtLastName.focus()
+        return
 
-        tk.Label(self, text="Birth Date:", bg="#d9dde3").grid(row=4, column=0, sticky="e", padx=(30, 5), pady=2)
-        self.birth_date_var = tk.StringVar()
-        self.birth_entry = tk.Entry(self, textvariable=self.birth_date_var, width=25)
-        self.birth_entry.grid(row=4, column=1, sticky="w", pady=2)
-        tk.Button(self, text="...", width=3, command=self.open_calendar).grid(row=4, column=2, padx=(5, 0))
+    selectedHobbies = []
+    for hobbyName, hobbyVar in chkHobbiesVars.items():
+        if hobbyVar.get():
+            selectedHobbies.append(hobbyName)
 
-        tk.Label(self, text="Age:", bg="#d9dde3").grid(row=5, column=0, sticky="e", padx=(30, 5), pady=2)
-        self.age_var = tk.StringVar()
-        tk.Label(self, textvariable=self.age_var, bg="#d9dde3").grid(row=5, column=1, sticky="w", pady=2)
+    document = {
+        "firstName": firstName,
+        "lastName": lastName,
+        "birthDate": birthDate,
+        "age": int(lblAgeVal.cget("text")),
+        "type": cmbType.get(),
+        "sex": radSex.get(),
+        "hobbies": selectedHobbies,
+        "comments": txaComments.get("1.0", tk.END).strip()
+    }
 
-        tk.Label(self, text="Type:", bg="#d9dde3").grid(row=6, column=0, sticky="e", padx=(30, 5), pady=2)
-        self.type_var = tk.StringVar()
-        type_combo = ttk.Combobox(self, textvariable=self.type_var,
-                                  values=["Family", "Friend", "Work", "Other"],
-                                  width=18, state="readonly")
-        type_combo.set("Family")
-        type_combo.grid(row=6, column=1, sticky="w", pady=2)
-
-        tk.Label(self, text="Sex:", bg="#d9dde3").grid(row=7, column=0, sticky="e", padx=(30, 5), pady=2)
-        self.sex_var = tk.StringVar(value="Male")
-        tk.Radiobutton(self, text="Male", variable=self.sex_var, value="Male", bg="#d9dde3").grid(row=7, column=1, sticky="w")
-        tk.Radiobutton(self, text="Female", variable=self.sex_var, value="Female", bg="#d9dde3").grid(row=8, column=1, sticky="w")
-
-        tk.Label(self, text="Hobbies:", bg="#d9dde3").grid(row=9, column=0, sticky="ne", padx=(30, 5), pady=(10, 2))
-        self.hobbies_listbox = tk.Listbox(self, selectmode="extended", width=22, height=7)
-        hobbies = [
-            "Play Soccer", "Djing", "Read", "Cook",
-            "Swim", "Sing", "Play an instrument"
-        ]
-        for hob in hobbies:
-            self.hobbies_listbox.insert(tk.END, hob)
-        self.hobbies_listbox.grid(row=9, column=1, sticky="w", pady=(10, 2))
-
-        tk.Label(self, text="Comments:", bg="#d9dde3").grid(row=1, column=3, sticky="w", padx=(20, 30))
-        self.comments_text = tk.Text(self, width=35, height=10)
-        self.comments_text.grid(row=2, column=3, rowspan=4, padx=(20, 30), pady=2)
-
-        tk.Button(self, text="SAVE", width=10, command=self.save_contact).grid(row=11, column=0, columnspan=4, pady=(25, 20))
-
-        self.grid_columnconfigure(1, weight=1)
-        self.grid_columnconfigure(3, weight=1)
-
-    def open_calendar(self):
-        top = tk.Toplevel(self)
-        top.title("Select Birth Date")
-        cal = Calendar(top, selectmode="day", date_pattern="dd/mm/yyyy", locale="es_ES")
-        cal.pack(padx=10, pady=10)
-
-        def on_ok():
-            selected = cal.get_date()
-            d = datetime.strptime(selected, "%d/%m/%Y").date()
-            meses = [
-                "enero", "febrero", "marzo", "abril", "mayo", "junio",
-                "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
-            ]
-            self.birth_date_var.set(f"{d.day} de {meses[d.month - 1]} de {d.year}")
-            self.update_age(d)
-            top.destroy()
-
-        tk.Button(top, text="OK", command=on_ok).pack(pady=(0, 10))
-
-    def update_age(self, birth_date):
-        today = date.today()
-        years = today.year - birth_date.year
-        if (today.month, today.day) < (birth_date.month, birth_date.day):
-            years -= 1
-        self.age_var.set(f"{years} years")
-
-    def save_contact(self):
-        first = self.first_name_var.get()
-        last = self.last_name_var.get()
-        birth = self.birth_date_var.get()
-        type_ = self.type_var.get()
-        sex = self.sex_var.get()
-        comments = self.comments_text.get("1.0", "end").strip()
-        hobbies_indices = self.hobbies_listbox.curselection()
-        hobbies = [self.hobbies_listbox.get(i) for i in hobbies_indices]
-
-        if not first or not last:
-            messagebox.showerror("Error", "First Name and Last Name are required.")
-            return
-
-        document = {
-            "firstName": first,
-            "lastName": last,
-            "birthDate": birth,
-            "age": self.age_var.get(),
-            "type": type_,
-            "sex": sex,
-            "hobbies": hobbies,
-            "comments": comments
-        }
-
+    if messagebox.askyesno("Confirm", "Do you want to save this contact to MongoDB?"):
         try:
-            result = contacts_collection.insert_one(document)
-            messagebox.showinfo("Saved", f"Contact saved with id: {result.inserted_id}")
+            collection.insert_one(document)
+            messagebox.showinfo("Success", "Contact saved successfully!")
+            clearFields()
         except Exception as e:
-            messagebox.showerror("MongoDB Error", str(e))
+            messagebox.showerror("Error", f"Could not save: {e}")
 
+root = tk.Tk()
+root.title("Contacts Book App")
+root.geometry("600x680")
+root.configure(bg="#ece9d8")
 
-if __name__ == "__main__":
-    app = ContactsForm()
-    app.mainloop()
+lblStyle = {"bg": "#ece9d8", "font": ("Arial", 10, "bold"), "anchor": "e"}
+
+lblTitle = tk.Label(root, text="CONTACTS", bg="#ece9d8", font=("Arial", 18))
+lblTitle.place(x=0, y=20, width=600)
+
+lblId = tk.Label(root, text="id:", **lblStyle)
+lblId.place(x=50, y=70, width=80)
+lblIdVal = tk.Label(root, text="(Auto)", bg="#ece9d8", anchor="w")
+lblIdVal.place(x=140, y=70)
+
+lblFirstName = tk.Label(root, text="First Name:", **lblStyle)
+lblFirstName.place(x=50, y=100, width=80)
+txtFirstName = tk.Entry(root)
+txtFirstName.place(x=140, y=100, width=160)
+
+lblLastName = tk.Label(root, text="Last Name:", **lblStyle)
+lblLastName.place(x=50, y=130, width=80)
+txtLastName = tk.Entry(root)
+txtLastName.place(x=140, y=130, width=160)
+
+lblBirthDate = tk.Label(root, text="Birth Date:", **lblStyle)
+lblBirthDate.place(x=50, y=160, width=80)
+dtpBirthDate = DateEntry(root, width=12, background='darkblue', foreground='white', borderwidth=2, date_pattern='yyyy-mm-dd')
+dtpBirthDate.place(x=140, y=160, width=160)
+dtpBirthDate.bind("<<DateEntrySelected>>", calculateAge)
+
+lblAge = tk.Label(root, text="Age:", **lblStyle)
+lblAge.place(x=50, y=190, width=80)
+lblAgeVal = tk.Label(root, text="0", bg="#ece9d8", anchor="w")
+lblAgeVal.place(x=140, y=190)
+
+lblComments = tk.Label(root, text="Comments:", **lblStyle)
+lblComments.place(x=330, y=70)
+txaComments = tk.Text(root, width=25, height=7)
+txaComments.place(x=330, y=95)
+
+lblType = tk.Label(root, text="Type:", **lblStyle)
+lblType.place(x=50, y=230, width=80)
+cmbType = ttk.Combobox(root, values=["Family", "Friend", "Job", "Unknown"], state="readonly")
+cmbType.current(0)
+cmbType.place(x=140, y=230, width=120)
+
+lblSex = tk.Label(root, text="Sex:", **lblStyle)
+lblSex.place(x=50, y=270, width=80)
+radSex = tk.StringVar(value="Female")
+rdbMale = tk.Radiobutton(root, text="Male", variable=radSex, value="Male", bg="#ece9d8")
+rdbMale.place(x=140, y=270)
+rdbFemale = tk.Radiobutton(root, text="Female", variable=radSex, value="Female", bg="#ece9d8")
+rdbFemale.place(x=140, y=290)
+
+lblHobbies = tk.Label(root, text="Hobbies:", **lblStyle)
+lblHobbies.place(x=50, y=330, width=80)
+frameHobbies = tk.Frame(root, bg="white", bd=1, relief="sunken")
+frameHobbies.place(x=140, y=330, width=160, height=150)
+
+hobbiesList = ["Play Soccer", "Dijing", "Read", "Cook", "Swim", "Sing", "Play Instrument"]
+chkHobbiesVars = {}
+
+for hobby in hobbiesList:
+    var = tk.BooleanVar()
+    chkHobby = tk.Checkbutton(frameHobbies, text=hobby, variable=var, bg="white", anchor="w")
+    chkHobby.pack(fill="x")
+    chkHobbiesVars[hobby] = var
+
+btnSave = tk.Button(root, text="SAVE", command=saveAction, bg="#e1e1e1", width=12, font=("Arial", 10, "bold"))
+btnSave.place(x=180, y=530)
+
+btnCancel = tk.Button(root, text="CANCEL", command=cancelAction, bg="#ffcccc", width=12, font=("Arial", 10, "bold"))
+btnCancel.place(x=300, y=530)
+
+root.mainloop()
