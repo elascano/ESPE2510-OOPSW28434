@@ -1,166 +1,135 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from pymongo import MongoClient
-import certifi
-from datetime import datetime
 from tkcalendar import DateEntry
+from datetime import datetime
+from ContactController import ContactController
 
-try:
-    URI = "mongodb+srv://Josue:Josue2006@cluster0.da07rsq.mongodb.net/?retryWrites=true&w=majority"
-    client = MongoClient(URI, tlsCAFile=certifi.where())
-    db = client['ConectionMongoDB']
-    collection = db['PyContactsBook']
-    print("CONNECTED")
-except Exception as e:
-    messagebox.showerror("Connection Error", f"{e}")
+class ContactsBookApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Contacts Book App")
+        self.root.geometry("600x680")
+        self.root.configure(bg="#ece9d8")
+        
+        self.controller = ContactController()
+        self.chkHobbiesVars = {}
+        self.radSex = tk.StringVar(value="Female")
+        
+        self.createWidgets()
 
-def calculateAge(event=None):
-    try:
-        birthDate = dtpBirthDate.get_date()
-        today = datetime.now().date()
-        age = today.year - birthDate.year - ((today.month, today.day) < (birthDate.month, birthDate.day))
-        lblAgeVal.config(text=str(age))
-    except:
-        lblAgeVal.config(text="0")
+    def createWidgets(self):
+        lblStyle = {"bg": "#ece9d8", "font": ("Arial", 10, "bold"), "anchor": "e"}
 
-def clearFields():
-    txtFirstName.delete(0, tk.END)
-    txtLastName.delete(0, tk.END)
-    dtpBirthDate.set_date(datetime.now())
-    lblAgeVal.config(text="0")
-    cmbType.current(0)
-    radSex.set("Female")
-    txaComments.delete("1.0", tk.END)
-    for var in chkHobbiesVars.values():
-        var.set(False)
-    txtFirstName.focus()
+        lblTitle = tk.Label(self.root, text="CONTACTS", bg="#ece9d8", font=("Arial", 18))
+        lblTitle.place(x=0, y=20, width=600)
 
-def cancelAction():
-    if messagebox.askyesno("Cancel", "Are you sure you want to clear the form?"):
-        clearFields()
+        lblId = tk.Label(self.root, text="id:", **lblStyle)
+        lblId.place(x=50, y=70, width=80)
+        lblIdVal = tk.Label(self.root, text="(Auto)", bg="#ece9d8", anchor="w")
+        lblIdVal.place(x=140, y=70)
 
-def saveAction():
-    firstName = txtFirstName.get().strip()
-    lastName = txtLastName.get().strip()
-    birthDate = dtpBirthDate.get() 
-    
-    if not firstName:
-        messagebox.showwarning("Validation Error", "First Name is required")
-        txtFirstName.focus()
-        return
+        lblFirstName = tk.Label(self.root, text="First Name:", **lblStyle)
+        lblFirstName.place(x=50, y=100, width=80)
+        self.txtFirstName = tk.Entry(self.root)
+        self.txtFirstName.place(x=140, y=100, width=160)
 
-    if any(char.isdigit() for char in firstName):
-        messagebox.showwarning("Validation Error", "First Name cannot contain numbers")
-        txtFirstName.focus()
-        return
-    
-    if not lastName:
-        messagebox.showwarning("Validation Error", "Last Name is required")
-        txtLastName.focus()
-        return
+        lblLastName = tk.Label(self.root, text="Last Name:", **lblStyle)
+        lblLastName.place(x=50, y=130, width=80)
+        self.txtLastName = tk.Entry(self.root)
+        self.txtLastName.place(x=140, y=130, width=160)
 
-    if any(char.isdigit() for char in lastName):
-        messagebox.showwarning("Validation Error", "Last Name cannot contain numbers")
-        txtLastName.focus()
-        return
+        lblBirthDate = tk.Label(self.root, text="Birth Date:", **lblStyle)
+        lblBirthDate.place(x=50, y=160, width=80)
+        self.dtpBirthDate = DateEntry(self.root, width=12, background='darkblue', foreground='white', borderwidth=2, date_pattern='yyyy-mm-dd')
+        self.dtpBirthDate.place(x=140, y=160, width=160)
+        self.dtpBirthDate.bind("<<DateEntrySelected>>", self.updateAge)
 
-    selectedHobbies = []
-    for hobbyName, hobbyVar in chkHobbiesVars.items():
-        if hobbyVar.get():
-            selectedHobbies.append(hobbyName)
+        lblAge = tk.Label(self.root, text="Age:", **lblStyle)
+        lblAge.place(x=50, y=190, width=80)
+        self.lblAgeVal = tk.Label(self.root, text="0", bg="#ece9d8", anchor="w")
+        self.lblAgeVal.place(x=140, y=190)
 
-    document = {
-        "firstName": firstName,
-        "lastName": lastName,
-        "birthDate": birthDate,
-        "age": int(lblAgeVal.cget("text")),
-        "type": cmbType.get(),
-        "sex": radSex.get(),
-        "hobbies": selectedHobbies,
-        "comments": txaComments.get("1.0", tk.END).strip()
-    }
+        lblComments = tk.Label(self.root, text="Comments:", **lblStyle)
+        lblComments.place(x=330, y=70)
+        self.txaComments = tk.Text(self.root, width=25, height=7)
+        self.txaComments.place(x=330, y=95)
 
-    if messagebox.askyesno("Confirm", "Do you want to save this contact to MongoDB?"):
-        try:
-            collection.insert_one(document)
-            messagebox.showinfo("Success", "Contact saved successfully!")
-            clearFields()
-        except Exception as e:
-            messagebox.showerror("Error", f"Could not save: {e}")
+        lblType = tk.Label(self.root, text="Type:", **lblStyle)
+        lblType.place(x=50, y=230, width=80)
+        self.cmbType = ttk.Combobox(self.root, values=["Family", "Friend", "Job", "Unknown"], state="readonly")
+        self.cmbType.current(0)
+        self.cmbType.place(x=140, y=230, width=120)
 
-root = tk.Tk()
-root.title("Contacts Book App")
-root.geometry("600x680")
-root.configure(bg="#ece9d8")
+        lblSex = tk.Label(self.root, text="Sex:", **lblStyle)
+        lblSex.place(x=50, y=270, width=80)
+        rdbMale = tk.Radiobutton(self.root, text="Male", variable=self.radSex, value="Male", bg="#ece9d8")
+        rdbMale.place(x=140, y=270)
+        rdbFemale = tk.Radiobutton(self.root, text="Female", variable=self.radSex, value="Female", bg="#ece9d8")
+        rdbFemale.place(x=140, y=290)
 
-lblStyle = {"bg": "#ece9d8", "font": ("Arial", 10, "bold"), "anchor": "e"}
+        lblHobbies = tk.Label(self.root, text="Hobbies:", **lblStyle)
+        lblHobbies.place(x=50, y=330, width=80)
+        frameHobbies = tk.Frame(self.root, bg="white", bd=1, relief="sunken")
+        frameHobbies.place(x=140, y=330, width=160, height=150)
 
-lblTitle = tk.Label(root, text="CONTACTS", bg="#ece9d8", font=("Arial", 18))
-lblTitle.place(x=0, y=20, width=600)
+        hobbiesList = ["Play Soccer", "Dijing", "Read", "Cook", "Swim", "Sing", "Play Instrument"]
+        for hobby in hobbiesList:
+            var = tk.BooleanVar()
+            chkHobby = tk.Checkbutton(frameHobbies, text=hobby, variable=var, bg="white", anchor="w")
+            chkHobby.pack(fill="x")
+            self.chkHobbiesVars[hobby] = var
 
-lblId = tk.Label(root, text="id:", **lblStyle)
-lblId.place(x=50, y=70, width=80)
-lblIdVal = tk.Label(root, text="(Auto)", bg="#ece9d8", anchor="w")
-lblIdVal.place(x=140, y=70)
+        btnSave = tk.Button(self.root, text="SAVE", command=self.saveData, bg="#e1e1e1", width=12, font=("Arial", 10, "bold"))
+        btnSave.place(x=180, y=530)
 
-lblFirstName = tk.Label(root, text="First Name:", **lblStyle)
-lblFirstName.place(x=50, y=100, width=80)
-txtFirstName = tk.Entry(root)
-txtFirstName.place(x=140, y=100, width=160)
+        btnCancel = tk.Button(self.root, text="CANCEL", command=self.cancelForm, bg="#ffcccc", width=12, font=("Arial", 10, "bold"))
+        btnCancel.place(x=300, y=530)
 
-lblLastName = tk.Label(root, text="Last Name:", **lblStyle)
-lblLastName.place(x=50, y=130, width=80)
-txtLastName = tk.Entry(root)
-txtLastName.place(x=140, y=130, width=160)
+    def updateAge(self, event=None):
+        birthDate = self.dtpBirthDate.get_date()
+        age = self.controller.getAge(birthDate)
+        self.lblAgeVal.config(text=str(age))
 
-lblBirthDate = tk.Label(root, text="Birth Date:", **lblStyle)
-lblBirthDate.place(x=50, y=160, width=80)
-dtpBirthDate = DateEntry(root, width=12, background='darkblue', foreground='white', borderwidth=2, date_pattern='yyyy-mm-dd')
-dtpBirthDate.place(x=140, y=160, width=160)
-dtpBirthDate.bind("<<DateEntrySelected>>", calculateAge)
+    def clearFields(self):
+        self.txtFirstName.delete(0, tk.END)
+        self.txtLastName.delete(0, tk.END)
+        self.dtpBirthDate.set_date(datetime.now())
+        self.lblAgeVal.config(text="0")
+        self.cmbType.current(0)
+        self.radSex.set("Female")
+        self.txaComments.delete("1.0", tk.END)
+        for var in self.chkHobbiesVars.values():
+            var.set(False)
+        self.txtFirstName.focus()
 
-lblAge = tk.Label(root, text="Age:", **lblStyle)
-lblAge.place(x=50, y=190, width=80)
-lblAgeVal = tk.Label(root, text="0", bg="#ece9d8", anchor="w")
-lblAgeVal.place(x=140, y=190)
+    def cancelForm(self):
+        if messagebox.askyesno("Cancel", "Are you sure you want to clear the form?"):
+            self.clearFields()
 
-lblComments = tk.Label(root, text="Comments:", **lblStyle)
-lblComments.place(x=330, y=70)
-txaComments = tk.Text(root, width=25, height=7)
-txaComments.place(x=330, y=95)
+    def saveData(self):
+        firstName = self.txtFirstName.get().strip()
+        lastName = self.txtLastName.get().strip()
+        birthDate = self.dtpBirthDate.get_date()
+        age = int(self.lblAgeVal.cget("text"))
+        cType = self.cmbType.get()
+        sex = self.radSex.get()
+        comments = self.txaComments.get("1.0", tk.END).strip()
+        
+        hobbies = []
+        for name, var in self.chkHobbiesVars.items():
+            if var.get():
+                hobbies.append(name)
 
-lblType = tk.Label(root, text="Type:", **lblStyle)
-lblType.place(x=50, y=230, width=80)
-cmbType = ttk.Combobox(root, values=["Family", "Friend", "Job", "Unknown"], state="readonly")
-cmbType.current(0)
-cmbType.place(x=140, y=230, width=120)
+        if messagebox.askyesno("Confirm", "Do you want to save this contact to MongoDB?"):
+            success, msg = self.controller.addContact(firstName, lastName, birthDate, age, cType, sex, hobbies, comments)
+            
+            if success:
+                messagebox.showinfo("Success", msg)
+                self.clearFields()
+            else:
+                messagebox.showwarning("Error", msg)
 
-lblSex = tk.Label(root, text="Sex:", **lblStyle)
-lblSex.place(x=50, y=270, width=80)
-radSex = tk.StringVar(value="Female")
-rdbMale = tk.Radiobutton(root, text="Male", variable=radSex, value="Male", bg="#ece9d8")
-rdbMale.place(x=140, y=270)
-rdbFemale = tk.Radiobutton(root, text="Female", variable=radSex, value="Female", bg="#ece9d8")
-rdbFemale.place(x=140, y=290)
-
-lblHobbies = tk.Label(root, text="Hobbies:", **lblStyle)
-lblHobbies.place(x=50, y=330, width=80)
-frameHobbies = tk.Frame(root, bg="white", bd=1, relief="sunken")
-frameHobbies.place(x=140, y=330, width=160, height=150)
-
-hobbiesList = ["Play Soccer", "Dijing", "Read", "Cook", "Swim", "Sing", "Play Instrument"]
-chkHobbiesVars = {}
-
-for hobby in hobbiesList:
-    var = tk.BooleanVar()
-    chkHobby = tk.Checkbutton(frameHobbies, text=hobby, variable=var, bg="white", anchor="w")
-    chkHobby.pack(fill="x")
-    chkHobbiesVars[hobby] = var
-
-btnSave = tk.Button(root, text="SAVE", command=saveAction, bg="#e1e1e1", width=12, font=("Arial", 10, "bold"))
-btnSave.place(x=180, y=530)
-
-btnCancel = tk.Button(root, text="CANCEL", command=cancelAction, bg="#ffcccc", width=12, font=("Arial", 10, "bold"))
-btnCancel.place(x=300, y=530)
-
-root.mainloop()
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = ContactsBookApp(root)
+    root.mainloop()
