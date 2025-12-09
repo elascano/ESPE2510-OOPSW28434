@@ -26,17 +26,18 @@ public class Contact {
     }
             
 
-    public Contact(int id, String firstName, String lastName, int age, String typeOfContact, String sex, ArrayList<String> hobbies, String coomments) {
-        this.id = id;
+    public Contact(int age, String firstName, String lastName,
+                   String typeOfContact, String sex,
+                   ArrayList<String> hobbies, String comments) {
+
+        this.age = age;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
         this.typeOfContact = typeOfContact;
         this.sex = sex;
         this.hobbies = hobbies;
-        this.comments = coomments;
+        this.comments = comments;
     }
-
     public int getId() {
         return id;
     }

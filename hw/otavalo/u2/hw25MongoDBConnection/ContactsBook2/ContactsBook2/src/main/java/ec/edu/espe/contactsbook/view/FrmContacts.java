@@ -1,17 +1,25 @@
 package ec.edu.espe.contactsbook.view;
 
-import ec.edu.espe.contactsbook.model.Contact;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import java.awt.HeadlessException;
-import org.bson.Document;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import ec.edu.espe.contactsbook.model.Contact;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.regex.Pattern;
+import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.bson.Document;
+import org.bson.types.ObjectId;
+import java.awt.HeadlessException;
 
 /**
  *
@@ -19,12 +27,38 @@ import java.text.ParseException;
  */
 public class FrmContacts extends javax.swing.JFrame {
 
-    Contact contact = new Contact();
+    private Document loadedContactDocument = null;
+    private ButtonGroup sexGroup;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnSearch;
+    private ObjectId selectedId;
+    private Contact contact = new Contact();
     private MongoCollection<Document> contactsCollection;
 
     public FrmContacts() {
+        sexGroup = new ButtonGroup();
         initComponents();
+        sexGroup.add(radSexMale);
+        sexGroup.add(radSexFemale);
         connectToMongoDB();
+        emptyFields();
+        btnLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadActionPerformed(evt);
+            }
+        });
+
+        btnLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadActionPerformed(evt);
+            }
+        });
+
+        btnSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchInputActionPerformed(evt);
+            }
+        });
     }
 
     /**
@@ -36,6 +70,8 @@ public class FrmContacts extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -58,8 +94,28 @@ public class FrmContacts extends javax.swing.JFrame {
         lstHobbies = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         txaComments = new javax.swing.JTextArea();
-        jPanel3 = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        txtSearchInput = new javax.swing.JTextField();
+        btnSearchButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableResults = new javax.swing.JTable();
+        btnLoad = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,7 +136,7 @@ public class FrmContacts extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel2.setText("id:");
@@ -128,6 +184,13 @@ public class FrmContacts extends javax.swing.JFrame {
         txaComments.setRows(5);
         jScrollPane2.setViewportView(txaComments);
 
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -160,10 +223,11 @@ public class FrmContacts extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSave))
                 .addGap(16, 16, 16))
         );
         jPanel2Layout.setVerticalGroup(
@@ -201,7 +265,7 @@ public class FrmContacts extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(radSexMale)
@@ -209,14 +273,50 @@ public class FrmContacts extends javax.swing.JFrame {
                         .addGap(25, 25, 25)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(123, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(btnSave)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnSave.setText("Save");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
+        jLabel11.setText("Search by id, name or last name");
+
+        txtSearchInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                txtSearchInputActionPerformed(evt);
+            }
+        });
+
+        btnSearchButton.setText("Search");
+
+        tableResults.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "id", "Name", "Last Name", "BrithDate", "Age", "Type", "Sex", "Hobbies", "Comments"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tableResults);
+
+        btnLoad.setText("Load");
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
             }
         });
 
@@ -225,16 +325,39 @@ public class FrmContacts extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(292, 292, 292)
-                .addComponent(btnSave)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSearchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLoad)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnSearchButton))
+                        .addGap(129, 129, 129))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(btnSave)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtSearchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLoad)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUpdate)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -244,9 +367,11 @@ public class FrmContacts extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -254,10 +379,11 @@ public class FrmContacts extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -267,32 +393,106 @@ public class FrmContacts extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_radSexMaleActionPerformed
 
+    private void selectHobbiesInList(javax.swing.JList<String> list, List<String> hobbiesToSelect) {
+        if (hobbiesToSelect == null || hobbiesToSelect.isEmpty()) {
+            list.clearSelection();
+            return;
+        }
+        javax.swing.ListModel<String> model = list.getModel();
+        ArrayList<Integer> indices = new ArrayList<>();
+        for (int i = 0; i < model.getSize(); i++) {
+            String item = model.getElementAt(i);
+            if (hobbiesToSelect.contains(item)) {
+                indices.add(i);
+            }
+        }
+        int[] selectedIndices = indices.stream().mapToInt(i -> i).toArray();
+        list.setSelectedIndices(selectedIndices);
+    }
+
+    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {
+        int selectedRow = tableResults.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(rootPane, "You must select a row in the table.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        ObjectId idToLoad = (ObjectId) tableResults.getModel().getValueAt(selectedRow, 0);
+
+        try {
+            Document contactDoc = contactsCollection.find(new Document("_id", idToLoad)).first();
+
+            if (contactDoc != null) {
+                selectedId = idToLoad;
+
+                txtFirstName.setText(contactDoc.getString("firstName"));
+                txtLastName.setText(contactDoc.getString("lastName"));
+
+                Date birthDate = contactDoc.getDate("birthDate");
+                if (birthDate != null) {
+                    ftdBirthDate.setText(new SimpleDateFormat("MM/dd/yy").format(birthDate));
+                } else {
+                    ftdBirthDate.setText("");
+                }
+
+                cmbType.setSelectedItem(contactDoc.getString("typeOfContact"));
+                String sex = contactDoc.getString("sex");
+                if ("Male".equals(sex)) {
+                    radSexMale.setSelected(true);
+                } else if ("Female".equals(sex)) {
+                    radSexFemale.setSelected(true);
+                } else {
+                }
+                List<String> hobbiesList = contactDoc.getList("hobbies", String.class, Collections.emptyList());
+                selectHobbiesInList(lstHobbies, hobbiesList);
+                txaComments.setText(contactDoc.getString("comments"));
+
+                JOptionPane.showMessageDialog(rootPane, "Contact loaded ready for editing.", "Successful Load", JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Load Error: Contact not found in DB.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error loading contact: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
         if (contactsCollection == null) {
-            JOptionPane.showMessageDialog(rootPane, "There isn't connection to the database", "Save Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane,
+                    "There isn't connection to the database",
+                    "Save Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        int option;
         readValues();
-        option = JOptionPane.showConfirmDialog(rootPane, "saving contacts -->" + contact, "SAVE CONTACTS?", JOptionPane.YES_NO_CANCEL_OPTION);
+        int option = JOptionPane.showConfirmDialog(
+                rootPane,
+                "saving contact --> " + contact,
+                "SAVE CONTACT?",
+                JOptionPane.YES_NO_CANCEL_OPTION
+        );
+
         if (option == JOptionPane.YES_OPTION) {
-            
+
             try {
-                // change String to an Objetc Date to upload this information too mongo
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
                 Date birthDate = null;
+
                 try {
                     String dateString = ftdBirthDate.getText();
                     if (dateString != null && !dateString.trim().isEmpty()) {
                         birthDate = dateFormat.parse(dateString);
                     }
                 } catch (ParseException e) {
-                    JOptionPane.showMessageDialog(rootPane, "Invalid date of birth format. Saving without date of birth.", "Warning about date", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(
+                            rootPane,
+                            "Invalid date of birth format. Saving without date of birth.",
+                            "Warning about date",
+                            JOptionPane.WARNING_MESSAGE
+                    );
                 }
-
-                // Create the document in mongoDb
                 Document contactDoc = new Document("firstName", contact.getFirstName())
                         .append("lastName", contact.getLastName())
                         .append("age", contact.getAge())
@@ -302,23 +502,166 @@ public class FrmContacts extends javax.swing.JFrame {
                         .append("hobbies", contact.getHobbies())
                         .append("comments", contact.getComments());
 
-                // Insert data to the collection
                 contactsCollection.insertOne(contactDoc);
-
-                JOptionPane.showMessageDialog(rootPane, "Contact saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        rootPane,
+                        "Contact saved successfully",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
                 emptyFields();
             } catch (HeadlessException e) {
-                JOptionPane.showMessageDialog(rootPane, "Error saving to MongoDB " + e.getMessage(), "Save errir", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        rootPane,
+                        "Error saving to MongoDB: " + e.getMessage(),
+                        "Save Error",
+                        JOptionPane.ERROR_MESSAGE
+                );
             }
-
         } else if (option == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(rootPane, "your date will be lost -->", "", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    rootPane,
+                    "Your data will be lost.",
+                    "",
+                    JOptionPane.WARNING_MESSAGE
+            );
             emptyFields();
         } else {
             txtFirstName.requestFocus();
         }
-
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtSearchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchInputActionPerformed
+        if (contactsCollection == null) {
+            JOptionPane.showMessageDialog(rootPane, "No connection to the database.", "Search Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String searchText = txtSearchInput.getText().trim();
+        if (searchText.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Enter an ID, first name or last name to search.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Document query;
+
+        if (ObjectId.isValid(searchText)) {
+            query = new Document("_id", new ObjectId(searchText));
+        } else {
+            Pattern regex = Pattern.compile(searchText, Pattern.CASE_INSENSITIVE);
+            query = new Document("$or", Arrays.asList(
+                    new Document("firstName", new Document("$regex", regex)),
+                    new Document("lastName", new Document("$regex", regex))
+            ));
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tableResults.getModel();
+        model.setRowCount(0);
+
+        try (MongoCursor<Document> cursor = contactsCollection.find(query).iterator()) {
+            while (cursor.hasNext()) {
+                Document doc = cursor.next();
+
+                Object birthDateObj = doc.get("birthDate");
+                String birthDateStr = "";
+                if (birthDateObj instanceof Date) {
+                    birthDateStr = new SimpleDateFormat("MM/dd/yy").format((Date) birthDateObj);
+                }
+
+                List<String> hobbiesList = doc.getList("hobbies", String.class, Collections.emptyList());
+                String hobbiesStr = String.join(", ", hobbiesList);
+
+                model.addRow(new Object[]{
+                    doc.getObjectId("_id"),
+                    doc.getString("firstName"),
+                    doc.getString("lastName"),
+                    birthDateStr,
+                    doc.getInteger("age", 0),
+                    doc.getString("typeOfContact"),
+                    doc.getString("sex"),
+                    hobbiesStr,
+                    doc.getString("comments")
+                });
+            }
+            if (model.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "No contacts found.", "No Results", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Search error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtSearchInputActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        if (contactsCollection == null) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "There isn't connection to the database",
+                    "Update Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (selectedId == null) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "You must first select a contact to update",
+                    "No Contact Selected",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        contact = null;
+        readValues();
+        if (contact == null) {
+            return;
+        }
+
+        int option = JOptionPane.showConfirmDialog(
+                rootPane,
+                "Updating contact --> " + contact.getFirstName() + " " + contact.getLastName(),
+                "UPDATE CONTACT?",
+                JOptionPane.YES_NO_CANCEL_OPTION
+        );
+
+        if (option == JOptionPane.YES_OPTION) {
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
+                Date birthDate = null;
+
+                try {
+                    String dateString = ftdBirthDate.getText();
+                    if (dateString != null && !dateString.trim().isEmpty()) {
+                        birthDate = dateFormat.parse(dateString);
+                    }
+                } catch (ParseException e) {
+                    JOptionPane.showMessageDialog(rootPane,
+                            "Invalid date format. Updating without date.",
+                            "Warning",
+                            JOptionPane.WARNING_MESSAGE);
+                }
+
+                Document updatedDoc = contactToDocument(contact, birthDate);
+                contactsCollection.updateOne(
+                        new Document("_id", selectedId),
+                        new Document("$set", updatedDoc)
+                );
+                JOptionPane.showMessageDialog(rootPane,
+                        "Contact updated successfully",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+                emptyFields();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane,
+                        "Error updating contact: " + e.getMessage(),
+                        "Update Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } else if (option == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Update canceled",
+                    "",
+                    JOptionPane.WARNING_MESSAGE);
+        } else {
+            txtFirstName.requestFocus();
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
     private void connectToMongoDB() {
         try {
             String connectionString = "mongodb+srv://Arelys:Arelys1234@cluster0.3u6ujwz.mongodb.net/Contacts?retryWrites=true&w=majority";
@@ -335,33 +678,86 @@ public class FrmContacts extends javax.swing.JFrame {
         txtFirstName.setText("");
         txtLastName.setText("");
         ftdBirthDate.setText("");
-        cmbType.setSelectedIndex(0);
-        radSexFemale.setSelected(true);
-        lstHobbies.clearSelection();
         txaComments.setText("");
+        cmbType.setSelectedIndex(0);
+        if (sexGroup != null) {
+            sexGroup.clearSelection();
+        }
+        lstHobbies.clearSelection();
+        txtSearchInput.setText("");
+        selectedId = null;
+        DefaultTableModel model = (DefaultTableModel) tableResults.getModel();
+        model.setRowCount(0);
+        txtFirstName.requestFocus();
+    }
+
+    private Document contactToDocument(Contact c, Date birthDate) {
+        return new Document("firstName", c.getFirstName())
+                .append("lastName", c.getLastName())
+                .append("age", c.getAge())
+                .append("birthDate", birthDate)
+                .append("typeOfContact", c.getTypeOfContact())
+                .append("sex", c.getSex())
+                .append("hobbies", c.getHobbies())
+                .append("comments", c.getComments());
     }
 
     private void readValues() {
         String firstName;
         String lastName;
         int age;
-        String typeOfContact; //Family, Friend,Job,Unknown
-        String sex; //male, female
+        String typeOfContact;
+        String sex;
         ArrayList<String> hobbies = new ArrayList<>();
         String comments;
 
-        firstName = txtFirstName.getText();
-        lastName = txtLastName.getText();
-        //TODO compute age based on BirthDay
-        age = 20;
+        firstName = txtFirstName.getText().trim();
+        lastName = txtLastName.getText().trim();
+
+        String nameRegex = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$";
+
+        if (firstName.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "The First Name field cannot be empty.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            txtFirstName.requestFocus();
+            return;
+        }
+        if (!firstName.matches(nameRegex)) {
+            JOptionPane.showMessageDialog(rootPane, "The First Name can only contain letters, accents, Ñ and spaces.", "Format Error", JOptionPane.ERROR_MESSAGE);
+            txtFirstName.requestFocus();
+            return;
+        }
+        if (lastName.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "The Last Name field cannot be empty.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            txtLastName.requestFocus();
+            return;
+        }
+        if (!lastName.matches(nameRegex)) {
+            JOptionPane.showMessageDialog(rootPane, "The Last Name can only contain letters, accents, Ñ and spaces.", "Format Error", JOptionPane.ERROR_MESSAGE);
+            txtLastName.requestFocus();
+            return;
+        }
+
+        try {
+            age = 0;
+        } catch (NumberFormatException e) {
+            age = 19;
+        }
         typeOfContact = cmbType.getSelectedItem().toString();
-        //TODO code we use the radio buttons to initializa the sex
-        sex = "Female";
-        //cfode a loop to add all the hobbies
-        hobbies.add(lstHobbies.getSelectedValue());
+
+        if (radSexMale.isSelected()) {
+            sex = "Male";
+        } else if (radSexFemale.isSelected()) {
+            sex = "Female";
+        } else {
+            sex = "Unknown";
+        }
+
+        for (String hobby : lstHobbies.getSelectedValuesList()) {
+            hobbies.add(hobby);
+        }
         comments = txaComments.getText();
 
-        contact = new Contact(age, firstName, lastName, age, typeOfContact, sex, hobbies, comments);
+        contact = new Contact(age, firstName, lastName, typeOfContact, sex, hobbies, comments);
     }
 
     /**
@@ -402,11 +798,15 @@ public class FrmContacts extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSearchButton;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbType;
     private javax.swing.JFormattedTextField ftdBirthDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -420,11 +820,16 @@ public class FrmContacts extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable1;
     private javax.swing.JList<String> lstHobbies;
     private javax.swing.JRadioButton radSexFemale;
     private javax.swing.JRadioButton radSexMale;
+    private javax.swing.JTable tableResults;
     private javax.swing.JTextArea txaComments;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtSearchInput;
     // End of variables declaration//GEN-END:variables
 }
