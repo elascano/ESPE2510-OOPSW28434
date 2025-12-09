@@ -75,7 +75,6 @@ class Contact:
 
 
     def __str__(self):
-        """Método equivalente a toString() de Java."""
         return (f"Contact{{\n id={self._id}\n firstName={self._firstName}\n "
                 f"lastName={self._lastName}\n age={self._age}\n "
                 f"typeOfContact={self._typeOfContact}\n sex={self._sex}\n "
