@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Contacts</title>
+
+<style>
+    body {
+        background: #e6e6e6;
+        font-family: Arial, sans-serif;
+        padding-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        background: #f2f2f2;
+        padding: 25px 40px;
+        border-radius: 8px;
+        width: 1200px;
+        box-shadow: 0px 0px 6px #bbb;
+    }
+
+    h1 {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 30px;
+        font-size: 28px;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 300px 1fr 500px;
+        gap: 20px 40px;
+    }
+    
+    .table-container {
+        grid-column: 3 / 4;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        font-weight: bold;
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 6px;
+        margin-top: 4px;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        background: white;
+    }
+
+    textarea {
+        height: 150px;
+        resize: none;
+    }
+
+    .section {
+        margin-bottom: 15px;
+    }
+
+    .radio-group label {
+        font-weight: normal;
+        margin-right: 15px;
+    }
+
+    .hobbies-box {
+        width: 100%;
+        max-height: 140px;
+        border: 1px solid #aaa;
+        background: white;
+        padding: 6px;
+        overflow-y: auto;
+        border-radius: 4px;
+    }
+    .hobbies-box label {
+        font-weight: normal;
+        display: block;
+        cursor: pointer;
+        padding: 2px 0;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .save-btn, .delete-btn, .upload-btn {
+        background: #ddd;
+        border: 1px solid #888;
+        padding: 8px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+        width: 150px;
+    }
+    .delete-btn {
+        background: #fbb;
+    }
+    .upload-btn {
+        background: #ddf;
+    }
+    
+    #contactsTable {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+    #contactsTable th, #contactsTable td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+    #contactsTable th {
+        background-color: #e0e0e0;
+        font-weight: bold;
+    }
+    #contactsTable tbody tr:hover {
+        background-color: #d1e4ff;
+        cursor: pointer;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>CONTACTS</h1>
+
+    <div class="form-grid">
+
+        <div>
+            <div class="section">
+                <label>ID:</label>
+                <input type="text" id="id" readonly> 
+            </div>
+
+            <div class="section">
+                <label>First Name:</label>
+                <input type="text" id="firstName">
+            </div>
+
+            <div class="section">
+                <label>Last Name:</label>
+                <input type="text" id="lastName">
+            </div>
+
+            <div class="section">
+                <label>Birth Date:</label>
+                <input type="date" id="birthDate"> 
+            </div>
+
+            <div class="section">
+                <label>Age:</label>
+                <input type="text" id="age" readonly> 
+            </div>
+
+            <div class="section">
+                <label>Type:</label>
+                <select id="contactType">
+                    <option>Family</option>
+                    <option>Friend</option>
+                    <option>Work</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="section">
+                <label>Sex:</label><br>
+                <div class="radio-group" id="sexGroup">
+                    <label><input type="radio" name="sex" value="Male" checked> Male</label>
+                    <label><input type="radio" name="sex" value="Female"> Female</label>
+                </div>
+            </div>
+
+            <div class="section">
+                <label>Hobbies:</label><br>
+                <div class="hobbies-box" id="hobbiesBox">
+                    <label><input type="checkbox" value="Play Soccer"> Play Soccer</label>
+                    <label><input type="checkbox" value="DJ"> DJ</label>
+                    <label><input type="checkbox" value="Read"> Read</label>
+                    <label><input type="checkbox" value="Cook"> Cook</label>
+                    <label><input type="checkbox" value="Swim"> Swim</label>
+                    <label><input type="checkbox" value="Sing"> Sing</label>
+                    <label><input type="checkbox" value="Play an Instrument"> Play an Instrument</label>
+                </div>
+            </div>
+            
+        </div>
+
+        <div>
+            <label>Comments:</label>
+            <textarea id="comments"></textarea>
+            
+            <div class="button-group">
+                <button class="save-btn" id="saveBtn">Save</button>
+                <button class="delete-btn" id="deleteBtn" disabled>Delete</button>
+                <button class="upload-btn" id="uploadBtn">Upload from Cloud</button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <h2>Saved Contacts</h2>
+            <div style="overflow-y: auto; height: 400px;">
+                <table id="contactsTable">
+                    <thead>
+                        <tr>
+                            <th data-id-column="true" style="display: none;">_ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Age</th>
+                            <th>Type</th>
+                            <th>Sex</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
