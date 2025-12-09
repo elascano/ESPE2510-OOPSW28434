@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "firstName": "Camila",
+    "lastName": "Sanchez",
+    "birthDate": "08/12/2006",
+    "age": 19,
+    "typeOfContact": "Friend",
+    "sex": "Female",
+    "hobbies": [
+      "Play soccer",
+      "Dj",
+      "Read"
+    ],
+    "comments": "No comments"
+  }
+]
