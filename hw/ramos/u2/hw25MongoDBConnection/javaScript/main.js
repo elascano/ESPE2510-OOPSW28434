@@ -2,8 +2,10 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
 function createWindow() {
+
     const win = new BrowserWindow({
-        width: 800, height: 700,
+        width: 800, 
+        height: 700,
         autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: true,
@@ -11,7 +13,7 @@ function createWindow() {
         }
     });
 
-    win.loadURL('data:text/html;charset=utf-8,<html><body style="margin:0; background:#ece9d8;"></body></html>');
+    win.loadURL('data:text/html;charset=utf-8,<html><body style="margin:0; background:#ece9d8;"><h2>Cargando...</h2></body></html>');
 
     const appPath = path.join(__dirname, 'App.js').replace(/\\/g, '/');
 

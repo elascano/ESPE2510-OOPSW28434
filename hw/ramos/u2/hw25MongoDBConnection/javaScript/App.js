@@ -1,5 +1,23 @@
 const ContactModel = require('./database');
 
+function isAlphabetic(str) {
+  return /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(str);
+}
+
+function computeAge(dateStr) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return null;
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return null;
+  const today = new Date();
+  let age = today.getFullYear() - d.getFullYear();
+  const m = today.getMonth() - d.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < d.getDate())) {
+    age--;
+  }
+  if (age < 0 || age > 120) return null;
+  return age;
+}
+
 const root = document.body;
 root.style.fontFamily = "Tahoma, sans-serif";
 root.style.fontSize = "11px";
@@ -112,7 +130,7 @@ class JList extends Component {
                     div.style.color = "white";
                     this.selectedItems.push(item);
                 }
-            }
+            };
             this.elem.appendChild(div);
             this.divs.push(div);
         });
@@ -189,34 +207,70 @@ const btnSave = new JButton("SAVE"); btnSave.setBounds(250, 500, 80, 25);
 frame.add(btnSave);
 
 txtDate.elem.addEventListener('input', () => {
-    const val = txtDate.getText();
-    if(val.length === 10) {
-        const year = parseInt(val.split('-')[0]);
-        const currentYear = new Date().getFullYear();
-        if(!isNaN(year)) {
-            lblAgeVal.setText((currentYear - year).toString());
-        }
+    const val = txtDate.getText().trim();
+    const age = computeAge(val);
+    if (age !== null) {
+        lblAgeVal.setText(age.toString());
     } else {
         lblAgeVal.setText("0");
     }
 });
 
 function validateFields() {
-    if(txtName.getText().trim() === "") {
-        alert("Validation Error: First Name is required.");
-        txtName.requestFocus();
+    const firstName = txtName.getText().trim();
+    if (firstName === "" || !isAlphabetic(firstName)) {
+        alert("Validation Error: First Name is required and must contain only letters.");
+        setTimeout(() => {
+            txtName.elem.blur();
+            txtName.elem.focus({ preventScroll: true });
+        }, 20);
         return false;
     }
-    if(txtLast.getText().trim() === "") {
-        alert("Validation Error: Last Name is required.");
-        txtLast.requestFocus();
+
+    const lastName = txtLast.getText().trim();
+    if (lastName === "" || !isAlphabetic(lastName)) {
+        alert("Validation Error: Last Name is required and must contain only letters.");
+        setTimeout(() => {
+            txtLast.elem.blur();
+            txtLast.elem.focus({ preventScroll: true });
+        }, 20);
         return false;
     }
-    
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    if(!dateRegex.test(txtDate.getText())) {
-        alert("Validation Error: Birth Date must be in format YYYY-MM-DD.");
-        txtDate.requestFocus();
+
+    const dateStr = txtDate.getText().trim();
+    const age = computeAge(dateStr);
+    if (age === null) {
+        alert("Validation Error: Birth Date must be valid (YYYY-MM-DD) and age between 0 and 120.");
+        setTimeout(() => {
+            txtDate.elem.blur();
+            txtDate.elem.focus({ preventScroll: true });
+        }, 20);
+        return false;
+    }
+    lblAgeVal.setText(age.toString());
+
+    const typeValue = cmbType.getSelectedItem();
+    if (!typeValue) {
+        alert("Validation Error: Type is required.");
+        setTimeout(() => {
+            cmbType.elem.blur();
+            cmbType.elem.focus({ preventScroll: true });
+        }, 20);
+        return false;
+    }
+
+    if (!rMale.isSelected() && !rFemale.isSelected()) {
+        alert("Validation Error: Sex is required.");
+        setTimeout(() => {
+            rFemale.elem.blur();
+            rFemale.elem.focus({ preventScroll: true });
+        }, 20);
+        return false;
+    }
+
+    const selectedHobbies = lstHobbies.getSelectedValues();
+    if (!selectedHobbies || selectedHobbies.length === 0) {
+        alert("Validation Error: Select at least one hobby.");
         return false;
     }
 
