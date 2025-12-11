@@ -2,11 +2,9 @@ package ec.edu.espe.contactsbook.view;
 
 /**
  *
- * @author Steven Loza
+ * @author Steven Loza, @ESPE
  */
 public class FrmContactsMenu extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmContactsMenu.class.getName());
 
     /**
      * Creates new form ContactsMenu
@@ -25,38 +23,34 @@ public class FrmContactsMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        MnuSystem = new javax.swing.JMenu();
+        mnuSystem = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
-        itmView = new javax.swing.JMenuItem();
-        mnuQuit = new javax.swing.JMenu();
+        itemView = new javax.swing.JMenuItem();
         mnuContacts = new javax.swing.JMenu();
-        itmAdd = new javax.swing.JMenuItem();
+        itemAdd = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        MnuSystem.setText("System");
+        mnuSystem.setText("System");
 
         jMenu1.setText("Settings");
 
-        itmView.setText("View");
-        jMenu1.add(itmView);
+        itemView.setText("View");
+        jMenu1.add(itemView);
 
-        MnuSystem.add(jMenu1);
+        mnuSystem.add(jMenu1);
 
-        mnuQuit.setText("Quit");
-        MnuSystem.add(mnuQuit);
-
-        jMenuBar1.add(MnuSystem);
+        jMenuBar1.add(mnuSystem);
 
         mnuContacts.setText("Contacts");
 
-        itmAdd.setText("Add");
-        itmAdd.addActionListener(new java.awt.event.ActionListener() {
+        itemAdd.setText("Add");
+        itemAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itmAddActionPerformed(evt);
+                itemAddActionPerformed(evt);
             }
         });
-        mnuContacts.add(itmAdd);
+        mnuContacts.add(itemAdd);
 
         jMenuBar1.add(mnuContacts);
 
@@ -66,22 +60,22 @@ public class FrmContactsMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 676, Short.MAX_VALUE)
+            .addGap(0, 541, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 422, Short.MAX_VALUE)
+            .addGap(0, 454, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void itmAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAddActionPerformed
+    private void itemAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAddActionPerformed
         // TODO add your handling code here:
-        FrmAddContacts contacts = new FrmAddContacts();
-        contacts.setVisible(true);
+        FrmAddContacts frmAddContacts = new FrmAddContacts();
+        frmAddContacts.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_itmAddActionPerformed
+    }//GEN-LAST:event_itemAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -99,22 +93,32 @@ public class FrmContactsMenu extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FrmContactsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FrmContactsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FrmContactsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FrmContactsMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmContactsMenu().setVisible(true));
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrmContactsMenu().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu MnuSystem;
-    private javax.swing.JMenuItem itmAdd;
-    private javax.swing.JMenuItem itmView;
+    private javax.swing.JMenuItem itemAdd;
+    private javax.swing.JMenuItem itemView;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu mnuContacts;
-    private javax.swing.JMenu mnuQuit;
+    private javax.swing.JMenu mnuSystem;
     // End of variables declaration//GEN-END:variables
 }

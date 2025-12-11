@@ -3,7 +3,7 @@ import ec.edu.espe.contactsbook.model.User;
 
 /**
  *
- * @author Arelis Samantha Bonilla Cruz, @ESPE
+ * @author Steven Loza, @ESPE
  */
 public class UserController {
     public static boolean validateLogin(User user){

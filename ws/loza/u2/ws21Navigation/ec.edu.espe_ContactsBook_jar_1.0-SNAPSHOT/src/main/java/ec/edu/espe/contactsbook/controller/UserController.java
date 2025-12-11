@@ -1,15 +1,13 @@
 package ec.edu.espe.contactsbook.controller;
-
 import ec.edu.espe.contactsbook.model.User;
 
 /**
  *
- * @author Steven Loza
+ * @author Steven Loza, @ESPE
  */
 public class UserController {
     public static boolean validateLogin(User user){
-        
-        
-        return user.getUserName().equals("Edison") && user.getPassword().equals("Lascano");
+        //T0D0 read information from User
+        return user.getUserName().equals("Arelis") && user.getPassword().equals("Bonilla");
     }
 }

@@ -2,7 +2,7 @@ package ec.edu.espe.contactsbook.model;
 
 /**
  *
- * @author Arelis Samantha Bonilla Cruz, @ESPE
+ * @author Steven Loza, @ESPE
  */
 public class User {
     private String user;

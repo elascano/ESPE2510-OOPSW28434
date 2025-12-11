@@ -2,31 +2,31 @@ package ec.edu.espe.contactsbook.model;
 
 /**
  *
- * @author Steven Loza
+ * @author Steven Loza, @ESPE
  */
 public class User {
-    private String userName;
+    private String user;
     private String password;
     private String type;
 
-    public User(String userName, String password, String type) {
-        this.userName = userName;
+    public User(String user, String password, String type) {
+        this.user = user;
         this.password = password;
         this.type = type;
     }
 
     /**
-     * @return the userName
+     * @return the user
      */
     public String getUserName() {
-        return userName;
+        return user;
     }
 
     /**
-     * @param userName the userName to set
+     * @param user the user to set
      */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String user) {
+        this.user = user;
     }
 
     /**
@@ -56,6 +56,4 @@ public class User {
     public void setType(String type) {
         this.type = type;
     }
-    
-    
 }

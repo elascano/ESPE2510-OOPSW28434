@@ -2,7 +2,7 @@ package ec.edu.espe.contactsbook.view;
 
 /**
  *
- * @author Arelis Samantha Bonilla Cruz, @ESPE
+ * @author Steven Loza, @ESPE
  */
 public class FrmContactsMenu extends javax.swing.JFrame {
 
