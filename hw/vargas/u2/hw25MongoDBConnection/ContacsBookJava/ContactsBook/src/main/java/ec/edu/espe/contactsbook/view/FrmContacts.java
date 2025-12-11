@@ -2,6 +2,10 @@ package ec.edu.espe.contactsbook.view;
 
 import ec.edu.espe.contactsbook.controller.ContactManager;
 import ec.edu.espe.contactsbook.model.Contact;
+<<<<<<< HEAD
+=======
+import ec.edu.espe.contactsbook.utils.GUIValidation;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -254,8 +258,26 @@ public class FrmContacts extends javax.swing.JFrame {
      
         int option = 0;
         readValues();
+<<<<<<< HEAD
      
      //JOptionPane.showMessageDialog(rootPane, "my contact is" + contact);
+=======
+        if(!GUIValidation.validateNameAndLastname(txtFirstName, "First Name")){
+            return;
+        }
+        if(!GUIValidation.validateNameAndLastname(txtLastName, "Last Name")){
+            return;
+        }
+        if(!GUIValidation.validateEmptyField(txtFirstName, "First Name")){
+            return;
+        }
+        if(!GUIValidation.validateEmptyField(txtLastName, "Last Name")){
+            return;
+        }
+        if(!GUIValidation.validateFutureDate(calBirthDate)){
+            return;
+        }
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
        option = JOptionPane.showConfirmDialog(rootPane, "saving contact -->" + contact , "SAVE CONTACTS?", JOptionPane.YES_NO_CANCEL_OPTION);
        if (option == JOptionPane.YES_OPTION){
            JOptionPane.showMessageDialog(rootPane, "your contact is saved --> " + contact);

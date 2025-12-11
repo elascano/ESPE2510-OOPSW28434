@@ -26,6 +26,7 @@ public class Contact {
     }
             
 
+<<<<<<< HEAD
     public Contact(int id, String firstName, String lastName, int age, String typeOfContact, String sex, ArrayList<String> hobbies, String coomments) {
         this.id = id;
         this.firstName = firstName;
@@ -37,6 +38,20 @@ public class Contact {
         this.comments = coomments;
     }
 
+=======
+    public Contact(int age, String firstName, String lastName,
+                   String typeOfContact, String sex,
+                   ArrayList<String> hobbies, String comments) {
+
+        this.age = age;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.typeOfContact = typeOfContact;
+        this.sex = sex;
+        this.hobbies = hobbies;
+        this.comments = comments;
+    }
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     public int getId() {
         return id;
     }

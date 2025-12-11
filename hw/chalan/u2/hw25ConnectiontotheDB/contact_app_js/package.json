@@ -1,0 +1,14 @@
+{
+  "name": "contact_app_js",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^X.X.X",
+    "express": "^X.X.X",
+    "mongoose": "^X.X.X"
+  }
+}

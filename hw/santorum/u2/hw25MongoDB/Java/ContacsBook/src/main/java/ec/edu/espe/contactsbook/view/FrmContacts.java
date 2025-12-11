@@ -1,11 +1,19 @@
 package ec.edu.espe.contactsbook.view;
 
+<<<<<<< HEAD
+=======
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 import ec.edu.espe.contactsbook.model.Contact;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+<<<<<<< HEAD
 
 /**
  *
@@ -13,6 +21,17 @@ import javax.swing.JOptionPane;
  */
 public class FrmContacts extends javax.swing.JFrame {
     Contact contact = new Contact();
+=======
+import org.bson.Document;
+
+
+/**
+ *
+ * @author Thais Santorum, Paradigm
+ */
+public class FrmContacts extends javax.swing.JFrame {
+    Contact contact;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 
     /**
      * Creates new form FrmContacts
@@ -30,6 +49,10 @@ public class FrmContacts extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
+=======
+        btngSex = new javax.swing.ButtonGroup();
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -123,8 +146,15 @@ public class FrmContacts extends javax.swing.JFrame {
 
         cmbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Family", "Friend", "Job", "Unknown" }));
 
+<<<<<<< HEAD
         radSexMale.setText("Male");
 
+=======
+        btngSex.add(radSexMale);
+        radSexMale.setText("Male");
+
+        btngSex.add(radSexFemale);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         radSexFemale.setText("Female");
         radSexFemale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,6 +314,7 @@ public class FrmContacts extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+<<<<<<< HEAD
      
         int option = 0;
         readValues();
@@ -336,6 +367,54 @@ public class FrmContacts extends javax.swing.JFrame {
     contact = new Contact(age, firstName, lastName, age, typeOfContact, sex, hobbies, comments);
     
     
+=======
+                                               
+int option = 0;
+readValues();
+
+option = JOptionPane.showConfirmDialog(
+        rootPane,
+        "Saving contact --> " + contact,
+        "SAVE CONTACTS?",
+        JOptionPane.YES_NO_CANCEL_OPTION
+);
+
+if (option == JOptionPane.YES_OPTION) {
+    try {
+        // Crear cliente MongoDB
+        String uri = "mongodb+srv://thais:thais@cluster0.9yfzmcp.mongodb.net/ContactsDB?retryWrites=true&w=majority";
+        com.mongodb.client.MongoClient client = com.mongodb.client.MongoClients.create(uri);
+
+        // Obtener base de datos y colección
+        com.mongodb.client.MongoDatabase database = client.getDatabase("ContactsDB");
+        com.mongodb.client.MongoCollection<org.bson.Document> collection = database.getCollection("Contacts");
+
+        // Insertar el contacto usando el método toDocument
+        collection.insertOne(contact.toDocument());
+
+        // Cerrar cliente
+        client.close();
+
+        JOptionPane.showMessageDialog(rootPane,
+                "Contact saved in MongoDB → " + contact);
+
+        emptyFields();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this,
+                "Error saving to MongoDB: " + e.getMessage(),
+                "ERROR",
+                JOptionPane.ERROR_MESSAGE);
+    }
+} else if (option == JOptionPane.NO_OPTION) {
+    JOptionPane.showMessageDialog(rootPane, "Your data will be lost",
+            "", JOptionPane.WARNING_MESSAGE);
+} else {
+    txtFirstName.requestFocus();
+}
+
+  
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
@@ -408,6 +487,10 @@ if (fechaTexto.matches("\\d{2}/\\d{2}/\\d{4}")) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
+<<<<<<< HEAD
+=======
+    private javax.swing.ButtonGroup btngSex;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     private javax.swing.JComboBox<String> cmbType;
     private javax.swing.JFormattedTextField ftdBirthDate;
     private javax.swing.JLabel jLabel1;
@@ -433,4 +516,48 @@ if (fechaTexto.matches("\\d{2}/\\d{2}/\\d{4}")) {
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
     // End of variables declaration//GEN-END:variables
+<<<<<<< HEAD
 }
+=======
+
+    private void emptyFields() {
+            txtFirstName.setText("");
+            txtLastName.setText("");
+            ftdBirthDate.setText("");
+            cmbType.setSelectedIndex(0);
+            radSexFemale.setSelected(true);
+            lstHobbies.clearSelection();
+            txaComments.setText("");
+            txtAge.setText("");
+    }
+
+private void readValues() {
+    String firstName = txtFirstName.getText().trim();
+    String lastName = txtLastName.getText().trim();
+
+    // Calcular edad
+    int age = 0;
+    try {
+        String fechaTexto = ftdBirthDate.getText().trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fechaNac = LocalDate.parse(fechaTexto, formatter);
+        age = Period.between(fechaNac, LocalDate.now()).getYears();
+    } catch (Exception e) {
+        age = 0;
+    }
+
+    String typeOfContact = cmbType.getSelectedItem().toString();
+    String sex = radSexMale.isSelected() ? "Male" : "Female";
+
+    // Capturar múltiples hobbies seleccionados
+    ArrayList<String> hobbiesList = new ArrayList<>(lstHobbies.getSelectedValuesList());
+
+    String comments = txaComments.getText().trim();
+
+    // Crear contacto
+    contact = new Contact(firstName, lastName, age, typeOfContact, sex, hobbiesList, comments);
+}
+}
+    
+
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8

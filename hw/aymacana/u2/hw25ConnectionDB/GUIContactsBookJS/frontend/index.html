@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Book</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CONTACTS BOOK</h1>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <h2>Contact Information</h2>
+                
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nextId">Next ID:</label>
+                            <span id="nextId" class="next-id">1</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name:*</label>
+                            <input type="text" id="firstName" required>
+                            <small class="error-message" id="firstNameError"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name:*</label>
+                            <input type="text" id="lastName" required>
+                            <small class="error-message" id="lastNameError"></small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="birthDate">Birth Date:*</label>
+                            <input type="text" id="birthDate" class="date-input" required>
+                            <small class="error-message" id="birthDateError"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age:</label>
+                            <span id="age" class="age-display">0 years</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="type">Type:*</label>
+                            <select id="type" required>
+                                <option value="" disabled selected>Select type</option>
+                                <option value="Family">Family</option>
+                                <option value="Friend">Friend</option>
+                                <option value="Work">Work</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <small class="error-message" id="typeError"></small>
+                        </div>
+                        <div class="form-group">
+                            <label>Sex:*</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="sex" value="Male" checked>
+                                    Male
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="sex" value="Female">
+                                    Female
+                                </label>
+                            </div>
+                            <small class="error-message" id="sexError"></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hobbies:</label>
+                        <div class="hobbies-grid">
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="Play Soccer">
+                                Play Soccer
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="Read">
+                                Read
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="Sing">
+                                Sing
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="Play an Instrument">
+                                Play an Instrument
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="DJ">
+                                DJ
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="Cook">
+                                Cook
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="Swim">
+                                Swim
+                            </label>
+                        </div>
+                        
+                        <div class="other-hobby">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="otherCheckbox">
+                                Other:
+                            </label>
+                            <input type="text" id="otherHobby" disabled>
+                            <small class="error-message" id="otherHobbyError"></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comments">Comments:</label>
+                        <textarea id="comments" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="saveBtn" class="btn-save">Save Contact</button>
+                    </div>
+                </form>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Contact Details</h3>
+            <pre id="confirmationDetails"></pre>
+            <div class="modal-actions">
+                <button id="confirmYes" class="btn-confirm">Yes, Save</button>
+                <button id="confirmNo" class="btn-cancel">No, Review</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="contact.js"></script>
+    <script src="contactController.js"></script>
+    <script src="app.js"></script>
+    <script>
+    const API_BASE_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:3000/api'
+        : 'https://tu-backend-en-produccion.com/api';
+    window.API_BASE_URL = API_BASE_URL;
+    </script>
+</body>
+</html>

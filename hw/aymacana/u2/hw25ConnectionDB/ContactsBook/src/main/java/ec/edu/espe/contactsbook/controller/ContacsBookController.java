@@ -10,7 +10,14 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.InsertOneResult;
 import com.mongodb.client.result.UpdateResult;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 import javax.swing.JOptionPane;
 import org.bson.Document;
 
@@ -25,10 +32,22 @@ public class ContacsBookController {
         try {
             MongoCollection<Document> collection = getContactsCollection();
 
+<<<<<<< HEAD
             Document contactDoc = new Document();
             contactDoc.append("firstName", contact.getFirtName());
             contactDoc.append("lastName", contact.getLastName());
             contactDoc.append("age", contact.getAge());
+=======
+            int nextId = getNextContactId();
+
+            int age = calculateAge(birthDateStr);
+
+            Document contactDoc = new Document();
+            contactDoc.append("id", nextId);
+            contactDoc.append("firstName", contact.getFirtName());
+            contactDoc.append("lastName", contact.getLastName());
+            contactDoc.append("age", age);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             contactDoc.append("birthDate", birthDateStr);
             contactDoc.append("typeOfContact", contact.getTypeOfContact());
             contactDoc.append("sex", contact.getSex());
@@ -39,22 +58,85 @@ public class ContacsBookController {
 
             if (result.getInsertedId() != null) {
                 JOptionPane.showMessageDialog(null,
+<<<<<<< HEAD
                     "Contact saved successfully!",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
+=======
+                        "Contact saved successfully!\nID: " + nextId,
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                 return true;
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
+<<<<<<< HEAD
                 "Error saving contact: " + e.getMessage(),
                 "Error",
                 JOptionPane.ERROR_MESSAGE);
+=======
+                    "Error saving contact: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             e.printStackTrace();
         }
         return false;
     }
 
+<<<<<<< HEAD
+=======
+    public int calculateAge(String birthDateStr) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date birthDate = sdf.parse(birthDateStr);
+            Calendar birthCal = Calendar.getInstance();
+            birthCal.setTime(birthDate);
+
+            Calendar today = Calendar.getInstance();
+
+            int age = today.get(Calendar.YEAR) - birthCal.get(Calendar.YEAR);
+
+            if (today.get(Calendar.MONTH) < birthCal.get(Calendar.MONTH)) {
+                age--;
+            } else if (today.get(Calendar.MONTH) == birthCal.get(Calendar.MONTH)
+                    && today.get(Calendar.DAY_OF_MONTH) < birthCal.get(Calendar.DAY_OF_MONTH)) {
+                age--;
+            }
+
+            return age;
+        } catch (Exception e) {
+            System.err.println("Error calculating age: " + e.getMessage());
+            return 0;
+        }
+    }
+
+    public int getNextContactId() {
+        try {
+            MongoCollection<Document> collection = getContactsCollection();
+
+            Document sort = new Document("id", -1);
+            Document highestIdDoc = collection.find()
+                    .sort(sort)
+                    .limit(1)
+                    .first();
+
+            if (highestIdDoc != null && highestIdDoc.containsKey("id")) {
+                int lastId = highestIdDoc.getInteger("id");
+                return lastId + 1;
+            } else {
+                return 1;
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error getting next ID: " + e.getMessage());
+            return 1;
+        }
+    }
+
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     public ArrayList<Contact> getAllContacts() {
         ArrayList<Contact> contacts = new ArrayList<>();
 
@@ -65,8 +147,12 @@ public class ContacsBookController {
                 while (cursor.hasNext()) {
                     Document doc = cursor.next();
 
+<<<<<<< HEAD
                     String idString = doc.getObjectId("_id").toHexString();
                     int id = Math.abs(idString.hashCode());
+=======
+                    int id = doc.getInteger("id", 0);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 
                     String firstName = doc.getString("firstName");
                     String lastName = doc.getString("lastName");
@@ -83,16 +169,26 @@ public class ContacsBookController {
                     String comments = doc.getString("comments");
 
                     Contact contact = new Contact(id, firstName, lastName, age,
+<<<<<<< HEAD
                         typeOfContact, sex, hobbies, comments);
+=======
+                            typeOfContact, sex, hobbies, comments);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                     contacts.add(contact);
                 }
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
+<<<<<<< HEAD
                 "Error getting contacts: " + e.getMessage(),
                 "Error",
                 JOptionPane.ERROR_MESSAGE);
+=======
+                    "Error getting contacts: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             e.printStackTrace();
         }
 
@@ -122,14 +218,24 @@ public class ContacsBookController {
                 String comments = doc.getString("comments");
 
                 return new Contact(id, firstName, lastName, age,
+<<<<<<< HEAD
                     typeOfContact, sex, hobbies, comments);
+=======
+                        typeOfContact, sex, hobbies, comments);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
+<<<<<<< HEAD
                 "Error searching contact: " + e.getMessage(),
                 "Error",
                 JOptionPane.ERROR_MESSAGE);
+=======
+                    "Error searching contact: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             e.printStackTrace();
         }
 
@@ -145,6 +251,7 @@ public class ContacsBookController {
 
             if (deletedCount > 0) {
                 JOptionPane.showMessageDialog(null,
+<<<<<<< HEAD
                     "Contact deleted successfully",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
@@ -154,14 +261,31 @@ public class ContacsBookController {
                     "Contact not found",
                     "Error",
                     JOptionPane.WARNING_MESSAGE);
+=======
+                        "Contact deleted successfully",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Contact not found",
+                        "Error",
+                        JOptionPane.WARNING_MESSAGE);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                 return false;
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
+<<<<<<< HEAD
                 "Error deleting contact: " + e.getMessage(),
                 "Error",
                 JOptionPane.ERROR_MESSAGE);
+=======
+                    "Error deleting contact: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             e.printStackTrace();
             return false;
         }
@@ -187,6 +311,7 @@ public class ContacsBookController {
 
             if (result.getModifiedCount() > 0) {
                 JOptionPane.showMessageDialog(null,
+<<<<<<< HEAD
                     "Contact updated successfully",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
@@ -196,14 +321,31 @@ public class ContacsBookController {
                     "Contact not found",
                     "Error",
                     JOptionPane.WARNING_MESSAGE);
+=======
+                        "Contact updated successfully",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Contact not found",
+                        "Error",
+                        JOptionPane.WARNING_MESSAGE);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                 return false;
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
+<<<<<<< HEAD
                 "Error updating contact: " + e.getMessage(),
                 "Error",
                 JOptionPane.ERROR_MESSAGE);
+=======
+                    "Error updating contact: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             e.printStackTrace();
             return false;
         }
@@ -216,7 +358,11 @@ public class ContacsBookController {
             MongoCollection<Document> collection = getContactsCollection();
 
             Document query = new Document("firstName",
+<<<<<<< HEAD
                 new Document("$regex", name).append("$options", "i"));
+=======
+                    new Document("$regex", name).append("$options", "i"));
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 
             try (MongoCursor<Document> cursor = collection.find(query).iterator()) {
                 while (cursor.hasNext()) {
@@ -240,16 +386,26 @@ public class ContacsBookController {
                     String comments = doc.getString("comments");
 
                     Contact contact = new Contact(id, firstName, lastName, age,
+<<<<<<< HEAD
                         typeOfContact, sex, hobbies, comments);
+=======
+                            typeOfContact, sex, hobbies, comments);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                     contacts.add(contact);
                 }
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
+<<<<<<< HEAD
                 "Error searching contacts: " + e.getMessage(),
                 "Error",
                 JOptionPane.ERROR_MESSAGE);
+=======
+                    "Error searching contacts: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             e.printStackTrace();
         }
 
