@@ -5,7 +5,11 @@ const mongoose = require("mongoose");
 function createWindow() {
     const win = new BrowserWindow({
         width: 720,
+<<<<<<< HEAD
+        height: 600,
+=======
         height: 850,
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         webPreferences: {
             preload: path.join(__dirname, "renderer.js"),
             nodeIntegration: false,
@@ -27,12 +31,19 @@ app.whenReady().then(() => {
 
 mongoose.connect(
     "mongodb+srv://Arelys:Arelys1234@cluster0.3u6ujwz.mongodb.net/Contacts"
+<<<<<<< HEAD
+).then(() => console.log("MongoDB conectado"))
+ .catch(err => console.error(err));
+
+const ContactSchema = new mongoose.Schema({
+=======
 ).then(() => console.log("MongoDB conected"))
  .catch(err => console.error("MongoDB connection error at startup", err));
 
 const ContactSchema = new mongoose.Schema({
     // id as a number to allow the crud operation 
     contact_id: { type: Number, unique: true },
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     first_name: String,
     last_name: String,
     birth_date: Date,
@@ -46,6 +57,12 @@ const ContactSchema = new mongoose.Schema({
 
 const Contact = mongoose.model("ContactsBook", ContactSchema);
 
+<<<<<<< HEAD
+ipcMain.handle("save-contact", async (event, data) => {
+    const contact = new Contact(data);
+    let saved = await contact.save();
+    return saved._id.toString();
+=======
 // A handler = function that responds to a call from the renderer, save contact   
 ipcMain.handle("save-contact", async (event, data) => {
     if (mongoose.connection.readyState !== 1) {
@@ -149,4 +166,5 @@ ipcMain.handle("update-contact", async (event, idStr, data) => {
         console.error("Error updating contact:", error.message);
         throw new Error("Failed to update contact in the database. Reason: " + error.message);
     }
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 });

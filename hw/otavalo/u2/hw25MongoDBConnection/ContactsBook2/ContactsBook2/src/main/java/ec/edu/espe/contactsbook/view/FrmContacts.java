@@ -1,5 +1,19 @@
 package ec.edu.espe.contactsbook.view;
 
+<<<<<<< HEAD
+import ec.edu.espe.contactsbook.model.Contact;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import java.awt.HeadlessException;
+import org.bson.Document;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+=======
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -20,6 +34,7 @@ import javax.swing.table.DefaultTableModel;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import java.awt.HeadlessException;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 
 /**
  *
@@ -27,6 +42,14 @@ import java.awt.HeadlessException;
  */
 public class FrmContacts extends javax.swing.JFrame {
 
+<<<<<<< HEAD
+    Contact contact = new Contact();
+    private MongoCollection<Document> contactsCollection;
+
+    public FrmContacts() {
+        initComponents();
+        connectToMongoDB();
+=======
     private Document loadedContactDocument = null;
     private ButtonGroup sexGroup;
     private javax.swing.JButton btnEdit;
@@ -59,6 +82,7 @@ public class FrmContacts extends javax.swing.JFrame {
                 txtSearchInputActionPerformed(evt);
             }
         });
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     }
 
     /**
@@ -70,8 +94,11 @@ public class FrmContacts extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
+=======
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -94,6 +121,10 @@ public class FrmContacts extends javax.swing.JFrame {
         lstHobbies = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         txaComments = new javax.swing.JTextArea();
+<<<<<<< HEAD
+        jPanel3 = new javax.swing.JPanel();
+        btnSave = new javax.swing.JButton();
+=======
         btnSave = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -116,6 +147,7 @@ public class FrmContacts extends javax.swing.JFrame {
             }
         ));
         jScrollPane3.setViewportView(jTable1);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,7 +168,11 @@ public class FrmContacts extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
+<<<<<<< HEAD
+                .addContainerGap(18, Short.MAX_VALUE))
+=======
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         );
 
         jLabel2.setText("id:");
@@ -184,6 +220,8 @@ public class FrmContacts extends javax.swing.JFrame {
         txaComments.setRows(5);
         jScrollPane2.setViewportView(txaComments);
 
+<<<<<<< HEAD
+=======
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,6 +229,7 @@ public class FrmContacts extends javax.swing.JFrame {
             }
         });
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -223,11 +262,18 @@ public class FrmContacts extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+<<<<<<< HEAD
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave))
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                 .addGap(16, 16, 16))
         );
         jPanel2Layout.setVerticalGroup(
@@ -265,7 +311,11 @@ public class FrmContacts extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+=======
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(radSexMale)
@@ -273,6 +323,16 @@ public class FrmContacts extends javax.swing.JFrame {
                         .addGap(25, 25, 25)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
+<<<<<<< HEAD
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(123, Short.MAX_VALUE))
+        );
+
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+=======
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
@@ -317,6 +377,7 @@ public class FrmContacts extends javax.swing.JFrame {
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             }
         });
 
@@ -325,6 +386,11 @@ public class FrmContacts extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+<<<<<<< HEAD
+                .addGap(292, 292, 292)
+                .addComponent(btnSave)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
                 .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -340,10 +406,16 @@ public class FrmContacts extends javax.swing.JFrame {
                             .addComponent(btnUpdate)
                             .addComponent(btnSearchButton))
                         .addGap(129, 129, 129))))
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+<<<<<<< HEAD
+                .addGap(28, 28, 28)
+                .addComponent(btnSave)
+                .addContainerGap(49, Short.MAX_VALUE))
+=======
                 .addGap(14, 14, 14)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -358,6 +430,7 @@ public class FrmContacts extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnUpdate)))
                 .addContainerGap(23, Short.MAX_VALUE))
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -367,11 +440,17 @@ public class FrmContacts extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -379,11 +458,18 @@ public class FrmContacts extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         );
 
         pack();
@@ -393,6 +479,24 @@ public class FrmContacts extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_radSexMaleActionPerformed
 
+<<<<<<< HEAD
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+
+        if (contactsCollection == null) {
+            JOptionPane.showMessageDialog(rootPane, "There isn't connection to the database", "Save Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int option;
+        readValues();
+        option = JOptionPane.showConfirmDialog(rootPane, "saving contacts -->" + contact, "SAVE CONTACTS?", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (option == JOptionPane.YES_OPTION) {
+            
+            try {
+                // change String to an Objetc Date to upload this information too mongo
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
+                Date birthDate = null;
+=======
     private void selectHobbiesInList(javax.swing.JList<String> list, List<String> hobbiesToSelect) {
         if (hobbiesToSelect == null || hobbiesToSelect.isEmpty()) {
             list.clearSelection();
@@ -480,12 +584,19 @@ public class FrmContacts extends javax.swing.JFrame {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
                 Date birthDate = null;
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                 try {
                     String dateString = ftdBirthDate.getText();
                     if (dateString != null && !dateString.trim().isEmpty()) {
                         birthDate = dateFormat.parse(dateString);
                     }
                 } catch (ParseException e) {
+<<<<<<< HEAD
+                    JOptionPane.showMessageDialog(rootPane, "Invalid date of birth format. Saving without date of birth.", "Warning about date", JOptionPane.WARNING_MESSAGE);
+                }
+
+                // Create the document in mongoDb
+=======
                     JOptionPane.showMessageDialog(
                             rootPane,
                             "Invalid date of birth format. Saving without date of birth.",
@@ -493,6 +604,7 @@ public class FrmContacts extends javax.swing.JFrame {
                             JOptionPane.WARNING_MESSAGE
                     );
                 }
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                 Document contactDoc = new Document("firstName", contact.getFirstName())
                         .append("lastName", contact.getLastName())
                         .append("age", contact.getAge())
@@ -502,6 +614,19 @@ public class FrmContacts extends javax.swing.JFrame {
                         .append("hobbies", contact.getHobbies())
                         .append("comments", contact.getComments());
 
+<<<<<<< HEAD
+                // Insert data to the collection
+                contactsCollection.insertOne(contactDoc);
+
+                JOptionPane.showMessageDialog(rootPane, "Contact saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                emptyFields();
+            } catch (HeadlessException e) {
+                JOptionPane.showMessageDialog(rootPane, "Error saving to MongoDB " + e.getMessage(), "Save errir", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else if (option == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(rootPane, "your date will be lost -->", "", JOptionPane.WARNING_MESSAGE);
+=======
                 contactsCollection.insertOne(contactDoc);
                 JOptionPane.showMessageDialog(
                         rootPane,
@@ -525,10 +650,15 @@ public class FrmContacts extends javax.swing.JFrame {
                     "",
                     JOptionPane.WARNING_MESSAGE
             );
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             emptyFields();
         } else {
             txtFirstName.requestFocus();
         }
+<<<<<<< HEAD
+
+    }//GEN-LAST:event_btnSaveActionPerformed
+=======
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtSearchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchInputActionPerformed
@@ -662,6 +792,7 @@ public class FrmContacts extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     private void connectToMongoDB() {
         try {
             String connectionString = "mongodb+srv://Arelys:Arelys1234@cluster0.3u6ujwz.mongodb.net/Contacts?retryWrites=true&w=majority";
@@ -678,6 +809,12 @@ public class FrmContacts extends javax.swing.JFrame {
         txtFirstName.setText("");
         txtLastName.setText("");
         ftdBirthDate.setText("");
+<<<<<<< HEAD
+        cmbType.setSelectedIndex(0);
+        radSexFemale.setSelected(true);
+        lstHobbies.clearSelection();
+        txaComments.setText("");
+=======
         txaComments.setText("");
         cmbType.setSelectedIndex(0);
         if (sexGroup != null) {
@@ -700,12 +837,32 @@ public class FrmContacts extends javax.swing.JFrame {
                 .append("sex", c.getSex())
                 .append("hobbies", c.getHobbies())
                 .append("comments", c.getComments());
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     }
 
     private void readValues() {
         String firstName;
         String lastName;
         int age;
+<<<<<<< HEAD
+        String typeOfContact; //Family, Friend,Job,Unknown
+        String sex; //male, female
+        ArrayList<String> hobbies = new ArrayList<>();
+        String comments;
+
+        firstName = txtFirstName.getText();
+        lastName = txtLastName.getText();
+        //TODO compute age based on BirthDay
+        age = 20;
+        typeOfContact = cmbType.getSelectedItem().toString();
+        //TODO code we use the radio buttons to initializa the sex
+        sex = "Female";
+        //cfode a loop to add all the hobbies
+        hobbies.add(lstHobbies.getSelectedValue());
+        comments = txaComments.getText();
+
+        contact = new Contact(age, firstName, lastName, age, typeOfContact, sex, hobbies, comments);
+=======
         String typeOfContact;
         String sex;
         ArrayList<String> hobbies = new ArrayList<>();
@@ -758,6 +915,7 @@ public class FrmContacts extends javax.swing.JFrame {
         comments = txaComments.getText();
 
         contact = new Contact(age, firstName, lastName, typeOfContact, sex, hobbies, comments);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     }
 
     /**
@@ -798,15 +956,22 @@ public class FrmContacts extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD
+    private javax.swing.JButton btnSave;
+=======
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearchButton;
     private javax.swing.JButton btnUpdate;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     private javax.swing.JComboBox<String> cmbType;
     private javax.swing.JFormattedTextField ftdBirthDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+<<<<<<< HEAD
+=======
     private javax.swing.JLabel jLabel11;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -820,6 +985,14 @@ public class FrmContacts extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+<<<<<<< HEAD
+    private javax.swing.JList<String> lstHobbies;
+    private javax.swing.JRadioButton radSexFemale;
+    private javax.swing.JRadioButton radSexMale;
+    private javax.swing.JTextArea txaComments;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
+=======
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
@@ -831,5 +1004,6 @@ public class FrmContacts extends javax.swing.JFrame {
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtSearchInput;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     // End of variables declaration//GEN-END:variables
 }

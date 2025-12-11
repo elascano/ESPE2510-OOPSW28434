@@ -1,7 +1,10 @@
 package ec.edu.espe.contactsbook.model;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
 import org.bson.Document;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 
 /**
  *
@@ -17,6 +20,8 @@ public class Contact {
     private ArrayList<String> hobbies;
     private String comments;
 
+<<<<<<< HEAD
+=======
     
         public Document toDocument() {
         return new Document()
@@ -30,6 +35,7 @@ public class Contact {
     }
         
         
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     @Override
     public String toString() {
         return "Contact{" + "\nid=" + id +
@@ -45,6 +51,22 @@ public class Contact {
     
     
     
+<<<<<<< HEAD
+    public Contact(){
+        
+    }
+
+    public Contact(int id, String firstName, String lastName, int age, String typeOfContact, String sex, ArrayList<String> hobbies, String comments) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.typeOfContact = typeOfContact;
+        this.sex = sex;
+        this.hobbies = hobbies;
+        this.comments = comments;
+    }
+=======
 public Contact(String firstName, String lastName, int age,
                String typeOfContact, String sex,
                ArrayList<String> hobbies, String comments) {
@@ -60,6 +82,7 @@ public Contact(String firstName, String lastName, int age,
 }
 
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     
     /**
      * @return the id

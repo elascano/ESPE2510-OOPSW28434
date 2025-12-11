@@ -240,27 +240,50 @@ btnSave.setBounds(250, 500, 80, 25);
 frame.add(btnSave);
 
 function validateFields() {
-    if(txtName.getText().trim() === "") {
+    const nameRegex = /^(?!\s*$)[a-zA-Z\s]+$/;
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    const numberRegex = /^\d+$/;
+
+    const firstName = txtName.getText().trim();
+    if(firstName === "") {
         alert("Validation Error: First Name is required.");
         txtName.requestFocus();
         return false;
     }
-    if(txtLast.getText().trim() === "") {
+    
+    if (numberRegex.test(firstName)) {
+        alert("Validation Error: First Name cannot be only numbers.");
+        txtName.requestFocus();
+        return false;
+    }
+
+    const lastName = txtLast.getText().trim();
+    if(lastName === "") {
         alert("Validation Error: Last Name is required.");
         txtLast.requestFocus();
         return false;
     }
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    
+    if (numberRegex.test(lastName)) {
+        alert("Validation Error: Last Name cannot be only numbers.");
+        txtLast.requestFocus();
+        return false;
+    }
+
     if(!dateRegex.test(txtDate.getText())) {
         alert("Validation Error: Birth Date must be in format YYYY-MM-DD.");
         txtDate.requestFocus();
         return false;
     }
-    if(txtAge.getText().trim() === "" || isNaN(parseInt(txtAge.getText()))) {
-        alert("Validation Error: Age must be a number.");
+
+    const ageValue = txtAge.getText().trim();
+    const parsedAge = parseInt(ageValue);
+    if(ageValue === "" || isNaN(parsedAge) || parsedAge <= 0) {
+        alert("Validation Error: Age must be a positive number.");
         txtAge.requestFocus();
         return false;
     }
+
     return true;
 }
 

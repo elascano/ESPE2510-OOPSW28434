@@ -13,6 +13,11 @@ import com.mongodb.ServerApiVersion;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import org.bson.Document;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Calendar;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -22,6 +27,7 @@ public class FrmContacts extends javax.swing.JFrame {
     private static final String URI = "mongodb+srv://maryuri:maryuri2007@cluster0.iektq66.mongodb.net/";
     private static final String DB_NAME = "ContactsBookDB";
     private static final String COLLECTION_NAME = "Contacts";
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("M/d/yy");
     
     private MongoClient mongoClient;
     private MongoDatabase database;
@@ -53,15 +59,15 @@ public class FrmContacts extends javax.swing.JFrame {
             collection = database.getCollection(COLLECTION_NAME);
 
             database.runCommand(new Document("ping", 1));
-            System.out.println("Conexión exitosa a MongoDB Atlas.");
+            System.out.println("Successful connection to MongoDB Atlas.");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane,
-                    "Error al conectar a MongoDB: " + e.getMessage(),
-                    "Error de Conexión",
+                    "Error connecting to MongoDB: " + e.getMessage(),
+                    "Connection Error",
                     JOptionPane.ERROR_MESSAGE);
 
-            System.err.println("Error de conexión a MongoDB: " + e);
+            System.err.println("Error connecting to MongoDB: " + e);
             mongoClient = null;
             collection = null;
         }
@@ -70,17 +76,17 @@ public class FrmContacts extends javax.swing.JFrame {
     
     private boolean saveContactToMongo(Contact contact) {
         if (collection == null) {
-            JOptionPane.showMessageDialog(rootPane, "La conexión a la base de datos no está disponible.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "The connection to the database is unavailable.", "Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         
         try {
             Document contactDocument = contact.toDocument();
             InsertOneResult result = collection.insertOne(contactDocument);
-            System.out.println("Documento insertado con _id: " + result.getInsertedId());
+            System.out.println("Document inserted with _id: " + result.getInsertedId());
             return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Error al guardar el contacto: " + e.getMessage(), "Error de Guardado", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Error saving contact: " + e.getMessage(), "Saving Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -321,21 +327,19 @@ public class FrmContacts extends javax.swing.JFrame {
     }//GEN-LAST:event_ftdBirthDateActionPerformed
 
     private void btmSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmSaveActionPerformed
-        readValues();
-        
-        if (contact.getAge() == 0 && !contact.getFirstName().isEmpty()) {
-            return; 
+        if (!readValues()) {
+            return;
         }
 
         int option = JOptionPane.showConfirmDialog(rootPane, "saying contact -->" + contact, "SAVE CONTACTS", JOptionPane.YES_NO_CANCEL_OPTION);
         
         if (option == JOptionPane.YES_OPTION){
             if (saveContactToMongo(contact)) {
-                 JOptionPane.showMessageDialog(rootPane,"Tu contacto ha sido guardado en MongoDB!");
+                 JOptionPane.showMessageDialog(rootPane,"Your contact has been saved in MongoDB!");
                  emptyFields();
             }
         } else if (option == JOptionPane.NO_OPTION){
-            JOptionPane.showMessageDialog(rootPane,"Tus datos se perderán","",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane,"Your data will be lost","",JOptionPane.WARNING_MESSAGE);
             emptyFields();
         } else {
             txtFirstName.requestFocus();
@@ -353,12 +357,56 @@ public class FrmContacts extends javax.swing.JFrame {
         
     }
     
-    private void readValues() {
-        int id = 0;
-        String firstName = txtFirstName.getText();
-        String lastName = txtLastName.getText();
-        int age = 25; 
+    private boolean readValues() {
+        String firstName = txtFirstName.getText().trim();
+        String lastName = txtLastName.getText().trim();
+        String birthDateStr = ftdBirthDate.getText().trim();
+        String comments = txaComments.getText().trim();
 
+        if (firstName.isEmpty() || lastName.isEmpty() || birthDateStr.isEmpty() || comments.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "All fields must be completed.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            txtFirstName.requestFocus();
+            return false;
+        }
+
+        Pattern digitPattern = Pattern.compile(".*\\d.*");
+        if (digitPattern.matcher(firstName).matches()) {
+            JOptionPane.showMessageDialog(rootPane, "The name must not contain numbers.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            txtFirstName.requestFocus();
+            return false;
+        }
+        if (digitPattern.matcher(lastName).matches()) {
+            JOptionPane.showMessageDialog(rootPane, "The lastname must not contain numbers.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            txtLastName.requestFocus();
+            return false;
+        }
+
+        int age = 0;
+        try {
+            Date birthDate = DATE_FORMAT.parse(birthDateStr);
+            Calendar birthCal = Calendar.getInstance();
+            birthCal.setTime(birthDate);
+
+            Calendar today = Calendar.getInstance();
+            age = today.get(Calendar.YEAR) - birthCal.get(Calendar.YEAR);
+            
+            if (today.get(Calendar.DAY_OF_YEAR) < birthCal.get(Calendar.DAY_OF_YEAR)) {
+                age--;
+            }
+
+            if (age < 0 || age > 150) {
+                JOptionPane.showMessageDialog(rootPane, "The date of birth is not valid.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                ftdBirthDate.requestFocus();
+                return false;
+            }
+
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(rootPane, "The date of birth is not valid. Use M/d/yy (ej. 12/8/25).", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            ftdBirthDate.requestFocus();
+            return false;
+        }
+        
+        int id = 0;
         String typeOfContact = cmbType.getSelectedItem().toString();
 
         String sex;
@@ -371,9 +419,8 @@ public class FrmContacts extends javax.swing.JFrame {
         ArrayList<String> hobbies = new ArrayList<>();
         hobbies.addAll(lstHobbies.getSelectedValuesList());
 
-        String comments = txaComments.getText();
-
         contact = new Contact(id, firstName, lastName, age, typeOfContact, sex, hobbies, comments);
+        return true;
     }
 
 
@@ -407,7 +454,7 @@ public class FrmContacts extends javax.swing.JFrame {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         if (frame.mongoClient != null) {
                             frame.mongoClient.close();
-                            System.out.println("Conexión a MongoDB cerrada.");
+                            System.out.println("MongoDB connection closed.");
                         }
                     }
                 });

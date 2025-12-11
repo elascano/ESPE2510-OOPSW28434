@@ -26,6 +26,8 @@ public class Contact {
         this.hobbies = hobbies;
         this.comments = comments;
     }
+<<<<<<< HEAD
+=======
 
     @Override
     public String toString() {
@@ -34,6 +36,7 @@ public class Contact {
     }
     
     
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     
     /**
      * @return the id

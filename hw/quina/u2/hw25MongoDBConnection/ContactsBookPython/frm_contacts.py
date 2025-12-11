@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from contact import Contact 
+from contact import Contact
+from datetime import datetime 
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 
@@ -57,7 +58,7 @@ class FrmContacts:
 
         ttk.Label(main_frame, text="Hobbies:").grid(row=9, column=0, sticky="nw", pady=5)
         hobbies_list = ["PlaySoccer", "Dijing", "Read", "Cook", "Swim", "Sing", "Play an instrument"]
-        self.lstHobbies = tk.Listbox(main_frame, selectmode=tk.SINGLE, height=5, width=20)
+        self.lstHobbies = tk.Listbox(main_frame, selectmode=tk.MULTIPLE, height=5, width=20)
         for item in hobbies_list:
             self.lstHobbies.insert(tk.END, item)
         self.lstHobbies.grid(row=9, column=1, sticky="w", pady=5)
@@ -78,22 +79,21 @@ class FrmContacts:
             self.mongo_client.admin.command('ping')
             self.db = self.mongo_client.get_database(DB_NAME)
             self.contacts_collection = self.db.get_collection(COLLECTION_NAME)
-            print("Conexión a MongoDB Atlas establecida.")
+            print("Connection to MongoDB Atlas established.")
             
             db_list = self.mongo_client.list_database_names()
-            print("Bases de datos disponibles:", db_list)
+            print("Available databases:", db_list)
 
         except Exception as e:
-            messagebox.showerror("Error de Conexión", f"No se pudo conectar a MongoDB: {e}")
+            messagebox.showerror("Connection Error", f"Could not connect to MongoDB: {e}")
             self.mongo_client = None
             self.db = None
             self.contacts_collection = None
-            print(f"Error al conectar o hacer ping a MongoDB: {e}")
+            print(f"Error connecting to or pinging MongoDB: {e}")
 
     def _save_to_mongo(self):
-        # CORRECCIÓN: Comprobar si la colección es None
         if self.contacts_collection is None:
-            messagebox.showwarning("Advertencia", "No hay conexión a la base de datos. Los datos no se guardaron.")
+            messagebox.showwarning("Warning", "There is no connection to the database. The data was not saved.")
             return False
 
         contact_data = {
@@ -111,7 +111,7 @@ class FrmContacts:
             self.contacts_collection.insert_one(contact_data)
             return True
         except Exception as e:
-            messagebox.showerror("Error de Guardado", f"Fallo al insertar el contacto en MongoDB: {e}")
+            messagebox.showerror("Saving Error", f"Failure to insert contact into MongoDB: {e}")
             return False
 
     def emptyFields(self):
@@ -124,44 +124,79 @@ class FrmContacts:
         self.sex_var.set("Female")
         self.lstHobbies.selection_clear(0, tk.END)
         self.txaComments.delete(1.0, tk.END) 
+    
+    def _validate_fields(self, firstName, lastName, birthDate, age, typeOfContact, comments):
+        if not firstName or not lastName or not birthDate or not age or not typeOfContact or not comments:
+            messagebox.showerror("Validation error", "All fields must be completed.")
+            return False
+
+        if any(char.isdigit() for char in firstName):
+            messagebox.showerror("Validation error", "The name must not contain numbers.")
+            return False
+
+        if any(char.isdigit() for char in lastName):
+            messagebox.showerror("Validation error", "The lastname must not contain numbers.")
+            return False
+
+        if birthDate != "M/d/yy":
+            try:
+                datetime.strptime(birthDate, "%m/%d/%y")
+            except ValueError:
+                messagebox.showerror("Validation error", "Invalid date of birth format. Use M/d/yy (ej. 12/8/25).")
+                return False
+
+        try:
+            age_int = int(age.strip())
+            if age_int <= 0:
+                messagebox.showerror("Validation error", "The age must be a positive integer.")
+                return False
+        except ValueError:
+            messagebox.showerror("Validation error", "The age must be a whole number.")
+            return False
+        
+        return True
 
     def readValues(self):
         firstName = self.txtFirstName.get()
         lastName = self.txtLastName.get()
-        
-        try:
-            age = int(self.txtAge.get().strip())
-        except ValueError:
-            messagebox.showerror("Error de Entrada", "La edad debe ser un número entero.")
-            age = 0 
-        
+        birthDate = self.ftdBirthDate.get()
+        age_str = self.txtAge.get()
         typeOfContact = self.cmbType.get()
         sex = self.sex_var.get()
-        
+        comments = self.txaComments.get("1.0", tk.END).strip()
+
+        if not self._validate_fields(firstName, lastName, birthDate, age_str, typeOfContact, comments):
+            self.contact = Contact() 
+            return
+
+        age = int(age_str.strip())
+
         selected_hobbies = []
         try:
             selected_indices = self.lstHobbies.curselection()
-            if selected_indices:
-                hobby = self.lstHobbies.get(selected_indices[0]) 
-                selected_hobbies.append(hobby)
+            for index in selected_indices:
+                selected_hobbies.append(self.lstHobbies.get(index))
         except Exception as e:
-            print(f"Error al obtener hobby: {e}")
-            
-        comments = self.txaComments.get("1.0", tk.END).strip()
+            print(f"Error al obtener hobbies: {e}")
         
         self.contact = Contact(age, firstName, lastName, age , typeOfContact, sex, selected_hobbies, comments)
         
     def btmSaveActionPerformed(self):
         self.readValues()
         
-        if self.contact.age == 0:
+        if self.contact.age == 0 and (self.txtAge.get().strip() == '' or self.txtAge.get().strip().isdigit() and int(self.txtAge.get().strip()) > 0):
+             return 
+        elif self.contact.age == 0 and not (self.txtAge.get().strip() == '' or self.txtAge.get().strip().isdigit() and int(self.txtAge.get().strip()) > 0):
+            return
+
+        if self.contact.firstName == "": 
             return
 
         response = messagebox.askyesnocancel("SAVE CONTACTS", f"Saying contact -->{self.contact}")
 
         if response is True:
             if self._save_to_mongo():
-                messagebox.showinfo("Saved", "El contacto fue guardado exitosamente en MongoDB.")
+                messagebox.showinfo("Saved", "The contact was successfully saved in MongoDB.")
                 self.emptyFields()
             else:
                  pass 
@@ -178,7 +213,7 @@ if __name__ == '__main__':
     def on_closing():
         if app.mongo_client:
             app.mongo_client.close()
-            print("Conexión a MongoDB cerrada.")
+            print("MongoDB connection closed.")
         root.destroy()
         
     root.protocol("WM_DELETE_WINDOW", on_closing)

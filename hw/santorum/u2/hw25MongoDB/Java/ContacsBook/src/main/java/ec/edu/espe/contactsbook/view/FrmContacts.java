@@ -1,15 +1,27 @@
 package ec.edu.espe.contactsbook.view;
 
+<<<<<<< HEAD
+=======
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 import ec.edu.espe.contactsbook.model.Contact;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+<<<<<<< HEAD
+
+/**
+ *
+ * @author César Vargas, Paradigm, @ESPE
+ */
+public class FrmContacts extends javax.swing.JFrame {
+    Contact contact = new Contact();
+=======
 import org.bson.Document;
 
 
@@ -19,6 +31,7 @@ import org.bson.Document;
  */
 public class FrmContacts extends javax.swing.JFrame {
     Contact contact;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 
     /**
      * Creates new form FrmContacts
@@ -36,7 +49,10 @@ public class FrmContacts extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
+=======
         btngSex = new javax.swing.ButtonGroup();
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -130,10 +146,15 @@ public class FrmContacts extends javax.swing.JFrame {
 
         cmbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Family", "Friend", "Job", "Unknown" }));
 
+<<<<<<< HEAD
+        radSexMale.setText("Male");
+
+=======
         btngSex.add(radSexMale);
         radSexMale.setText("Male");
 
         btngSex.add(radSexFemale);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         radSexFemale.setText("Female");
         radSexFemale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,6 +314,60 @@ public class FrmContacts extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+<<<<<<< HEAD
+     
+        int option = 0;
+        readValues();
+     
+     //JOptionPane.showMessageDialog(rootPane, "my contact is" + contact);
+       option = JOptionPane.showConfirmDialog(rootPane, "saving contact -->" + contact , "SAVE CONTACTS?", JOptionPane.YES_NO_CANCEL_OPTION);
+       if (option == JOptionPane.YES_OPTION){
+           JOptionPane.showMessageDialog(rootPane, "your contact is saved --> " + contact);
+           emptyFields();           
+       } else if (option == JOptionPane.NO_OPTION){
+           JOptionPane.showMessageDialog(rootPane, "Your data will be lost ","",JOptionPane.WARNING_MESSAGE);
+       } else {
+           txtFirstName.requestFocus();
+       } 
+       
+       
+    }
+    
+    private void emptyFields(){
+    txtFirstName.setText("");
+    txtLastName.setText("");
+    ftdBirthDate.setText("");
+    cmbType.setSelectedIndex(0);
+    radSexFemale.setSelected(true);
+    lstHobbies.clearSelection();
+    txaComments.setText("");
+        
+    }
+   
+    private void readValues(){  
+    String firstName;
+    String lastName;
+    int age;
+    String typeOfContact;//Family,Friend,Job,Unknown
+    String sex; //male, female
+    ArrayList<String> hobbies = new ArrayList<>();
+    String comments;
+    
+    firstName = txtFirstName.getText();
+    lastName = txtLastName.getText();
+    //TODO compute age based on the birthdate
+    age = 19;
+    typeOfContact = cmbType.getSelectedItem().toString();
+    //TODO code the use of the radio button to initialize de sex
+    sex = "Male";
+    //TODO code a loop to add all the hobbies
+    hobbies.add(lstHobbies.getSelectedValue());
+    comments = txaComments.getText();
+    
+    contact = new Contact(age, firstName, lastName, age, typeOfContact, sex, hobbies, comments);
+    
+    
+=======
                                                
 int option = 0;
 readValues();
@@ -339,6 +414,7 @@ if (option == JOptionPane.YES_OPTION) {
 }
 
   
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
@@ -411,7 +487,10 @@ if (fechaTexto.matches("\\d{2}/\\d{2}/\\d{4}")) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
+<<<<<<< HEAD
+=======
     private javax.swing.ButtonGroup btngSex;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     private javax.swing.JComboBox<String> cmbType;
     private javax.swing.JFormattedTextField ftdBirthDate;
     private javax.swing.JLabel jLabel1;
@@ -437,6 +516,9 @@ if (fechaTexto.matches("\\d{2}/\\d{2}/\\d{4}")) {
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
     // End of variables declaration//GEN-END:variables
+<<<<<<< HEAD
+}
+=======
 
     private void emptyFields() {
             txtFirstName.setText("");
@@ -478,3 +560,4 @@ private void readValues() {
 }
     
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8

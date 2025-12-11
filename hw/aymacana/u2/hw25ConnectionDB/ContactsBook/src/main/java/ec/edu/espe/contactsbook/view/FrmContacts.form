@@ -114,6 +114,25 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="radSexMale" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                              <Component id="cmbType" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="radSexFemale" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jDateChooser1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtLastName" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtFirstName" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cbxPlaySoccer" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbxDj" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbxRead" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbxCook" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="cbxOther" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtOtherHobbies" min="-2" pref="73" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="txtAge" max="32767" attributes="0"/>
+=======
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="radSexMale" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
@@ -133,6 +152,7 @@
                                   </Group>
                               </Group>
                               <Component id="lblCalculateAge" min="-2" max="-2" attributes="0"/>
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                           </Group>
                           <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -171,11 +191,19 @@
                               <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtAge" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+=======
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblCalculateAge" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cmbType" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -283,17 +311,23 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="radSexMale">
           <Properties>
+<<<<<<< HEAD
+=======
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroupSex"/>
             </Property>
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             <Property name="text" type="java.lang.String" value="Male"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="radSexFemale">
           <Properties>
+<<<<<<< HEAD
+=======
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroupSex"/>
             </Property>
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             <Property name="text" type="java.lang.String" value="Female"/>
           </Properties>
         </Component>
@@ -359,7 +393,11 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtOtherHobbiesActionPerformed"/>
           </Events>
         </Component>
+<<<<<<< HEAD
+        <Component class="javax.swing.JTextField" name="txtAge">
+=======
         <Component class="javax.swing.JLabel" name="lblCalculateAge">
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         </Component>
       </SubComponents>
     </Container>

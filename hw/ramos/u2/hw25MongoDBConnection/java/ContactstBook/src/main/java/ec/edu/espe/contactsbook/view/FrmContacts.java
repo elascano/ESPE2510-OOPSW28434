@@ -3,10 +3,12 @@ package ec.edu.espe.contactsbook.view;
 import ec.edu.espe.contactsbook.controller.ContactDAO;
 import ec.edu.espe.contactsbook.model.Contact;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import utils.Validation;
 
 /**
  *
@@ -254,6 +256,37 @@ public class FrmContacts extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        String firstName = txtFirstName.getText().trim();
+        if (firstName.isEmpty() || !Validation.isAlphabetic(firstName)) {
+            JOptionPane.showMessageDialog(null, "The name must contain only letters and cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
+            txtFirstName.requestFocus();
+            return;
+        }
+
+        String lastName = txtLastName.getText().trim();
+        if (lastName.isEmpty() || !Validation.isAlphabetic(lastName)) {
+            JOptionPane.showMessageDialog(null, "The last name must contain only letters and cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
+            txtLastName.requestFocus();
+            return;
+        }
+
+        LocalDate birthDate = dtBirthDate.getDate();
+        if (birthDate == null || !Validation.isPastDate(birthDate)) {
+            JOptionPane.showMessageDialog(null, "The date of birth must be earlier than today.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (buttonGroup1.getSelection() == null) {
+            JOptionPane.showMessageDialog(null, "You must select an option from the radio buttons.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (lstHobbies.getSelectedIndices().length == 0) {
+            JOptionPane.showMessageDialog(null, "You must select at least one hobby.", "Error", JOptionPane.ERROR_MESSAGE);
+            lstHobbies.requestFocus();
+            return;
+        }
+
         int option;
         readValues();
 
@@ -306,19 +339,31 @@ public class FrmContacts extends javax.swing.JFrame {
         LocalDate localDate = dtBirthDate.getDate();
         birthDate = java.sql.Date.valueOf(localDate);
 
-        //TODO compute the age based on the BirthDate
-        age = 21;
+        age = calculateAge(localDate);
+
         typeOfContact = cmbType.getSelectedItem().toString();
         //TODO code the use of the radio buttons to initialize the sex
-        sex = "Male";
+        if (radSexMale.isSelected()) {
+            sex = "Male";
+        } else {
+            sex = "Female";
+        }
         //TODO code a loop to add all the hobbies
-    
+
         List<String> selectedHobbies = lstHobbies.getSelectedValuesList();
         hobbies.addAll(selectedHobbies);
 
         comments = txaComments.getText();
 
         contact = new Contact(1, firstName, lastName, birthDate, age, typeOfContact, sex, hobbies, comments);
+    }
+
+    public static int calculateAge(LocalDate birthDate) {
+        if (birthDate == null) {
+            return 0;
+        }
+        LocalDate today = LocalDate.now();
+        return Period.between(birthDate, today).getYears();
     }
 
     /**

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contacts</title>
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 20px 25px 30px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, .1);
+            border-radius: 6px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .form-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .form-row label {
+            width: 150px;
+            text-align: right;
+            padding-right: 10px;
+            line-height: 28px;
+        }
+
+        .form-row input[type="text"],
+        .form-row select,
+        .form-row textarea {
+            flex: 1;
+            padding: 4px 6px;
+            font-family: inherit;
+        }
+
+        .form-row textarea {
+            resize: vertical;
+        }
+
+        .inline {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #comments {
+            height: 120px;
+        }
+
+        #hobbies {
+            width: 200px;
+            height: 100px;
+        }
+
+        .btn-row {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            border: 1px solid #0078d4;
+            background: #0078d4;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #005ea6;
+        }
+
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .4);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal {
+            background: #fff;
+            padding: 20px;
+            max-width: 500px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .25);
+        }
+
+        .modal pre {
+            background: #f3f3f3;
+            padding: 10px;
+            white-space: pre-wrap;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .modal-buttons {
+            text-align: right;
+            margin-top: 15px;
+        }
+
+        .modal-buttons button {
+            margin-left: 10px;
+        }
+
+        .btn-secondary {
+            background: #888;
+            border-color: #888;
+        }
+
+        .btn-secondary:hover {
+            background: #666;
+        }
+
+        .btn-danger {
+            background: #c43c3c;
+            border-color: #c43c3c;
+        }
+
+        .btn-danger:hover {
+            background: #9c2f2f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>CONTACTS</h1>
+
+        <div class="form-row">
+            <label for="firstName">First Name:</label>
+            <input id="firstName" type="text" placeholder="Only the first name is accepted">
+        </div>
+
+        <div class="form-row">
+            <label for="lastName">Last Name:</label>
+            <input id="lastName" type="text">
+        </div>
+
+        <div class="form-row">
+            <label for="birthDate">Birth Date:</label>
+            <input id="birthDate" type="text" placeholder="dd/mm/yyyy">
+        </div>
+
+        <div class="form-row">
+            <label for="age">Age:</label>
+            <input id="age" type="text" readonly>
+        </div>
+
+        <div class="form-row">
+            <label for="typeOfContact">Type:</label>
+            <select id="typeOfContact">
+                <option value="Family">Family</option>
+                <option value="Friend">Friend</option>
+                <option value="Job">Job</option>
+                <option value="Unknown">Unknown</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label>Sex:</label>
+            <div class="inline">
+                <label><input type="radio" name="sex" value="Male"> Male</label>
+                <label><input type="radio" name="sex" value="Female" checked> Female</label>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <label for="hobbies">Hobbies:</label>
+            <select id="hobbies" size="7">
+                <option>Play Soccer</option>
+                <option>Djing</option>
+                <option>Read</option>
+                <option>Cook</option>
+                <option>Swim</option>
+                <option>Sing</option>
+                <option>Play an instrument</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label for="comments">Comments:</label>
+            <textarea id="comments"></textarea>
+        </div>
+
+        <div class="btn-row">
+            <button id="btnSave">Save</button>
+        </div>
+    </div>
+
+
+    <div id="modalBackdrop" class="modal-backdrop">
+        <div class="modal">
+            <div id="modalMessage"></div>
+            <pre id="modalDetails"></pre>
+            <div class="modal-buttons">
+                <button id="btnCancel" class="btn-secondary">Cancel</button>
+                <button id="btnNo" class="btn-danger">No</button>
+                <button id="btnYes">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        class Contact {
+            static counter = 1;
+
+            constructor(firstName, lastName, age, typeOfContact, sex, hobbies, comments) {
+                this.id = Contact.counter++;
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.age = age;
+                this.typeOfContact = typeOfContact;
+                this.sex = sex;
+                this.hobbies = hobbies || [];
+                this.comments = comments;
+            }
+
+            toString() {
+                return (
+                    "Contact{\n" +
+                    "  id=" + this.id + "\n" +
+                    "  firstName=" + this.firstName + "\n" +
+                    "  lastName=" + this.lastName + "\n" +
+                    "  age=" + this.age + "\n" +
+                    "  typeOfContact=" + this.typeOfContact + "\n" +
+                    "  sex=" + this.sex + "\n" +
+                    "  hobbies=" + JSON.stringify(this.hobbies) + "\n" +
+                    "  comments=" + this.comments + "\n" +
+                    "}"
+                );
+            }
+        }
+
+        function calculateAge(birthDateStr) {
+
+            try {
+                const [dayStr, monthStr, yearStr] = birthDateStr.split("/");
+                const day = parseInt(dayStr, 10);
+                const month = parseInt(monthStr, 10) - 1;
+                const year = parseInt(yearStr, 10);
+
+                if (isNaN(day) || isNaN(month) || isNaN(year)) return 0;
+
+                const birthDate = new Date(year, month, day);
+                const today = new Date();
+
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age >= 0 ? age : 0;
+            } catch (e) {
+                return 0;
+            }
+        }
+
+
+        function readValues() {
+            const firstName = document.getElementById("firstName").value.trim();
+            const lastName = document.getElementById("lastName").value.trim();
+            const birthDateStr = document.getElementById("birthDate").value.trim();
+            const typeOfContact = document.getElementById("typeOfContact").value;
+            const comments = document.getElementById("comments").value.trim();
+
+            const age = calculateAge(birthDateStr);
+            document.getElementById("age").value = age;
+
+            const sexNodes = document.querySelectorAll("input[name='sex']");
+            let sex = "Female";
+            sexNodes.forEach(r => {
+                if (r.checked) sex = r.value;
+            });
+
+            const hobbiesSelect = document.getElementById("hobbies");
+            const selectedOption = hobbiesSelect.options[hobbiesSelect.selectedIndex];
+            const hobbies = selectedOption ? [selectedOption.value] : [];
+
+
+            return new Contact(firstName, lastName, age, typeOfContact, sex, hobbies, comments);
+        }
+
+
+        function emptyFields() {
+            document.getElementById("firstName").value = "";
+            document.getElementById("lastName").value = "";
+            document.getElementById("birthDate").value = "";
+            document.getElementById("age").value = "";
+            document.getElementById("typeOfContact").value = "Family";
+            document.querySelector("input[name='sex'][value='Female']").checked = true;
+            document.getElementById("hobbies").selectedIndex = -1;
+            document.getElementById("comments").value = "";
+            document.getElementById("firstName").focus();
+        }
+
+
+        function saveContactToJson(contact) {
+
+            const key = "contacts";
+            const current = localStorage.getItem(key);
+            let contacts = [];
+            if (current) {
+                try {
+                    contacts = JSON.parse(current);
+                } catch (e) {
+                    contacts = [];
+                }
+            }
+            contacts.push({
+                id: contact.id,
+                firstName: contact.firstName,
+                lastName: contact.lastName,
+                age: contact.age,
+                typeOfContact: contact.typeOfContact,
+                sex: contact.sex,
+                hobbies: contact.hobbies,
+                comments: contact.comments
+            });
+            localStorage.setItem(key, JSON.stringify(contacts));
+            alert("Contacto guardado en JSON (localStorage 'contacts').");
+        }
+
+
+        function showModal(message, details, callback) {
+            const backdrop = document.getElementById("modalBackdrop");
+            const msgDiv = document.getElementById("modalMessage");
+            const detailsPre = document.getElementById("modalDetails");
+
+            msgDiv.textContent = message;
+            detailsPre.textContent = details;
+
+            backdrop.style.display = "flex";
+
+            function cleanup(choice) {
+                backdrop.style.display = "none";
+                btnYes.removeEventListener("click", onYes);
+                btnNo.removeEventListener("click", onNo);
+                btnCancel.removeEventListener("click", onCancel);
+                if (callback) callback(choice);
+            }
+
+            const btnYes = document.getElementById("btnYes");
+            const btnNo = document.getElementById("btnNo");
+            const btnCancel = document.getElementById("btnCancel");
+
+            function onYes() { cleanup("yes"); }
+            function onNo() { cleanup("no"); }
+            function onCancel() { cleanup("cancel"); }
+
+            btnYes.addEventListener("click", onYes);
+            btnNo.addEventListener("click", onNo);
+            btnCancel.addEventListener("click", onCancel);
+        }
+
+
+        document.getElementById("btnSave").addEventListener("click", () => {
+            const contact = readValues();
+
+            showModal(
+                "saving contacts -->",
+                contact.toString(),
+                (choice) => {
+                    if (choice === "yes") {
+                        saveContactToJson(contact);
+
+                        fetch("http://localhost:3000/api/contacts", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(contact)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                alert("Contacto guardado en MongoDB Atlas");
+                            })
+                            .catch(err => {
+                                alert("Error guardando en Atlas");
+                            });
+
+                        emptyFields();
+                    } else if (choice === "no") {
+
+                        const confirmExit = confirm("¿Está seguro de que NO desea guardar?");
+                        if (confirmExit) {
+
+                            document.body.innerHTML = "<h2>Aplicación cerrada</h2>";
+                        } else {
+
+                            document.getElementById("firstName").focus();
+                        }
+                    } else if (choice === "cancel") {
+
+                        emptyFields();
+                    }
+                }
+            );
+        });
+
+
+        document.getElementById("firstName").focus();
+    </script>
+</body>
+
+</html>

@@ -20,9 +20,7 @@ import utils.ContactValidator;
  */
 public class FrmContacts extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmContacts
-     */
+   
     public FrmContacts() {
         initComponents();
         loadContactsTable();
@@ -387,11 +385,10 @@ private void loadContactsTable() {
         }
     };
     
-    // Definir los nombres de las columnas
+    
     String[] columnNames = {"ID", "First Name", "Last Name", "Age", "Type", "Sex"};
     model.setColumnIdentifiers(columnNames);
     
-    // Obtener datos del DAO (Necesitas implementar ContactDao.getAll())
     ContactDao dao = new ContactDao();
     List<Contact> contacts = dao.getAll(); 
 
@@ -457,15 +454,11 @@ private void loadContactsTable() {
         ArrayList<String> hobbiesList = new ArrayList<>(jListHobbies.getSelectedValuesList());
         String comments = txaComments.getText();
         
-        // --- VALIDATION CHECKS (MSGS IN ENGLISH) ---
-        
-        // 1. Required Fields Check (Basic)
         if (firstName.isEmpty() || lastName.isEmpty() || birthDate == null) {
             JOptionPane.showMessageDialog(this, "First Name, Last Name, and Birth Date are required.", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
         
-        // 2. First Name Validation (Single Word, No Numbers)
         if(firstName.contains(" ")){
             JOptionPane.showMessageDialog(this, "First Name must be a single word (no spaces).", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return null;
@@ -475,7 +468,6 @@ private void loadContactsTable() {
             return null;
         }
         
-        // 3. Last Name Validation (Single Word, No Numbers)
         if (lastName.contains(" ")){
             JOptionPane.showMessageDialog(this, "Last Name must be a single word (no spaces).", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return null;
@@ -485,7 +477,6 @@ private void loadContactsTable() {
             return null;
         }
         
-        // 4. Other Validations (Date, Age)
         if(!ContactValidator.isBirthDateSelected(birthDate)){
             JOptionPane.showMessageDialog(this, "Please select a valid birth date.", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return null;
@@ -548,7 +539,7 @@ private void loadContactsTable() {
         } else if (option == JOptionPane.NO_OPTION) {
              JOptionPane.showMessageDialog(this, "Contact saving process canceled.", "Canceled", JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_btnSaveActionPerformed
+    }
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
        int selectedRow = jTableContacts.getSelectedRow();
@@ -558,7 +549,6 @@ private void loadContactsTable() {
             return;
         }
 
-        // Obtener el ID del contacto seleccionado (asumimos que está en la columna 0)
         int contactId = (int) jTableContacts.getValueAt(selectedRow, 0);
 
         int confirm = JOptionPane.showConfirmDialog(
@@ -571,15 +561,15 @@ private void loadContactsTable() {
         if (confirm == JOptionPane.YES_OPTION) {
             try {
                 ContactDao dao = new ContactDao();
-                dao.delete(contactId); // <-- Necesitas implementar ContactDao.delete(id)
+                dao.delete(contactId); 
                 
                 JOptionPane.showMessageDialog(this, "Contact deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                loadContactsTable(); // Actualizar la tabla
+                loadContactsTable(); 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error deleting contact: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }
 
     private void btnUploadFromCloudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadFromCloudActionPerformed
        loadContactsTable(); 
@@ -590,16 +580,14 @@ private void loadContactsTable() {
     
     if (selectedRow != -1) {
         try {
-            // 1. Obtener el ID del contacto (asumiendo que es la columna oculta/primera columna de la tabla)
+            
             int contactId = (int) jTableContacts.getValueAt(selectedRow, 0); 
             
-            // 2. Buscar el contacto completo en la base de datos usando el ID
             ContactDao dao = new ContactDao();
-            Contact contact = dao.getContactById(contactId); // <-- Necesitas este nuevo método en ContactDao
+            Contact contact = dao.getContactById(contactId); 
             
             if (contact != null) {
-                // 3. Cargar los datos en los campos del formulario
-                // NOTA: Debes asegurarte de que el campo ID (txtId) no se edite.
+              
                 
                 txtId.setText(String.valueOf(contact.getId())); 
                 txtFirstName.setText(contact.getFirstName());
@@ -609,14 +597,14 @@ private void loadContactsTable() {
                 cmbType.setSelectedItem(contact.getTypeOfContact());
                 txaComments.setText(contact.getComments());
                 
-                // Setear Sexo
+                
                 if ("Male".equals(contact.getSex())) {
                     radSexMale.setSelected(true);
                 } else if ("Female".equals(contact.getSex())) {
                     radSexFemale.setSelected(true);
                 }
                 
-                // Seleccionar Hobbies (Lógica avanzada, se omite por ahora, pero implica recorrer jListHobbies)
+                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error loading contact details: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -675,7 +663,7 @@ private void loadContactsTable() {
         });
     }
     private javax.swing.JTextField txtId;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+   
     private javax.swing.ButtonGroup Buttons;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSave;
@@ -707,5 +695,5 @@ private void loadContactsTable() {
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
-    // End of variables declaration//GEN-END:variables
+   
 }

@@ -5,9 +5,12 @@
 package ec.edu.espe.contactsbook.view;
 
 import ec.edu.espe.contactsbook.controller.CRUDOperations;
+<<<<<<< HEAD
+=======
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -26,6 +29,8 @@ public class FrmContacts extends javax.swing.JFrame {
      */
     public FrmContacts() {
         initComponents();
+<<<<<<< HEAD
+=======
 
         jDateChooser1.addPropertyChangeListener("date", evt -> {
             if (jDateChooser1.getDate() != null) {
@@ -39,6 +44,7 @@ public class FrmContacts extends javax.swing.JFrame {
         LocalDate birth = birthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate today = LocalDate.now();
         return Period.between(birth, today).getYears();
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     }
 
     /**
@@ -81,8 +87,11 @@ public class FrmContacts extends javax.swing.JFrame {
         cbPlayAnInstrument = new javax.swing.JCheckBox();
         cbOther = new javax.swing.JCheckBox();
         txtOther = new javax.swing.JTextField();
+<<<<<<< HEAD
+=======
         txtAge = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         btnSave = new javax.swing.JButton();
 
         javax.swing.GroupLayout radButtonGroupSexLayout = new javax.swing.GroupLayout(radButtonGroupSex);
@@ -108,7 +117,11 @@ public class FrmContacts extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(245, 245, 245)
                 .addComponent(jLabel1)
+<<<<<<< HEAD
+                .addContainerGap(279, Short.MAX_VALUE))
+=======
                 .addContainerGap(392, Short.MAX_VALUE))
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,11 +159,14 @@ public class FrmContacts extends javax.swing.JFrame {
 
         buttonGroupSex.add(radSexMale);
         radSexMale.setText("Male");
+<<<<<<< HEAD
+=======
         radSexMale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radSexMaleActionPerformed(evt);
             }
         });
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 
         buttonGroupSex.add(radSexFemale);
         radSexFemale.setText("Female");
@@ -190,6 +206,8 @@ public class FrmContacts extends javax.swing.JFrame {
 
         cbOther.setText("Other:");
 
+<<<<<<< HEAD
+=======
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,6 +232,7 @@ public class FrmContacts extends javax.swing.JFrame {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -226,6 +245,46 @@ public class FrmContacts extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
+<<<<<<< HEAD
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cbDjing)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbCook)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbSwim)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbOther)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtOther, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                            .addComponent(txtLastName)
+                            .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(radSexMale)
+                            .addComponent(radSexFemale)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cbPlaySoccer)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbRead)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbSing)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbPlayAnInstrument)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+=======
                     .addComponent(jLabel9)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
@@ -277,6 +336,7 @@ public class FrmContacts extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,6 +348,17 @@ public class FrmContacts extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+<<<<<<< HEAD
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(radSexMale))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(radSexFemale))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+=======
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -295,6 +366,19 @@ public class FrmContacts extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel5)
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+=======
                         .addGap(9, 9, 9)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -316,6 +400,7 @@ public class FrmContacts extends javax.swing.JFrame {
                             .addComponent(jLabel7)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(cbPlaySoccer)
@@ -329,19 +414,43 @@ public class FrmContacts extends javax.swing.JFrame {
                     .addComponent(cbSwim)
                     .addComponent(cbOther)
                     .addComponent(txtOther, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
+                .addGap(135, 135, 135))
+        );
+
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
+=======
                 .addGap(71, 71, 71)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+<<<<<<< HEAD
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(264, 264, 264)
+                .addComponent(btnSave)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,6 +458,11 @@ public class FrmContacts extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
+                .addGap(5, 5, 5)
+                .addComponent(btnSave)
+=======
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                 .addContainerGap())
         );
 
@@ -360,6 +474,8 @@ public class FrmContacts extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLastNameActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+<<<<<<< HEAD
+=======
 
         if (txtFirstName.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "First Name is required");
@@ -393,12 +509,18 @@ public class FrmContacts extends javax.swing.JFrame {
             return;
         }
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
         String comments = txaComments.getText();
         Date birthDate = jDateChooser1.getDate();
         String type = cmbType.getSelectedItem().toString();
+<<<<<<< HEAD
+        String sex = radSexFemale.isSelected() ? "Male"
+                : radSexMale.isSelected() ? "Fenale" : "None";
+=======
         String sex = radSexMale.isSelected() ? "Male" : "Female";
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 
         ArrayList<String> hobbies = new ArrayList<>();
 
@@ -435,8 +557,13 @@ public class FrmContacts extends javax.swing.JFrame {
                 .append("sex", sex)
                 .append("hobbies", hobbies)
                 .append("comments", comments);
+<<<<<<< HEAD
+        
+        CRUDOperations.insert("Contacs", contact); 
+=======
 
         CRUDOperations.insert("Contacs", contact);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 
         JOptionPane.showMessageDialog(this, "Contact saved successfully");
 
@@ -454,10 +581,13 @@ public class FrmContacts extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbPlayAnInstrumentActionPerformed
 
+<<<<<<< HEAD
+=======
     private void radSexMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radSexMaleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radSexMaleActionPerformed
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     /**
      * @param args the command line arguments
      */
@@ -508,13 +638,19 @@ public class FrmContacts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+<<<<<<< HEAD
+=======
     private javax.swing.JPanel jPanel3;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel radButtonGroupSex;
     private javax.swing.JRadioButton radSexFemale;
     private javax.swing.JRadioButton radSexMale;
     private javax.swing.JTextArea txaComments;
+<<<<<<< HEAD
+=======
     private javax.swing.JTextField txtAge;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtOther;

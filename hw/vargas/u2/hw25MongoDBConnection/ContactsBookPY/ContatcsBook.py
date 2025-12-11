@@ -4,7 +4,10 @@ from tkcalendar import DateEntry
 from datetime import date
 from Contact import Contact
 from ContactController import ContactController
+<<<<<<< HEAD
+=======
 from ValidationUtils import GUIValidation 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 
 class FrmContacts(tk.Tk):
     def __init__(self):
@@ -90,8 +93,12 @@ class FrmContacts(tk.Tk):
         first_name = self.txt_first.get()
         last_name = self.txt_last.get()
         
+<<<<<<< HEAD
+        birth_year = self.cal_date.get_date().year
+=======
         birth_date = self.cal_date.get_date()
         birth_year = birth_date.year
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         current_year = date.today().year
         age = current_year - birth_year
         self.lbl_age_val.config(text=str(age))
@@ -116,6 +123,8 @@ class FrmContacts(tk.Tk):
         )
 
     def btn_save_action(self):
+<<<<<<< HEAD
+=======
         first_name = self.txt_first.get()
         last_name = self.txt_last.get()
         birth_date = self.cal_date.get_date() 
@@ -143,6 +152,7 @@ class FrmContacts(tk.Tk):
             self.cal_date.focus_set()
             return
             
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         contact = self.read_values()
 
         response = messagebox.askyesnocancel("SAVE CONTACTS?", f"saving contact --> {contact}")
@@ -156,7 +166,11 @@ class FrmContacts(tk.Tk):
                 messagebox.showerror("Error", "Could not save to MongoDB")
                 
         elif response is False:
+<<<<<<< HEAD
+             messagebox.showwarning("Warning", "Your data will be lost")
+=======
             messagebox.showwarning("Warning", "Your data will be lost")
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         else:
             self.txt_first.focus_set()
 

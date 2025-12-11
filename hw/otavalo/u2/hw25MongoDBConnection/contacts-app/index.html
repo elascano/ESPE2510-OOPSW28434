@@ -8,6 +8,12 @@ body { font-family: Segoe UI; background:#f5f5f5; }
 .container { width: 680px; margin:20px auto; background:white; padding:20px;
              border-radius:8px; box-shadow:0 0 10px #aaa; }
 label { display:block; margin-top:10px; }
+<<<<<<< HEAD
+input, select, textarea { width:100%; padding:5px; }
+.row { display:flex; justify-content:space-between; }
+.col { width:48%; }
+.btn { background:#0078d7; color:white; padding:10px; margin-top:20px; border:none; cursor:pointer; }
+=======
 input, select, textarea { width:100%; padding:5px; box-sizing: border-box; } 
 .row { display:flex; justify-content:space-between; }
 .col { width:48%; }
@@ -17,6 +23,7 @@ input, select, textarea { width:100%; padding:5px; box-sizing: border-box; }
 .search-container { margin-top: 30px; border-top: 1px solid #ccc; padding-top: 20px; }
 #resultsContainer div { margin-top: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; background: #f9f9f9; }
 #resultsContainer button { width: auto; margin-right: 5px; }
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 </style>
 </head>
 
@@ -24,6 +31,16 @@ input, select, textarea { width:100%; padding:5px; box-sizing: border-box; }
 <div class="container">
     <h1>CONTACTS</h1>
 
+<<<<<<< HEAD
+    <label>ID:</label>
+    <span id="idField"></span>
+
+    <label>First Name:</label>
+    <input id="firstName">
+
+    <label>Last Name:</label>
+    <input id="lastName">
+=======
     <label>ID (Numérico):</label>
     <span id="idField"></span>
 
@@ -32,6 +49,7 @@ input, select, textarea { width:100%; padding:5px; box-sizing: border-box; }
 
     <label>Last Name:</label>
     <input id="lastName" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+" title="Only letters and spaces are allowed">
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 
     <label>Birth Date:</label>
     <input type="date" id="birthDate">
@@ -65,6 +83,13 @@ input, select, textarea { width:100%; padding:5px; box-sizing: border-box; }
     <label>Comments:</label>
     <textarea id="comments" rows="5"></textarea>
 
+<<<<<<< HEAD
+    <button class="btn" onclick="save()">Save</button>
+</div>
+
+<script>
+// === Calcular edad ===
+=======
     <button class="btn" onclick="save()">Save / Update</button>
     <button class="btn btn-secondary" onclick="resetForm()">Clear Form</button>
 
@@ -81,6 +106,7 @@ input, select, textarea { width:100%; padding:5px; box-sizing: border-box; }
 
 <script>
 // === Calculate Age ===
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 document.getElementById("birthDate").addEventListener("change",()=>{
     let b = new Date(birthDate.value);
     let t = new Date();
@@ -90,6 +116,10 @@ document.getElementById("birthDate").addEventListener("change",()=>{
     document.getElementById("age").value = age;
 });
 
+<<<<<<< HEAD
+// === Guardar en Mongo ===
+async function save() {
+=======
 // === Form Reset Function (Limpia campos) ===
 function resetForm() {
     // CRÍTICO: Asegura que el ID numérico se borra
@@ -150,6 +180,7 @@ async function save() {
     }
 
     // 2. Recolección de datos
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     let data = {
         first_name: firstName.value,
         last_name: lastName.value,
@@ -161,6 +192,11 @@ async function save() {
         comments: comments.value
     };
 
+<<<<<<< HEAD
+    let id = await window.api.saveContact(data);
+    document.getElementById("idField").textContent = id;
+    alert("Contacto guardado con ID: " + id);
+=======
     const existingId = document.getElementById("idField").textContent.trim();
 
     try {
@@ -221,8 +257,13 @@ async function searchContact() {
     } catch (error) {
         resultsContainer.innerHTML = `<div>Error searching: ${error.message}</div>`;
     }
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 }
 </script>
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8

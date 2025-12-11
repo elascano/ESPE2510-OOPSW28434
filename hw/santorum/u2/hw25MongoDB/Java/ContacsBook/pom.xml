@@ -13,6 +13,13 @@
     </properties>
     
     <dependencies>
+<<<<<<< HEAD
+    <dependency>
+    <groupId>org.mongodb</groupId>
+    <artifactId>mongodb-driver-sync</artifactId>
+    <version>4.11.1</version>
+    </dependency>
+=======
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-sync</artifactId>
@@ -24,6 +31,7 @@
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.16</version>
         </dependency>
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     </dependencies>
 </project>
 
