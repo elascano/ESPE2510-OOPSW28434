@@ -2,8 +2,18 @@ package ec.edu.espe.contactsbook.view;
 
 import ec.edu.espe.contactsbook.controller.ContactController;
 import ec.edu.espe.contactsbook.model.Contact;
+import java.awt.HeadlessException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 /**
  *
@@ -16,6 +26,27 @@ public class FrmContacts extends javax.swing.JFrame {
      */
     public FrmContacts() {
         initComponents();
+        setupNumericValidation();
+    }
+    private void setupNumericValidation() {
+        DocumentFilter numericFilter = new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                if (string.matches("\\d*")) {
+                    super.insertString(fb, offset, string, attr);
+                } else {
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text.matches("\\d*")) {
+                    super.replace(fb, offset, length, text, attrs);
+                } else {
+                }
+            }
+        };
+        ((AbstractDocument) txtId.getDocument()).setDocumentFilter(numericFilter);
     }
 
     /**
@@ -52,6 +83,8 @@ public class FrmContacts extends javax.swing.JFrame {
         txaComments = new java.awt.TextArea();
         jPanel3 = new javax.swing.JPanel();
         btmSave = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
+        txtAge = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,6 +175,16 @@ public class FrmContacts extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        txtId.setToolTipText("only accept only name");
+
+        txtAge.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        txtAge.setToolTipText("format for the dates in ddmm/yyyy");
+        txtAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAgeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -159,14 +202,17 @@ public class FrmContacts extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                         .addComponent(txtLastName)
-                        .addComponent(ftdBirthDate))
+                        .addComponent(ftdBirthDate)
+                        .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
                     .addComponent(RadSexMale)
                     .addComponent(RadSexFemale)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtAge, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cmbType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(151, 151, 151)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txaComments, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,10 +226,11 @@ public class FrmContacts extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -199,8 +246,10 @@ public class FrmContacts extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(ftdBirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addGap(17, 17, 17)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -250,80 +299,145 @@ public class FrmContacts extends javax.swing.JFrame {
     }//GEN-LAST:event_ftdBirthDateActionPerformed
 
     private void btmSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmSaveActionPerformed
-        try {
-            readValues();
+            try {
+            if (!validateRequiredFields()) {
+                return;
+            }
             
+            readValues();
+
             int option = JOptionPane.showConfirmDialog(rootPane, 
-                    "¿Desea guardar el siguiente contacto?\n" + contact, 
-                    "Confirmar Guardado", 
+                    "Do you want to save the following contact?\n" + contact, 
+                    "Confirm Save", 
                     JOptionPane.YES_NO_CANCEL_OPTION);
             
-            if (option == JOptionPane.YES_OPTION) {
-                ContactController controller = new ContactController();
-                
-                if (controller.create(contact)) {
-                    JOptionPane.showMessageDialog(rootPane, 
-                            " Contacto guardado.", 
-                            "Guardado Exitoso", 
-                            JOptionPane.INFORMATION_MESSAGE);
-                    emptyFields();
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, 
-                            " ERROR: Fallo al guardar el contacto en MongoDB. Revisa la conexión del controlador.", 
-                            "Error de Base de Datos", 
-                            JOptionPane.ERROR_MESSAGE);
+                switch (option) {
+                    case JOptionPane.YES_OPTION -> {
+                        ContactController controller = new ContactController();
+                        if (controller.create(contact)) {
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Contact saved successfully.",
+                                    "Save Successful",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            emptyFields();
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "ERROR: Failed to save contact to MongoDB. Check the controller connection.",
+                                    "Database Error",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                    case JOptionPane.NO_OPTION -> {
+                        JOptionPane.showMessageDialog(rootPane,
+                                "The data will not be saved and will be lost.",
+                                "Action Cancelled",
+                                JOptionPane.WARNING_MESSAGE);
+                        emptyFields();
+                    }
+                    default -> txtFirstName.requestFocus();
                 }
-                
-            } else if (option == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(rootPane, 
-                        "Los datos no se guardarán y se perderán.", 
-                        "Acción Cancelada", 
-                        JOptionPane.WARNING_MESSAGE);
-                emptyFields();
-            } else { 
-                txtFirstName.requestFocus();
-            }
             
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, 
-                    "Error de formato. Asegúrate de que los campos numéricos sean correctos.", 
-                    "Error de Entrada", 
+                    "Format error. Ensure that the ID and Age fields contain only numbers.", 
+                    "Input Error", 
                     JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
+        } catch (ParseException e) {
             JOptionPane.showMessageDialog(rootPane, 
-                    "Ocurrió un error inesperado: " + e.getMessage(), 
-                    "Error General", 
+                    "Date format error. Please use DD/MM/YYYY and ensure the date is not in the future.", 
+                    "Date Error", 
                     JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(rootPane, 
+                    "An unexpected error occurred: " + e.getMessage(), 
+                    "General Error", 
+                    JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(FrmContacts.class.getName()).log(Level.SEVERE, null, e);
         }
+    }                                       
+    
+    private boolean validateRequiredFields() throws ParseException {
+        // 1. Mandatory Fields (ID, First Name, Last Name)
+        if (txtId.getText().trim().isEmpty() || 
+            txtFirstName.getText().trim().isEmpty() || 
+            txtLastName.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, 
+                    "ID, First Name, and Last Name are required.", 
+                    "Validation Error", 
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        try {
+            Integer.valueOf(txtId.getText().trim());
+            if (!txtAge.getText().trim().isEmpty()) {
+                Integer.valueOf(txtAge.getText().trim());
+            }
+        } catch (NumberFormatException e) {
+             JOptionPane.showMessageDialog(rootPane, 
+                    "ID and Age fields must contain only valid numbers.", 
+                    "Validation Error", 
+                    JOptionPane.ERROR_MESSAGE);
+             return false;
+        }
+        
+        // 3. Date Validation (Not in the future)
+        String dateStr = ftdBirthDate.getText().replace('/', '/'); 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false); // Strict date parsing
+
+        try {
+            Date birthDate = sdf.parse(dateStr);
+            Date today = new Date();
+            
+            if (birthDate.after(today)) {
+                JOptionPane.showMessageDialog(rootPane, 
+                        "Birth Date cannot be in the future.", 
+                        "Validation Error", 
+                        JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(rootPane, 
+                    "Invalid date format or date is incomplete. Please use DD/MM/YYYY.", 
+                    "Validation Error", 
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
     }
+    
     private void emptyFields(){
+        txtId.setText("");
         txtFirstName.setText("");
         txtLastName.setText("");
-        ftdBirthDate.setText("");
+        // ftdBirthDate.setText(""); 
         cmbType.setSelectedIndex(0);
         RadSexFemale.setSelected(true);
         lstHobbies.clearSelection();
         txaComments.setText("");
+        txtAge.setText("");
     }
-    private void readValues(){
+    
+    private void readValues() throws ParseException, NumberFormatException {
         
-        int id = 1; 
-        String firstName;
-        String lastName;
-        int age;
-        String typeOfContact;
+        int id = Integer.parseInt(txtId.getText().trim());
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        
+        int age = 0;
+        if (!txtAge.getText().trim().isEmpty()) {
+            age = Integer.parseInt(txtAge.getText().trim());
+        }
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+        Date birthDate = sdf.parse(ftdBirthDate.getText().trim());
+
+        String typeOfContact = cmbType.getSelectedItem().toString();
+        
         String sex; 
-        ArrayList <String> hobbies = new ArrayList<>();
-        String comments;
-        
-        firstName = txtFirstName.getText();
-        lastName = txtLastName.getText();
-        
-        age = 54;
-        
-        typeOfContact = cmbType.getSelectedItem().toString();
-        
         if (RadSexFemale.isSelected()) {
             sex = "Female";
         } else if (RadSexMale.isSelected()) {
@@ -332,13 +446,18 @@ public class FrmContacts extends javax.swing.JFrame {
             sex = "Unknown";
         }
         
+        ArrayList <String> hobbies = new ArrayList<>();
         hobbies.addAll(lstHobbies.getSelectedValuesList());
         
-        comments = txaComments.getText();
+        String comments = txaComments.getText();
         
-        contact = new Contact(id, firstName, lastName, age, typeOfContact, sex, hobbies, comments);
-            
+        contact = new Contact(id, firstName, lastName, age, birthDate, typeOfContact, sex, hobbies, comments);
+        
     }//GEN-LAST:event_btmSaveActionPerformed
+
+    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,7 +518,9 @@ public class FrmContacts extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> lstHobbies;
     private java.awt.TextArea txaComments;
+    private javax.swing.JFormattedTextField txtAge;
     private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtLastName;
     // End of variables declaration//GEN-END:variables
 }
