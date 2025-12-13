@@ -84,7 +84,6 @@ public class FrmContacts extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btmSave = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
-        txtAge = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -177,14 +176,6 @@ public class FrmContacts extends javax.swing.JFrame {
 
         txtId.setToolTipText("only accept only name");
 
-        txtAge.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        txtAge.setToolTipText("format for the dates in ddmm/yyyy");
-        txtAge.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAgeActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -210,9 +201,7 @@ public class FrmContacts extends javax.swing.JFrame {
                     .addComponent(RadSexMale)
                     .addComponent(RadSexFemale)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtAge, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(cmbType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(151, 151, 151)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txaComments, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,10 +235,8 @@ public class FrmContacts extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(ftdBirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
+                        .addComponent(jLabel5)
+                        .addGap(17, 17, 17)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -357,7 +344,6 @@ public class FrmContacts extends javax.swing.JFrame {
     }                                       
     
     private boolean validateRequiredFields() throws ParseException {
-        // 1. Mandatory Fields (ID, First Name, Last Name)
         if (txtId.getText().trim().isEmpty() || 
             txtFirstName.getText().trim().isEmpty() || 
             txtLastName.getText().trim().isEmpty()) {
@@ -370,9 +356,8 @@ public class FrmContacts extends javax.swing.JFrame {
 
         try {
             Integer.valueOf(txtId.getText().trim());
-            if (!txtAge.getText().trim().isEmpty()) {
-                Integer.valueOf(txtAge.getText().trim());
-            }
+            
+            
         } catch (NumberFormatException e) {
              JOptionPane.showMessageDialog(rootPane, 
                     "ID and Age fields must contain only valid numbers.", 
@@ -381,10 +366,9 @@ public class FrmContacts extends javax.swing.JFrame {
              return false;
         }
         
-        // 3. Date Validation (Not in the future)
         String dateStr = ftdBirthDate.getText().replace('/', '/'); 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        sdf.setLenient(false); // Strict date parsing
+        sdf.setLenient(false); 
 
         try {
             Date birthDate = sdf.parse(dateStr);
@@ -412,12 +396,11 @@ public class FrmContacts extends javax.swing.JFrame {
         txtId.setText("");
         txtFirstName.setText("");
         txtLastName.setText("");
-        // ftdBirthDate.setText(""); 
+         ftdBirthDate.setText(""); 
         cmbType.setSelectedIndex(0);
         RadSexFemale.setSelected(true);
         lstHobbies.clearSelection();
         txaComments.setText("");
-        txtAge.setText("");
     }
     
     private void readValues() throws ParseException, NumberFormatException {
@@ -426,10 +409,9 @@ public class FrmContacts extends javax.swing.JFrame {
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
         
-        int age = 0;
-        if (!txtAge.getText().trim().isEmpty()) {
-            age = Integer.parseInt(txtAge.getText().trim());
-        }
+        int age=54;
+        
+        
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false);
@@ -452,12 +434,9 @@ public class FrmContacts extends javax.swing.JFrame {
         String comments = txaComments.getText();
         
         contact = new Contact(id, firstName, lastName, age, birthDate, typeOfContact, sex, hobbies, comments);
-        
+            
+    
     }//GEN-LAST:event_btmSaveActionPerformed
-
-    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAgeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -518,7 +497,6 @@ public class FrmContacts extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> lstHobbies;
     private java.awt.TextArea txaComments;
-    private javax.swing.JFormattedTextField txtAge;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtLastName;

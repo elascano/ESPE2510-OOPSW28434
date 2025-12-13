@@ -11,7 +11,7 @@ public class Contact {
     private int id;
     private String firstName;
     private String lastName;
-    private int age;
+    private int age ;
     private Date birthDate;
     private String typeOfContact;//Family, Friend Job, Unknown
     private String sex; //male, female
