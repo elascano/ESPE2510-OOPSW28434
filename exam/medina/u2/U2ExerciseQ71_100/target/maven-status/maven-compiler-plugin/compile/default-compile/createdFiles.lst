@@ -1,0 +1,6 @@
+ec\edu\espe\students\model\Student.class
+ec\edu\espe\students\view\StudentView$1.class
+ec\edu\espe\students\model\MongoDBConnection.class
+ec\edu\espe\students\view\StudentView$2.class
+ec\edu\espe\students\view\StudentView.class
+ec\edu\espe\students\controller\StudentController.class
