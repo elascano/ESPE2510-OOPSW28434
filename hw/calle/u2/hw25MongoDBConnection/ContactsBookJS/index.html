@@ -1,43 +1,28 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>CONTACTS GUI (Electron)</title>
     <style>
-        :root {
-            --primary-color: #007bff;
-            --primary-hover: #0056b3;
-            --bg-color: #f7f9fc;
-            --card-bg: #ffffff;
-            --border-color: #e0e0e0;
-            --font-color: #333;
-            --success-bg: #d4edda;
-            --error-bg: #f8d7da;
-        }
-
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             padding: 20px; 
             margin: 0; 
-            background-color: var(--bg-color); 
-            color: var(--font-color);
         }
 
         .container {
             max-width: 650px;
             margin: 0 auto;
-            background-color: var(--card-bg);
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid black;
         }
 
         h1 { 
             text-align: center; 
-            color: var(--primary-color); 
             margin-bottom: 30px; 
             font-size: 2em;
-            border-bottom: 2px solid var(--border-color);
+            border-bottom: 2px solid black;
             padding-bottom: 10px;
         }
 
@@ -66,16 +51,16 @@
         textarea { 
             width: 100%; 
             padding: 10px; 
-            border: 1px solid var(--border-color); 
+            border: 1px solid black; 
             border-radius: 6px;
             box-sizing: border-box;
             transition: border-color 0.3s;
         }
 
         input:focus, select:focus, textarea:focus {
-            border-color: var(--primary-color);
+            border-color: black;
             outline: none;
-            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
         }
 
         textarea { 
@@ -102,10 +87,10 @@
         }
 
         button { 
-            background-color: var(--primary-color); 
-            color: white; 
+            background-color: #ddd; 
+            color: black; 
             padding: 12px 25px; 
-            border: none; 
+            border: 1px solid black; 
             border-radius: 6px; 
             cursor: pointer; 
             display: block; 
@@ -115,7 +100,7 @@
         }
 
         button:hover {
-            background-color: var(--primary-hover);
+            background-color: #ccc;
         }
 
         #message { 
@@ -124,16 +109,17 @@
             padding: 15px; 
             border-radius: 6px; 
             font-weight: 600;
+            border: 1px solid black;
         }
 
         .success { 
-            background-color: var(--success-bg); 
-            color: #155724; 
+            border-color: green; 
+            color: green; 
         }
 
         .error { 
-            background-color: var(--error-bg); 
-            color: #721c24; 
+            border-color: red; 
+            color: red; 
         }
     </style>
 </head>
@@ -155,12 +141,14 @@
 
                     <div class="form-group">
                         <label for="birth_date">Birth Date (dd/mm/yyyy):</label>
-                        <input type="text" id="birth_date" name="birth_date" placeholder="DD/MM/YYYY" value="01/01/2000">
+                        <input type="text" id="birth_date" name="birth_date" placeholder="DD/MM/YYYY" value="01/01/2000" required>
+                        <span id="dateError" class="error" style="display: none; font-size: 0.9em; margin-top: 5px;">Birth date cannot be in the future.</span>
                     </div>
 
                     <div class="form-group">
                         <label for="age">Age:</label>
-                        <input type="number" id="age" name="age" min="0">
+                        <input type="text" id="age" name="age" pattern="[0-9]*" inputmode="numeric">
+                        <span id="ageError" class="error" style="display: none; font-size: 0.9em; margin-top: 5px;">Only numbers are allowed.</span>
                     </div>
 
                     <div class="form-group">
@@ -203,8 +191,9 @@
 
                 <div class="right-frame">
                     <div class="form-group">
-                        <label for="contact_id">id (Optional):</label>
-                        <input type="text" id="contact_id" name="contact_id" placeholder="Only digits">
+                        <label for="contact_id">ID:</label>
+                        <input type="text" id="contact_id" name="contact_id" placeholder="Only digits" pattern="[0-9]*" inputmode="numeric" required>
+                        <span id="idError" class="error" style="display: none; font-size: 0.9em; margin-top: 5px;">Only numbers are allowed.</span>
                     </div>
 
                     <div class="form-group">
@@ -223,11 +212,20 @@
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('contactForm');
             const messageElement = document.getElementById('message');
+            const ageInput = document.getElementById('age');
+            const idInput = document.getElementById('contact_id');
+            const dateInput = document.getElementById('birth_date');
+            const ageError = document.getElementById('ageError');
+            const idError = document.getElementById('idError');
+            const dateError = document.getElementById('dateError');
 
             const showMessage = (text, isError = false) => {
                 messageElement.textContent = text;
                 messageElement.className = isError ? 'error' : 'success';
-                setTimeout(() => messageElement.textContent = "", 5000); 
+                setTimeout(() => {
+                    messageElement.textContent = "";
+                    messageElement.className = "";
+                }, 5000); 
             };
 
             const clearForm = () => {
@@ -236,20 +234,83 @@
                 document.getElementById('hobbies').value = "Cook";
                 document.getElementById('sex_female').checked = true;
                 document.getElementById('birth_date').value = "01/01/2000";
+                ageError.style.display = 'none';
+                idError.style.display = 'none';
+                dateError.style.display = 'none';
             };
+
+            const validateNumberInput = (event, errorElement) => {
+                const input = event.target;
+                const value = input.value;
+                const cleanedValue = value.replace(/[^0-9]/g, '');
+
+                if (value !== cleanedValue) {
+                    input.value = cleanedValue;
+                    errorElement.style.display = 'inline';
+                    showMessage('Only numbers are allowed for this field.', true);
+                } else {
+                    errorElement.style.display = 'none';
+                }
+            };
+
+            const validateDate = (input, errorElement) => {
+                const dateValue = input.value;
+                const dateParts = dateValue.split('/');
+                
+                if (dateParts.length === 3) {
+                    const day = parseInt(dateParts[0], 10);
+                    const month = parseInt(dateParts[1], 10);
+                    const year = parseInt(dateParts[2], 10);
+                    
+                    const inputDate = new Date(year, month - 1, day);
+                    const today = new Date();
+                    
+                    today.setHours(0, 0, 0, 0);
+
+                    if (inputDate > today) {
+                        errorElement.style.display = 'inline';
+                        showMessage('Birth date cannot be in the future.', true);
+                        return false;
+                    }
+                }
+
+                errorElement.style.display = 'none';
+                return true;
+            };
+            
+            ageInput.addEventListener('input', (e) => validateNumberInput(e, ageError));
+            idInput.addEventListener('input', (e) => validateNumberInput(e, idError));
+            dateInput.addEventListener('change', (e) => validateDate(e.target, dateError));
+            dateInput.addEventListener('blur', (e) => validateDate(e.target, dateError));
+
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
+                const isAgeValid = !ageInput.value.match(/[^0-9]/);
+                const isIdValid = !idInput.value.match(/[^0-9]/);
+                const isDateValid = validateDate(dateInput, dateError);
+
+                if (!isAgeValid || !isIdValid || !isDateValid) {
+                    showMessage('Validation Error: Please correct the marked fields.', true);
+                    return; 
+                }
+
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
                 
-                const result = await window.contactAPI.saveContact(data);
+                if (window.contactAPI && window.contactAPI.saveContact) {
+                    const result = await window.contactAPI.saveContact(data);
 
-                if (result.error) {
-                    showMessage(result.error, true);
+                    if (result.error) {
+                        showMessage(result.error, true);
+                    } else {
+                        showMessage(result.message, false);
+                        clearForm();
+                    }
                 } else {
-                    showMessage(result.message, false);
+                    console.log("Data to save :", data);
+                    showMessage(`Contact saved successfully `, false);
                     clearForm();
                 }
             });

@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from tkcalendar import DateEntry 
 import re
 from pymongo import MongoClient
@@ -13,15 +13,13 @@ try:
     client = MongoClient(MONGO_URI)
     db = client[DB_NAME]
     contacts_collection = db[COLLECTION_NAME]
-    print("Conexión a MongoDB exitosa.")
 except Exception as e:
-    print(f"Error al conectar a MongoDB: {e}")
     client = None
     db = None
 
 def save_contact():
     if not client:
-        print("ERROR: No se pudo conectar a la base de datos. Verifique su MONGO_URI y conexión.")
+        messagebox.showerror("Database Error", "ERROR: Could not connect to the database. Check your MONGO_URI and connection.")
         return
 
     contact_id = entry_id.get().strip()
@@ -35,26 +33,41 @@ def save_contact():
     comments = text_comments.get("1.0", tk.END).strip()
 
     if not first_name or not last_name:
-        print("ERROR: First Name and Last Name are required.")
+        messagebox.showerror("Validation Error", "First Name and Last Name are required.")
+        return
+    
+    if not contact_id:
+        messagebox.showerror("Validation Error", "ID is required.")
         return
 
-    if contact_id and not contact_id.isdigit():
-        print("ERROR: ID must contain only digits.")
+    if not contact_id.isdigit():
+        messagebox.showerror("Validation Error", "ID must contain only digits.")
+        return
+    
+    if age_str and not age_str.isdigit():
+        messagebox.showerror("Validation Error", "Age must be a valid integer (only digits).")
         return
     
     try:
-        age = int(age_str) if age_str.isdigit() else 0
+        age = int(age_str) if age_str else 0
     except ValueError:
-        print("ERROR: Age must be a valid integer.")
+        messagebox.showerror("Validation Error", "Age must be a valid integer (only digits).")
         return
         
     try:
         birth_date = datetime.datetime.strptime(birth_date_str, '%d/%m/%Y').date()
+        today = datetime.date.today()
+        
+        if birth_date > today:
+            messagebox.showerror("Validation Error", "Birth Date cannot be in the future.")
+            return
+
     except ValueError:
-        birth_date = None
+        messagebox.showerror("Validation Error", "Invalid Birth Date format. Please use DD/MM/YYYY.")
+        return
 
     contact_data = {
-        "contact_id": contact_id if contact_id else None,
+        "contact_id": contact_id,
         "first_name": first_name,
         "last_name": last_name,
         "birth_date": birth_date_str,
@@ -67,21 +80,22 @@ def save_contact():
     }
     
     try:
-        result = contacts_collection.insert_one(contact_data)
+        contacts_collection.insert_one(contact_data)
         
         entry_id.delete(0, tk.END)
         entry_first_name.delete(0, tk.END)
         entry_last_name.delete(0, tk.END)
         entry_age.delete(0, tk.END)
+        cal_birth_date.set_date(datetime.date(2000, 1, 1))
         combo_type.set("Friend")
         var_sex.set("Female")
         combo_hobbies.set("Cook")
         text_comments.delete("1.0", tk.END)
 
-        print(f"Contacto '{first_name} {last_name}' guardado con éxito. ID de MongoDB: {result.inserted_id}")
+        messagebox.showinfo("Success", "Contact saved successfully")
         
     except Exception as e:
-        print(f"ERROR al guardar en MongoDB: {e}")
+        messagebox.showerror("Database Error", f"ERROR saving to MongoDB: {e}")
 
 root = tk.Tk()
 root.title("CONTACTS")
@@ -113,6 +127,10 @@ entry_last_name = None
 entry_age = None
 cal_birth_date = None
 entry_id = None 
+var_sex = tk.StringVar(value="Female") 
+combo_type = None
+combo_hobbies = None
+text_comments = None
 
 fields_left = [
     ("First Name:", 0),
@@ -130,11 +148,13 @@ for i, (text, row) in enumerate(fields_left):
     elif text == "Last Name:": entry_last_name = entry
 
 row_birth_date = 2 
-label_birth_date = tk.Label(left_frame, text="Birth Date:")
+label_birth_date = tk.Label(left_frame, text="Birth Date (DD/MM/YYYY):")
 label_birth_date.grid(row=row_birth_date, column=0, sticky="w", pady=5, padx=5)
 
 cal_birth_date = DateEntry(left_frame, width=18, 
-                             date_pattern='dd/mm/yyyy', locale='es_ES') 
+                             date_pattern='dd/mm/yyyy', locale='en_US', 
+                             maxdate=datetime.date.today(),
+                             year=2000, month=1, day=1) 
 cal_birth_date.grid(row=row_birth_date, column=1, sticky="w", pady=5, padx=5)
 
 label_age = tk.Label(left_frame, text="Age:")
@@ -151,7 +171,6 @@ combo_type.grid(row=4, column=1, sticky="w", pady=5, padx=5)
 
 label_sex = tk.Label(left_frame, text="Sex:")
 label_sex.grid(row=5, column=0, sticky="w", pady=5, padx=5)
-var_sex = tk.StringVar(value="Female") 
 
 radio_male = tk.Radiobutton(left_frame, text="Male", variable=var_sex, value="Male")
 radio_female = tk.Radiobutton(left_frame, text="Female", variable=var_sex, value="Female")
@@ -166,12 +185,12 @@ combo_hobbies = ttk.Combobox(left_frame, values=hobby_options, state="readonly",
 combo_hobbies.set("Cook")
 combo_hobbies.grid(row=7, column=1, sticky="w", pady=5, padx=5)
 
-label_id = tk.Label(right_frame, text="id:")
+label_id = tk.Label(right_frame, text="ID:")
 label_id.grid(row=0, column=0, sticky="w", pady=5, padx=5)
 entry_id = tk.Entry(right_frame, width=20)
 entry_id.grid(row=0, column=1, sticky="w", pady=5, padx=5)
 
-label_comments = tk.Label(right_frame, text="Comments")
+label_comments = tk.Label(right_frame, text="Comments:")
 label_comments.grid(row=1, column=0, sticky="w", pady=5, padx=5, columnspan=2)
 
 text_comments = tk.Text(right_frame, width=25, height=5, wrap="word")
@@ -185,4 +204,3 @@ root.mainloop()
 
 if client:
     client.close()
-    print("Conexión a MongoDB cerrada.")
