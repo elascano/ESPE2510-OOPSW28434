@@ -22,7 +22,7 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "Contact{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", typeOfContacts=" + typeOfContacts + ", sex=" + sex + ", hobbies=" + hobbies + ", comments=" + comments + '}';
+        return "Contact{" + "id = " + id + "\n firstName=" + firstName + "\n lastName=" + lastName + "\n age=" + age + "\n typeOfContacts=" + typeOfContacts + "\n sex=" + sex + "\n hobbies=" + hobbies + "\n comments=" + comments + '}';
     }
        
        
