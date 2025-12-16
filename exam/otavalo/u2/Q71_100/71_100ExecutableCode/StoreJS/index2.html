@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Inventory & POS System</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; }
+        header { background-color: #004b8d; color: white; padding: 15px 20px; text-align: center; }
+        .container { max-width: 1300px; margin: 20px auto; padding: 20px; background-color: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
+        .tabs { display: flex; border-bottom: 2px solid #ccc; margin-bottom: 20px; }
+        .tab-button { padding: 10px 20px; cursor: pointer; border: none; background-color: #eee; border-radius: 5px 5px 0 0; margin-right: 5px; transition: background-color 0.3s; }
+        .tab-button.active { background-color: #004b8d; color: white; }
+        .tab-content { display: none; padding: 20px 0; }
+        .tab-content.active { display: block; }
+        form label { display: block; margin-top: 10px; font-weight: bold; }
+        form input[type="text"], form input[type="number"], form input[type="email"], form select { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        form button { background-color: #28a745; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; margin-top: 15px; margin-right: 10px; }
+        form button:hover { opacity: 0.9; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .message-box { padding: 10px; margin-top: 20px; border-radius: 4px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .warning { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+        .delete-btn { background-color: #dc3545; }
+        
+        /* POS Specific Styles */
+        .pos-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        .pos-panel { padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        
+        /* ⚡ IVA Breakdown Styles ⚡ */
+        #cart-total-details { border-top: 2px solid #ccc; padding-top: 10px; margin-top: 10px; }
+        #cart-total-details > div { padding: 5px 0; text-align: right; }
+        #cart-total { font-size: 1.5em; font-weight: bold; padding: 10px 0; background-color: #e6f7ff; border-radius: 4px; }
+        /* --------------------------- */
+        
+        #process-sale-btn { background-color: #007bff; width: 100%; padding: 15px; font-size: 1.1em; }
+        .customer-lookup-result { margin-top: 10px; padding: 8px; border: 1px solid #007bff; border-radius: 4px; background-color: #e7f5ff; }
+    </style>
+</head>
+<body onload="openTab(event, 'professors')">
+
+    <header>
+        <h1>Store Inventory & Point of Sale (POS) System</h1>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'professors')">Inventory (professors)</button>
+            <button class="tab-button" onclick="openTab(event, 'Customers')">Customers</button>
+            <button class="tab-button" onclick="openTab(event, 'Sales')">Point of Sale (POS) & History</button>
+        </div>
+
+        <div id="professors" class="tab-content active">
+            <h2>professor Management (CRUD)</h2>
+            <form id="professor-form">
+                <input type="hidden" id="professor-id">
+                
+                <label for="name">Professor Full Name:</label>
+                <input type="text" id="name" required>
+
+                <div style="display: flex; gap: 20px;">
+                    <div style="flex: 1;">
+                        <label for="payment">payment ($):</label>
+                        <input type="number" id="payment" required min="0.01" step="0.01" value="1.00">
+                    </div>
+                </div>
+                
+                <label for="subject">subject:</label>
+                <input type="text" id="subject" required>
+                
+                <button type="submit" id="professor-submit-btn">Save New Professor</button>
+                <button type="button" onclick="clearprofessorForm()">Clear Form</button>
+            </form>
+
+            <div id="professor-message" class="message-box" style="display: none;"></div>
+
+            <h3>Inventory List</h3>
+            <input type="text" id="professor-search" placeholder="Search by Name " onkeyup="fetchprofessors()">
+            <table id="professors-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>payment</th>
+                        <th>subject</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
+
+        
+        
+        <div id="Sales" class="tab-content">
+            <h2>Point of Sale (POS)</h2>
+            
+            <div class="pos-grid">
+                <div class="pos-panel">
+                    <h3>1. professor Selection</h3>
+                    <input type="text" id="pos-professor-search" placeholder="Search professors by Name or SKU..." onkeyup="fetchAvailableprofessors()">
+                    
+                    <table id="pos-professors-table">
+                        <thead>
+                            <tr>
+                                <th>Professor Full Name</th>
+                                <th>Stock</th>
+                                <th>payment</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+
+                    <h3 style="margin-top: 30px;">2. Current Cart</h3>
+                    <table id="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Qty</th>
+                                <th>Unit payment</th>
+                                <th>Subtotal</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                    
+                    <div id="cart-total-details">
+                        <div>Subtotal: <span id="cart-subtotal">$0.00</span></div>
+                        <div>IVA (16%): <span id="cart-iva">$0.00</span></div>
+                        <div id="cart-total">Total: $0.00</div>
+                    </div>
+                    <button class="delete-btn" onclick="clearCart()" style="float: right;">Clear Cart</button>
+                </div>
+
+                <div class="pos-panel">
+                    <h3>3. Customer & Checkout</h3>
+                    <form id="sale-form">
+                        <label for="pos-customer-id">Customer ID (Optional):</label>
+                        <input type="number" id="pos-customer-id" placeholder="Enter Customer ID" min="1" onkeyup="lookupCustomer()">
+                        
+                        <div id="customer-lookup-result" class="customer-lookup-result" style="display:none;"></div>
+                        
+                        <input type="hidden" id="selected-customer-id">
+
+                        <label for="payment-method">Payment Method:</label>
+                        <select id="payment-method" required>
+                            <option value="Cash">Cash</option>
+                            <option value="Card">Card</option>
+                            <option value="Transfer">Transfer</option>
+                        </select>
+                        
+                        <div id="sale-message" class="message-box" style="display: none;"></div>
+
+                        <button type="submit" id="process-sale-btn">Process Sale</button>
+                    </form>
+                    
+                    <h3 style="margin-top: 40px;">Sales History</h3>
+                    <input type="text" id="sales-search" placeholder="Search by Customer ID or professor Name..." onkeyup="fetchSales()">
+                    
+                    <table id="sales-history-table">
+                        <thead>
+                            <tr>
+                                <th>Sale ID</th>
+                                <th>Date</th>
+                                <th>Customer (ID/Name)</th>
+                                <th>Items Qty</th>
+                                <th>Total ($)</th>
+                                <th>Method</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                    <div id="history-message" class="message-box" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- GLOBAL STATE ---
+        const API_URL = '/api'; 
+        const IVA_RATE = 0.16; // ⚡ IVA TASA 16% (0.16) ⚡
+        // cart holds { _id: mongoId, name: name, payment: payment, quantity: quantity }
+        let cart = []; 
+
+        // --- UTILITIES ---
+        function displayMessage(elementId, message, type = 'success', duration = 5000) {
+            const el = document.getElementById(elementId);
+            el.textContent = message;
+            el.className = 'message-box ' + type;
+            el.style.display = 'block';
+            setTimeout(() => { el.style.display = 'none'; }, duration);
+        }
+
+        function openTab(evt, tabName) {
+            let tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            let tablinks = document.getElementsByClassName("tab-button");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            if (evt) evt.currentTarget.className += " active";
+            
+            // Initial data fetch for the selected tab
+            if (tabName === 'professors') fetchprofessors();
+            if (tabName === 'Customers') fetchCustomers();
+            if (tabName === 'Sales') {
+                fetchAvailableprofessors();
+                fetchSales(); // Reinstated
+            }
+        }
+
+        async function apiCall(endpoint, method = 'GET', data = null) {
+            const options = {
+                method: method,
+                headers: { 'Content-Type': 'application/json' },
+            };
+            if (data) {
+                options.body = JSON.stringify(data);
+            }
+
+            const response = await fetch(endpoint, options);
+            const jsonResponse = await response.json();
+
+            if (!response.ok) {
+                throw new Error(jsonResponse.error || `HTTP error! Status: ${response.status}`);
+            }
+            return jsonResponse;
+        }
+        
+        // --- 1. professorS (Inventory) TAB LOGIC ---
+
+        async function fetchprofessors() {
+            try {
+                const search = document.getElementById('professor-search').value;
+                const professors = await apiCall(`${API_URL}/professors?search=${search}`);
+            
+                const tableBody = document.querySelector('#professors-table tbody');
+                tableBody.innerHTML = ''; 
+                
+                professors.forEach(professor => {
+                    const row = tableBody.insertRow();
+                    row.innerHTML = `
+                        <td>${professor.name}</td>
+                        <td>${professor.sku}</td>
+                        <td>$${professor.payment.toFixed(2)}</td>
+                        <td>${professor.stock}</td>
+                        <td>${professor.subject}</td>
+                        <td>
+                            <button onclick="editprofessor('${professor._id}', '${professor.name}', '${professor.sku}', ${professor.payment}, ${professor.stock}, '${professor.subject}')">Edit</button>
+                            <button class="delete-btn" onclick="deleteprofessor('${professor._id}', '${professor.name}')">Delete</button>
+                        </td>
+                    `;
+                });
+            } catch (error) {
+                displayMessage('professor-message', `Error fetching professors: ${error.message}`, 'error');
+            }
+        }
+
+        function editprofessor(_id, name, sku, payment, stock, subject) {
+            document.getElementById('professor-id').value = _id;
+            document.getElementById('name').value = name;
+            document.getElementById('sku').value = sku;
+            document.getElementById('payment').value = payment;
+            document.getElementById('stock').value = stock;
+            document.getElementById('subject').value = subject;
+            document.getElementById('professor-submit-btn').textContent = 'Update professor';
+        }
+
+        function clearprofessorForm() {
+            document.getElementById('professor-form').reset();
+            document.getElementById('professor-id').value = '';
+            document.getElementById('professor-submit-btn').textContent = 'Save New professor';
+        }
+
+        async function deleteprofessor(id, name) {
+             if (confirm(`Are you sure you want to delete professor '${name}'?`)) {
+                try {
+                    await apiCall(`${API_URL}/professors/${id}`, 'DELETE');
+                    displayMessage('professor-message', `professor '${name}' deleted successfully.`, 'success');
+                    fetchprofessors();
+                } catch (error) {
+                    displayMessage('professor-message', `Error deleting professor: ${error.message}`, 'error');
+                }
+            }
+        }
+
+        document.getElementById('professor-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const _id = document.getElementById('professor-id').value;
+            const data = {
+                _id: _id || undefined, 
+                name: document.getElementById('name').value,
+                sku: document.getElementById('sku').value,
+                payment: document.getElementById('payment').value,
+                stock: document.getElementById('stock').value,
+                subject: document.getElementById('subject').value,
+            };
+
+            try {
+                const result = await apiCall(`${API_URL}/professors`, 'POST', data);
+                
+                displayMessage('professor-message', `professor saved/updated successfully.`, 'success');
+                clearprofessorForm();
+                fetchprofessors();
+            } catch (error) {
+                displayMessage('professor-message', `Error saving professor: ${error.message}`, 'error');
+            }
+        });
+
+        // --- 2. CUSTOMERS TAB LOGIC ---
+
+        document.getElementById('customer-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('customer-name').value;
+            const email = document.getElementById('customer-email').value;
+
+            try {
+                const result = await apiCall(`${API_URL}/customers`, 'POST', { name, email });
+                displayMessage('customer-message', `Customer registered successfully with ID: ${result.customer_id}`, 'success');
+                document.getElementById('customer-form').reset();
+                fetchCustomers();
+            } catch (error) {
+                displayMessage('customer-message', `Error registering customer: ${error.message}`, 'error');
+            }
+        });
+
+        async function fetchCustomers() {
+            try {
+                const search = document.getElementById('customer-search-input').value;
+                const customers = await apiCall(`${API_URL}/customers?search=${search}`);
+            
+                const tableBody = document.querySelector('#customers-table tbody');
+                tableBody.innerHTML = ''; 
+                
+                customers.forEach(customer => {
+                    const row = tableBody.insertRow();
+                    row.innerHTML = `
+                        <td>${customer.customer_id}</td>
+                        <td>${customer.name}</td>
+                        <td>${customer.email || 'N/A'}</td>
+                        <td>${new Date(customer.created_at).toLocaleDateString()}</td>
+                    `;
+                });
+            } catch (error) {
+                displayMessage('customer-message', `Error fetching customers: ${error.message}`, 'error');
+            }
+        }
+        
+        // --- 3. POS/SALES TAB LOGIC ---
+
+        async function fetchAvailableprofessors() {
+            try {
+                const search = document.getElementById('pos-professor-search').value;
+                const professors = await apiCall(`${API_URL}/professors?search=${search}`);
+            
+                const tableBody = document.querySelector('#pos-professors-table tbody');
+                tableBody.innerHTML = ''; 
+                
+                professors.forEach(professor => {
+                    if (professor.stock > 0) {
+                        const row = tableBody.insertRow();
+                        row.innerHTML = `
+                            <td>${professor.name}</td>
+                            <td>${professor.stock}</td>
+                            <td>$${professor.payment.toFixed(2)}</td>
+                            <td>
+                                <button onclick="addToCart('${professor._id}', '${professor.name}', ${professor.payment})">Add</button>
+                            </td>
+                        `;
+                    }
+                });
+            } catch (error) {
+                displayMessage('sale-message', `Error fetching professors for POS: ${error.message}`, 'error');
+            }
+        }
+
+        async function lookupCustomer() {
+            const customerIdInput = document.getElementById('pos-customer-id');
+            const resultDiv = document.getElementById('customer-lookup-result');
+            const customerId = customerIdInput.value.trim();
+            
+            resultDiv.style.display = 'none';
+            document.getElementById('selected-customer-id').value = '';
+
+            if (customerId === '') {
+                resultDiv.innerHTML = 'Transaction as Guest.';
+                resultDiv.className = 'customer-lookup-result warning';
+                resultDiv.style.display = 'block';
+                return;
+            }
+            
+            if (isNaN(parseInt(customerId))) {
+                 resultDiv.innerHTML = 'Invalid Customer ID.';
+                 resultDiv.className = 'customer-lookup-result error';
+                 resultDiv.style.display = 'block';
+                 return;
+            }
+
+            try {
+                const customer = await apiCall(`${API_URL}/customer/${customerId}`);
+                
+                document.getElementById('selected-customer-id').value = customer.customer_id;
+                resultDiv.innerHTML = `Customer: <b>${customer.name}</b> (${customer.customer_id})`;
+                resultDiv.className = 'customer-lookup-result success';
+                resultDiv.style.display = 'block';
+
+            } catch (error) {
+                document.getElementById('selected-customer-id').value = '';
+                resultDiv.innerHTML = `Customer ID ${customerId} not found.`;
+                resultDiv.className = 'customer-lookup-result error';
+                resultDiv.style.display = 'block';
+            }
+        }
+        
+        function addToCart(professorId, name, payment) {
+            const existingItem = cart.find(item => item._id === professorId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    _id: professorId,
+                    name: name,
+                    payment: payment,
+                    quantity: 1
+                });
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(professorId) {
+            const existingItemIndex = cart.findIndex(item => item._id === professorId);
+            
+            if (existingItemIndex !== -1) {
+                const item = cart[existingItemIndex];
+                if (item.quantity > 1) {
+                    item.quantity -= 1;
+                } else {
+                    cart.splice(existingItemIndex, 1);
+                }
+            }
+            updateCartUI();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartUI();
+            displayMessage('sale-message', 'Cart cleared.', 'warning');
+        }
+
+        // ⚡ UPDATED: IVA Calculation ⚡
+        function updateCartUI() {
+            const tableBody = document.querySelector('#cart-table tbody');
+            tableBody.innerHTML = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const lineSubtotal = item.payment * item.quantity;
+                subtotal += lineSubtotal;
+                
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>$${item.payment.toFixed(2)}</td>
+                    <td>$${lineSubtotal.toFixed(2)}</td>
+                    <td>
+                        <button onclick="addToCart('${item._id}', '${item.name}', ${item.payment})">+</button>
+                        <button class="delete-btn" onclick="removeFromCart('${item._id}')">-</button>
+                    </td>
+                `;
+            });
+
+            const iva = subtotal * IVA_RATE;
+            const total = subtotal + iva;
+
+            document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('cart-iva').textContent = `$${iva.toFixed(2)}`;
+            document.getElementById('cart-total').textContent = `Total: $${total.toFixed(2)}`;
+        }
+        
+        document.getElementById('sale-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (cart.length === 0) {
+                displayMessage('sale-message', 'The cart is empty. Add professors to proceed.', 'error');
+                return;
+            }
+            
+            const customerId = document.getElementById('selected-customer-id').value || null;
+            const paymentMethod = document.getElementById('payment-method').value;
+            
+            const cartItems = cart.map(item => ({
+                professorId: item._id,
+                quantity: item.quantity,
+                payment: item.payment
+            }));
+
+            try {
+                const result = await apiCall(`${API_URL}/sale`, 'POST', {
+                    customerId: customerId,
+                    cartItems: cartItems,
+                    paymentMethod: paymentMethod
+                });
+                
+                displayMessage('sale-message', result.message, 'success');
+                clearCart();
+                fetchAvailableprofessors(); 
+                fetchSales(); 
+                document.getElementById('pos-customer-id').value = '';
+                lookupCustomer(); 
+            } catch (error) {
+                displayMessage('sale-message', `Sale failed: ${error.message}`, 'error', 10000);
+            }
+        });
+
+        // ⚡ REINSTATED and FIXED: Sales History Function ⚡
+        async function fetchSales() {
+            try {
+                const search = document.getElementById('sales-search').value;
+                const sales = await apiCall(`${API_URL}/sales?search=${search}`);
+            
+                const tableBody = document.querySelector('#sales-history-table tbody');
+                tableBody.innerHTML = ''; 
+                
+                sales.forEach(sale => {
+                    // FIX: Ensure total_amount is a number before calling toFixed()
+                    const totalAmountFormatted = (sale.total_amount || 0).toFixed(2);
+                    const totalItems = sale.total_items || 0;
+
+                    const row = tableBody.insertRow();
+                    row.innerHTML = `
+                        <td>${String(sale._id).slice(-6)}</td>
+                        <td>${new Date(sale.sale_date).toLocaleDateString()} ${new Date(sale.sale_date).toLocaleTimeString()}</td>
+                        <td>${sale.customer_id || 'N/A'} / ${sale.customer_name}</td>
+                        <td>${totalItems}</td>
+                        <td>$${totalAmountFormatted}</td>
+                        <td>${sale.payment_method}</td>
+                    `;
+                });
+            } catch (error) {
+                 displayMessage('history-message', `Error fetching sales history: ${error.message}`, 'error');
+            }
+        }
+    </script>
+</body>
+</html>
