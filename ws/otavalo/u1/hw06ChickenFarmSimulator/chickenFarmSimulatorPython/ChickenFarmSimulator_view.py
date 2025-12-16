@@ -1,0 +1,22 @@
+from Chicken_model import Chicken
+
+def main():
+    print("Welcome to my chicken farm")
+
+    chicken2 = Chicken(0, "Maruja", "white", 1, True)
+
+    id =     1
+    owner = "Arelys Otavalo"
+    name =  "Lucy"
+    color = "Brown and White"
+    age = 2
+    is_molting = False
+
+    chicken = Chicken(id, name, color, age, is_molting)
+
+    print(f"The chicken owner is {owner}")
+    print("The chicken is:")
+    print(chicken)  
+
+if __name__ == "__main__":
+    main()
