@@ -1,6 +1,13 @@
 ec\edu\espe\contactsbook\model\Contact.class
 ec\edu\espe\contactsbook\controller\ContactManager.class
+<<<<<<< HEAD
 ec\edu\espe\contactsbook\utils\GUIValidation.class
+=======
+<<<<<<< HEAD
+=======
+ec\edu\espe\contactsbook\utils\GUIValidation.class
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
 ec\edu\espe\contactsbook\view\FrmContacts$2.class
 ec\edu\espe\contactsbook\view\FrmContacts.class
 ec\edu\espe\contactsbook\view\FrmContacts$3.class

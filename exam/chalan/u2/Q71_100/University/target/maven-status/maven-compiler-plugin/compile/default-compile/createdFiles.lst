@@ -1,0 +1,7 @@
+ec\edu\espe\model\University.class
+ec\edu\espe\view\FrmUniversity.class
+ec\edu\espe\controller\UniversityController.class
+ec\edu\espe\view\FrmUniversity$3.class
+Utils\MongoDBconection.class
+ec\edu\espe\view\FrmUniversity$2.class
+ec\edu\espe\view\FrmUniversity$1.class

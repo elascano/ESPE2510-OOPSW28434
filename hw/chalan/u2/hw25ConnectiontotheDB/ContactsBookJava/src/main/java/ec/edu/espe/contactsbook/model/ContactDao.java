@@ -19,8 +19,12 @@ public class ContactDao {
         initializeLastId();
     }
     
+<<<<<<< HEAD
     // --- FUNCIÓN AUXILIAR ROBUSTA PARA LEER ENTEROS ---
     // Maneja valores nulos, Strings que deberían ser Integers, y valores Integer.
+=======
+  
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
     private int getIntFromDocument(Document doc, String key) {
         Object value = doc.get(key);
         if (value == null) {
@@ -31,6 +35,7 @@ public class ContactDao {
             return (Integer) value;
         } else if (value instanceof String) {
             try {
+<<<<<<< HEAD
                 // Intenta parsear la cadena si se guardó como String (problema común)
                 return Integer.parseInt((String) value);
             } catch (NumberFormatException e) {
@@ -39,11 +44,25 @@ public class ContactDao {
             }
         } else {
             // Maneja otros tipos (Double, Long, etc.)
+=======
+            
+                return Integer.parseInt((String) value);
+            } catch (NumberFormatException e) {
+            
+                return 0; 
+            }
+        } else {
+            
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
             return 0;
         }
     }
     
+<<<<<<< HEAD
     // --- CORRECCIÓN 1: INICIALIZACIÓN ROBUSTA DEL ÚLTIMO ID ---
+=======
+
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
     private void initializeLastId(){
         
         MongoCursor<Document> cursor = collection.find().iterator();
@@ -54,7 +73,10 @@ public class ContactDao {
             
             Document doc = cursor.next();
             
+<<<<<<< HEAD
             // Usa la función segura. Si 'id' no existe (documento de Python), currentId será 0.
+=======
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
             int currentId = getIntFromDocument(doc, "id");
             
             if (currentId > maxId){
@@ -96,7 +118,10 @@ public class ContactDao {
         System.out.println("Contact uploaded to MongoDB! ID: " + newId);
     }
     
+<<<<<<< HEAD
     // --- CORRECCIÓN 2: LECTURA ROBUSTA DE CONTACTOS ---
+=======
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
     public List<Contact> getAll() {
         List<Contact> contacts = new ArrayList<>();
         MongoCursor<Document> cursor = collection.find().iterator();
@@ -105,6 +130,7 @@ public class ContactDao {
             while (cursor.hasNext()) {
                 Document doc = cursor.next();
                 
+<<<<<<< HEAD
                 // Usa la función segura para id y age
                 int contactId = getIntFromDocument(doc, "id");
                 int age = getIntFromDocument(doc, "age");
@@ -118,17 +144,36 @@ public class ContactDao {
                     String fullName = doc.getString("name");
                     if (fullName != null) {
                         // Dividir el nombre completo en dos partes (First Name y Last Name)
+=======
+                int contactId = getIntFromDocument(doc, "id");
+                int age = getIntFromDocument(doc, "age");
+                
+                String firstName = doc.getString("firstName");
+                String lastName = doc.getString("lastName");
+                
+                if (firstName == null && doc.containsKey("name")) {
+                    String fullName = doc.getString("name");
+                    if (fullName != null) {
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
                         String[] parts = fullName.trim().split("\\s+", 2);
                         firstName = parts.length > 0 ? parts[0] : "";
                         lastName = parts.length > 1 ? parts[1] : "";
                     }
                 }
                 
+<<<<<<< HEAD
                 // Asegurar valores por defecto si siguen siendo null
                 if (firstName == null) firstName = "N/A";
                 if (lastName == null) lastName = "";
 
                 // Mapear el Documento de MongoDB al objeto Contact
+=======
+                
+                if (firstName == null) firstName = "N/A";
+                if (lastName == null) lastName = "";
+
+                
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
                 Contact contact = new Contact(
                     contactId,
                     firstName,
@@ -153,16 +198,23 @@ public class ContactDao {
     Document doc = collection.find(filter).first();
 
     if (doc != null) {
+<<<<<<< HEAD
         // Reutilizar la lógica de mapeo segura de getAll
         
+=======
+      
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         int contactId = getIntFromDocument(doc, "id");
         int age = getIntFromDocument(doc, "age");
         
         String firstName = doc.getString("firstName");
         String lastName = doc.getString("lastName");
         
+<<<<<<< HEAD
         // Asumiendo que el resto de los campos son seguros de leer.
         
+=======
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         return new Contact(
             contactId,
             firstName,
@@ -171,10 +223,18 @@ public class ContactDao {
             age,
             doc.getString("typeOfContact"),
             doc.getString("sex"),
+<<<<<<< HEAD
             (ArrayList<String>) doc.get("hobbies"), // Requiere manejo de tipo/casting
             doc.getString("comments")
         );
     }
     return null; // Retorna nulo si no se encuentra el contacto
+=======
+            (ArrayList<String>) doc.get("hobbies"), 
+            doc.getString("comments")
+        );
+    }
+    return null; 
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
 }
 }

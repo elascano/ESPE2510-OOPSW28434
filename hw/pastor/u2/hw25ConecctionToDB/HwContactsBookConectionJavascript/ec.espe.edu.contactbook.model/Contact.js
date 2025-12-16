@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class Contact{
     constructor(id, first_name, last_name, age, type_of_contact, sex, hobbies, comments){
         this.id = id;
@@ -64,3 +65,20 @@ class Contact{
 }
 
 module.exports = Contact;
+=======
+const mongoose = require('mongoose');
+
+const contactSchema = new mongoose.Schema({
+    id: String,
+    firstName: String,
+    lastName: String,
+    birthDate: Date,   
+    age: Number,       
+    typeOfContact: String,
+    sex: String,
+    hobbies: [String],
+    comments: String
+});
+
+module.exports = mongoose.model('Contact', contactSchema, 'Contact');
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8

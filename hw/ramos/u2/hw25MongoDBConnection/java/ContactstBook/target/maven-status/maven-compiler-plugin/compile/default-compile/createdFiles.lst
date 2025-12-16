@@ -4,5 +4,6 @@ ec\edu\espe\contactsbook\view\FrmContacts.class
 ec\edu\espe\contactsbook\controller\ContactController.class
 ec\edu\espe\contactsbook\view\FrmContacts$3.class
 ec\edu\espe\contactsbook\view\FrmContacts$1.class
+utils\Validation.class
 ec\edu\espe\contactsbook\controller\ContactDAO.class
 ec\edu\espe\contactsbook\controller\MongoConnection.class

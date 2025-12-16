@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacts Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #aaa;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 48%;
+            padding: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:nth-child(2) {
+            background: #10b981;
+        }
+
+        .contact-card {
+            background: #eef2ff;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Contacts Book</h2>
+
+    <label>First Name *</label>
+    <input type="text" id="firstName">
+
+    <label>Last Name *</label>
+    <input type="text" id="lastName">
+
+    <label>Birthdate *</label>
+    <input type="date" id="birthDate">
+
+    <label>Contact Type *</label>
+    <select id="typeOfContact">
+        <option value="Family">Family</option>
+        <option value="Friend">Friend</option>
+        <option value="Job">Job</option>
+        <option value="Unknown">Unknown</option>
+    </select>
+
+    <label>Sex *</label>
+    <select id="sex">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+
+    <label>Hobbies</label>
+    <select id="hobbies" multiple size="5">
+        <option value="Sports">Sports</option>
+        <option value="Music">Music</option>
+        <option value="Gaming">Gaming</option>
+        <option value="Reading">Reading</option>
+        <option value="Travel">Travel</option>
+        <option value="Cooking">Cooking</option>
+    </select>
+
+    <label>Comments</label>
+    <textarea id="comments" rows="3"></textarea>
+
+    <div style="display:flex; justify-content:space-between;">
+        <button id="saveBtn">Save Contact</button>
+        <button id="viewBtn">View Contacts</button>
+    </div>
+
+    <hr>
+
+    <div id="contactsList"></div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

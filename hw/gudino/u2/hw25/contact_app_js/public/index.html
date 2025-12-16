@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contacts App</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #e6e6e6;
+    }
+    .container {
+      background: #f2f2f2;
+      width: 500px;
+      margin: 30px auto;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    button {
+      background: #ddd;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>CONTACTS</h2>
+
+  <label>First Name</label>
+  <input type="text" id="firstName">
+
+  <label>Last Name</label>
+  <input type="text" id="lastName">
+
+  <label>Birth Date</label>
+  <input type="date" id="birthDate">
+
+  <label>Age</label>
+  <input type="text" id="age" readonly>
+
+  <label>Type</label>
+  <select id="type">
+    <option>Family</option>
+    <option>Friend</option>
+    <option>Work</option>
+    <option>Other</option>
+  </select>
+
+  <label>Sex</label>
+  <select id="sex">
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+
+  <label>Hobbies</label>
+  <select id="hobbies" multiple>
+    <option>Play Soccer</option>
+    <option>DJ</option>
+    <option>Read</option>
+    <option>Cook</option>
+    <option>Swim</option>
+    <option>Sing</option>
+    <option>Play an Instrument</option>
+  </select>
+
+  <label>Comments</label>
+  <textarea id="comments"></textarea>
+
+  <button onclick="saveContact()">Save</button>
+</div>
+
+<script>
+  const birthInput = document.getElementById("birthDate");
+
+  birthInput.addEventListener("change", () => {
+    const birthDate = new Date(birthInput.value);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    document.getElementById("age").value = age;
+  });
+
+  async function saveContact() {
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const birthDateRaw = document.getElementById("birthDate").value;
+
+    if (!firstName || !lastName || !birthDateRaw) {
+      alert("Fill all required fields.");
+      return;
+    }
+
+    const dateObj = new Date(birthDateRaw);
+    const day = dateObj.getDate();
+    const month = dateObj.getMonth() + 1;
+    const year = dateObj.getFullYear();
+
+    const hobbies = Array.from(document.getElementById("hobbies").selectedOptions)
+      .map(opt => opt.value);
+
+    const data = {
+      name: `${firstName} ${lastName}`,
+      birth_date: `${day}/${month}/${year}`,
+      day,
+      month,
+      year,
+      age: document.getElementById("age").value,
+      contact_type: document.getElementById("type").value,
+      sex: document.getElementById("sex").value,
+      hobbies: hobbies,
+      comments: document.getElementById("comments").value.trim()
+    };
+
+    const confirmSave = confirm(
+      `Save this contact?\n\nName: ${data.name}\nBirth: ${data.birth_date}`
+    );
+    if (!confirmSave) return;
+
+    try {
+      const res = await fetch("/save", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        alert("Saved! ID: " + result.id);
+        clearForm();
+      } else {
+        alert("Error saving.");
+      }
+    } catch (err) {
+      alert("Server error: " + err.message);
+    }
+  }
+
+  function clearForm() {
+    document.getElementById("firstName").value = "";
+    document.getElementById("lastName").value = "";
+    document.getElementById("birthDate").value = "";
+    document.getElementById("age").value = "";
+    document.getElementById("comments").value = "";
+  }
+</script>
+
+</body>
+</html>
