@@ -1,0 +1,38 @@
+package ec.edu.espe.q38_61.model;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Josue Carvajal,The Art of Programming, @ESPE
+ */
+public class C extends A{
+    
+    private ArrayList<E> es;
+
+    public C(ArrayList<E> es, ArrayList<A> as) {
+        super(as);
+        this.es = es;
+    }
+
+    @Override
+    public String toString() {
+        return "C{" + "es=" + es + super.toString() +'}';
+    }
+    
+    /**
+     * @return the es
+     */
+    public ArrayList<E> getEs() {
+        return es;
+    }
+
+    /**
+     * @param es the es to set
+     */
+    public void setEs(ArrayList<E> es) {
+        this.es = es;
+    }
+    
+    
+}

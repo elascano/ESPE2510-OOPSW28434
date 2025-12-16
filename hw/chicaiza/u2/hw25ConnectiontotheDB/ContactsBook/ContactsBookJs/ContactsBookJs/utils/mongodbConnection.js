@@ -8,8 +8,8 @@ async function connect() {
     try {
         const client = new MongoClient(uri);
         await client.connect();
-        db = client.db("ContactsDB");
-        console.log("Connected to ContactsDB");
+        db = client.db("SoccerPlayersDB");
+        console.log("Connected to SoccerPlayersDB");
     } catch (err) {
         console.error("Mongo connection error:", err);
     }

@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 class JsonManager {
-    static saveContact(contact) {
+    static saveSoccerPlayers(SoccerPlayers) {
         const dataDir = path.join(__dirname, "..", "data"); // Carpeta data
         const jsonPath = path.join(dataDir, "contacts.json");
 
@@ -20,12 +20,12 @@ class JsonManager {
         }
 
         // Agregar nuevo contacto
-        data.push(contact);
+        data.push(SoccerPlayers);
 
         // Guardar en archivo
         fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2));
 
-        console.log("Contacto guardado en contacts.json");
+        console.log("SoccerPlayers guardado en SoccerPlayers.json");
     }
 }
 
