@@ -28,6 +28,9 @@ public class Contact {
     }
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
 
     @Override
     public String toString() {
@@ -36,7 +39,10 @@ public class Contact {
     }
     
     
+<<<<<<< HEAD
+=======
 >>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
     
     /**
      * @return the id

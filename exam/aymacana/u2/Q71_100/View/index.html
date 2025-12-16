@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Book</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ADD FORNITURE</h1>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <h2>Forniture</h2>
+                
+                <form id="fornitureForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nextId">ID:</label>
+                            <span id="nextId" class="next-id">1</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="Name">Name:* </label>
+                            <input type="text" id="Name" required>
+                            <small class="error-message" id="NameError"></small>
+                        </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="type">Type:*</label>
+                            <select id="type" required>
+                                <option value="" disabled selected>Select type</option>
+                                <option value="Table">Table</option>
+                                <option value="Bed">Bed</option>
+                                <option value="Chair">Chair</option>
+                                <option value="Desk">Desk</option>
+                            </select>
+                            <small class="error-message" id="typeError"></small>
+                        </div>
+
+                        <div class="form-row">
+                        <div class="form-group">
+                            <label for="Price">Price:* </label>
+                        </div>
+
+                        <div class="form-row">
+                        <div class="form-group">
+                            <label for="Size">Size:* </label>
+                        </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="saveBtn" class="btn-save">Save Contact</button>
+                    </div>
+                </form>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Add Forniture</h3>
+            <pre id="confirmationDetails"></pre>
+            <div class="modal-actions">
+                <button id="confirmYes" class="btn-confirm">Yes, Save</button>
+                <button id="confirmNo" class="btn-cancel">No, Review</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="contact.js"></script>
+    <script src="contactController.js"></script>
+    <script src="app.js"></script>
+    <script>
+    const API_BASE_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:3000/api'
+        : 'https://tu-backend-en-produccion.com/api';
+    window.API_BASE_URL = API_BASE_URL;
+    </script>
+</body>
+</html>
