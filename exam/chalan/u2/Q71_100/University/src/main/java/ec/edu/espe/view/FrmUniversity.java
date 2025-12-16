@@ -15,8 +15,10 @@ public class FrmUniversity extends javax.swing.JFrame {
      * Creates new form FrmUniversity
      */
     public FrmUniversity() {
-         initComponents();
+    initComponents();
+    UniversityController.createInitialUniversities();
     loadTable();
+    enableAutoUpdate();
     }
 
     /**
@@ -34,6 +36,7 @@ public class FrmUniversity extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jToggleButton2 = new javax.swing.JToggleButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +71,8 @@ public class FrmUniversity extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("ACME");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,13 +91,17 @@ public class FrmUniversity extends javax.swing.JFrame {
                             .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addComponent(jLabel3)
+                .addGap(3, 3, 3)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
@@ -107,26 +116,29 @@ public class FrmUniversity extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private void enableAutoUpdate() {
+    jTable1.getModel().addTableModelListener(e -> {
+
+        int row = e.getFirstRow();
+        int col = e.getColumn();
+
+        if (row < 0 || col < 0) return;
+
+        String id = jTable1.getValueAt(row, 0).toString();
+        String name = jTable1.getValueAt(row, 1).toString();
+        int age = Integer.parseInt(jTable1.getValueAt(row, 2).toString());
+        int year = Integer.parseInt(jTable1.getValueAt(row, 3).toString());
+
+        University university = new University(id, name, age, year);
+        UniversityController.updateUniversity(university);
+
+        loadTable();
+    });
+}
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
    
-    int row = jTable1.getSelectedRow();
-
-    if (row == -1) {
-        JOptionPane.showMessageDialog(this, "select the university");
-        return;
-    }
-
-    String id = jTable1.getValueAt(row, 0).toString();
-    String nombre = jTable1.getValueAt(row, 1).toString();
-    int edad = Integer.parseInt(jTable1.getValueAt(row, 2).toString());
-    int anio = Integer.parseInt(jTable1.getValueAt(row, 3).toString());
-
-    University university = new University(id, nombre, edad, anio);
-    UniversityController.updateUniversity(university);
-
-    JOptionPane.showMessageDialog(this, "University selcted");
-
+ loadTable();
    
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
@@ -136,11 +148,20 @@ public class FrmUniversity extends javax.swing.JFrame {
 
     
     private void loadTable() {
-    DefaultTableModel model = new DefaultTableModel();
+  DefaultTableModel model = new DefaultTableModel();
     model.addColumn("ID");
     model.addColumn("Name");
-    model.addColumn("age");
-    model.addColumn("year fundation");
+    model.addColumn("Age");
+    model.addColumn("Foundation Year");
+
+    for (University u : UniversityController.getAllUniversities()) {
+        model.addRow(new Object[]{
+            u.getId(),
+            u.getName(),
+            u.getAge(),
+            u.getFoundationYear()
+        });
+    }
 
     jTable1.setModel(model);
 }
@@ -183,6 +204,7 @@ public class FrmUniversity extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;
