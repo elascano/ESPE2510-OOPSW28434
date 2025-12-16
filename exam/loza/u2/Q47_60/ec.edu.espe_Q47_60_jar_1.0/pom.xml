@@ -8,6 +8,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>24</maven.compiler.release>
-        <exec.mainClass>ec.edu.espe.q47_60.Q47_60</exec.mainClass>
+        <exec.mainClass>ec.edu.espe.q38_51.view.Q38_51</exec.mainClass>
     </properties>
 </project>

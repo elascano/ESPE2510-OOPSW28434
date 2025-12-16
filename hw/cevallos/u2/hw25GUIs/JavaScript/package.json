@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@nodegui/nodegui": "^0.73.0",
-    "mongodb": "^7.0.0"
-  }
-}

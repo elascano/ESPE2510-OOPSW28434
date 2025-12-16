@@ -5,9 +5,13 @@ from datetime import date
 from Contact import Contact
 from ContactController import ContactController
 <<<<<<< HEAD
+from ValidationUtils import GUIValidation 
+=======
+<<<<<<< HEAD
 =======
 from ValidationUtils import GUIValidation 
 >>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
 
 class FrmContacts(tk.Tk):
     def __init__(self):
@@ -94,11 +98,16 @@ class FrmContacts(tk.Tk):
         last_name = self.txt_last.get()
         
 <<<<<<< HEAD
+        birth_date = self.cal_date.get_date()
+        birth_year = birth_date.year
+=======
+<<<<<<< HEAD
         birth_year = self.cal_date.get_date().year
 =======
         birth_date = self.cal_date.get_date()
         birth_year = birth_date.year
 >>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         current_year = date.today().year
         age = current_year - birth_year
         self.lbl_age_val.config(text=str(age))
@@ -125,6 +134,9 @@ class FrmContacts(tk.Tk):
     def btn_save_action(self):
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         first_name = self.txt_first.get()
         last_name = self.txt_last.get()
         birth_date = self.cal_date.get_date() 
@@ -152,7 +164,10 @@ class FrmContacts(tk.Tk):
             self.cal_date.focus_set()
             return
             
+<<<<<<< HEAD
+=======
 >>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         contact = self.read_values()
 
         response = messagebox.askyesnocancel("SAVE CONTACTS?", f"saving contact --> {contact}")
@@ -167,10 +182,14 @@ class FrmContacts(tk.Tk):
                 
         elif response is False:
 <<<<<<< HEAD
+            messagebox.showwarning("Warning", "Your data will be lost")
+=======
+<<<<<<< HEAD
              messagebox.showwarning("Warning", "Your data will be lost")
 =======
             messagebox.showwarning("Warning", "Your data will be lost")
 >>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         else:
             self.txt_first.focus_set()
 

@@ -3,9 +3,13 @@ package ec.edu.espe.contactsbook.view;
 import ec.edu.espe.contactsbook.controller.ContactManager;
 import ec.edu.espe.contactsbook.model.Contact;
 <<<<<<< HEAD
+import ec.edu.espe.contactsbook.utils.GUIValidation;
+=======
+<<<<<<< HEAD
 =======
 import ec.edu.espe.contactsbook.utils.GUIValidation;
 >>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -259,9 +263,12 @@ public class FrmContacts extends javax.swing.JFrame {
         int option = 0;
         readValues();
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
      
      //JOptionPane.showMessageDialog(rootPane, "my contact is" + contact);
 =======
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         if(!GUIValidation.validateNameAndLastname(txtFirstName, "First Name")){
             return;
         }
@@ -277,7 +284,10 @@ public class FrmContacts extends javax.swing.JFrame {
         if(!GUIValidation.validateFutureDate(calBirthDate)){
             return;
         }
+<<<<<<< HEAD
+=======
 >>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
        option = JOptionPane.showConfirmDialog(rootPane, "saving contact -->" + contact , "SAVE CONTACTS?", JOptionPane.YES_NO_CANCEL_OPTION);
        if (option == JOptionPane.YES_OPTION){
            JOptionPane.showMessageDialog(rootPane, "your contact is saved --> " + contact);
