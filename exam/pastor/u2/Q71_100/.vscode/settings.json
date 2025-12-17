@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./ec.espe.edu.qs61_70.controller"
+    ]
+}
