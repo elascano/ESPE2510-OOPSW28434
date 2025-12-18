@@ -46,19 +46,6 @@ public class UniversityController {
 
         if (collection.countDocuments() > 0) return;
 
-        collection.insertOne(new Document("_id", "U001")
-                .append("name", "ESPE")
-                .append("age", 99)
-                .append("foundationYear", 1922));
-
-        collection.insertOne(new Document("_id", "U002")
-                .append("name", "UCE")
-                .append("age", 400)
-                .append("foundationYear", 1620));
-
-        collection.insertOne(new Document("_id", "U003")
-                .append("name", "PUCE")
-                .append("age", 78)
-                .append("foundationYear", 1946));
+        
     }
 }

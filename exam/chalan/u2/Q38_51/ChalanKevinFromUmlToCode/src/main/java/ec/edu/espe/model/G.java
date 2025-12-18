@@ -4,6 +4,6 @@ package ec.edu.espe.model;
  *
  * @author Kevin Chalan, Object Masters, @ESPE
  */
-public class G {
+public class G implements H{
     H h;
 }

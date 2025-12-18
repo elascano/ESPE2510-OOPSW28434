@@ -1,9 +1,11 @@
 package ec.edu.espe.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Kevin Chalan, Object Masters, @ESPE
  */
 public class A {
-    A a;
+     private ArrayList<A> as;
 }

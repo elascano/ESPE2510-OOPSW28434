@@ -11,7 +11,7 @@ public class MongoDBconection {
     public static MongoDatabase getDatabase() {
         if (client == null) {
             client = MongoClients.create(
-                "mongodb+srv://kevin:kevin2001@cluster0.oxinj5p.mongodb.net/?retryWrites=true&w=majority"
+                "//kevin:kevin2001@cluster0.oxinj5p.mongodb.net/?retryWrites=true&w=majority"
             );
         }
         return client.getDatabase("universityDB");
