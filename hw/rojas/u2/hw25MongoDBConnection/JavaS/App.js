@@ -1,5 +1,7 @@
 const ContactModel = require('./database');
 
+<<<<<<< HEAD
+=======
 function isAlphabetic(str) {
   return /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(str);
 }
@@ -18,6 +20,7 @@ function computeAge(dateStr) {
   return age;
 }
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 const root = document.body;
 root.style.fontFamily = "Tahoma, sans-serif";
 root.style.fontSize = "11px";
@@ -130,7 +133,11 @@ class JList extends Component {
                     div.style.color = "white";
                     this.selectedItems.push(item);
                 }
+<<<<<<< HEAD
+            }
+=======
             };
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             this.elem.appendChild(div);
             this.divs.push(div);
         });
@@ -207,16 +214,43 @@ const btnSave = new JButton("SAVE"); btnSave.setBounds(250, 500, 80, 25);
 frame.add(btnSave);
 
 txtDate.elem.addEventListener('input', () => {
+<<<<<<< HEAD
+    const val = txtDate.getText();
+    if(val.length === 10) {
+        const year = parseInt(val.split('-')[0]);
+        const currentYear = new Date().getFullYear();
+        if(!isNaN(year)) {
+            lblAgeVal.setText((currentYear - year).toString());
+        }
+=======
     const val = txtDate.getText().trim();
     const age = computeAge(val);
     if (age !== null) {
         lblAgeVal.setText(age.toString());
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     } else {
         lblAgeVal.setText("0");
     }
 });
 
 function validateFields() {
+<<<<<<< HEAD
+    if(txtName.getText().trim() === "") {
+        alert("Validation Error: First Name is required.");
+        txtName.requestFocus();
+        return false;
+    }
+    if(txtLast.getText().trim() === "") {
+        alert("Validation Error: Last Name is required.");
+        txtLast.requestFocus();
+        return false;
+    }
+    
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if(!dateRegex.test(txtDate.getText())) {
+        alert("Validation Error: Birth Date must be in format YYYY-MM-DD.");
+        txtDate.requestFocus();
+=======
     const firstName = txtName.getText().trim();
     if (firstName === "" || !isAlphabetic(firstName)) {
         alert("Validation Error: First Name is required and must contain only letters.");
@@ -271,6 +305,7 @@ function validateFields() {
     const selectedHobbies = lstHobbies.getSelectedValues();
     if (!selectedHobbies || selectedHobbies.length === 0) {
         alert("Validation Error: Select at least one hobby.");
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         return false;
     }
 
@@ -315,4 +350,8 @@ btnSave.addActionListener(async () => {
         console.error(error);
         alert("ERROR: Could not save to database.\n" + error.message);
     }
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8

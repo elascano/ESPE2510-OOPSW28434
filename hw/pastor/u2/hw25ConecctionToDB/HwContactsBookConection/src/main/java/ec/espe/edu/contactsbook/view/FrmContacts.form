@@ -106,6 +106,10 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
+                  <EmptySpace min="-2" pref="380" max="-2" attributes="0"/>
+                  <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
+=======
                   <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
                   <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
@@ -116,12 +120,18 @@
                   <Component id="btnSearch" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
+=======
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -131,6 +141,7 @@
                       <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                   <EmptySpace pref="54" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -151,6 +162,8 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
           </Events>
         </Component>
+<<<<<<< HEAD
+=======
         <Component class="javax.swing.JButton" name="btnDelete">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -207,6 +220,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelActionPerformed"/>
           </Events>
         </Component>
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel3">
@@ -238,7 +252,11 @@
                                           </Group>
                                           <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+                                              <Component id="jLabel7" pref="133" max="32767" attributes="0"/>
+=======
                                               <Component id="lblType" pref="133" max="32767" attributes="0"/>
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                                               <Group type="102" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
@@ -296,7 +314,11 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+=======
                               <Component id="lblType" alignment="3" min="-2" max="-2" attributes="0"/>
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                               <Component id="cmbType" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -398,7 +420,11 @@
             <Property name="text" type="java.lang.String" value="Age:"/>
           </Properties>
         </Component>
+<<<<<<< HEAD
+        <Component class="javax.swing.JLabel" name="jLabel7">
+=======
         <Component class="javax.swing.JLabel" name="lblType">
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Footlight MT Light" size="16" style="0"/>
@@ -418,12 +444,20 @@
               <Color blue="66" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+<<<<<<< HEAD
+              <StringArray count="4">
+                <StringItem index="0" value="Family"/>
+                <StringItem index="1" value="Friend"/>
+                <StringItem index="2" value="Job"/>
+                <StringItem index="3" value="Unknown"/>
+=======
               <StringArray count="5">
                 <StringItem index="0" value="Select"/>
                 <StringItem index="1" value="Family"/>
                 <StringItem index="2" value="Friend"/>
                 <StringItem index="3" value="Job"/>
                 <StringItem index="4" value="Unknown"/>
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
               </StringArray>
             </Property>
           </Properties>

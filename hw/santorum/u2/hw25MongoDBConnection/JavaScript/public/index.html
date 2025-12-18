@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacts</title>
+</head>
+<body>
+
+<h1>Contacts</h1>
+
+<label>Nombre:</label>
+<input id="firstName"><br><br>
+
+<label>Apellido:</label>
+<input id="lastName"><br><br>
+
+<label>Fecha de nacimiento:</label>
+<input id="birthDate" placeholder="dd/mm/yyyy"><br><br>
+
+<label>Edad:</label>
+<input id="age" readonly><br><br>
+
+<label>Tipo:</label>
+<select id="type">
+    <option>Family</option>
+    <option>Friend</option>
+    <option>Job</option>
+    <option>Unknown</option>
+</select><br><br>
+
+<label>Sexo:</label>
+<input type="radio" name="sex" value="Male" checked> Hombre
+<input type="radio" name="sex" value="Female"> Mujer
+<br><br>
+
+<label>Hobbies:</label><br>
+<select id="hobbies" multiple size="5">
+    <option value="Play Soccer">Play Soccer</option>
+    <option value="Djing">Djing</option>
+    <option value="Read">Read</option>
+    <option value="Cook">Cook</option>
+    <option value="Swim">Swim</option>
+    <option value="Sing">Sing</option>
+    <option value="Play an instrument">Play an instrument</option>
+</select><br><br>
+
+<label>Comentarios:</label><br>
+<textarea id="comments" rows="5" cols="30"></textarea><br><br>
+
+<button onclick="saveContact()">Guardar</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>

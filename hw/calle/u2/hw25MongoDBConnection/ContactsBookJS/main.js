@@ -19,8 +19,8 @@ const contactSchema = new mongoose.Schema({
 const Contact = mongoose.model('Contact', contactSchema, 'Contacts'); 
 
 mongoose.connect(MONGO_URI)
-    .then(() => console.log("Conexión a MongoDB exitosa."))
-    .catch(err => console.error("Error al conectar a MongoDB:", err));
+    .then(() => console.log("Connection to MongoDB successful."))
+    .catch(err => console.error("Error connecting to MongoDB:", err));
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -82,10 +82,10 @@ ipcMain.handle('save-contact', async (event, data) => {
 
         await newContact.save();
         
-        return { message: `Contacto '${first_name} ${last_name}' guardado con éxito.` };
+        return { message: `Contact '${first_name} ${last_name}' saved successfully.` };
 
     } catch (e) {
-        console.error("ERROR al guardar en MongoDB:", e);
-        return { error: `ERROR al guardar en MongoDB: ${e.message}` };
+        console.error("ERROR while saving to MongoDB:", e);
+        return { error: `ERROR while saving to MongoDB: ${e.message}` };
     }
 });

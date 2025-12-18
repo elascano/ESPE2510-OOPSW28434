@@ -1,4 +1,16 @@
 {
+<<<<<<< HEAD
+"name": "contacts-book-desktop", 
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "qode index.js"
+  },
+  "dependencies": {
+    "@nodegui/nodegui": "^0.58.0",
+    "mongodb": "^6.3.0"
+  } 
+=======
   "name": "hwcontactsbookconectionjavascript",
   "version": "1.0.0",
   "description": "",
@@ -15,4 +27,5 @@
     "express": "^5.2.1",
     "mongoose": "^9.0.1"
   }
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 }

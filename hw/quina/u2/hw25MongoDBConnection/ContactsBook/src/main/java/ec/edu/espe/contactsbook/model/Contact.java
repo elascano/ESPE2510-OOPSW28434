@@ -32,7 +32,6 @@ public class Contact {
     }
 
     public Document toDocument() {
-        // Ahora Java sabe que 'Document' se refiere a org.bson.Document
         Document doc = new Document("id", id) 
                 .append("firstName", firstName)
                 .append("lastName", lastName)

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor de TV Sets (MVC Visual)</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; }
+        input[type="text"], input[type="number"] { width: 100%; padding: 8px; box-sizing: border-box; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .message { padding: 10px; margin-bottom: 20px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestión de TV Sets</h1>
+        
+        <div id="message-container" class="message" style="display: none;"></div>
+
+        <h2>1. CREAR Nuevo TV Set</h2>
+        <form id="create-form">
+            <div class="form-group">
+                <label for="description">Descripción:</label>
+                <input type="text" id="description" required>
+            </div>
+            <div class="form-group">
+                <label for="screenSizeInches">Tamaño de Pantalla (pulgadas):</label>
+                <input type="number" id="screenSizeInches" step="0.1" required>
+            </div>
+            <div class="form-group">
+                <label for="priceUSD">Precio (USD):</label>
+                <input type="number" id="priceUSD" step="0.01" required>
+            </div>
+            <button type="submit">Guardar TV Set</button>
+        </form>
+
+        <hr style="margin: 40px 0;">
+
+        <h2>2. LISTADO de Productos (Incluye Ratio)</h2>
+        <table id="tvset-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descripción</th>
+                    <th>Tamaño (in)</th>
+                    <th>Precio ($)</th>
+                    <th>Ratio (P/T)</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="tvset-list">
+                </tbody>
+        </table>
+    </div>
+
+    <script src="frontend.js"></script>
+</body>
+</html>

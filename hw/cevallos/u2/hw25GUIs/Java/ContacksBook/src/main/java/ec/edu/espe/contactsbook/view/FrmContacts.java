@@ -5,9 +5,18 @@
 package ec.edu.espe.contactsbook.view;
 
 import ec.edu.espe.contactsbook.controller.CRUDOperations;
+<<<<<<< HEAD
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+=======
+<<<<<<< HEAD
+=======
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -26,6 +35,11 @@ public class FrmContacts extends javax.swing.JFrame {
      */
     public FrmContacts() {
         initComponents();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
 
         jDateChooser1.addPropertyChangeListener("date", evt -> {
             if (jDateChooser1.getDate() != null) {
@@ -39,6 +53,10 @@ public class FrmContacts extends javax.swing.JFrame {
         LocalDate birth = birthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate today = LocalDate.now();
         return Period.between(birth, today).getYears();
+<<<<<<< HEAD
+=======
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
     }
 
     /**
@@ -81,8 +99,16 @@ public class FrmContacts extends javax.swing.JFrame {
         cbPlayAnInstrument = new javax.swing.JCheckBox();
         cbOther = new javax.swing.JCheckBox();
         txtOther = new javax.swing.JTextField();
+<<<<<<< HEAD
         txtAge = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
+=======
+<<<<<<< HEAD
+=======
+        txtAge = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         btnSave = new javax.swing.JButton();
 
         javax.swing.GroupLayout radButtonGroupSexLayout = new javax.swing.GroupLayout(radButtonGroupSex);
@@ -108,7 +134,15 @@ public class FrmContacts extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(245, 245, 245)
                 .addComponent(jLabel1)
+<<<<<<< HEAD
                 .addContainerGap(392, Short.MAX_VALUE))
+=======
+<<<<<<< HEAD
+                .addContainerGap(279, Short.MAX_VALUE))
+=======
+                .addContainerGap(392, Short.MAX_VALUE))
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,11 +180,20 @@ public class FrmContacts extends javax.swing.JFrame {
 
         buttonGroupSex.add(radSexMale);
         radSexMale.setText("Male");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         radSexMale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radSexMaleActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
+=======
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
 
         buttonGroupSex.add(radSexFemale);
         radSexFemale.setText("Female");
@@ -190,6 +233,11 @@ public class FrmContacts extends javax.swing.JFrame {
 
         cbOther.setText("Other:");
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,6 +262,10 @@ public class FrmContacts extends javax.swing.JFrame {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
+<<<<<<< HEAD
+=======
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -226,6 +278,11 @@ public class FrmContacts extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                    .addComponent(jLabel8)
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
                     .addComponent(jLabel9)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
@@ -262,6 +319,58 @@ public class FrmContacts extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
+=======
+                            .addComponent(jLabel10)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cbPlaySoccer)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbRead)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbSing)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbPlayAnInstrument)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+=======
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbPlaySoccer)
+                            .addComponent(cbDjing))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbCook)
+                            .addComponent(cbRead))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbSing)
+                            .addComponent(cbSwim))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(cbPlayAnInstrument))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(cbOther)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtOther, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))
                         .addGap(116, 116, 116))))
@@ -277,6 +386,10 @@ public class FrmContacts extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+<<<<<<< HEAD
+=======
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,6 +401,20 @@ public class FrmContacts extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(radSexMale))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(radSexFemale))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+=======
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -295,6 +422,26 @@ public class FrmContacts extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+<<<<<<< HEAD
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+<<<<<<< HEAD
+=======
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+=======
                         .addGap(9, 9, 9)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -303,6 +450,7 @@ public class FrmContacts extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
                         .addGap(31, 31, 31)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -316,6 +464,10 @@ public class FrmContacts extends javax.swing.JFrame {
                             .addComponent(jLabel7)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+<<<<<<< HEAD
+=======
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(cbPlaySoccer)
@@ -329,19 +481,57 @@ public class FrmContacts extends javax.swing.JFrame {
                     .addComponent(cbSwim)
                     .addComponent(cbOther)
                     .addComponent(txtOther, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
                 .addGap(71, 71, 71)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
+=======
+<<<<<<< HEAD
+                .addGap(135, 135, 135))
+        );
+
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
+=======
+                .addGap(71, 71, 71)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+=======
+<<<<<<< HEAD
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(264, 264, 264)
+                .addComponent(btnSave)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,6 +539,14 @@ public class FrmContacts extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                .addGap(5, 5, 5)
+                .addComponent(btnSave)
+=======
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
                 .addContainerGap())
         );
 
@@ -360,6 +558,11 @@ public class FrmContacts extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLastNameActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
 
         if (txtFirstName.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "First Name is required");
@@ -393,12 +596,25 @@ public class FrmContacts extends javax.swing.JFrame {
             return;
         }
 
+<<<<<<< HEAD
+=======
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
         String comments = txaComments.getText();
         Date birthDate = jDateChooser1.getDate();
         String type = cmbType.getSelectedItem().toString();
+<<<<<<< HEAD
         String sex = radSexMale.isSelected() ? "Male" : "Female";
+=======
+<<<<<<< HEAD
+        String sex = radSexFemale.isSelected() ? "Male"
+                : radSexMale.isSelected() ? "Fenale" : "None";
+=======
+        String sex = radSexMale.isSelected() ? "Male" : "Female";
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
 
         ArrayList<String> hobbies = new ArrayList<>();
 
@@ -435,8 +651,18 @@ public class FrmContacts extends javax.swing.JFrame {
                 .append("sex", sex)
                 .append("hobbies", hobbies)
                 .append("comments", comments);
+<<<<<<< HEAD
 
         CRUDOperations.insert("Contacs", contact);
+=======
+<<<<<<< HEAD
+        
+        CRUDOperations.insert("Contacs", contact); 
+=======
+
+        CRUDOperations.insert("Contacs", contact);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
 
         JOptionPane.showMessageDialog(this, "Contact saved successfully");
 
@@ -454,10 +680,19 @@ public class FrmContacts extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbPlayAnInstrumentActionPerformed
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
     private void radSexMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radSexMaleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radSexMaleActionPerformed
 
+<<<<<<< HEAD
+=======
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
     /**
      * @param args the command line arguments
      */
@@ -508,13 +743,27 @@ public class FrmContacts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+<<<<<<< HEAD
     private javax.swing.JPanel jPanel3;
+=======
+<<<<<<< HEAD
+=======
+    private javax.swing.JPanel jPanel3;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel radButtonGroupSex;
     private javax.swing.JRadioButton radSexFemale;
     private javax.swing.JRadioButton radSexMale;
     private javax.swing.JTextArea txaComments;
+<<<<<<< HEAD
     private javax.swing.JTextField txtAge;
+=======
+<<<<<<< HEAD
+=======
+    private javax.swing.JTextField txtAge;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
+>>>>>>> 58e5d161bc1779e9dbf6e4ea38d18547b28d0a4e
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtOther;

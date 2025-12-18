@@ -1,4 +1,16 @@
 package ec.espe.edu.contactsbook.view;
+<<<<<<< HEAD
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+import java.time.LocalDate; 
+import java.time.Period;    
+import java.time.ZoneId;
+import javax.swing.JOptionPane;
+import ec.edu.espe.contactsbook.model.Contact;
+import ec.espe.edu.contactsbook.model.MongoConection;
+import java.util.ArrayList;
+=======
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -9,12 +21,17 @@ import ec.espe.edu.contactsbook.model.MongoConection;
 import java.awt.Color;
 import java.util.ArrayList;
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 /**
  *
  * @author Mathews Pastor, The POOwer Rangers Of Programming
  */
 public class FrmContacts extends javax.swing.JFrame {
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     Contact contact = new Contact();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmContacts.class.getName());
 
@@ -23,9 +40,12 @@ public class FrmContacts extends javax.swing.JFrame {
      */
     public FrmContacts() {
         initComponents();
+<<<<<<< HEAD
+=======
 
         btnDelete.setEnabled(false);
         btnUpdate.setEnabled(false);
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     }
 
     /**
@@ -45,17 +65,24 @@ public class FrmContacts extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
+<<<<<<< HEAD
+=======
         btnDelete = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+<<<<<<< HEAD
+        jLabel7 = new javax.swing.JLabel();
+=======
         lblType = new javax.swing.JLabel();
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         cmbType = new javax.swing.JComboBox<>();
         Calendar = new com.toedter.calendar.JCalendar();
         txtFirstName = new javax.swing.JTextField();
@@ -107,6 +134,8 @@ public class FrmContacts extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
+=======
         btnDelete.setFont(new java.awt.Font("Footlight MT Light", 0, 16)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(0, 53, 153));
         btnDelete.setText("DELETE");
@@ -143,11 +172,16 @@ public class FrmContacts extends javax.swing.JFrame {
             }
         });
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+<<<<<<< HEAD
+                .addGap(380, 380, 380)
+                .addComponent(btnAdd)
+=======
                 .addGap(124, 124, 124)
                 .addComponent(btnAdd)
                 .addGap(40, 40, 40)
@@ -158,11 +192,16 @@ public class FrmContacts extends javax.swing.JFrame {
                 .addComponent(btnSearch)
                 .addGap(37, 37, 37)
                 .addComponent(btnUpdate)
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+<<<<<<< HEAD
+                .addGap(23, 23, 23)
+                .addComponent(btnAdd)
+=======
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
@@ -170,6 +209,7 @@ public class FrmContacts extends javax.swing.JFrame {
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete)
                     .addComponent(btnCancel))
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
@@ -193,6 +233,15 @@ public class FrmContacts extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 0, 153));
         jLabel6.setText("Age:");
 
+<<<<<<< HEAD
+        jLabel7.setFont(new java.awt.Font("Footlight MT Light", 0, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel7.setText("Type:");
+
+        cmbType.setBackground(new java.awt.Color(204, 255, 255));
+        cmbType.setForeground(new java.awt.Color(0, 0, 102));
+        cmbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Family", "Friend", "Job", "Unknown" }));
+=======
         lblType.setFont(new java.awt.Font("Footlight MT Light", 0, 16)); // NOI18N
         lblType.setForeground(new java.awt.Color(0, 0, 153));
         lblType.setText("Type:");
@@ -200,6 +249,7 @@ public class FrmContacts extends javax.swing.JFrame {
         cmbType.setBackground(new java.awt.Color(204, 255, 255));
         cmbType.setForeground(new java.awt.Color(0, 0, 102));
         cmbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Family", "Friend", "Job", "Unknown" }));
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
 
         Calendar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -280,7 +330,11 @@ public class FrmContacts extends javax.swing.JFrame {
                                             .addComponent(txtFirstName))
                                         .addGap(162, 162, 162)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+=======
                                             .addComponent(lblType, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                                             .addGroup(jPanel3Layout.createSequentialGroup()
                                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel10)
@@ -321,7 +375,11 @@ public class FrmContacts extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
+                            .addComponent(jLabel7)
+=======
                             .addComponent(lblType)
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
                             .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -399,11 +457,45 @@ public class FrmContacts extends javax.swing.JFrame {
     private void CalendarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CalendarPropertyChange
         if ("calendar".equals(evt.getPropertyName())) {
             int age = calculateAge(Calendar.getDate());
+<<<<<<< HEAD
+            txtAge.setText(String.valueOf(age)); 
+=======
             txtAge.setText(String.valueOf(age));
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         }
     }//GEN-LAST:event_CalendarPropertyChange
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+<<<<<<< HEAD
+        contact = readValues();
+        int option;
+        option = JOptionPane.showConfirmDialog(rootPane, "saving contacts --> " + contact, "SAVE CONTACTS?", JOptionPane.YES_NO_CANCEL_OPTION);  
+        if(option == JOptionPane.YES_OPTION){
+            try {
+                MongoDatabase database = MongoConection.getDatabase();
+                MongoCollection<Document> collection = database.getCollection("Contact");
+                     Document doc = new Document("id", contact.getId())
+                    .append("firstName", contact.getFirstName())
+                    .append("lastName", contact.getLastName())
+                    .append("age", contact.getAge())
+                    .append("typeOfContact", contact.getTypeOfContact())
+                    .append("sex", contact.getSex())
+                    .append("hobbies", contact.getHobbies())
+                    .append("comments", contact.getComments());
+            collection.insertOne(doc);
+                JOptionPane.showMessageDialog(rootPane, "YOUR CONTACT IS SAVEED");
+                emptyFields();
+
+            } catch (Exception e) {
+                System.err.println("Error " + e.getMessage());
+            }
+
+        } else if (option == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(rootPane, "YOUR DATE WILL BE LOST","",JOptionPane.WARNING_MESSAGE);
+            emptyFields();
+        } else {
+            txtFirstName.requestFocus();
+=======
         if (!validateFields()) {
             return;
         }
@@ -442,6 +534,7 @@ public class FrmContacts extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             System.err.println("Error " + e.getMessage());
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -449,6 +542,21 @@ public class FrmContacts extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
 
+<<<<<<< HEAD
+    private int calculateAge(java.util.Date birthDate) {
+    if (birthDate == null) {
+        return 0; 
+    }
+    java.time.LocalDate birth = birthDate.toInstant()
+        .atZone(java.time.ZoneId.systemDefault())
+        .toLocalDate();
+    java.time.LocalDate now = java.time.LocalDate.now();
+    java.time.Period period = java.time.Period.between(birth, now);
+    return period.getYears();
+}
+    
+    private void emptyFields(){
+=======
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         if (txtId.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "ID is required to search");
@@ -563,6 +671,7 @@ public class FrmContacts extends javax.swing.JFrame {
     }
 
     private void emptyFields() {
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         txtId.setText("");
         txtFirstName.setText("");
         txtLastName.setText("");
@@ -571,6 +680,11 @@ public class FrmContacts extends javax.swing.JFrame {
         radSexMale.setSelected(false);
         lstHobbies.clearSelection();
         txtComments.setText("");
+<<<<<<< HEAD
+    }
+    
+    private Contact readValues(){
+=======
         txtId.setEditable(true);
         txtId.setBackground(Color.WHITE);
         btnAdd.setEnabled(true);
@@ -580,25 +694,46 @@ public class FrmContacts extends javax.swing.JFrame {
     }
 
     private Contact readValues() {
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         String id;
         String firstName;
         String lastName;
         String age;
         String typeOfContact;
+<<<<<<< HEAD
+        String sex; 
+        ArrayList<String> hobbies = new ArrayList<>();
+        String comments;
+        
+=======
         String sex;
         ArrayList<String> hobbies = new ArrayList<>();
         String comments;
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
         id = txtId.getText();
         firstName = txtFirstName.getText();
         lastName = txtLastName.getText();
         age = txtAge.getText();
         typeOfContact = cmbType.getSelectedItem().toString();
+<<<<<<< HEAD
+        if(radSexFemale.isSelected() == true) {
+=======
         if (radSexFemale.isSelected() == true) {
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
             sex = "Female";
         } else {
             sex = "Male";
         }
+<<<<<<< HEAD
+        
+        hobbies.add(lstHobbies.getSelectedValue());
+        comments = txtComments.getText();
+        
+        contact = new Contact(id, firstName, lastName, age, typeOfContact, sex, hobbies, comments);
+        return contact;
+    }
+=======
 
         hobbies.add(lstHobbies.getSelectedValue());
         comments = txtComments.getText();
@@ -658,6 +793,7 @@ public class FrmContacts extends javax.swing.JFrame {
         }
     }
 
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     /**
      * @param args the command line arguments
      */
@@ -686,10 +822,13 @@ public class FrmContacts extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JCalendar Calendar;
     private javax.swing.JButton btnAdd;
+<<<<<<< HEAD
+=======
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -702,6 +841,10 @@ public class FrmContacts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+<<<<<<< HEAD
+    private javax.swing.JLabel jLabel7;
+=======
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -709,7 +852,10 @@ public class FrmContacts extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+<<<<<<< HEAD
+=======
     private javax.swing.JLabel lblType;
+>>>>>>> 95b5ff6cf684ae826e202c2e63b274c2ad0a5ba8
     private javax.swing.JList<String> lstHobbies;
     private javax.swing.JRadioButton radSexFemale;
     private javax.swing.JRadioButton radSexMale;

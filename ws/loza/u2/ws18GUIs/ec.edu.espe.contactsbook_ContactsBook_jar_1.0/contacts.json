@@ -1,0 +1,56 @@
+{
+  "id": 20,
+  "firstName": "steven",
+  "lastName": "loza",
+  "age": 20,
+  "typeOfContact": "Job",
+  "sex": "Female",
+  "hobbies": ["Read"],
+  "comments": "no comentaries"
+}
+{
+  "id": 0,
+  "firstName": "steven",
+  "lastName": "",
+  "age": 0,
+  "typeOfContact": "Family",
+  "sex": "Female",
+  "hobbies": ["null"],
+  "comments": ""
+}
+{
+  "id": 2,
+  "firstName": "",
+  "lastName": "",
+  "age": 0,
+  "typeOfContact": "Family",
+  "sex": "Female",
+  "hobbies": ["null"],
+  "comments": ""
+}  "id": 2,
+  "age": 0,
+
+{
+  "id": 3,
+  "firstName": "maria",
+  "lastName": "perez",
+  "age": 24,
+  "typeOfContact": "Friend",
+  "sex": "Male",
+  "hobbies": ["Djing"],
+  "comments": "nada"
+}  "id": 3,
+  "age": 24,
+
+{
+  "id": 2,
+  "firstName": "Steven",
+  "lastName": "Loza",
+  "age": 0,
+  "typeOfContact": "Friend",
+  "sex": "Male",
+  "hobbies": ["Read"],
+  "comments": "no comments"
+}  "id": 2,
+  "age": 0,
+
