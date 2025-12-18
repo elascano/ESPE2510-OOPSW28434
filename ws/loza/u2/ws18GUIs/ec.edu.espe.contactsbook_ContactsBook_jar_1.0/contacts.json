@@ -54,15 +54,3 @@
 }  "id": 2,
   "age": 0,
 
-{
-  "id": 2,
-  "firstName": "steven",
-  "lastName": "loza",
-  "age": 13,
-  "typeOfContact": "Friend",
-  "sex": "Male",
-  "hobbies": ["Read"],
-  "comments": ""
-}  "id": 2,
-  "age": 13,
-
