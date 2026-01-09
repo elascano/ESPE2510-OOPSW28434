@@ -1,0 +1,10 @@
+ec\edu\espe\soccergui\view\FrmDeleteTeam.class
+ec\edu\espe\soccergui\utils\MongoDBConnection.class
+ec\edu\espe\soccergui\view\FrmAddTeam.class
+ec\edu\espe\soccergui\model\SoccerTeam.class
+ec\edu\espe\soccergui\controller\SoccerTeamController.class
+ec\edu\espe\soccergui\view\FrmMenu.class
+ec\edu\espe\soccergui\view\FrmReadTeam.class
+ec\edu\espe\soccergui\view\FrmUpdateTeam.class
+ec\edu\espe\soccergui\utils\IdGenerator.class
+ec\edu\espe\soccergui\controller\SimpleCrud.class
