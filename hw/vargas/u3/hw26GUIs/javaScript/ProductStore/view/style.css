@@ -1,0 +1,19 @@
+* { box-sizing: border-box; }
+body { font-family: system-ui, Arial, sans-serif; margin: 0; background: #f6f7fb; }
+.container { max-width: 1100px; margin: 32px auto; padding: 0 16px; }
+.card { background: white; border-radius: 12px; padding: 16px; margin: 16px 0; box-shadow: 0 6px 18px rgba(0,0,0,.06); }
+.form { display: grid; gap: 12px; }
+label { display: grid; gap: 6px; }
+input { padding: 10px; border: 1px solid #ddd; border-radius: 10px; }
+button { padding: 10px 14px; border: 0; border-radius: 10px; cursor: pointer; }
+button.secondary { background: #e9e9ef; }
+button.danger { background: #ffdddd; }
+button.small { padding: 6px 10px; border-radius: 8px; }
+.row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.space-between { justify-content: space-between; }
+.status { font-weight: 700; }
+.table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.table th, .table td { padding: 10px; border-bottom: 1px solid #eee; text-align: left; }
+.hint { color: #555; font-size: 0.95rem; }
+.actions { display: flex; gap: 8px; }
+.hidden { display: none; }

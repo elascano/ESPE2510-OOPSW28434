@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Professor System JS</title>
+    <style>
+        body { font-family: 'Arial'; text-align: center; background: #f4f4f4; }
+        .container { background: white; width: 500px; margin: 20px auto; padding: 20px; border-radius: 8px; }
+        input, select { display: block; margin: 10px auto; width: 80%; padding: 8px; }
+        table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { background: #28a745; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="font-size: 18pt;">PROFESSOR SYSTEM</h1>
+
+        <input type="text" id="ent_name" placeholder="Full Name">
+        <input type="text" id="ent_id" placeholder="ID Number">
+        
+        <select id="combo_dept">
+            <option value="">Select Subject...</option>
+            <option value="Math">Math</option>
+            <option value="Science">Science</option>
+            <option value="IT">IT</option>
+        </select>
+
+        <input type="number" id="ent_salary" placeholder="Salary">
+        
+        <button id="btn_save" style="background: #28a745; color: white; width: 85%; padding: 10px; cursor: pointer;">
+            Save & Update Table
+        </button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Subject</th>
+                    <th>Bonus</th>
+                </tr>
+            </thead>
+            <tbody id="table_body"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const ProfessorModel = require('../model/Professor');
+        const ProfessorController = require('../controller/Professor_Controller');
+        
+        const model = new ProfessorModel();
+        const controller = new ProfessorController(model, null);
+
+        document.getElementById('btn_save').onclick = () => controller.handleSave();
+        window.onload = () => controller.refreshTable();
+    </script>
+</body>
+</html>

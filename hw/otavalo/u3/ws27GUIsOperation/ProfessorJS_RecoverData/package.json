@@ -1,0 +1,15 @@
+{
+  "name": "professor-js-update-search",
+  "version": "1.0.0",
+  "description": "Sistema de búsqueda y actualización de profesores",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "mongodb": "^6.3.0"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0"
+  }
+}

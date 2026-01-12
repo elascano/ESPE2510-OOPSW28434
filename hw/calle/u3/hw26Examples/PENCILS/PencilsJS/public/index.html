@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Emily Calle - Pencils CRUD Completo</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 30px; background-color: #f0f2f5; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap; }
+        input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 8px 15px; cursor: pointer; border: none; border-radius: 4px; color: white; }
+        .btn-save { background-color: #28a745; }
+        .btn-update { background-color: #007bff; }
+        .btn-delete { background-color: #dc3545; }
+        .btn-clear { background-color: #6c757d; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #2f6daa; }
+        tr:hover { background-color: #f1f1f1; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Gestión de Lápices - ESPE</h2>
+    
+    <div class="form-group">
+        <input type="text" id="txtId" placeholder="ID (Cédula/Código)">
+        <input type="text" id="txtBrand" placeholder="Marca">
+        <input type="text" id="txtColor" placeholder="Color">
+        <input type="number" id="txtPrice" placeholder="Precio" step="0.01">
+    </div>
+
+    <div class="form-group">
+        <button class="btn-save" onclick="savePencil()">Guardar</button>
+        <button class="btn-update" onclick="updatePencil()">Actualizar</button>
+        <button class="btn-delete" onclick="deletePencil()">Eliminar</button>
+        <button class="btn-clear" onclick="clearFields()">Limpiar</button>
+    </div>
+
+    <table id="pencilTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Marca</th>
+                <th>Color</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script>
+    window.onload = loadPencils;
+
+    async function loadPencils() {
+        const res = await fetch('/api/pencils');
+        const data = await res.json();
+        const tbody = document.querySelector('#pencilTable tbody');
+        tbody.innerHTML = '';
+        
+        data.forEach(p => {
+            const row = document.createElement('tr');
+            row.onclick = () => fillForm(p);
+            row.innerHTML = `
+                <td>${p.id}</td>
+                <td>${p.brand}</td>
+                <td>${p.color}</td>
+                <td>$${p.price.toFixed(2)}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    function fillForm(p) {
+        document.getElementById('txtId').value = p.id;
+        document.getElementById('txtBrand').value = p.brand;
+        document.getElementById('txtColor').value = p.color;
+        document.getElementById('txtPrice').value = p.price;
+        document.getElementById('txtId').readOnly = true;
+    }
+
+    async function savePencil() {
+        const pencil = getFormData();
+        if(!pencil.id) return alert("El ID es obligatorio");
+
+        await fetch('/api/pencils', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(pencil)
+        });
+        refresh();
+    }
+
+    async function updatePencil() {
+        const id = document.getElementById('txtId').value;
+        const pencil = getFormData();
+        
+        await fetch(`/api/pencils/${id}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(pencil)
+        });
+        refresh();
+    }
+
+    async function deletePencil() {
+        const id = document.getElementById('txtId').value;
+        if(confirm(`¿Seguro que desea eliminar el lápiz ${id}?`)) {
+            await fetch(`/api/pencils/${id}`, { method: 'DELETE' });
+            refresh();
+        }
+    }
+
+    function getFormData() {
+        return {
+            id: document.getElementById('txtId').value,
+            brand: document.getElementById('txtBrand').value,
+            color: document.getElementById('txtColor').value,
+            price: parseFloat(document.getElementById('txtPrice').value || 0)
+        };
+    }
+
+    function refresh() {
+        clearFields();
+        loadPencils();
+    }
+
+    function clearFields() {
+        document.getElementById('txtId').value = '';
+        document.getElementById('txtBrand').value = '';
+        document.getElementById('txtColor').value = '';
+        document.getElementById('txtPrice').value = '';
+        document.getElementById('txtId').readOnly = false;
+    }
+</script>
+
+</body>
+</html>

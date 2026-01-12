@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Store Management - ESPE</title>
+    <style>
+        body { font-family: sans-serif; background: #2c3e50; color: white; padding: 20px; }
+        .container { display: flex; gap: 30px; justify-content: center; }
+        
+        .form-panel { 
+            background: #ecf0f1; color: #2c3e50; 
+            padding: 25px; border-radius: 8px; width: 400px;
+            box-shadow: 10px 10px 5px rgba(0,0,0,0.3);
+        }
+
+        h2 { text-align: center; border-bottom: 2px solid #2980b9; padding-bottom: 10px; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+        
+        button { 
+            width: 100%; margin-top: 20px; padding: 10px; 
+            font-weight: bold; cursor: pointer; border: none; border-radius: 4px;
+        }
+
+        .btn-green { background: #27ae60; color: white; }
+        .btn-blue { background: #2980b9; color: white; }
+        .result-box { 
+            margin-top: 20px; padding: 15px; background: #dcdde1; 
+            text-align: center; font-size: 1.2em; border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center;">Unified Store System</h1>
+
+    <div class="container">
+        <div class="form-panel">
+            <h2>Management Form</h2>
+            <label>Product Name:</label>
+            <input type="text" id="regName">
+            
+            <label>Unit Price:</label>
+            <input type="number" id="regPrice" step="0.01">
+            
+            <label>Quantity:</label>
+            <input type="number" id="regQty">
+            
+            <button class="btn-green" onclick="register()">REGISTER IN DB</button>
+        </div>
+
+        <div class="form-panel">
+            <h2>Billing Form</h2>
+            <label>Search Product:</label>
+            <input type="text" id="searchName">
+            
+            <label>Quantity to Buy:</label>
+            <input type="number" id="buyQty">
+            
+            <button class="btn-blue" onclick="calculate()">CALCULATE TOTAL</button>
+
+            <div class="result-box" id="billingRes">
+                TOTAL: $0.00
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const controller = require('../saleController');
+
+        async function register() {
+            const name = document.getElementById('regName').value;
+            const price = parseFloat(document.getElementById('regPrice').value);
+            const qty = parseInt(document.getElementById('regQty').value);
+
+            if (name && price && qty) {
+                await controller.create(name, price, qty);
+                alert("Product saved in MongoDB!");
+            } else {
+                alert("Please fill all fields");
+            }
+        }
+
+        async function calculate() {
+            const name = document.getElementById('searchName').value;
+            const qty = parseInt(document.getElementById('buyQty').value);
+            
+            const product = await controller.findByName(name);
+            
+            if (product) {
+                const total = product.unitPrice * qty;
+                document.getElementById('billingRes').innerHTML = `
+                    <small>Unit Price: $${product.unitPrice}</small><br>
+                    <strong>TOTAL: $${total.toFixed(2)}</strong>
+                `;
+            } else {
+                alert("Product not found");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>ProductStore - CRUD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="container">
+    <h1>ProductStore - CRUD</h1>
+
+    <section class="card">
+      <h2 id="formTitle">Create product</h2>
+
+      <form id="productForm" class="form">
+        <input type="hidden" id="editingId" />
+
+        <label>
+          Name
+          <input type="text" id="name" required />
+        </label>
+
+        <label>
+          Price (without IVA)
+          <input type="number" id="price" step="0.01" min="0" required />
+        </label>
+
+        <label>
+          IVA (e.g. 0.12)
+          <input type="text" id="ivaRate" value="0.12" required />
+        </label>
+
+        <div class="row">
+          <button type="submit" id="submitBtn">Save</button>
+          <button type="button" id="cancelEditBtn" class="hidden">Cancel</button>
+          <span id="status" class="status"></span>
+        </div>
+
+        <p class="hint">
+          The server calculates and saves <b>priceWithIva</b> automatically.
+        </p>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="row space-between">
+        <h2>Products</h2>
+        <button type="button" id="reloadBtn">Recargar</button>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>IVA</th>
+            <th>With IVA (saved)</th>
+            <th>With IVA (UI)</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productsTbody">
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script src="main.js"></script>
+</body>
+</html>

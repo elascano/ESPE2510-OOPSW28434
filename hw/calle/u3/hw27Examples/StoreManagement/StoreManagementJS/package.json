@@ -1,0 +1,12 @@
+{
+  "name": "store-management-js",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^31.0.0",
+    "mongoose": "^8.0.0"
+  }
+}

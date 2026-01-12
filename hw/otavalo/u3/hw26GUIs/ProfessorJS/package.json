@@ -1,0 +1,14 @@
+{
+  "name": "professorjs",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "mongodb": "^6.3.0"
+  },
+  "devDependencies": {
+    "electron": "^39.2.7"
+  }
+}
