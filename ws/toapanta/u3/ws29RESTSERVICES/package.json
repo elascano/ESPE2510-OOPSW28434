@@ -1,0 +1,17 @@
+{
+  "name": "ws29api",
+  "version": "1.0.0",
+  "description": "customersApp",
+  "keywords": [],
+  "license": "ISC",
+  "author": "Adrian Toapanta",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.1.3"
+  }
+}
