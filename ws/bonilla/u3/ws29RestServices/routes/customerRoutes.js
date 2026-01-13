@@ -11,4 +11,20 @@ router.get("/customers", async (req, res) => {
     }
 });
 
+router.get('/customer/:id', async (req, res) => {
+    try{
+        const customerObject = await customer.findOne({ id: Number(req.params.id) });
+        if(customerObject == null) {
+            res.status(400).json({status: 404});
+        }else{
+            res.json(customerObject);
+        }
+    }
+    catch(err) {
+        res.status(500).json({message: err.message})
+    }
+});
+
+
+
 module.exports = router;
