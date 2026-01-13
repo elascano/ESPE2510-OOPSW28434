@@ -1,19 +1,13 @@
 {
-  "name": "ws29restservices",
+  "name": "ws29bestservices",
   "version": "1.0.0",
   "description": "customersApp",
   "main": "index.js",
   "scripts": {
-    "test": "yes"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "yes"
-  },
-  "keywords": [
-    "1234"
-  ],
-  "author": "Steven Loza",
+  "keywords": [],
+  "author": "Arelis Bonilla",
   "license": "ISC",
   "dependencies": {
     "express": "^5.2.1",
