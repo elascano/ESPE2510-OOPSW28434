@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Q38_51 {
 
     public static void main(String[] args) {
-        System.out.println("Exam--> Cesar Vargas");
+        System.out.println("Exam--> Adrian Toapanta");
         A a;
         ArrayList<A> as;
         ArrayList<B> bs;
