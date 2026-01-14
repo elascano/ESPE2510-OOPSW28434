@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Computer Store - SOLID JS</title>
+</head>
+<body>
+    <h2>Register Product (15% Tax)</h2>
+    <form id="productForm">
+        <input type="text" id="name" placeholder="Product Name" required><br><br>
+        <input type="number" id="price" placeholder="Base Price" required><br><br>
+        <button type="submit">SAVE PRODUCT</button>
+    </form>
+
+    <div id="response"></div>
+
+    <script>
+        document.getElementById('productForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const price = document.getElementById('price').value;
+
+            const res = await fetch('/api/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, price })
+            });
+            const result = await res.json();
+            document.getElementById('response').innerText = result.message + " Total: $" + result.data.total;
+        };
+    </script>
+</body>
+</html>
