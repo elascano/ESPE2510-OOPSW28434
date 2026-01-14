@@ -1,0 +1,13 @@
+{
+  "name": "contactos-mvc-consola",
+  "version": "1.0.0",
+  "description": "Sistema de gestión de contactos",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "mongoose": "^8.0.0",
+    "cli-table3": "^0.6.3"
+  }
+}
