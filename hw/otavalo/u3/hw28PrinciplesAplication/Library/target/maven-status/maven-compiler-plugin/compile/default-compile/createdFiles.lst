@@ -1,0 +1,8 @@
+ec\edu\espe\library\controller\BookController.class
+ec\edu\espe\library\model\ILibrary.class
+ec\edu\espe\library\view\FrmBook$3.class
+ec\edu\espe\library\view\FrmBook$1.class
+ec\edu\espe\library\model\Database.class
+ec\edu\espe\library\view\FrmBook.class
+ec\edu\espe\library\model\Book.class
+ec\edu\espe\library\view\FrmBook$2.class

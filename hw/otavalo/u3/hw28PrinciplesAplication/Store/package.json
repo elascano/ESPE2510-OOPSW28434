@@ -1,0 +1,13 @@
+{
+  "name": "supermarket-checkout-system",
+  "version": "1.0.0",
+  "description": "Product management system with tax calculation using SOLID and MVC",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^28.0.0",
+    "mongodb": "^6.3.0"
+  }
+}

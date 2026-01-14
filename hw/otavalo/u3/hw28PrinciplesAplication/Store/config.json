@@ -1,0 +1,6 @@
+{
+  "tax_rate": 0.15,
+  "app_title": "Supermarket Checkout System",
+  "db_name": "Homework",
+  "collection_name": "Products"
+}
