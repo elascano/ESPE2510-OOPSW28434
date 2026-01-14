@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Data Recovery</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; text-align: center; padding: 20px; }
+        .container { background: white; width: 850px; margin: 0 auto; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #e9ecef; padding-bottom: 15px; }
+        h1 { color: #2c3e50; font-size: 24px; margin: 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #dee2e6; padding: 14px; text-align: left; }
+        th { background: #4a90e2; color: white; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #f1f4f8; }
+        .btn-refresh { background: #27ae60; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: background 0.3s; }
+        .btn-refresh:hover { background: #219150; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Patient Management System (PatientRegist DB)</h1>
+            <button class="btn-refresh" onclick="controller.refreshTable()">🔄 Refresh Data</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Number</th>
+                    <th>Name</th>
+                    <th>Subject/Diagnosis</th>
+                    <th>Base Cost</th>
+                    <th>Insurance Coverage (15%)</th>
+                </tr>
+            </thead>
+            <tbody id="table_body"></tbody>
+        </table>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
