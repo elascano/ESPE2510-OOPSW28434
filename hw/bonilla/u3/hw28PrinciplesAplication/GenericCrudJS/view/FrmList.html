@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List</title>
+</head>
+<body>
+<h2>List</h2>
+<table border="1" id="table"></table>
+
+<script>
+fetch("/api/entities")
+.then(res => res.json())
+.then(data => {
+    const table = document.getElementById("table");
+    data.forEach(e => {
+        const row = table.insertRow();
+        row.insertCell().innerText = e._id;
+        row.insertCell().innerText = JSON.stringify(e.attributes);
+    });
+});
+</script>
+</body>
+</html>
