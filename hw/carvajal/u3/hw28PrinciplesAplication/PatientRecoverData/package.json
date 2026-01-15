@@ -1,0 +1,12 @@
+{
+  "name": "hw28principlesapplication",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^39.2.7",
+    "mongodb": "^7.0.0"
+  }
+}
