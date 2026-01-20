@@ -1,0 +1,13 @@
+Develop a system in Java using Maven and MongoDB under the MVC pattern and Clean Code principles. The project consists of an automated alarm system that constantly monitors inventory; its main function is to trigger real-time visual notifications when a product’s stock is equal to or below a user-configured “minimum stock” threshold.
+
+Configuration (Singleton)
+Implement the Singleton pattern to centralize the minimum stock threshold. This component must synchronize the in-memory value with a MongoDB collection, automatically retrieving the saved state at startup.
+
+View
+Design a Swing-based interface that captures numeric inputs and delegates them to the controller. It must display pop-up notifications in English with details (ID, name, and stock) of products in a critical state, without direct access to the model or the database.
+
+Controller
+Manage the MongoDB connection through a utility class in the Utils package. It must compare the actual stock with the Singleton threshold and coordinate visual alerts through a strictly unidirectional flow.
+
+Model
+Define entities to represent products with their basic attributes, serving exclusively as data carriers between the database and the system.
