@@ -1,0 +1,23 @@
+Actúa como un Arquitecto de Software experto en Patrones de Diseño, Arquitectura MVC y Clean Code.
+Contexto del Proyecto: Estoy desarrollando un sistema de gestión de ventas e inventarios que utiliza una base de datos NoSQL (MongoDB). Necesito implementar una nueva funcionalidad: un Sistema de Alertas de Stock.
+Requerimientos Técnicos: Por favor, genera el código y la estructura necesaria para este módulo siguiendo estrictamente estas reglas:
+Patrón de Diseño (Singleton) - AlarmConfig:
+Crea una clase en el paquete Config que implemente el patrón Singleton.
+Atributos: Instancia estática (instance) y un entero para el umbral (minimumStock).
+Persistencia: El valor de minimumStock debe persistir y recuperarse de una colección en MongoDB llamada sales_configuration.
+Métodos: Constructor privado, getInstance(), getters, y un método updateMinimumStock(int newStock) que actualice tanto la instancia en memoria como el documento en la base de datos.
+Interfaz Gráfica / Vista (View):
+Diseña una clase que simule la interfaz de usuario.
+Notificaciones: Debe mostrar una alerta (puede ser JOptionPane o consola simulada) con mensajes en inglés cuando un producto tiene stock bajo. Datos a mostrar: ID, Nombre y Stock actual.
+Actualización de Configuración: La vista debe incluir la lógica visual (simulación de un campo de texto y un botón "Update") para que el usuario ingrese un nuevo valor para el minimumStock. Esta vista debe capturar el input del usuario y delegar la acción al Controlador.
+Lógica de Negocio (Controller):
+Verificación: Itera los productos de la colección products. Si (producto.stock <= AlarmConfig.minimumStock), invoca la alerta en la Vista.
+Gestión de Eventos: Debe incluir un método que reciba el nuevo valor de stock desde la Vista y llame al método de actualización del Singleton AlarmConfig.
+Restricciones de Arquitectura (MVC Estricto):
+SOLO se permiten los paquetes: Model, View, Controller y Config.
+No usar capas intermedias (Service/Repository).
+La Vista no debe llamar a la Base de Datos ni al Singleton directamente; debe pasar por el Controlador.
+Tecnologías:
+Lenguaje: Java con Maven.
+Librerías: Driver nativo de MongoDB (mongodb-driver-sync).
+Entregable: Provee el código fuente completo organizado en los bloques/paquetes solicitados, explicando brevemente la responsabilidad de cada archivo y cómo el Controlador conecta el input de la Vista con la actualización del Singleton.
