@@ -1,0 +1,14 @@
+[
+    {
+        "name": "carne",
+        "stock": 12
+    },
+    {
+        "name": "carnita",
+        "stock": 30
+    },
+    {
+        "name": "pollo",
+        "stock": 30
+    }
+]

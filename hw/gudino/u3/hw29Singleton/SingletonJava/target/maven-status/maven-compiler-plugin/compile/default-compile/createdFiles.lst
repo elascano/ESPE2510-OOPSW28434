@@ -1,0 +1,13 @@
+view\AddProduct$1.class
+view\MainView$2.class
+service\StockNotifier.class
+controller\ProductController.class
+view\MainView$1.class
+model\Product.class
+ec\edu\espe\petshopsingleton\PetShopSingleton.class
+view\MainView.class
+util\JsonUtil.class
+view\AddProduct.class
+model\ConfigurationStock.class
+model\Inventory.class
+util\JsonUtil$1.class
