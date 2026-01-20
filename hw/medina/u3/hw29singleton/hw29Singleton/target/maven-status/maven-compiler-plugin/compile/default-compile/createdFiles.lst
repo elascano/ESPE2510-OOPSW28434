@@ -1,0 +1,6 @@
+ec\edu\espe\hw29singleton\view\ConsoleAlertView.class
+ec\edu\espe\hw29singleton\Main.class
+ec\edu\espe\hw29singleton\model\Product.class
+ec\edu\espe\hw29singleton\config\MongoDBConfig.class
+ec\edu\espe\hw29singleton\controller\StockAlertController.class
+ec\edu\espe\hw29singleton\model\AlarmConfig.class
