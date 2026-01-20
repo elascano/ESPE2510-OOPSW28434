@@ -1,0 +1,11 @@
+Help me with this. I have a clinic management system as a project, and I need to use the Singleton pattern in it. The idea is to use it for sending notifications. The Singleton must use a single email configuration file.
+
+For example, the email that sends messages will be toamedicalclinic@gmail.com. This email must be stored as a hardcoded value inside a JSON file, and the system must load it from there.
+
+I need working code that follows the MVC pattern and also uses a utils package to organize the folders. The code must respect the SOLID principles and use the Singleton pattern correctly.
+
+There must also be a graphical interface where appointments can be registered. I do not want a separate main file. The program must run directly from the view folder, which is where the execution starts.
+
+Each appointment must have these attributes: appointment ID, patient ID, patient email, appointment date, appointment time
+
+The Singleton email must send a notification to the patient’s email when an appointment is registered.
