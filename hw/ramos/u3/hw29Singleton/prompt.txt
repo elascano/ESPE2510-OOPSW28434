@@ -1,0 +1,43 @@
+Actúa como un experto en Programación Orientada a Objetos, Patrones de Diseño (Singleton), Arquitectura MVC estricta y Clean Code, con experiencia en aplicaciones Java de escritorio.
+
+Contexto y problema:
+Se requiere desarrollar una aplicación de escritorio en Java llamada **AlertSystemPerDay** para gestionar tareas con fechas límite. El problema es la falta de un mecanismo centralizado y persistente que permita definir cuántos días antes de una fecha límite se debe mostrar una alerta, lo que puede provocar olvido de tareas importantes.
+
+Objetivo:
+Implementar un sistema de alertas por día que permita registrar tareas, definir un número de días de anticipación y notificar al usuario cuando una tarea esté próxima a vencer, aplicando estrictamente MVC y el patrón Singleton.
+
+Restricciones de arquitectura:
+– Java con Maven.
+– MVC estricto.
+– Solo se permiten los paquetes Model, View y Controller.
+– La Vista no accede a la persistencia ni al Singleton.
+– El Controlador es el único intermediario entre Vista, Modelo y Singleton.
+– Sin frameworks adicionales.
+
+Requerimientos
+
+Model:
+– Clase Task con almenos nombre y fecha límite.
+– Lógica para calcular días restantes.
+– Clase Singleton dentro del Model para gestionar los días de anticipación, con instancia única, constructor privado, getInstance(), getters/setters y persistencia en archivos JSON.
+
+View:
+– Interfaz Swing para ingresar y visualizar tareas.
+– Alertas cuando una tarea esté próxima a vencer, mostrando nombre y días restantes.
+– Campo de texto y botón para actualizar los días de anticipación.
+– La Vista solo captura eventos y los envía al Controlador.
+
+Controller:
+– Recibe acciones de la Vista.
+– Consulta el Singleton para obtener los días de anticipación.
+– Evalúa las tareas comparando fecha actual, fecha límite y configuración.
+– Actualiza el Singleton cuando el usuario cambia los días de anticipación.
+– Coordina todo el flujo respetando MVC.
+
+Persistencia:
+– Archivos JSON para tareas y configuración de días de anticipación.
+– Carga automática al iniciar y guardado al modificar datos.
+
+Código fuente completo organizado en Model, View y Controller, separación clara de responsabilidades, explicación breve del flujo del sistema y del uso del patrón Singleton.
+
+Desarrolla la solución como un proyecto universitario bien estructurado, claro y con buenas prácticas de programación.
