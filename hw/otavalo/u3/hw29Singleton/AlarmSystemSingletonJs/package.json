@@ -1,0 +1,16 @@
+{
+  "name": "alarm-system",
+  "version": "1.0.0",
+  "description": "Sistema de alarma de stock con Singleton y MVC",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "mongodb": "^7.0.0"
+  },
+  "devDependencies": {
+    "electron": "^25.0.0"
+  },
+  "author": "Arelys Otavalo, the POOwer Rangers of Programming"
+}
