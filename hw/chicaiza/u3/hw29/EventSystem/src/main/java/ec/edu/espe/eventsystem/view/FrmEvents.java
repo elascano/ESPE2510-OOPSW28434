@@ -72,6 +72,12 @@ public class FrmEvents extends javax.swing.JFrame {
 
         jLabel4.setText("Price:");
 
+        txtDiscount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDiscountActionPerformed(evt);
+            }
+        });
+
         btnUpdateDiscount.setText("Update Discount");
         btnUpdateDiscount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,6 +225,10 @@ public class FrmEvents extends javax.swing.JFrame {
             );
         }
     }//GEN-LAST:event_btnUpdateDiscountActionPerformed
+
+    private void txtDiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiscountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDiscountActionPerformed
 
     /**
      * @param args the command line arguments
