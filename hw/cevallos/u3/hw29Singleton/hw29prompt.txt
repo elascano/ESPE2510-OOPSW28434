@@ -1,0 +1,97 @@
+> You are a senior software architect and clean-code expert.
+>
+> Design and implement a **cross-language application** (Python, Java, and JavaScript) that **applies a discount to a sale via a GUI**, following these strict architectural and design requirements:
+>
+> ---
+>
+> ### 1. Architectural Requirements
+>
+> * Use the **MVC (Model–View–Controller)** pattern.
+> * Implement a **Singleton pattern** for configuration and discount management.
+> * Follow **SOLID principles** rigorously:
+>
+>   * **S**: Single Responsibility for each class/module
+>   * **O**: Open for extension, closed for modification
+>   * **L**: Liskov Substitution for discount strategies
+>   * **I**: Interface segregation for discount logic
+>   * **D**: Dependency inversion (controllers depend on abstractions)
+> * Apply **Clean Code** practices:
+>
+>   * Meaningful naming
+>   * Small, focused classes and methods
+>   * No hard-coded values
+> * Apply **AME (Abstract, Modular, Extensible)** design:
+>
+>   * Abstract discount behavior via interfaces/abstract classes
+>   * Modular components that can be reused
+>   * Easy to extend with new discount strategies
+>
+> ---
+>
+> ### 2. Functional Requirements
+>
+> * GUI allows user to:
+>
+>   * Enter original price
+>   * Select discount type (percentage, fixed amount, none)
+>   * Enter discount value
+>   * View final price after discount
+> * Validate user input
+> * Business logic must be independent from the GUI
+>
+> ---
+>
+> ### 3. Design Constraints
+>
+> * Discount logic must use the **Strategy Pattern**
+> * Discount Manager must be a **Singleton**
+> * Controller coordinates input, validation, and calculation
+> * Model handles pricing and discount rules only
+> * View handles UI rendering only
+>
+> ---
+>
+> ### 4. Language-Specific Implementations
+>
+> Generate **separate implementations** for:
+>
+> #### Python
+>
+> * GUI: Tkinter (or PyQt if preferred)
+> * Use abstract base classes (`abc`)
+>
+> #### Java
+>
+> * GUI: JavaFX or Swing
+> * Use interfaces and abstract classes
+>
+> #### JavaScript
+>
+> * GUI: HTML/CSS + vanilla JS (no frameworks)
+> * Use ES6 classes and modules
+>
+> ---
+>
+> ### 5. Output Format
+>
+> For **each language**, provide:
+>
+> 1. Folder structure
+> 2. Explanation of architecture
+> 3. Full source code
+> 4. Example of extending the app with a new discount type
+>
+> ---
+>
+> ### 6. Quality Bar
+>
+> * Production-ready code
+> * Fully reusable
+> * Easy to test
+> * No duplicated logic
+> * Clear separation of concerns
+>
+> Think step-by-step and explain design decisions briefly before code.
+
+---
+
