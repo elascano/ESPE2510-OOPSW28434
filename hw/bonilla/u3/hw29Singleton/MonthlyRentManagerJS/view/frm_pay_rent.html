@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pay Rent</title>
+</head>
+<body>
+    <h2>Pay Rent</h2>
+
+    <label>Months:</label>
+    <select id="months">
+        <script>
+            for (let i = 0; i <= 12; i++) {
+                document.write(`<option value="${i}">${i}</option>`);
+            }
+        </script>
+    </select>
+
+    <p id="total">$0.00</p>
+
+    <button onclick="pay()">Pay</button>
+    <br><br>
+    <a href="/">Back to menu</a>
+
+    <script>
+        const residentId = 1756055065;
+        const residentName = "John Doe";
+
+        document.getElementById("months").addEventListener("change", async function () {
+            const months = this.value;
+            const res = await fetch(`/calculate?id=${residentId}&name=${residentName}&months=${months}`);
+            const data = await res.json();
+            document.getElementById("total").innerText = "$" + data.total;
+        });
+
+        async function pay() {
+            alert("Payment successful!");
+        }
+    </script>
+</body>
+</html>

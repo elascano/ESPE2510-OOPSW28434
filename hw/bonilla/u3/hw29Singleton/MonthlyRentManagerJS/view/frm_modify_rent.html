@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modify Rent</title>
+</head>
+<body>
+    <h2>Modify Rent</h2>
+
+    <input type="number" id="rent" placeholder="New rent">
+    <button onclick="updateRent()">Update</button>
+
+    <br><br>
+    <a href="/">Back to menu</a>
+
+    <script>
+        async function updateRent() {
+            const rent = document.getElementById("rent").value;
+            await fetch("/update-rent", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ rent })
+            });
+            alert("Rent updated successfully");
+        }
+    </script>
+</body>
+</html>
