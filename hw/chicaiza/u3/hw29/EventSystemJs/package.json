@@ -1,0 +1,13 @@
+{
+  "name": "event-system",
+  "version": "1.0.0",
+  "description": "Sistema de eventos con MVC y Singleton Discount",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "ESPE",
+  "license": "ISC",
+  "keywords": []
+}
