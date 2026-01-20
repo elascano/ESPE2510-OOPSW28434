@@ -1,0 +1,29 @@
+I'm working on a Java project about managing a parking lot, and for that I need you to create a complete NetBeans project named 'MonthlyRentManager' strictly following the MVC (Model-View-Controller) architectural pattern. The system is designed to manage rental payments for residents.
+
+Apply the following technical requirements and design patterns:
+
+Singleton Pattern: Implement a class named RentalManager in the utils package. This class must use the Singleton pattern to manage the global monthly rent value. It must include methods to load and save this value to a local text file located at src/data/rent.txt.
+
+Package Structure: Organize the source code as follows:
+
+ec.edu.espe.monthlyrentmanager.model: Resident class (fields: id, name, months) with logic to calculate totals.
+
+ec.edu.espe.monthlyrentmanager.controller: RentController class to handle communication between the View and the Model.
+
+ec.edu.espe.monthlyrentmanager.utils: RentalManager class (The Singleton).
+
+ec.edu.espe.monthlyrentmanager.view: All JFrame forms.
+
+GUI Requirements (Swing): Build three JFrames with a clean UI:
+
+FrmMenu: A main dashboard with a JMenuBar containing an 'Options' menu for navigation.
+
+FrmModifyRent: A form to update the base rent value. It must use the Singleton instance to persist changes to the .txt file.
+
+FrmPayRent: A payment processing form. It should display a Resident ID, a JComboBox to select the number of months (1-12), and a label that updates dynamically to show the 'Total to Pay' (Base Rent * Selected Months).
+
+Logic & Error Handling:
+
+Use JOptionPane for success and error alerts.
+
+Implement robust error handling (try-catch blocks) for file I/O and number parsing (NumberFormatException).
