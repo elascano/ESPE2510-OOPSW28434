@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+</head>
+<body>
+
+<h2>Add</h2>
+
+<label>Id:</label><br>
+<input type="text" id="id" readonly><br><br>
+
+<label>Product:</label><br>
+<input type="text" id="product"><br><br>
+
+<label>Price:</label><br>
+<input type="number" id="price"><br><br>
+
+<button onclick="addProduct()">Add</button>
+
+<script>
+async function loadNextId() {
+    const response = await fetch("/api/nextId");
+    const nextId = await response.text();
+    document.getElementById("id").value = nextId;
+}
+
+async function addProduct() {
+    const id = document.getElementById("id").value;
+    const product = document.getElementById("product").value.trim();
+    const price = parseFloat(document.getElementById("price").value);
+
+    if (!product || isNaN(price)) {
+        alert("Product and Price are required");
+        return;
+    }
+
+    const iva = 0.15;
+    const priceTotal = price + (price * iva);
+
+    alert("Final price with IVA (15%): $" + priceTotal.toFixed(2));
+
+    const data = {
+        id: id,
+        Product: product,
+        Price: price,
+        PriceTotal: priceTotal
+    };
+
+    const response = await fetch("/api/entities", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+        alert("Data added successfully");
+        document.getElementById("product").value = "";
+        document.getElementById("price").value = "";
+        loadNextId();
+    } else {
+        alert("Error saving data");
+    }
+}
+
+loadNextId();
+</script>
+
+</body>
+</html>

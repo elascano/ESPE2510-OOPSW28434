@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Edit</h2>
+
+<input id="id" placeholder="ID">
+<input id="data" placeholder="JSON attributes">
+<button onclick="edit()">Update</button>
+
+<script>
+function edit() {
+    fetch("/api/entities/" + id.value, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: data.value
+    });
+}
+</script>
+</body>
+</html>

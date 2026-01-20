@@ -1,0 +1,9 @@
+ec\edu\espe\repository\MongoProductRepository.class
+ec\edu\espe\model\Product.class
+ec\edu\espe\view\ProductView$1.class
+ec\edu\espe\controller\ProductController$1.class
+ec\edu\espe\view\ProductView.class
+ec\edu\espe\repository\ProductRepository.class
+ec\edu\espe\service\TaxService.class
+ec\edu\espe\view\ProductView$2.class
+ec\edu\espe\controller\ProductController.class

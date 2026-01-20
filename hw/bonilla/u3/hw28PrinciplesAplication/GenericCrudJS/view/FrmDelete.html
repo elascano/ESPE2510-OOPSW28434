@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Delete</h2>
+
+<input id="id" placeholder="ID">
+<button onclick="del()">Delete</button>
+
+<script>
+function del() {
+    fetch("/api/entities/" + id.value, {
+        method: "DELETE"
+    });
+}
+</script>
+</body>
+</html>
