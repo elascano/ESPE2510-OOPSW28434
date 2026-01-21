@@ -1,0 +1,11 @@
+const { MongoClient } = require('mongodb');
+
+const uri = "mongodb+srv://maryuri:maryuri2007@cluster0.iektq66.mongodb.net/";
+const client = new MongoClient(uri);
+
+async function getDatabase() {
+    await client.connect();
+    return client.db("InventoryDB");
+}
+
+module.exports = { getDatabase };

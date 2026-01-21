@@ -1,0 +1,32 @@
+const { getDatabase } = require('../utils/mongoConnection');
+
+class AlarmConfig {
+    constructor() {
+        this.minimumStock = 10;
+        this.dbCollection = null;
+    }
+
+    static async getInstance() {
+        if (!this.instance) {
+            this.instance = new AlarmConfig();
+            const db = await getDatabase();
+            this.instance.dbCollection = db.collection("SalesConfiguration");
+            const config = await this.instance.dbCollection.findOne({});
+            if (config) {
+                this.instance.minimumStock = config.minimumStock;
+            }
+        }
+        return this.instance;
+    }
+
+    async updateMinimumStock(newStock) {
+        this.minimumStock = parseInt(newStock);
+        await this.dbCollection.updateOne({}, { $set: { minimumStock: this.minimumStock } }, { upsert: true });
+    }
+
+    getMinimumStock() {
+        return this.minimumStock;
+    }
+}
+
+module.exports = AlarmConfig;
