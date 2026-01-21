@@ -31,4 +31,13 @@ public class PhotographerController {
         JsonFileUtil.getInstance().save(photographer);
         MongoDBUtil.getInstance().save(photographer);
     }
+    public java.util.List<Photographer> getPhotographers() {
+    return MongoDBUtil.getInstance().getAll();
+}
+
+
+public void delete(String name) {
+  
+    utils.MongoDBUtil.getInstance().delete(name);
+}
 }

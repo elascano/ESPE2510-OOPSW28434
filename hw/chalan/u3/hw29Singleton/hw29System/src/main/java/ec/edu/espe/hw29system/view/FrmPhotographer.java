@@ -1,20 +1,28 @@
 package ec.edu.espe.hw29system.view;
 
+import ec.edu.espe.hw29system.controller.PhotographerController;
+import ec.edu.espe.hw29system.model.Photographer;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Kevin Chalan, OBJECT MASTER, OOP
  */
 public class FrmPhotographer extends javax.swing.JFrame {
     
+private final PhotographerController controller = new PhotographerController();
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmPhotographer.class.getName());
-
     /**
      * Creates new form FrmPhotographer
      */
     public FrmPhotographer() {
-    initComponents();
-    configureWindow();
-    loadSpecialties();
+        initComponents();
+        configureWindow();
+        loadSpecialties();
+        loadPhotographersTable(); 
+        setupValidations();
     }
 private void loadSpecialties() {
     jComboBox1Speciality.removeAllItems();
@@ -26,9 +34,48 @@ private void loadSpecialties() {
     jComboBox1Speciality.addItem("Fashion");
 }
 private void configureWindow() {
-    this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-}
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+    }
+private void setupValidations() {
+     
+        jTextField1Name.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
+                    evt.consume(); 
+                }
+            }
+        });
 
+
+        jTextField2Expericnce.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                if (!Character.isDigit(c)) {
+                    evt.consume(); 
+                }
+            }
+        });
+
+    
+        jTextField3hpuryrate.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+               
+                if (!Character.isDigit(c) && c != '.') {
+                    evt.consume();
+                }
+         
+                if (c == '.' && jTextField3hpuryrate.getText().contains(".")) {
+                    evt.consume();
+                }
+            }
+        });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,6 +97,9 @@ private void configureWindow() {
         jComboBox1Speciality = new javax.swing.JComboBox<>();
         jTextField2Expericnce = new javax.swing.JTextField();
         jTextField3hpuryrate = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1information = new javax.swing.JTable();
+        jToggleButton1Edit = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,14 +113,14 @@ private void configureWindow() {
 
         jLabel5.setText("Hourly Rate ($)");
 
-        jButton1save.setText("[ Save ]");
+        jButton1save.setText(" Save ");
         jButton1save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1saveActionPerformed(evt);
             }
         });
 
-        jButton2cancel.setText("[ Cancel ]");
+        jButton2cancel.setText(" Cancel ");
         jButton2cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2cancelActionPerformed(evt);
@@ -90,62 +140,96 @@ private void configureWindow() {
             }
         });
 
+        jTextField2Expericnce.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ExpericnceActionPerformed(evt);
+            }
+        });
+
+        jTextField3hpuryrate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3hpuryrateActionPerformed(evt);
+            }
+        });
+
+        jTable1information.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1information);
+
+        jToggleButton1Edit.setText("Delete");
+        jToggleButton1Edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1EditActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1Name, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(57, 57, 57)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(27, 27, 27)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jTextField2Expericnce, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1Speciality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1save)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jComboBox1Speciality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButton1save)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField3hpuryrate, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton2cancel)))))))
-                .addContainerGap(73, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField2Expericnce, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField3hpuryrate, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2cancel)))
+                            .addComponent(jTextField1Name, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton1Edit))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1Speciality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2Expericnce, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1Speciality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField2Expericnce, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton1Edit))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextField3hpuryrate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1save)
                     .addComponent(jButton2cancel))
@@ -158,8 +242,7 @@ private void configureWindow() {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,28 +256,34 @@ private void configureWindow() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2cancelActionPerformed
-       this.dispose();
+FrmMain frmMain  = new FrmMain ();
+    frmMain.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_jButton2cancelActionPerformed
 
     private void jButton1saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1saveActionPerformed
 try {
-        ec.edu.espe.hw29system.controller.PhotographerController controller =
-                new ec.edu.espe.hw29system.controller.PhotographerController();
+            
+            controller.register(
+                jTextField1Name.getText(),
+                jComboBox1Speciality.getSelectedItem().toString(),
+                jTextField2Expericnce.getText(),
+                jTextField3hpuryrate.getText()
+            );
 
-        controller.register(
-            jTextField1Name.getText(),
-            jComboBox1Speciality.getSelectedItem().toString(),
-            jTextField2Expericnce.getText(),
-            jTextField3hpuryrate.getText()
-        );
+            javax.swing.JOptionPane.showMessageDialog(this, "Photographer saved successfully");
+            
+            loadPhotographersTable(); 
+            
+            // Limpiar campos
+            jTextField1Name.setText("");
+            jTextField2Expericnce.setText("");
+            jTextField3hpuryrate.setText("");
 
-        javax.swing.JOptionPane.showMessageDialog(this, "Photographer saved successfully");
-        this.dispose();
-
-    } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Invalid data", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-    }
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Invalid data", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1saveActionPerformed
 
     private void jComboBox1SpecialityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1SpecialityActionPerformed
@@ -202,9 +291,85 @@ try {
     }//GEN-LAST:event_jComboBox1SpecialityActionPerformed
 
     private void jTextField1NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1NameActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextField1NameActionPerformed
 
+    private void jTextField2ExpericnceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ExpericnceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ExpericnceActionPerformed
+
+    private void jTextField3hpuryrateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3hpuryrateActionPerformed
+      
+    }//GEN-LAST:event_jTextField3hpuryrateActionPerformed
+
+    private void jToggleButton1EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1EditActionPerformed
+                                                      
+
+    int selectedRow = jTable1information.getSelectedRow();
+
+    if (selectedRow == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Select a photographer from the table to delete", 
+            "Error", 
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+
+    int confirm = javax.swing.JOptionPane.showConfirmDialog(this, 
+            "Are you sure you want to delete this photographer?", 
+            "Confirm Delete", 
+            javax.swing.JOptionPane.YES_NO_OPTION);
+
+    if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+        try {
+          
+            String nameToDelete = jTable1information.getValueAt(selectedRow, 0).toString();
+
+   
+            controller.delete(nameToDelete);
+
+    
+            loadPhotographersTable();
+            jTextField1Name.setText("");
+            jTextField2Expericnce.setText("");
+            jTextField3hpuryrate.setText("");
+            
+            javax.swing.JOptionPane.showMessageDialog(this, "Deleted successfully");
+
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Error deleting: " + e.getMessage());
+        }
+    }
+
+    
+    }//GEN-LAST:event_jToggleButton1EditActionPerformed
+
+private void loadPhotographersTable() {
+       
+        List<Photographer> photographers = controller.getPhotographers();
+        
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Name");
+        model.addColumn("Specialty");
+        model.addColumn("Experience (Years)");
+        model.addColumn("Hourly Rate ($)");
+
+        for (Photographer p : photographers) {
+            model.addRow(new Object[]{
+                p.getName(),
+                p.getSpecialty(),
+                p.getExperience(),
+                p.getHourlyRate()
+            });
+        }
+        
+        jTable1information.setModel(model);
+    }
+
+
+    
     /**
      * @param args the command line arguments
      */
@@ -240,8 +405,11 @@ try {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1information;
     private javax.swing.JTextField jTextField1Name;
     private javax.swing.JTextField jTextField2Expericnce;
     private javax.swing.JTextField jTextField3hpuryrate;
+    private javax.swing.JToggleButton jToggleButton1Edit;
     // End of variables declaration//GEN-END:variables
 }

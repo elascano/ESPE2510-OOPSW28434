@@ -1,17 +1,19 @@
 const fs = require("fs");
 
 class JsonFileUtil {
+    
+    // 
+    static instance = null;
 
     constructor() {
         if (JsonFileUtil.instance) {
             return JsonFileUtil.instance;
         }
-
         this.filePath = "photographers.json";
-        JsonFileUtil.instance = this;
+        JsonFileUtil.instance = this; //
     }
 
-    static getInstance() {
+    static getInstance() { //
         if (!JsonFileUtil.instance) {
             JsonFileUtil.instance = new JsonFileUtil();
         }
@@ -20,16 +22,16 @@ class JsonFileUtil {
 
     save(photographer) {
         let data = [];
-
-        if (fs.existsSync(this.filePath)) {
-            const fileContent = fs.readFileSync(this.filePath);
-            data = JSON.parse(fileContent);
+        try {
+            if (fs.existsSync(this.filePath)) {
+                const fileContent = fs.readFileSync(this.filePath);
+                data = JSON.parse(fileContent);
+            }
+            data.push(photographer);
+            fs.writeFileSync(this.filePath, JSON.stringify(data, null, 2));
+        } catch (error) {
+            console.error("Error saving JSON", error);
         }
-
-        data.push(photographer);
-
-        fs.writeFileSync(this.filePath, JSON.stringify(data, null, 2));
-        console.log("Photographer saved to JSON");
     }
 }
 

@@ -1,4 +1,4 @@
-class Photographer {
+class Photographer { // 
     constructor(name, specialty, experience, hourlyRate) {
         this.name = name;
         this.specialty = specialty;

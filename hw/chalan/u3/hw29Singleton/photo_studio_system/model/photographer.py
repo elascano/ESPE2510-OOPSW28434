@@ -1,4 +1,4 @@
-class Photographer:
+class Photographer: # SingleR
     def __init__(self, name, specialty, experience, hourly_rate):
         self.name = name
         self.specialty = specialty
