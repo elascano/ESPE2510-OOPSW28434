@@ -27,3 +27,35 @@ Logic & Error Handling:
 Use JOptionPane for success and error alerts.
 
 Implement robust error handling (try-catch blocks) for file I/O and number parsing (NumberFormatException).
+
+
+PYTHON
+Replicate a Java/Swing "Monthly Rent Manager" application in Python using the MVC (Model-View-Controller) architectural pattern and the tkinter library for the GUI.
+model/ (Logic and data structures)
+view/ (GUI components)
+controller/ (Interface between View and Model)
+utils/ (Helper classes/Singletons)
+Functional Requirements
+
+Utility (Singleton): Create a RentalManager class in utils/. It must implement the Singleton pattern. It should handle reading and writing a single float value (the monthly rent) to a file named rent.txt.
+
+Model: Create a Resident class in model/. It should have attributes: id, name, and months. It must include a method calculate_total_rent() that retrieves the current rent value from the RentalManager singleton.
+
+Controller: Create a RentController in controller/ that instantiates the Model and returns the calculated values to the View.
+
+Views: Create three separate classes in view/ inheriting from tk.Tk:
+
+FrmMenu: The main dashboard with an "Options" menu (Pay Rent, Modify Rent, Exit).
+
+FrmPayRent: Displays a hardcoded Resident ID (1756055065), a dropdown (OptionMenu) to select months (0-12), and dynamically updates a "Value for rental" label.
+
+FrmModifyRent: A form to update the base monthly rent value. It must include error handling for non-numeric or negative inputs.
+
+Navigation: Ensure that when switching between windows, the current window is destroyed (self.destroy()) before opening the new one, similar to this.dispose() in Java.
+
+
+JAVASCRIPT
+Create a Node.js MVC app for a 'Monthly Rent Manager'. Use Express for a backend API to read/write a base rent value from 'rent.json'. 
+The frontend  must use a Singleton 'RentalManager' that fetches the data before rendering views. Include three views: Menu, Pay Rent 
+(calculates total: months * rent), and Modify Rent (updates the JSON file). Ensure the navigation system waits for the data to load before 
+showing any UI to avoid showing 0 values
