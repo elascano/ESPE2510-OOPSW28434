@@ -1,23 +1,131 @@
-Actúa como un Arquitecto de Software experto en Patrones de Diseño, Arquitectura MVC y Clean Code.
-Contexto del Proyecto: Estoy desarrollando un sistema de gestión de ventas e inventarios que utiliza una base de datos NoSQL (MongoDB). Necesito implementar una nueva funcionalidad: un Sistema de Alertas de Stock.
-Requerimientos Técnicos: Por favor, genera el código y la estructura necesaria para este módulo siguiendo estrictamente estas reglas:
-Patrón de Diseño (Singleton) - AlarmConfig:
-Crea una clase en el paquete Config que implemente el patrón Singleton.
-Atributos: Instancia estática (instance) y un entero para el umbral (minimumStock).
-Persistencia: El valor de minimumStock debe persistir y recuperarse de una colección en MongoDB llamada sales_configuration.
-Métodos: Constructor privado, getInstance(), getters, y un método updateMinimumStock(int newStock) que actualice tanto la instancia en memoria como el documento en la base de datos.
-Interfaz Gráfica / Vista (View):
-Diseña una clase que simule la interfaz de usuario.
-Notificaciones: Debe mostrar una alerta (puede ser JOptionPane o consola simulada) con mensajes en inglés cuando un producto tiene stock bajo. Datos a mostrar: ID, Nombre y Stock actual.
-Actualización de Configuración: La vista debe incluir la lógica visual (simulación de un campo de texto y un botón "Update") para que el usuario ingrese un nuevo valor para el minimumStock. Esta vista debe capturar el input del usuario y delegar la acción al Controlador.
-Lógica de Negocio (Controller):
-Verificación: Itera los productos de la colección products. Si (producto.stock <= AlarmConfig.minimumStock), invoca la alerta en la Vista.
-Gestión de Eventos: Debe incluir un método que reciba el nuevo valor de stock desde la Vista y llame al método de actualización del Singleton AlarmConfig.
-Restricciones de Arquitectura (MVC Estricto):
+Actúa como un Arquitecto de Software Senior, especialista en Patrones de Diseño (GoF), Arquitectura MVC estricta, Clean Code y Java Enterprise con MongoDB.
+
+CONTEXTO DEL PROYECTO
+Estoy desarrollando un Sistema de Gestión de Ventas e Inventarios en Java (Maven) que utiliza MongoDB (NoSQL) como base de datos. Necesito implementar una nueva funcionalidad llamada Sistema de Alertas de Stock, respetando principios de alta cohesión, bajo acoplamiento y separación estricta de responsabilidades.
+
+REQUERIMIENTOS TÉCNICOS (OBLIGATORIOS)
+
+Patrón de Diseño – Singleton (AlarmConfig)
+
+Crear una clase llamada AlarmConfig dentro del paquete Config.
+
+Implementar correctamente el patrón Singleton:
+
+Constructor privado
+
+Atributo private static AlarmConfig instance
+
+Método público getInstance()
+
+Atributos:
+
+private int minimumStock
+
+Persistencia:
+
+El valor de minimumStock debe almacenarse y recuperarse desde MongoDB.
+
+Colección: sales_configuration
+
+El documento representa la configuración global del sistema.
+
+Métodos obligatorios:
+
+getMinimumStock()
+
+updateMinimumStock(int newStock)
+
+Actualiza el valor en memoria
+
+Persiste el nuevo valor en MongoDB
+
+Vista (View – Interfaz Gráfica Simulada)
+
+Crear una clase dentro del paquete View.
+
+La Vista NO puede acceder directamente a MongoDB ni al Singleton AlarmConfig.
+
+Responsabilidades:
+
+Mostrar una alerta de stock bajo (JOptionPane o consola simulada).
+
+Mensajes EN INGLÉS.
+
+Datos a mostrar: Product ID, Product Name, Current Stock.
+
+Simular una interfaz de configuración:
+
+Campo de texto para ingresar un nuevo valor de minimumStock.
+
+Botón "Update".
+
+La Vista captura el input del usuario y delega la acción al Controlador.
+
+Controlador (Controller – Lógica de Negocio)
+
+Crear una clase dentro del paquete Controller.
+
+Responsabilidades:
+
+Consultar la colección products en MongoDB.
+
+Iterar todos los productos.
+
+Regla de negocio:
+if (product.stock <= AlarmConfig.minimumStock)
+→ mostrar alerta en la Vista
+
+Gestión de eventos:
+
+Recibir el nuevo valor de minimumStock desde la Vista.
+
+Invocar AlarmConfig.updateMinimumStock(...).
+
+El Controlador es el ÚNICO intermediario entre Vista, Modelo y Configuración.
+
+Restricciones de Arquitectura (MVC ESTRICTO)
+
+PROHIBIDO usar capas adicionales (Service, Repository, DAO, etc.).
+
+PROHIBIDO que la Vista acceda al Singleton o a MongoDB.
+
+PROHIBIDO que el Modelo contenga lógica de negocio.
+
 SOLO se permiten los paquetes: Model, View, Controller y Config.
-No usar capas intermedias (Service/Repository).
-La Vista no debe llamar a la Base de Datos ni al Singleton directamente; debe pasar por el Controlador.
-Tecnologías:
-Lenguaje: Java con Maven.
-Librerías: Driver nativo de MongoDB (mongodb-driver-sync).
-Entregable: Provee el código fuente completo organizado en los bloques/paquetes solicitados, explicando brevemente la responsabilidad de cada archivo y cómo el Controlador conecta el input de la Vista con la actualización del Singleton.
+
+Modelo (Model)
+
+Crear una clase Product que represente un documento de la colección products.
+
+Contener únicamente atributos, constructores y getters.
+
+Sin lógica de negocio.
+
+Tecnologías Obligatorias
+
+Lenguaje: Java
+
+Build Tool: Maven
+
+Base de Datos: MongoDB
+
+Driver: mongodb-driver-sync
+
+Arquitectura: MVC puro
+
+Código limpio, legible y bien organizado.
+
+ENTREGABLE
+
+Proveer el código fuente completo organizado por paquetes.
+
+Explicar brevemente:
+
+La responsabilidad de cada clase.
+
+Cómo el Controlador conecta la Vista con el Singleton.
+
+Cómo se mantiene la coherencia entre memoria y base de datos.
+
+OBJETIVO FINAL
+Implementar un módulo de alertas de stock robusto, desacoplado y mantenible, alineado con patrones de diseño profesionales y arquitectura limpia, listo para escalar en un sistema real de ventas.
