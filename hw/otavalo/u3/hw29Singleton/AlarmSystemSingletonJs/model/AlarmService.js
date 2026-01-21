@@ -32,7 +32,7 @@ class AlarmService {
             return this.#minStock;
         } catch (error) {
             console.error("Database connection failed:", error);
-            this.#minStock = 10; // Valor por defecto si falla la red
+            this.#minStock = 10; 
         }
     }
 
