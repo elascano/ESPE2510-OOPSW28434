@@ -15,3 +15,18 @@ router.get("/customers", async (req, res) => {
 });
 
 module.exports = router;
+
+router.get('/customer/:id',async(req,res)=>{
+    try {
+        const customerObject = await customer.findOne({id: req.params.id});
+        if (customerObject == null){
+            res.status(400).json( {status:404,error: 'Not found', message:'The requested URL ${req.originalUrl} was not found on this server.'});
+        }else {
+            res.json(customerObject);
+        }
+    }catch (error){
+        res.status(500).json({message : err.message})
+    }
+
+
+});
