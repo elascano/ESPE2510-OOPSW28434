@@ -6,28 +6,28 @@ package ec.edu.espe.hwtemplatemethod.model;
  */
 public abstract class CaffeineBeverage {
 
-    public final void prepareRecipe() {
+    public final void prepareRecipe() { // Template method
         boilWater();
         brew();
         pourInCup();
-        if (wantsCondiments()) {
+        if (wantsCondiments()) { // Hook
             addCondiments();
         }
     }
 
     public void boilWater() {
-        System.out.println("Boiling water");
+        System.out.println("Boiling water"); // Fixed step
     }
 
-    public abstract void brew();
+    public abstract void brew(); // Variable step
 
     public void pourInCup() {
-        System.out.println("Pouring into cup");
+        System.out.println("Pouring into cup"); // Fixed step
     }
 
-    public abstract void addCondiments();
+    public abstract void addCondiments(); // Variable step
 
     public boolean wantsCondiments() {
-        return true;
+        return true; // Default hook
     }
 }

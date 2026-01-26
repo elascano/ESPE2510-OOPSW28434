@@ -12,17 +12,17 @@ public class Tea extends CaffeineBeverage {
 
     @Override
     public void brew() {
-        System.out.println("Steep the tea");
+        System.out.println("Steep the tea"); // Step override
     }
 
     @Override
     public void addCondiments() {
-        System.out.println("Adding lemon");
+        System.out.println("Adding lemon"); // Step override
     }
 
     @Override
     public boolean wantsCondiments() {
-        String answer = getUserInput();
+        String answer = getUserInput(); // Hook override
 
         if (answer.toLowerCase().startsWith("y")) {
             return true;

@@ -11,13 +11,13 @@ public class BeverageTest {
 
     public static void main(String[] args) {
 
-        Tea tea = new Tea();
-        Coffee coffee = new Coffee();
+        Tea tea = new Tea(); // Concrete class
+        Coffee coffee = new Coffee(); // Concrete class
 
         System.out.println("\nMaking tea...");
-        tea.prepareRecipe();
+        tea.prepareRecipe(); // Template call
 
         System.out.println("\nMaking coffee...");
-        coffee.prepareRecipe();
+        coffee.prepareRecipe(); // Template call
     }
 }

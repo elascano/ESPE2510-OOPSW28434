@@ -1,27 +1,24 @@
 package ec.edu.espe.hwcomposite.model;
-/**
- *
- * @author Kevin Chalan, OBJECT MASTER, OOP
- */
+
 public class President extends Supervisor {
-    private static President president = new President();
-   private President(String aName) {
-        this(); 
+    private static President president = new President(); // Singleton
+
+    private President(String aName) {
+        this();
         name = aName;
     }
 
     private President() {
-        super();
         title = "President";
     }
 
     @Override
     public void stateName() {
-       super.stateName();
+       super.stateName(); // Composite behavior
     }
 
-   public static President getPresident(String aName) {
+    public static President getPresident(String aName) {
         president.name = aName;
-        return President.president;
+        return president; // Single instance
     }
 }

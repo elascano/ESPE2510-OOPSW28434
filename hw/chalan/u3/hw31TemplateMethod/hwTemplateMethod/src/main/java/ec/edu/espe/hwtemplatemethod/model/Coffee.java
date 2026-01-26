@@ -12,17 +12,17 @@ public class Coffee extends CaffeineBeverage {
 
     @Override
     public void brew() {
-        System.out.println("Dripping coffee through filter");
+        System.out.println("Dripping coffee through filter"); // Step override
     }
 
     @Override
     public void addCondiments() {
-        System.out.println("Adding sugar and milk");
+        System.out.println("Adding sugar and milk"); // Step override
     }
 
     @Override
     public boolean wantsCondiments() {
-        String answer = getUserInput();
+        String answer = getUserInput(); // Hook override
 
         if (answer.toLowerCase().startsWith("y")) {
             return true;

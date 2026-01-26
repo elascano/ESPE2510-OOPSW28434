@@ -1,9 +1,5 @@
 package ec.edu.espe.hwcomposite.model;
 
-/**
- *
- * @author Kevin Chalan, OBJECT MASTER, OOP
- */
 public class Teller extends Employee {
     public Teller(String aName) {
         this();
@@ -16,6 +12,6 @@ public class Teller extends Employee {
 
     @Override
     public void stateName() {
-        super.stateName();
+        super.stateName(); // Leaf behavior
     }
 }
