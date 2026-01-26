@@ -6,34 +6,35 @@ import java.io.InputStreamReader;
 
 /**
  *
- * @author Daniel
+ * @author Steven Loza
  */
-public class Tea extends CaffeineBeverage {
+public class HotChocolate extends CaffeineBeverage{
+    
     @Override
     public void brew() {
-        System.out.println("Steeping the tea");
+        System.out.println("Steeping the hot chocolate");
     }
 
     @Override
     public void addCondiments() {
-        System.out.println("adding lemon");
+        System.out.println("adding ");
     }
 
     @Override
     public boolean wantsCondiments() {
         String answer = getUserInput();
         if (answer.toLowerCase().startsWith("y")){
-            System.out.println("here you are your lemon te prepared by Daniel");
+            System.out.println("here you are your hot chocolate with milk prepared by Daniel");
             return true;
         }else{
-            System.out.println("This is not a lemon te by Daniel ");
+            System.out.println("This is not a hot chocolate with milk te by Daniel ");
             return false;
         }
     }
 
     private String getUserInput() {
         String answer = null;
-        System.out.println("Would you like lemon with your tea (y/n)? ");
+        System.out.println("Would you like milk with your hot chocolate (y/n)? ");
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         try {
             answer = in.readLine();
@@ -42,5 +43,5 @@ public class Tea extends CaffeineBeverage {
         }
         if (answer == null) return "no";
         return answer;
-    }    
+    }
 }
