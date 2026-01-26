@@ -1,12 +1,12 @@
 package ec.edu.espe.templatemethod.model;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 /**
  *
  * @author Arelis Samantha Bonilla Cruz, Student, @ESPE
  */
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class Tea extends CaffeineBeverage {
 
@@ -15,12 +15,19 @@ public class Tea extends CaffeineBeverage {
     }
 
     void addCondiments() {
-        System.out.println("Adding lemon");
+        System.out.println("Adding lemon...");
+        System.out.println("Here you are your lemon tea made by Arelis Bonilla");
     }
 
     boolean wantsCondiments() {
         String answer = getUserInput();
-        return answer.toLowerCase().startsWith("y");
+
+        if (answer.toLowerCase().startsWith("y")) {
+            return true;
+        } else {
+            System.out.println("This is a non lemon tea made by Arelis Bonilla");
+            return false;
+        }
     }
 
     private String getUserInput() {
