@@ -1,0 +1,8 @@
+ec\edu\espe\hwcomposite\model\Clerk.class
+ec\edu\espe\hwcomposite\controller\Client.class
+ec\edu\espe\hwcomposite\model\Employee.class
+ec\edu\espe\hwcomposite\model\President.class
+ec\edu\espe\hwcomposite\model\Supervisor.class
+ec\edu\espe\hwcomposite\view\Setup.class
+ec\edu\espe\hwcomposite\model\Manager.class
+ec\edu\espe\hwcomposite\model\Teller.class
