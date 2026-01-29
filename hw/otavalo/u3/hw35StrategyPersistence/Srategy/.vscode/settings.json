@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./StrategyPy/Instruments/src/main/python"
+    ]
+}
