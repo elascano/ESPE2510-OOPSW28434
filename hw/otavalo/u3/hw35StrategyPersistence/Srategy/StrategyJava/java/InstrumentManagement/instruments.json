@@ -1,0 +1,11 @@
+[
+  {
+    "id": "198",
+    "name": "Violin",
+    "price": 256.0,
+    "materials": [
+      "wood"
+    ],
+    "priceWithIva": 294.4
+  }
+]
