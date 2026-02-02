@@ -44,3 +44,6 @@ replay_pid*
 /hw/aymacana/u3/hw32Strategy/Strategy/target/
 /hw/pastor/u3/hw33CrudStrategy/CrudStrategy/target/
 /hw/pastor/u3/hw35CrudStrategy/CrudStrategy/target/
+/hw/toapanta/u3/hw31Composite/Composite/target/
+/hw/toapanta/u3/hw32TemplateMethod/TemplateMethod/target/
+/hw/toapanta/u3/hw33StrategyCode/target/
