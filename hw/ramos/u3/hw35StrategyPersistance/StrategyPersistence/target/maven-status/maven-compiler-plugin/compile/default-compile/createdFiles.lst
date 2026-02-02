@@ -1,0 +1,14 @@
+ec\edu\espe\strategypersistence\view\FrmStore$1.class
+ec\edu\espe\strategypersistence\view\FrmStore$6.class
+ec\edu\espe\strategypersistence\controller\DataManager.class
+ec\edu\espe\strategypersistence\controller\CsvStrategy.class
+ec\edu\espe\strategypersistence\view\FrmStore$5.class
+ec\edu\espe\strategypersistence\view\FrmStore.class
+ec\edu\espe\strategypersistence\controller\PersistenceStrategy.class
+ec\edu\espe\strategypersistence\model\Store.class
+ec\edu\espe\strategypersistence\view\FrmStore$4.class
+ec\edu\espe\strategypersistence\view\FrmStore$3.class
+ec\edu\espe\strategypersistence\view\FrmStore$2.class
+ec\edu\espe\strategypersistence\controller\MongoStrategy.class
+ec\edu\espe\strategypersistence\controller\GsonStrategy$1.class
+ec\edu\espe\strategypersistence\controller\GsonStrategy.class
