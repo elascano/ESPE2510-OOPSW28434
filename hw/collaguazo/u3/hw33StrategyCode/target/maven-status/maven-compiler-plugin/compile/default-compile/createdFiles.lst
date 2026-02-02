@@ -1,0 +1,6 @@
+ec\edu\espe\strategycode\model\QuickSort.class
+ec\edu\espe\strategycode\model\InsertionSort.class
+ec\edu\espe\strategycode\model\SortingStrategy.class
+ec\edu\espe\strategycode\view\SortApp.class
+ec\edu\espe\strategycode\model\BubbleSort.class
+ec\edu\espe\strategycode\model\SortingContext.class
