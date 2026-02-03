@@ -1,0 +1,5 @@
+utils\JsonUtil.class
+ec\edu\espe\ws32singletonprinciple\model\Discount.class
+ec\edu\espe\ws32singletonprinciple\controller\DiscountController.class
+ec\edu\espe\ws32singletonprinciple\model\DiscountSession.class
+ec\edu\espe\ws32singletonprinciple\view\FrmDiscount.class
