@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Store JS</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .inputs { margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    </style>
+</head>
+<body>
+    <h2>Store</h2>
+    <div class="inputs">
+        ID: <input type="number" id="txtId" style="width: 50px;">
+        Name: <input type="text" id="txtName">
+        Price: <input type="number" id="txtPrice">
+        Category: <input type="text" id="txtCategory">
+    </div>
+
+    <div>
+        Save: 
+        <select id="cmbPersistence" onchange="changeStrategy()">
+            <option value="CSV">CSV</option>
+            <option value="JSON">JSON</option>
+            <option value="MONGO">MONGO</option>
+        </select>
+    </div>
+
+    <table id="tblStore">
+        <thead>
+            <tr><th>Id</th><th>Name</th><th>Price</th><th>Category</th></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div style="margin-top: 20px;">
+        <button onclick="create()">Create</button>
+        <button onclick="find()">Find</button>
+        <button onclick="remove()">Delete</button>
+        <button onclick="update()">Update</button>
+        <button onclick="loadAll()">Load</button>
+    </div>
+
+    <script>
+        async function changeStrategy() {
+            const type = document.getElementById('cmbPersistence').value;
+            await fetch('/set-strategy', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ type })
+            });
+            alert("Strategy changed to " + type);
+        }
+
+        async function loadAll() {
+            const res = await fetch('/store');
+            const data = await res.json();
+            const tbody = document.querySelector('#tblStore tbody');
+            tbody.innerHTML = data.map(s => `
+                <tr><td>${s.id}</td><td>${s.name}</td><td>${s.price}</td><td>${s.category}</td></tr>
+            `).join('');
+        }
+
+        async function create() {
+            const body = {
+                id: document.getElementById('txtId').value,
+                name: document.getElementById('txtName').value,
+                price: document.getElementById('txtPrice').value,
+                category: document.getElementById('txtCategory').value
+            };
+            await fetch('/store', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(body)
+            });
+            alert("Saved");
+            loadAll();
+        }
+
+        async function find() {
+            const id = document.getElementById('txtId').value;
+            const res = await fetch(`/store/${id}`);
+            if (res.ok) {
+                const s = await res.json();
+                document.getElementById('txtName').value = s.name;
+                document.getElementById('txtPrice').value = s.price;
+                document.getElementById('txtCategory').value = s.category;
+            } else {
+                alert("Not found");
+            }
+        }
+    </script>
+</body>
+</html>

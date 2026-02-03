@@ -1,0 +1,11 @@
+[
+  {
+    "id": "941",
+    "name": "Flauta",
+    "price": 2.78,
+    "materials": [
+      "Bone"
+    ],
+    "priceWithIva": 3.2
+  }
+]

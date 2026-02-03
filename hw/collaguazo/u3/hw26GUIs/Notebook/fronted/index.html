@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Notebook App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        input, button {
+            margin: 5px 0;
+            padding: 6px;
+            width: 200px;
+        }
+        button {
+            cursor: pointer;
+        }
+        .notebook-item {
+            margin: 10px 0;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Registro de Notebooks</h2>
+
+    <label>Nombre:</label><br>
+    <input type="text" id="name"><br>
+
+    <label>Cantidad:</label><br>
+    <input type="number" id="quantity"><br>
+
+    <label>Precio:</label><br>
+    <input type="number" id="price" step="0.01"><br>
+
+    <label>Subtotal:</label><br>
+    <input type="text" id="subtotal" readonly><br>
+
+    <label>IVA (15%):</label><br>
+    <input type="text" id="iva" readonly><br>
+
+    <label>Total:</label><br>
+    <input type="text" id="total" readonly><br><br>
+
+    <button id="btnGuardar">Guardar</button>
+    <button id="btnLeer">Leer Notebooks</button>
+
+    <h3>Lista de Notebooks</h3>
+    <div id="notebookList"></div>
+
+    <!-- IMPORTANTE: el JS va al final -->
+    <script src="controller.js"></script>
+
+</body>
+</html>
+
