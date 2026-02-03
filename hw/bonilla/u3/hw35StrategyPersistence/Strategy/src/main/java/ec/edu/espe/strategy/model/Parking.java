@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 /**
  *
- * @author Arelis Samantha Bonilla Cruz
+ * @author Arelis Samantha Bonilla Cruz, Student, @ESPE
  */
 public class Parking {
 
