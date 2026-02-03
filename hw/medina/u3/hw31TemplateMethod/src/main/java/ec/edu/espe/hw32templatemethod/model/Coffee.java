@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
  *
  * @author Joseph B. Medina
  */
-public class Coffee {
+public class Coffee extends CaffeineBeverage {
 
     public void brew() {
         System.out.println("Dripping coffee through filter");
