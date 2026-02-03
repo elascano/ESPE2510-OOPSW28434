@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author Arelis Samantha Bonilla Cruz
+ * @author Arelis Samantha Bonilla Cruz, Student, @ESPE
  */
 public class ParkingController {
 

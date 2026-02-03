@@ -6,7 +6,7 @@ import com.mongodb.client.MongoDatabase;
 
 /**
  *
- * @author Arelis Samantha Bonilla Cruz
+ * @author Arelis Samantha Bonilla Cruz, Student, @ESPE
  */
 public class MongoConnection {
 

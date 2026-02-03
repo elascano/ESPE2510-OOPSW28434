@@ -11,7 +11,7 @@ import static com.mongodb.client.model.Filters.eq;
 
 /**
  *
- * @author Arelis Samantha Bonilla Cruz
+ * @author Arelis Samantha Bonilla Cruz, Student, @ESPE
  */
 public class MongoPersistence implements Persistence {
 
