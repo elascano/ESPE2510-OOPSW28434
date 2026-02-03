@@ -1,0 +1,10 @@
+{
+  "name": "fruits-modules",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "dependencies": {
+    "mongodb": "^6.5.0",
+    "prompt-sync": "^4.2.0"
+  }
+}
