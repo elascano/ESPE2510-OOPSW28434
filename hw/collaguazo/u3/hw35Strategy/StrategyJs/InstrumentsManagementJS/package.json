@@ -1,0 +1,15 @@
+{
+
+  "name": "instruments-management-localhost",
+  "version": "1.0.0",
+  "description": "InstrumentsManagement in JavaScript with localhost GUI",
+  "main": "src/main/javascript/ec/edu/espe/instruments/Main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/main/javascript/ec/edu/espe/instruments/Main.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongodb": "^6.3.0"
+  }
+}

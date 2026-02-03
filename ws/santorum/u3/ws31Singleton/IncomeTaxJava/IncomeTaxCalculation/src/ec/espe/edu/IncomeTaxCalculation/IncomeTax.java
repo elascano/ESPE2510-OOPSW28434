@@ -2,7 +2,11 @@ package ec.espe.edu.incometaxcalculation;
 
 /**
  *
+<<<<<<< HEAD
  * @author Thais Santorum
+=======
+ * @author Thais Santorum, @ESPE
+>>>>>>> 42873b91a747f492398a8d4038d79c2731ba27fb
  */
 public class IncomeTax {
     

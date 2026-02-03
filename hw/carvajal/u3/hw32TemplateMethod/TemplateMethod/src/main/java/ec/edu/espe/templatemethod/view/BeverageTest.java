@@ -3,7 +3,7 @@ import ec.edu.espe.templatemethod.model.*;
 
 /**
  *
- * @author Arelys Otavalo, the POOwer Rangers of Programming
+ * @author Josue Carvajal, The Art Of Programming
  */
 public class BeverageTest {
     public static void main(String[] args){

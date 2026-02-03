@@ -2,7 +2,7 @@ package ec.edu.espe.templatemethod.model;
 
 /**
  *
- * @author Arelys Otavalo, the POOwer Rangers of Programming
+ * @author Josue Carvajal, The Art Of Programming
  */
 public abstract class CaffeinBeverage {
 

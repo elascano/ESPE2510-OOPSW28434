@@ -1,0 +1,86 @@
+package ec.edu.espe.crudstrategy.model;
+
+/**
+ *
+ * @author Mateo Aymacaña, T.A.P. The Art Of Programming
+ */
+public class Customer {
+
+    private int id;
+    private String name;
+    private String apartmentNumber;
+    private String email;
+    private String phone;
+
+    public Customer() {
+    }
+
+    public Customer(int id, String name, String apartmentNumber, String email, String phone) {
+        this.id = id;
+        this.name = name;
+        this.apartmentNumber = apartmentNumber;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + id
+                + ", Nombre: " + name
+                + ", Apartamento: " + apartmentNumber
+                + ", Email: " + email
+                + ", Teléfono: " + phone;
+    }
+
+    public String toJson() {
+        return String.format(
+                "{\"id\":%d,\"name\":\"%s\",\"apartmentNumber\":\"%s\",\"email\":\"%s\",\"phone\":\"%s\"}",
+                id, name, apartmentNumber, email, phone
+        );
+    }
+
+    public String toCsv() {
+        return id + "," + name + "," + apartmentNumber + "," + email + "," + phone;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getApartmentNumber() {
+        return apartmentNumber;
+    }
+
+    public void setApartmentNumber(String apartmentNumber) {
+        this.apartmentNumber = apartmentNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+}

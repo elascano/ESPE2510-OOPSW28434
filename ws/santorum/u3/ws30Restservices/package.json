@@ -1,5 +1,5 @@
 {
-  "name": "ws29restservices",
+  "name": "ws29restservice",
   "version": "1.0.0",
   "description": "customersApp",
   "main": "index.js",
@@ -7,8 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Thais Santórum",
+  "author": "Thais Santorum",
   "license": "ISC",
+  "type": "commonjs",
   "dependencies": {
     "express": "^5.2.1",
     "mongoose": "^9.1.3"

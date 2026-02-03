@@ -6,11 +6,9 @@ async function main() {
     try {
         console.log('🚀 Iniciando Sistema de Equipos de Fútbol...\n');
         
-        // Probar conexión a MongoDB
         console.log('🔗 Conectando a MongoDB...');
         await MongoDBConnection.getConnection();
         
-        // Iniciar interfaz de consola
         const app = new ConsoleInterface();
         await app.showMainMenu();
         

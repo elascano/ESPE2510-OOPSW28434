@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ToolsManagement</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#0b0d12;color:#e9ecf1}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    h1{margin:0 0 16px;font-size:26px}
+    .card{background:#121624;border:1px solid #222a3d;border-radius:14px;padding:16px;margin:12px 0}
+    .row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
+    label{font-size:12px;color:#b7c0d6}
+    input,select,button{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #2a3350;background:#0e1220;color:#e9ecf1}
+    button{cursor:pointer;background:#1b2bff;border:1px solid #1b2bff}
+    button.secondary{background:#0e1220;border:1px solid #2a3350}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .actions button{width:auto}
+    .status{margin-top:10px;color:#a6b2d1;font-size:13px;min-height:18px}
+    table{width:100%;border-collapse:collapse;margin-top:8px}
+    th,td{border-bottom:1px solid #222a3d;text-align:left;padding:10px 8px;font-size:14px}
+    th{color:#b7c0d6;font-weight:600}
+    .split{display:grid;grid-template-columns:420px 1fr;gap:14px}
+    @media (max-width: 980px){.split{grid-template-columns:1fr}.row{grid-template-columns:1fr 1fr}}
+    @media (max-width: 520px){.row{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>ToolsManagement</h1>
+
+    <div class="split">
+      <div class="card">
+        <div class="row">
+          <div>
+            <label>Estrategia</label>
+            <select id="strategy">
+              <option value="mongo">MongoPersistence</option>
+              <option value="csv">CsvPersistence</option>
+              <option value="json">JsonPersistence</option>
+            </select>
+          </div>
+          <div>
+            <label>ID</label>
+            <input id="id" placeholder="T001" />
+          </div>
+          <div>
+            <label>Name</label>
+            <input id="name" placeholder="Hammer" />
+          </div>
+          <div>
+            <label>Price</label>
+            <input id="price" type="number" step="0.01" placeholder="10.50" />
+          </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+          <div style="grid-column:1/-1">
+            <label>Materials (separados por coma)</label>
+            <input id="materials" placeholder="wood, steel" />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="btnCreate">Crear</button>
+          <button id="btnUpdate" class="secondary">Actualizar</button>
+          <button id="btnDelete" class="secondary">Eliminar</button>
+          <button id="btnFind" class="secondary">Buscar</button>
+          <button id="btnRefresh" class="secondary">Refrescar</button>
+          <button id="btnClear" class="secondary">Limpiar</button>
+        </div>
+
+        <div class="status" id="status"></div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+          <div style="color:#b7c0d6;font-size:13px">Lista de Tools</div>
+          <div style="color:#6f7aa0;font-size:12px" id="subtitle"></div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Price+IVA</th>
+              <th>Materials</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

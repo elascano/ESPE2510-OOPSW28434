@@ -5,14 +5,16 @@ import java.io.InputStreamReader;
 
 /**
  *
- * @author Arelys Otavalo, the POOwer Rangers of Programming
+ * @author Josue Carvajal, The Art Of Programming
  */
 public class Tea extends CaffeinBeverage {
 
+    @Override
     public void brew() {
         System.out.println("Steep the tea");
     }
 
+    @Override
     public void addCondiments() {
         System.out.println("Adding lemon");
     }
