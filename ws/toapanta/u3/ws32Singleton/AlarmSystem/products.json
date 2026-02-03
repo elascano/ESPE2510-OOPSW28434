@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Keyboard",
+    "stock": 15
+  },
+  {
+    "id": 2,
+    "name": "Mouse",
+    "stock": 8
+  },
+  {
+    "id": 3,
+    "name": "Monitor",
+    "stock": 1
+  },
+  {
+    "id": 4,
+    "name": "Laptop",
+    "stock": 20
+  }
+]
