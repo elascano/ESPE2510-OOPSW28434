@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parking Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Footlight+MT+Light&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Footlight MT Light', sans-serif;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #4831dd;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 18px;
+        }
+        .container {
+            width: 95%;
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            width: 80px;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+        .form-group input, .form-group select {
+            padding: 5px;
+            font-size: 12px;
+            margin-right: 20px;
+        }
+        .buttons {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .buttons button {
+            margin: 0 10px;
+            padding: 8px 15px;
+            font-size: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttons button:hover {
+            opacity: 0.8;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 12px;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 5px;
+            text-align: center;
+        }
+        table th {
+            background-color: #4831dd;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>Parking Management</header>
+
+<div class="container">
+    <div class="form-group">
+        <label for="cmbStrategy">Strategy:</label>
+        <select id="cmbStrategy">
+            <option>Select...</option>
+            <option>JSON</option>
+            <option>CSV</option>
+            <option>MongoDB</option>
+        </select>
+
+        <label for="txtId">ID:</label>
+        <input type="text" id="txtId" />
+        <button id="btnFind">Find</button>
+    </div>
+
+    <div class="form-group">
+        <label for="txtPlate">Plate:</label>
+        <input type="text" id="txtPlate" />
+
+        <label for="cmbType">Type:</label>
+        <select id="cmbType">
+            <option>Select...</option>
+            <option>Car</option>
+            <option>Moto</option>
+            <option>Truck</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="txtEntry">Entry:</label>
+        <input type="text" id="txtEntry" />
+
+        <label for="txtExit">Exit:</label>
+        <input type="text" id="txtExit" />
+
+        <label for="txtFee">Fee:</label>
+        <input type="text" id="txtFee" />
+    </div>
+
+    <div class="buttons">
+        <button id="btnCreate">Create</button>
+        <button id="btnUpdate">Update</button>
+        <button id="btnDelete">Delete</button>
+        <button id="btnClear">Clear</button>
+    </div>
+
+    <table id="tblParking">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Plate</th>
+                <th>Vehicle Type</th>
+                <th>Entry Time</th>
+                <th>Exit Time</th>
+                <th>Fee</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script src="../controller/parkingController.js"></script>
+<script src="../utils/jsonPersistence.js"></script>
+<script src="../utils/csvPersistence.js"></script>
+<script src="../utils/mongoPersistence.js"></script>
+<script src="frmparking.js"></script>
+</body>
+</html>
