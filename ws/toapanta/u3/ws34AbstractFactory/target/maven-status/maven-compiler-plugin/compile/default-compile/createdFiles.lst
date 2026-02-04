@@ -1,0 +1,10 @@
+ec\edu\espe\ws34\model\WinFactory.class
+ec\edu\espe\ws34\view\ClientApp.class
+ec\edu\espe\ws34\model\WinMenu.class
+ec\edu\espe\ws34\model\GUIFactory.class
+ec\edu\espe\ws34\model\LinuxFactory.class
+ec\edu\espe\ws34\model\LinuxMenu.class
+ec\edu\espe\ws34\model\Button.class
+ec\edu\espe\ws34\model\Menu.class
+ec\edu\espe\ws34\model\WinButton.class
+ec\edu\espe\ws34\model\LinuxButton.class

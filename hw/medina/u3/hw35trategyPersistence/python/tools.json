@@ -1,0 +1,9 @@
+[
+    {
+        "id": "1",
+        "description": "Hammer",
+        "base_price": 10.0,
+        "stock": 19,
+        "total_with_tax": 11.5
+    }
+]

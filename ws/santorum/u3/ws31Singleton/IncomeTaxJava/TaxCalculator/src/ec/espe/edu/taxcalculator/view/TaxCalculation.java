@@ -5,7 +5,11 @@ import java.util.Scanner;
 
 /**
  *
+<<<<<<< HEAD
+ * @author Thais Santórum
+=======
  * @author Thais Santorum, @ESPE
+>>>>>>> 42873b91a747f492398a8d4038d79c2731ba27fb
  */
 public class TaxCalculation {
     public static void main(String[] args) {

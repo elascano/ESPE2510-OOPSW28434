@@ -43,6 +43,12 @@ replay_pid*
 /hw/rojas/u3/hw32TemplateMethod/TemplateMethod/target/
 /hw/aymacana/u3/hw32Strategy/Strategy/target/
 <<<<<<< HEAD
+/hw/quina/u3/hw33Observer/Observer/target/
+/hw/quina/u3/hw34Strategy/Strategy/target/
+/hw/rojas/u3/hw33Observer/Observer/target/
+/hw/rojas/u3/hw34Strategy/Strategy/target/
+=======
+<<<<<<< HEAD
 /hw/aymacana/u3/hw34Observer/Observer/target/
 /hw/aymacana/u3/hw29Singleton/SingletonJava/target/
 =======
@@ -52,3 +58,5 @@ replay_pid*
 /hw/toapanta/u3/hw32TemplateMethod/TemplateMethod/target/
 /hw/toapanta/u3/hw33StrategyCode/target/
 >>>>>>> 8fd3b673dd07248994f4ab7cccc70ec8be63c49c
+/hw/medina/u3/hw31TemplateMethod/target/
+>>>>>>> 42873b91a747f492398a8d4038d79c2731ba27fb
