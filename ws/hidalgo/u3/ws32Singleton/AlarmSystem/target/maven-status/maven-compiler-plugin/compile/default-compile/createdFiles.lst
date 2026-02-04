@@ -1,0 +1,5 @@
+ec\edu\espe\controller\InventarioController.class
+ec\edu\espe\controller\SistemaAlertas.class
+ec\edu\espe\model\Producto.class
+ec\edu\espe\model\SistemaAlertas.class
+ec\edu\espe\view\InventarioView.class
