@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de Zapatos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 15px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            color: white;
+        }
+
+        .btn-add {
+            background: #4CAF50;
+        }
+
+        .btn-add:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-buy {
+            background: #2196F3;
+        }
+
+        .btn-buy:hover {
+            background: #0b7dda;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
+        }
+
+        .shoes-list {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .shoes-list h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .shoe-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .shoe-info h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .shoe-info p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .shoe-stock {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        .modal-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-submit {
+            background: #667eea;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .btn-submit:hover {
+            background: #5568d3;
+        }
+
+        .btn-cancel {
+            background: #999;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .btn-cancel:hover {
+            background: #777;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛍️ Inventario de Zapatos</h1>
+
+        <div class="alert alert-success" id="successAlert"></div>
+        <div class="alert alert-error" id="errorAlert"></div>
+        <div class="alert alert-warning" id="warningAlert"></div>
+
+        <div class="button-group">
+            <button class="btn-add" onclick="showAddModal()">Agregar zapato</button>
+            <button class="btn-buy" onclick="showBuyModal()">Comprar</button>
+        </div>
+
+        <div class="shoes-list">
+            <h2>Zapatos en inventario:</h2>
+            <div id="shoesList"></div>
+        </div>
+    </div>
+
+    <!-- Modal para agregar zapato -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <h2>Agregar Zapato</h2>
+            <div class="form-group">
+                <label for="addId">ID del Zapato:</label>
+                <input type="text" id="addId" placeholder="Ej: S001">
+            </div>
+            <div class="form-group">
+                <label for="addName">Nombre del Zapato:</label>
+                <input type="text" id="addName" placeholder="Ej: Nike Air Max">
+            </div>
+            <div class="form-group">
+                <label for="addStock">Stock:</label>
+                <input type="number" id="addStock" placeholder="Ej: 10" min="0">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-submit" onclick="submitAdd()">Agregar</button>
+                <button class="btn-cancel" onclick="closeAddModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para comprar zapato -->
+    <div id="buyModal" class="modal">
+        <div class="modal-content">
+            <h2>Comprar Zapato</h2>
+            <div class="form-group">
+                <label for="buyId">ID del Zapato:</label>
+                <input type="text" id="buyId" placeholder="Ej: S001">
+            </div>
+            <div id="shoeInfo" style="display:none; margin-bottom: 15px; padding: 15px; background: #f5f5f5; border-radius: 5px;">
+                <p><strong>Nombre:</strong> <span id="shoeNameInfo"></span></p>
+                <p><strong>Stock disponible:</strong> <span id="shoeStockInfo"></span></p>
+            </div>
+            <div class="form-group">
+                <label for="buyQuantity">Cantidad a comprar:</label>
+                <input type="number" id="buyQuantity" placeholder="Ej: 2" min="1">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-submit" onclick="submitBuy()">Comprar</button>
+                <button class="btn-cancel" onclick="closeBuyModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showAddModal() {
+            document.getElementById("addModal").classList.add("show");
+        }
+
+        function closeAddModal() {
+            document.getElementById("addModal").classList.remove("show");
+            document.getElementById("addId").value = "";
+            document.getElementById("addName").value = "";
+            document.getElementById("addStock").value = "";
+        }
+
+        function showBuyModal() {
+            document.getElementById("buyModal").classList.add("show");
+            document.getElementById("shoeInfo").style.display = "none";
+            document.getElementById("buyId").value = "";
+            document.getElementById("buyQuantity").value = "";
+        }
+
+        function closeBuyModal() {
+            document.getElementById("buyModal").classList.remove("show");
+            document.getElementById("shoeInfo").style.display = "none";
+            document.getElementById("buyId").value = "";
+            document.getElementById("buyQuantity").value = "";
+        }
+
+        async function submitAdd() {
+            const id = document.getElementById("addId").value.trim();
+            const name = document.getElementById("addName").value.trim();
+            const stock = parseInt(document.getElementById("addStock").value);
+
+            const response = await fetch("/api/shoes", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id, name, stock })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                showAlert("success", data.message);
+                closeAddModal();
+                loadShoes();
+            } else {
+                showAlert("error", data.message);
+            }
+        }
+
+        async function submitBuy() {
+            const id = document.getElementById("buyId").value.trim();
+            const quantity = parseInt(document.getElementById("buyQuantity").value);
+
+            const response = await fetch(`/api/shoes/${id}/buy`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ quantity })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                if (data.remaining < 5) {
+                    showAlert("warning", data.message);
+                } else {
+                    showAlert("success", data.message);
+                }
+                closeBuyModal();
+                loadShoes();
+            } else {
+                showAlert("error", data.message);
+            }
+        }
+
+        async function loadShoes() {
+            const response = await fetch("/api/shoes");
+            const shoes = await response.json();
+
+            const shoesList = document.getElementById("shoesList");
+            if (shoes.length === 0) {
+                shoesList.innerHTML = '<div class="empty-message">No hay zapatos en el inventario</div>';
+            } else {
+                shoesList.innerHTML = shoes.map(shoe => `
+                    <div class="shoe-item">
+                        <div class="shoe-info">
+                            <h3>${shoe.id}</h3>
+                            <p>${shoe.name}</p>
+                        </div>
+                        <div class="shoe-stock">Stock: ${shoe.stock}</div>
+                    </div>
+                `).join("");
+            }
+        }
+
+        async function lookupShoe() {
+            const id = document.getElementById("buyId").value.trim();
+            if (!id) {
+                document.getElementById("shoeInfo").style.display = "none";
+                return;
+            }
+
+            const response = await fetch(`/api/shoes/${id}`);
+            const shoe = await response.json();
+
+            if (shoe) {
+                document.getElementById("shoeNameInfo").textContent = shoe.name;
+                document.getElementById("shoeStockInfo").textContent = shoe.stock;
+                document.getElementById("shoeInfo").style.display = "block";
+            } else {
+                document.getElementById("shoeInfo").style.display = "none";
+            }
+        }
+
+        document.getElementById("buyId").addEventListener("change", lookupShoe);
+
+        function showAlert(type, message) {
+            const successAlert = document.getElementById("successAlert");
+            const errorAlert = document.getElementById("errorAlert");
+            const warningAlert = document.getElementById("warningAlert");
+
+            successAlert.classList.remove("show");
+            errorAlert.classList.remove("show");
+            warningAlert.classList.remove("show");
+
+            if (type === "success") {
+                successAlert.textContent = message;
+                successAlert.classList.add("show");
+            } else if (type === "error") {
+                errorAlert.textContent = message;
+                errorAlert.classList.add("show");
+            } else if (type === "warning") {
+                warningAlert.textContent = message;
+                warningAlert.classList.add("show");
+            }
+
+            setTimeout(() => {
+                document.getElementById(`${type}Alert`).classList.remove("show");
+            }, 5000);
+        }
+
+        window.addEventListener("click", (event) => {
+            const addModal = document.getElementById("addModal");
+            const buyModal = document.getElementById("buyModal");
+
+            if (event.target === addModal) {
+                closeAddModal();
+            }
+            if (event.target === buyModal) {
+                closeBuyModal();
+            }
+        });
+
+        // Cargar zapatos al iniciar
+        loadShoes();
+    </script>
+</body>
+</html>

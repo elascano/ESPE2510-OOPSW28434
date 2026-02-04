@@ -1,0 +1,8 @@
+ec\edu\espe\inventory\controller\InventoryController$MongoClientSingleton.class
+ec\edu\espe\inventory\view\SellProductView.class
+ec\edu\espe\inventory\controller\InventoryController.class
+ec\edu\espe\inventory\view\AddProductView.class
+ec\edu\espe\inventory\model\StockAlert.class
+ec\edu\espe\inventory\controller\main\MainApp.class
+ec\edu\espe\inventory\controller\AlertController.class
+ec\edu\espe\inventory\model\Product.class
