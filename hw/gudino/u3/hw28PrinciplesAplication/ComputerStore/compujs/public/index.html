@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Computer Store</title>
+</head>
+<body>
+
+<h2>Agregar Producto</h2>
+
+<input id="name" placeholder="Nombre">
+<input id="make" placeholder="Marca">
+<input id="price" placeholder="Precio Base">
+<button id="add">Agregar</button>
+<button id="refresh">Actualizar</button>
+
+<h3>Productos</h3>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Precio Base</th>
+            <th>Precio Final</th>
+        </tr>
+    </thead>
+    <tbody id="products"></tbody>
+</table>
+
+<h3>Total: <span id="total">$0.00</span></h3>
+
+<script src="app.js"></script>
+</body>
+</html>
