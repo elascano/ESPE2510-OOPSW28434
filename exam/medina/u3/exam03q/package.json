@@ -1,0 +1,27 @@
+{
+  "name": "exam03q",
+  "version": "1.0.0",
+  "description": "Sorting algorithms using Strategy Pattern with MVC architecture and MongoDB",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "strategy-pattern",
+    "sorting",
+    "mvc",
+    "mongodb",
+    "javascript"
+  ],
+  "author": "Joseph Medina",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0"
+  },
+  "devDependencies": {}
+}
