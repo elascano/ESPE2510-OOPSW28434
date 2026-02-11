@@ -1,0 +1,3 @@
+class SortStrategy {
+    sortArray(array) {};
+}
