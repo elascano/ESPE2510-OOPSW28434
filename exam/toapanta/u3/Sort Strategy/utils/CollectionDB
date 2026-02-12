@@ -1,0 +1,15 @@
+
+from utils.SortingResultsRepository import SortingResultsRepository
+from controller.SortingCoordinator import SortingCoordinator
+from view.frm import SortingView
+
+if __name__ == "__main__":
+
+    uri = "mongodb+srv://Adrian:<db_password>@cluster0.o8impqy.mongodb.net/"
+    
+    repository = SortingResultsRepository(uri, "strategyToapanta", "arrayAdrian")
+    
+    coordinator = SortingCoordinator(repository)
+    
+    app = SortingView(coordinator)
+    app.mainloop()

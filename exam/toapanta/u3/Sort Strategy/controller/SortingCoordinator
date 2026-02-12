@@ -1,0 +1,55 @@
+
+from utils.SortingResultsRepository import SortingResultsRepository
+from model.SortStrategy import BubbleSortAlgorithm, InsertionSortAlgorithm, QuickSortAlgorithm
+
+class SortingCoordinator:
+    def __init__(self, repository: SortingResultsRepository):
+
+        self.repository = repository
+
+    def process_sorting_request(self, raw_user_input: str) -> dict:
+
+        numeric_elements = self._parse_and_validate_input(raw_user_input)
+        element_count = len(numeric_elements)
+        
+    
+        algorithm_strategy, algorithm_name = self._select_strategy_by_size(element_count)
+        
+
+        sorted_result = algorithm_strategy.sort_collection(list(numeric_elements))
+    
+        self.repository.persist_sorting_operation(
+            unsorted_list=numeric_elements,
+            list_size=element_count,
+            algorithm_used=algorithm_name,
+            sorted_list=sorted_result
+        )
+        
+        return {
+            "algorithm_name": algorithm_name,
+            "total_elements": element_count,
+            "sorted_list": sorted_result
+        }
+
+    def _select_strategy_by_size(self, size: int):
+
+        if 2 <= size <= 6:
+            return BubbleSortAlgorithm(), "BubbleSort"
+        
+        if 7 <= size <= 10:
+            return InsertionSortAlgorithm(), "InsertionSort"
+        
+        return QuickSortAlgorithm(), "QuickSort"
+
+    def _parse_and_validate_input(self, input_string: str) -> list:
+
+        try:
+
+            numeric_elements = [int(item.strip()) for item in input_string.split(",") if item.strip()]
+            
+            if len(numeric_elements) <= 1:
+                raise ValueError("El número de elementos debe ser mayor a 1")
+                
+            return numeric_elements
+        except ValueError:
+            raise ValueError("Entrada inválida. Use números enteros separados por comas.")
